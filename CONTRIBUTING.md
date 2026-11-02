@@ -26,7 +26,7 @@ For documentation or curated-media changes, run the package and local-link check
 python3 scripts/check_release.py
 ```
 
-For runtime or workflow changes, use an isolated environment and run relevant tests; run the full suite when the affected scope warrants it:
+For runtime or workflow changes, use an isolated Python 3.11+ environment and run relevant tests; run the full suite when the affected scope warrants it:
 
 ```sh
 python3 -m venv .venv

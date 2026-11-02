@@ -101,13 +101,14 @@ class SetupTests(unittest.TestCase):
         self.assertTrue(value['ok'])
 
     def test_api_route_prepares_only_image_runtime(self):
-        runtime = {'status': 'reused', 'python': sys.executable, 'runtime_dir': str(self.config / 'runtimes/image')}
+        runtime = {'status': 'reused', 'python': sys.executable, 'runtime_dir': str(self.config / 'runtimes/image-py311')}
         with (patch.object(installer, 'bootstrap_dependencies', return_value=runtime) as image,
              patch.object(host_setup, 'prepare_lux', side_effect=AssertionError('inactive supplier')),
              patch.object(host, '_image_route', return_value={'ok': True})):
             value = self.setup(scope='art', image_profile='configured-images')
         self.assertTrue(value['ok'])
         image.assert_called_once()
+        self.assertEqual(image.call_args.args[1], self.config / 'runtimes/image-py311')
         self.assertEqual(value['runtime']['status'], 'reused')
 
     def test_runtime_scope_does_not_require_image_services_or_native_engine(self):
@@ -215,6 +216,43 @@ class InterpreterAndDiscoveryTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'explicit interpreter'):
                 installer.select_python(explicit='/selected/python', need_venv=True)
 
+    def test_python_310_remains_valid_for_core_but_not_image_runtime(self):
+        response = subprocess.CompletedProcess([], 0, '[3, 10, 16]')
+        with patch.object(installer.subprocess, 'run', return_value=response):
+            self.assertTrue(installer.probe_python('/existing/python310')['ok'])
+            self.assertFalse(installer.probe_python('/existing/python310', min_version=(3, 11))['ok'])
+
+    def test_image_selection_skips_310_but_explicit_310_does_not_fall_back(self):
+        candidates = [Path('/existing/python310'), Path('/existing/python311')]
+        versions = [subprocess.CompletedProcess([], 0, '[3, 10, 16]'),
+                    subprocess.CompletedProcess([], 0, '[3, 11, 12]')]
+        with (patch.object(installer, 'python_candidates', return_value=candidates),
+              patch.object(installer.subprocess, 'run', side_effect=versions)):
+            value = installer.select_python(min_version=(3, 11))
+        self.assertEqual(value['path'], str(candidates[1]))
+        self.assertTrue(value['recovered'])
+        with (patch.object(installer, 'python_candidates', side_effect=AssertionError('explicit path only')),
+              patch.object(installer.subprocess, 'run', return_value=versions[0])):
+            with self.assertRaisesRegex(ValueError, 'Python 3.11.*explicit interpreter'):
+                installer.select_python(explicit=candidates[0], min_version=(3, 11))
+
+    def test_old_image_runtime_is_preserved_and_requires_new_path(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary)
+            runtime = base / 'runtime'
+            executable = runtime / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
+            executable.parent.mkdir(parents=True)
+            executable.write_text('old Python 3.10 fixture')
+            (runtime / 'pyvenv.cfg').write_text('version = 3.10')
+            (runtime / 'unique.txt').write_text('preserve')
+            with (patch.object(installer, 'probe_python', return_value={'ok': False}),
+                  patch.object(installer.subprocess, 'run', side_effect=AssertionError('must not modify old runtime'))):
+                with self.assertRaisesRegex(ValueError, 'Python 3.11.*Preserve the existing runtime'):
+                    installer.bootstrap_dependencies(base / 'skill', runtime)
+            self.assertEqual((runtime / 'unique.txt').read_text(), 'preserve')
+            self.assertEqual(executable.read_text(), 'old Python 3.10 fixture')
+            self.assertFalse((base / '.runtime.bootstrap.lock').exists())
+
     def test_real_python_invocation_is_measured_without_installing_packages(self):
         selected = installer.probe_python(sys.executable)
         self.assertTrue(selected['ok'])
@@ -234,15 +272,16 @@ class InterpreterAndDiscoveryTests(unittest.TestCase):
             skill, runtime = root / 'skill', root / 'runtime'
             requirements = skill / 'connectors/workbuddy/requirements.txt'
             requirements.parent.mkdir(parents=True)
-            requirements.write_text('requests>=2.25.0,<3\nPillow>=10,<13\n')
+            requirements.write_text('requests>=2.25.0,<3\nPillow>=13,<14\n')
             python = runtime / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
             python.parent.mkdir(parents=True)
             python.write_text('synthetic interpreter; subprocess is mocked')
             (runtime / 'pyvenv.cfg').write_text('synthetic fixture')
             (runtime / '.greybox-image-runtime.json').write_text(json.dumps({
                 'requirements_sha256': hashlib.sha256(requirements.read_bytes()).hexdigest()}))
-            resolved = {'python': '3.12.14', 'requests': '2.32.5', 'Pillow': '12.3.0'}
-            with patch.object(installer.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, json.dumps(resolved))) as run:
+            resolved = {'python': '3.12.14', 'requests': '2.32.5', 'Pillow': '13.0.0'}
+            with (patch.object(installer, 'probe_python', return_value={'ok': True}),
+                  patch.object(installer.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, json.dumps(resolved))) as run):
                 result = installer.bootstrap_dependencies(skill, runtime)
             self.assertEqual(result['status'], 'reused')
             self.assertEqual(result['dependency_versions'], resolved)
@@ -320,6 +359,7 @@ class InterpreterAndDiscoveryTests(unittest.TestCase):
             (runtime / 'pyvenv.cfg').write_text('fixture')
             (runtime / 'unique.txt').write_text('preserve')
             with (patch.object(installer, 'select_python', return_value={'path': sys.executable}),
+                  patch.object(installer, 'probe_python', return_value={'ok': True}),
                   patch.object(installer.subprocess, 'run', side_effect=[subprocess.CompletedProcess([], 1),
                                                                         subprocess.CalledProcessError(-6, 'venv')])):
                 with self.assertRaisesRegex(ValueError, 'new private runtime path'):

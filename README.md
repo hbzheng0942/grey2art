@@ -35,12 +35,12 @@ Design reviews and production plans keep the work directed: choose references, a
 
 | Prepare | Choose |
 |---|---|
-| Agent and Python | Codex, Claude Code or WorkBuddy with local command execution; [Python 3.10+](https://www.python.org/downloads/). |
+| Agent and Python | Codex, Claude Code or WorkBuddy with local command execution; [Python 3.11+](https://www.python.org/downloads/). |
 | Authoring and validation | [Blender](https://www.blender.org/download/) for spatial greyboxes, scale, cameras and geometry; [Godot](https://godotengine.org/download/) / [Unity](https://unity.com/download) for playable loops, interactions and runtime tests. Choose for the task and retain existing project versions. |
 | Image tools | Use your host's image tool or configure an [image service](skills/greybox-to-multistyle-art/references/image-services.md) for concepts and modeling references. |
 | AI 3D provider | Choose one when generating new models: Lux3D, Meshy, Tripo, Rodin or Hi3D. [Sign up and configure](docs/INSTALL.md#choose-an-ai-3d-provider) |
 
-Blender is a DCC tool; a spatial greybox or `.blend` delivery needs no game engine. Greybox work needs no image or 3D account. Prepare Pillow for image operations, and review costs before paid generation.
+Blender is a DCC tool; a spatial greybox or `.blend` delivery needs no game engine. Greybox work needs no image or 3D account. Image operations use Pillow 13+; review costs before paid generation.
 
 ## Quickstart
 

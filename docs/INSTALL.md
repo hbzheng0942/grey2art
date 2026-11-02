@@ -4,7 +4,7 @@
 
 ## Get the complete package
 
-Use [Python 3.10+](https://www.python.org/downloads/). Download the Skill ZIP and checksum from [GitHub Releases](https://github.com/hbzheng0942/grey2art/releases/latest). The ZIP is about 1 MB; games and showcase media are not needed. Extract it, then enter `greybox-to-multistyle-art/`:
+Use [Python 3.11+](https://www.python.org/downloads/) for the full image workflow. Offline installation and CLI commands also support Python 3.10. Download the Skill ZIP and checksum from [GitHub Releases](https://github.com/hbzheng0942/grey2art/releases/latest). The ZIP is about 1 MB; games and showcase media are not needed. Extract it, then enter `greybox-to-multistyle-art/`:
 
 ```sh
 python3 scripts/install.py --verify-only
@@ -58,7 +58,7 @@ Here `SKILL` is the installation path reported above. These checks need no servi
 
 **Authoring and validation.** Use the existing project's engine and version. For native assembly and play checks, Godot or Unity must be installed and callable by the agent. Preparing the Skill does not download an engine or migrate the game. See [capabilities](CAPABILITIES.md) for the native routes.
 
-**Images.** A suitable host-native image tool can produce concepts and references without a second image-service account. Local image decoding and crop operations may still require Pillow. If the current host has no usable image tool, configure one service through [image services](../skills/greybox-to-multistyle-art/references/image-services.md). Keep the reasoning model unchanged. Generation, pixel inspection and displaying the result are separate capabilities.
+**Images.** A suitable host-native image tool can produce concepts and references without a second image-service account. Local image decoding and cropping use Pillow 13+ with Python 3.11+. If the current host has no usable image tool, configure one service through [image services](../skills/greybox-to-multistyle-art/references/image-services.md). Keep the reasoning model unchanged. Generation, pixel inspection and displaying the result are separate capabilities.
 
 **Meshes.** Configure a 3D supplier only when new AI meshes are needed; reused assets and native edits may need none. New AI meshes use approved image references. The agent proposes the route, model/version, parameters, processing and costs before the first production authorization. Optional remesh, rigging and motion are separate operations and may add cost.
 
@@ -112,7 +112,7 @@ Refresh host discovery afterward. Ongoing cases retain their original bound pack
 
 - **Host ambiguous:** select one `--host`, or the actual `--skills-dir`.
 - **Manifest mismatch:** obtain the complete same-version package; preserve edited installations and ongoing cases.
-- **Missing Python/venv/pip:** select a working existing Python 3.10+; preserve old environments and follow the scoped setup diagnostic.
+- **Missing Python/venv/pip:** select a working existing Python 3.11+ for image work (3.10+ for offline commands); preserve old environments and follow the scoped setup diagnostic.
 - **Dependency download failure:** correct connectivity or package-index configuration, then retry the same setup. Do not repeatedly create new full environments.
 - **Authentication failure:** verify the declared account/region and the credential available to the agent process; do not rotate through unrelated accounts.
 - **Generation timeout or unknown result:** retain the original task and recovery IDs. Status/download recovery does not require a new generation.

@@ -1,4 +1,4 @@
 # Optional production crop dependency; pinned here for deterministic CI tests.
-Pillow==12.3.0
+Pillow==13.0.0
 # Development-only Skill/frontmatter and CI YAML validation.
 PyYAML==6.0.3

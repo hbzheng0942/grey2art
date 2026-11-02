@@ -107,7 +107,7 @@ def python_candidates(configured=None, home=None, environ=None):
     return result[:8]
 
 
-def probe_python(executable, need_venv=False):
+def probe_python(executable, need_venv=False, min_version=(3, 10)):
     """Actually invoke Python, and only when needed exercise venv/ensurepip offline."""
     path = Path(executable).expanduser().absolute()
     result = {'path': str(path), 'ok': False}
@@ -116,7 +116,7 @@ def probe_python(executable, need_venv=False):
                               'import json,sys; print(json.dumps(list(sys.version_info[:3])))'],
                              capture_output=True, text=True, timeout=15, check=False)
         version = json.loads(run.stdout) if run.returncode == 0 else []
-        if not isinstance(version, list) or tuple(version) < (3, 10):
+        if not isinstance(version, list) or tuple(version) < tuple(min_version):
             return {**result, 'reason': 'python-version-or-invocation-failed'}
         result['version'] = version
         if need_venv:
@@ -137,16 +137,17 @@ def probe_python(executable, need_venv=False):
         return {**result, 'reason': 'python-probe-failed'}
 
 
-def select_python(explicit=None, configured=None, need_venv=False, home=None, environ=None):
+def select_python(explicit=None, configured=None, need_venv=False, home=None, environ=None, min_version=(3, 10)):
     candidates = [Path(explicit).expanduser().absolute()] if explicit else python_candidates(configured, home, environ)
     attempts = []
     for path in candidates:
-        result = probe_python(path, need_venv)
+        result = probe_python(path, need_venv, min_version=min_version)
         attempts.append(result)
         if result['ok']:
             return {**result, 'attempts': attempts, 'recovered': len(attempts) > 1}
     mode = 'explicit interpreter; no fallback was selected' if explicit else 'existing interpreter candidates'
-    raise ValueError('No usable Python 3.10+ in ' + mode + ': ' + json.dumps(attempts))
+    required = '.'.join(map(str, min_version))
+    raise ValueError('No usable Python ' + required + '+ in ' + mode + ': ' + json.dumps(attempts))
 
 
 def verified_files(source):
@@ -392,6 +393,11 @@ def bootstrap_dependencies(skill_root, runtime_dir, python_executable=None, conf
         if runtime_dir.exists() and ((runtime_dir / 'pyvenv.cfg').is_symlink()
                                      or not (runtime_dir / 'pyvenv.cfg').is_file()):
             raise ValueError('Runtime directory already contains non-venv files; choose an empty path')
+        explicit_selection = (select_python(python_executable, configured_python, need_venv=True, min_version=(3, 11))
+                              if python_executable else None)
+        if executable.is_file() and not probe_python(executable, min_version=(3, 11))['ok']:
+            raise ValueError('Image operations require Python 3.11+ and Pillow 13+. Preserve the existing runtime; '
+                             'select a complete Python 3.11+ and a new private runtime path (--bootstrap PATH).')
         requirements = skill_root / 'connectors/workbuddy/requirements.txt'
         digest = hashlib.sha256(requirements.read_bytes()).hexdigest()
         receipt = runtime_dir / '.greybox-image-runtime.json'
@@ -419,7 +425,7 @@ def bootstrap_dependencies(skill_root, runtime_dir, python_executable=None, conf
                 return {'status': 'reused', 'python': str(executable), 'runtime_dir': str(runtime_dir),
                         'dependency_versions': versions(checked),
                         'requirements_sha256': digest, 'scope': 'Private image HTTP/decoder runtime; no provider calls'}
-        selected = None
+        selected = explicit_selection
         pip_ready = False
         if executable.is_file():
             try:
@@ -428,7 +434,7 @@ def bootstrap_dependencies(skill_root, runtime_dir, python_executable=None, conf
             except (OSError, subprocess.SubprocessError):
                 pass  # Probe another complete interpreter before one bounded repair.
         if python_executable or not pip_ready:
-            selected = select_python(python_executable, configured_python, need_venv=True)
+            selected = selected or select_python(python_executable, configured_python, need_venv=True, min_version=(3, 11))
             # venv without --clear repairs its interpreter/ensurepip in place.
             # Never delete an existing environment or its unrelated user files.
             subprocess.run([selected['path'], '-I', '-B', '-m', 'venv', str(runtime_dir)], check=True, capture_output=True, timeout=60)
@@ -447,7 +453,7 @@ def bootstrap_dependencies(skill_root, runtime_dir, python_executable=None, conf
         if created and runtime_dir.exists():
             shutil.rmtree(runtime_dir)
         raise ValueError('Private runtime bootstrap failed; existing environments were preserved. '
-                         'Check package-index connectivity; for a broken environment select a complete Python 3.10+ '
+                         'Check package-index connectivity; for a broken environment select a complete Python 3.11+ '
                          'with --python and use a new private runtime path (--bootstrap PATH). '
                          'Do not clear the existing directory or repeat an unchanged failing setup.') from None
     finally:

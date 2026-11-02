@@ -13,4 +13,6 @@ First public release of Grey2Art. / Grey2Art 首次公开发行。
 
 - Preserve Unicode paths and text in offline installation and CLI/MCP output across supported operating systems. / 跨平台安装及 CLI／MCP 输出支持中文等 Unicode 路径与文本。
 
+- Use Pillow 13 for image processing in a Python 3.11+ runtime; offline commands retain Python 3.10 support. / 图像处理使用 Python 3.11+ 与 Pillow 13，离线命令保留 Python 3.10 支持。
+
 Demo games and media retain their source rights. See [third-party notices](THIRD_PARTY_NOTICES.md). / 演示游戏与媒体保留来源权利，见[第三方声明](THIRD_PARTY_NOTICES.md)。

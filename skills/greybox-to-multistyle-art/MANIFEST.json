@@ -4,7 +4,7 @@
   "version": "0.15.1",
   "kind": "source-only",
   "sourceIdentity": "Grey2Art first public release: complete Skill source, offline installation and Unicode-safe command output. Existing task and asset identities are preserved.",
-  "sourceManifestSHA256": "c4f478f3d6319ec2523e679dbcae5e9737e9cbb963642c42f2c51c0aaffd4696",
+  "sourceManifestSHA256": "604c8bc5c2e2b3485920eb13f0f04b440198b70a7504d657def48013c115060f",
   "nativeValidation": "Feedback behavior is checked with local synthetic CLI cases; actual host capture coverage and reduced rework remain unmeasured. Historical native/provider evidence retains its original version; see references/candidate-status.md.",
   "files": [
     {
@@ -29,8 +29,8 @@
     },
     {
       "path": "connectors/workbuddy/bootstrap.py",
-      "bytes": 2371,
-      "sha256": "aa4b7b79f39e304c2c5da129f028e8fcb6976b035d65b3ffab047fa6cd8157e0"
+      "bytes": 2538,
+      "sha256": "2faa266429ca293d80a0ece84136e99b3532a4f774ec0adf0f69f34fe61b8ae7"
     },
     {
       "path": "connectors/workbuddy/cli.template.json",
@@ -50,7 +50,7 @@
     {
       "path": "connectors/workbuddy/requirements.txt",
       "bytes": 108,
-      "sha256": "d703c90e4b2f57f63203283516aecb3c2591a8b74eeab17c0bce5b2994acbd5a"
+      "sha256": "3adfa2e8c5f25a77147172bcf40f4c445ca793c7dd03513be23a3943699f26fe"
     },
     {
       "path": "connectors/workbuddy/skills/greybox-host-bridge/SKILL.md",
@@ -194,8 +194,8 @@
     },
     {
       "path": "references/image-services.md",
-      "bytes": 10420,
-      "sha256": "56d0b5243974cfe3e378d0bf8f48ec1c3c935e1249059a9895c5448e826c9b58"
+      "bytes": 10468,
+      "sha256": "631eed72b2bf7347052b2cf9dcc716e86611bd6f59dbd86f2af3db1f7d35d6bf"
     },
     {
       "path": "references/intake-routing.md",
@@ -584,8 +584,8 @@
     },
     {
       "path": "runtime/greybox/host_setup.py",
-      "bytes": 10117,
-      "sha256": "19b02b24a987e9c08b5da6b9108e87a23f9b1e6bcc03e4b9233e0fc6eec6c6a6"
+      "bytes": 10123,
+      "sha256": "10f11f1276885682751e756c7c9e81b5246ab30fd2ea02c17a865778fa8eb8dc"
     },
     {
       "path": "runtime/greybox/image_adapters.py",
@@ -859,8 +859,8 @@
     },
     {
       "path": "runtime/legacy/requirements-lookdev.txt",
-      "bytes": 81,
-      "sha256": "32d45b3d56b6a32ae9177fe2a1606232a0169469d493195060a26ef51e6e93c2"
+      "bytes": 85,
+      "sha256": "1422fee67c0cbd9e0116e70ebdff3ac44b57addd6d35b909d13aa0c381045ea3"
     },
     {
       "path": "runtime/legacy/scripts/lookdev.py",
@@ -1314,8 +1314,8 @@
     },
     {
       "path": "scripts/install.py",
-      "bytes": 28267,
-      "sha256": "a7916e2cca94de93899c4fbe7f721ffc93cadc85921581b8d4a6eb87132c2066"
+      "bytes": 28956,
+      "sha256": "baa4cc23735202a480f1a77a2fe0513cede63e153e420fc19b661d956d4a7bae"
     },
     {
       "path": "scripts/knowledge.py",

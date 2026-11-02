@@ -35,12 +35,12 @@ Grey2Art 是面向 Codex、Claude Code 和 WorkBuddy 的 Agent Skill。从已有
 
 | 准备什么 | 如何选择 |
 |---|---|
-| Agent 与 Python | Codex、Claude Code 或 WorkBuddy，可执行本地命令；[Python 3.10+](https://www.python.org/downloads/)。 |
+| Agent 与 Python | Codex、Claude Code 或 WorkBuddy，可执行本地命令；[Python 3.11+](https://www.python.org/downloads/)。 |
 | 制作与验证工具 | [Blender](https://www.blender.org/download/) 用于空间灰盒、尺度、镜头和几何验证；[Godot](https://godotengine.org/download/)／[Unity](https://unity.com/download) 用于可玩循环、交互与运行测试。按任务选择，已有工程沿用原版本。 |
 | 生图工具 | 复用宿主生图工具，或配置[图像服务](skills/greybox-to-multistyle-art/references/image-services.md)，用于概念与建模参考。 |
 | AI 3D 供应商 | 新生成模型时选择一家：Lux3D、Meshy、Tripo、Rodin 或 Hi3D。[注册与配置](docs/INSTALL.zh-CN.md#选择-ai-3d-供应商) |
 
-Blender 是 DCC 工具；只交付空间灰盒或 `.blend` 时无需游戏引擎。灰盒阶段无需生图或 3D 账户，Pillow 按图像操作需要准备；付费生成前先确认设计与费用。
+Blender 是 DCC 工具；只交付空间灰盒或 `.blend` 时无需游戏引擎。灰盒阶段无需生图或 3D 账户，图像操作使用 Pillow 13+；付费生成前先确认设计与费用。
 
 ## 快速开始
 

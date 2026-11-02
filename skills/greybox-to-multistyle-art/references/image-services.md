@@ -5,7 +5,7 @@ Keep the reasoning model unchanged. These operations can run before H1 and do
 not depend on H3 mesh production. Existing task scope and image-spend authority
 remain necessary; configuration, credentials and balances grant no spend.
 
-`scripts/image.py` works directly with Python 3.10+ and Pillow. The shared CLI
+`scripts/image.py` uses Python 3.11+ and Pillow 13+. The offline core CLI remains compatible with Python 3.10+. The shared CLI
 also exposes `greybox.py image ...`. Submission is a detached job by default;
 use `status --local` for no-network inspection and `resume` for one bounded poll
 and any completed download. Node and MCP are optional. Image decoding, reading

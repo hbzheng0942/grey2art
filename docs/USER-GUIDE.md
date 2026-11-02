@@ -11,11 +11,11 @@ You can also start with a gameplay brief or reference and build a greybox first.
 | Prepare | When you need it |
 |---|---|
 | Codex, Claude Code or WorkBuddy with local command execution | Every task. |
-| [Python 3.10+](https://www.python.org/downloads/) | Installation and the shared CLI. |
+| [Python 3.11+](https://www.python.org/downloads/) | The full image workflow; offline installation and CLI commands also support Python 3.10. |
 | An existing project, or a new project directory | Keep the original gameplay, assets and project instructions available to the agent. |
 | [Godot](https://godotengine.org/download/) or [Unity](https://unity.com/download) | Native playable assembly and interaction checks. Retain an existing project's engine version. |
 | [Blender](https://www.blender.org/download/) | Spatial greyboxes, scale/camera/geometry work, or selected asset processing and rendering. Blender is a DCC tool; an editable `.blend` endpoint needs no game engine. |
-| A suitable image tool | Concepts and modeling references. Use the host's image tool or configure an [image service](../skills/greybox-to-multistyle-art/references/image-services.md). Image decoding and cropping may need Pillow. |
+| A suitable image tool | Concepts and modeling references. Use the host's image tool or configure an [image service](../skills/greybox-to-multistyle-art/references/image-services.md). Image decoding and cropping use Pillow 13+. |
 | One AI 3D provider | Only when new generated models are needed. Existing assets and native geometry may need no provider account. |
 
 Installing the Skill and building a primitive greybox need no image or 3D account. Prepare additional dependencies for the current operation when the agent identifies them.

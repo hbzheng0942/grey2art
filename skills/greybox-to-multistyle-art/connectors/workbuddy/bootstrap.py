@@ -24,6 +24,8 @@ def main(argv=None):
     if not (root / "runtime/greybox/host.py").is_file():
         parser.error("Install the source skill before initializing its connector")
     if args.install_image_dependencies and not args.skip_dependencies:
+        if sys.version_info < (3, 11):
+            parser.error("Image operations require Python 3.11+ and Pillow 13+; use the WorkBuddy-managed Python 3.11 runtime")
         if sys.prefix == sys.base_prefix:
             parser.error("Use WorkBuddy's managed virtual environment or install.py --bootstrap with an external runtime; global pip is never used")
         # WorkBuddy supplies an isolated interpreter/venv; never use --user/global pip.

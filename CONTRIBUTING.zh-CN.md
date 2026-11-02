@@ -26,7 +26,7 @@ Grey2Art 的主能力是从同一玩法灰盒，批量制作多种美术风格�
 python3 scripts/check_release.py
 ```
 
-runtime 或工作流改动使用独立环境，运行相关测试；影响范围需要时再运行完整套件：
+runtime 或工作流改动使用 Python 3.11+ 独立环境，运行相关测试；影响范围需要时再运行完整套件：
 
 ```sh
 python3 -m venv .venv

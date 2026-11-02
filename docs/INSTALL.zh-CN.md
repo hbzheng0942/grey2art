@@ -4,7 +4,7 @@
 
 ## 获取完整安装包
 
-需要 [Python 3.10+](https://www.python.org/downloads/)。从 [GitHub Release](https://github.com/hbzheng0942/grey2art/releases/latest) 下载 Skill ZIP 和校验文件；ZIP 约 1 MB，无需下载游戏或全部案例媒体。解压后进入 `greybox-to-multistyle-art/`：
+完整图像流程使用 [Python 3.11+](https://www.python.org/downloads/)，离线安装与 CLI 命令也支持 Python 3.10。从 [GitHub Release](https://github.com/hbzheng0942/grey2art/releases/latest) 下载 Skill ZIP 和校验文件；ZIP 约 1 MB，无需下载游戏或全部案例媒体。解压后进入 `greybox-to-multistyle-art/`：
 
 ```sh
 python3 scripts/install.py --verify-only
@@ -58,7 +58,7 @@ python3 "$SKILL/scripts/greybox.py" knowledge audit
 
 **制作与验证工具。** 沿用已有引擎与版本。原生装配、可玩检查要求 Godot 或 Unity 已安装且 agent 可调用。准备 Skill 不下载引擎，也不迁移工程。原生路线见[功能页](CAPABILITIES.zh-CN.md)。
 
-**图像。** 合适的宿主原生生图工具可以生成概念和参考图，无需额外图像服务账户。本地解码、裁图仍可能需要 Pillow。当前宿主缺少可用生图工具时，再按[图像服务](../skills/greybox-to-multistyle-art/references/image-services.md)配置一个服务，保持推理模型不变。生成、读取像素和展示结果是分别验证的能力。
+**图像。** 合适的宿主原生生图工具可以生成概念和参考图，无需额外图像服务账户。本地解码、裁图使用 Python 3.11+ 与 Pillow 13+。当前宿主缺少可用生图工具时，再按[图像服务](../skills/greybox-to-multistyle-art/references/image-services.md)配置一个服务，保持推理模型不变。生成、读取像素和展示结果是分别验证的能力。
 
 **模型。** 需要新 AI 网格时再配置一个 3D 供应商；复用资产与原生修改可能无需供应商。新网格使用批准的图像参考。首次生产授权前，agent 提出路线、模型／版本、参数、后处理和费用。减面、绑骨、动作是独立操作，可能另外收费。
 
@@ -112,7 +112,7 @@ python3 skills/greybox-to-multistyle-art/scripts/install.py --host codex --rollb
 
 - **宿主识别歧义：**指定一个 `--host` 或实际 `--skills-dir`。
 - **Manifest 不符：**获取同版本完整包，保留编辑过的安装和进行中的案例。
-- **缺少 Python／venv／pip：**选择已有可用 Python 3.10+，保留旧环境，跟随当前 setup 诊断处理。
+- **缺少 Python／venv／pip：**图像操作选择已有 Python 3.11+（离线命令支持 3.10+），保留旧环境，跟随当前 setup 诊断处理。
 - **依赖下载失败：**修正连接或包索引配置，再重试同一操作，不反复创建完整环境。
 - **认证失败：**检查声明的地区账户及 agent 进程可见凭据，不轮流尝试无关账户。
 - **生成超时／结果未知：**保留原任务与恢复 ID；查询和下载原任务不需要重新生成。

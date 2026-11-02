@@ -52,7 +52,8 @@ class PortableInstall(unittest.TestCase):
                                  capture_output=True, encoding='utf-8', env=environment, timeout=30)
             self.assertNotEqual(run.returncode, 0)
             value = json.loads(run.stderr or run.stdout)
-            self.assertIn(str(path), value['error'])
+            self.assertEqual(value['type'], 'FileNotFoundError')
+            self.assertIn(repr(str(path)), value['error'])
 
     def test_mcp_preserves_non_ascii_argparse_diagnostic(self):
         environment = os.environ.copy()

@@ -139,7 +139,7 @@ def setup(selected_host='auto', config_dir=None, project=None, engine=None, scop
     if runtime == 'lux':
         prepared, selected = prepare_lux(root, installer, bindings.get('python'), selected)
     elif runtime == 'image' or (scope == 'art' and effective_profile and not native):
-        prepared = installer.bootstrap_dependencies(root, private / 'runtimes/image',
+        prepared = installer.bootstrap_dependencies(root, private / 'runtimes/image-py311',
                                                     python_executable=bindings.get('python'), configured_python=selected['path'])
         selected = {**selected, 'path': prepared['python']}
     bindings['python'] = selected['path']

@@ -15,7 +15,7 @@ Published tags and package bytes are immutable. Documentation-only changes do no
 
 ## Verification
 
-Use an isolated Python environment:
+Use an isolated Python 3.11+ environment for the image-dependent tests:
 
 ```sh
 python3 -m venv .venv
