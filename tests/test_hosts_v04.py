@@ -63,7 +63,14 @@ class HostsV04(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "does not exist"):
             host.configure(executables={"unity": self.root / "missing"}, config_dir=self.config)
         self.assertFalse((self.config / "hosts/workbuddy.json").exists())
-        self.assertFalse((self.config / ".host.lock").exists())
+        with host._locked(self.config):
+            pass
+
+    def test_stale_host_configuration_lock_is_recovered(self):
+        self.config.mkdir()
+        (self.config / ".host.lock").write_text("2147483647")
+        self.configure(image_profile="retained-route")
+        self.assertEqual(host.discover(config_dir=self.config)["image_profile"], "retained-route")
 
     def test_windows_unity_detected_outside_path(self):
         binary = self.root / "Program Files/Unity/Hub/Editor/6000.3.26f1/Editor/Unity.exe"
@@ -214,7 +221,8 @@ class HostsV04(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "non-venv"):
             installer.bootstrap_dependencies(ROOT, occupied)
         self.assertEqual((occupied / "unique.txt").read_text(), "keep")
-        self.assertFalse((self.root / ".occupied.bootstrap.lock").exists())
+        with installer._operation_lock(self.root / ".occupied.bootstrap.lock", "bootstrap"):
+            pass
 
 
 if __name__ == "__main__":

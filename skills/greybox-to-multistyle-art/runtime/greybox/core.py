@@ -339,13 +339,19 @@ def process_alive(pid):
 
 @contextlib.contextmanager
 def locked(run_dir):
+    with locked_file(Path(run_dir) / ".workflow.lock"):
+        yield
+
+
+@contextlib.contextmanager
+def locked_file(path, *, strict_legacy=False):
     """Hold a stable OS lock; its file is never removed or replaced.
 
     The protocol marker is immutable across acquisitions, including read-only
     callers. Stop older workers before upgrading: a live legacy PID is refused.
     """
     from .execution_process import LockBusyError, exclusive
-    path = Path(run_dir) / ".workflow.lock"
+    path = Path(path)
     ensure_directory(path.parent)
     with contextlib.ExitStack() as stack:
         try:
@@ -353,19 +359,25 @@ def locked(run_dir):
         except LockBusyError:
             raise WorkflowLockBusy("Run is owned by a live process") from None
         handle.seek(0)
+        raw = handle.read()
+        marker = b'{"kind":"greybox-os-lock-v1"}'
         try:
-            previous = json.loads(handle.read())
+            previous = json.loads(raw)
         except (ValueError, UnicodeError):
             previous = {}
-        if not isinstance(previous, dict) or previous.get("kind") != "greybox-os-lock-v1":
-            pid = previous.get("pid") if isinstance(previous, dict) else None
+        current = isinstance(previous, dict) and previous.get("kind") == "greybox-os-lock-v1"
+        if (strict_legacy and raw and not current and not marker.startswith(raw)
+                and not (type(previous) is int and previous > 0)):
+            raise WorkflowLockBusy("Run is owned by a live process")
+        if not current:
+            pid = previous.get("pid") if isinstance(previous, dict) else previous
             if type(pid) is int and pid > 0 and process_alive(pid):
                 raise WorkflowLockBusy("Run is owned by a live process")
             # Truncation preserves the locked inode, even if a process dies here.
             # Do not rewrite the marker on later read-only acquisitions.
             handle.seek(0)
             handle.truncate()
-            handle.write(b'{"kind":"greybox-os-lock-v1"}')
+            handle.write(marker)
             handle.flush()
         yield
 

@@ -5,6 +5,7 @@ not a keychain; its provider, region and environment-name binding must all match
 """
 from __future__ import annotations
 
+from contextlib import ExitStack
 import json
 import os
 from pathlib import Path
@@ -12,6 +13,7 @@ import stat
 import tempfile
 
 from .core import require
+from .execution_process import LockBusyError, exclusive
 
 
 def store_path():
@@ -93,11 +95,15 @@ def save(provider, region, values):
     path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
     _private(path.parent, directory=True)
     lock = path.parent / ".providers.lock"
-    try:
-        descriptor = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    except FileExistsError:
-        raise ValueError("Credential setup is already locked; finish the other setup, or remove its stale lock only after confirming no setup process is active") from None
-    os.close(descriptor)
+    with ExitStack() as stack:
+        try:
+            stack.enter_context(exclusive(lock))
+        except LockBusyError:
+            raise ValueError("Credential setup is already locked; finish the other setup before retrying") from None
+        return _save_locked(path, provider, region, values)
+
+
+def _save_locked(path, provider, region, values):
     temporary = None
     try:
         data = _read(path)
@@ -114,7 +120,6 @@ def save(provider, region, values):
     finally:
         if temporary is not None:
             Path(temporary).unlink(missing_ok=True)
-        lock.unlink(missing_ok=True)
     return path
 
 

@@ -44,29 +44,29 @@ def main(argv=None):
     try:
         if args.command == "retry-preflight":
             from . import supplier_execution
-            queue = execution.validate_queue(json.loads(args.file.read_text()))
+            queue = execution.validate_queue(json.loads(args.file.read_text(encoding="utf-8")))
             count = sum(supplier_execution.retry_preflight(source, args.source_ref)
                         for source in queue['sources'] if source['kind'] == 'supplier')
             result = {'ok': True, 'recheck_preparations': count, 'provider_calls': 0}
         elif args.command == "validate":
-            data = json.loads(args.file.read_text())
+            data = json.loads(args.file.read_text(encoding="utf-8"))
             checked = execution.validate_queue(data)
             result = {"ok": True, "queue_valid": True, "network_calls": 0,
                       "sources": len(checked["sources"]), "pools": len(checked["pools"])}
         elif args.command == "record":
-            result = execution.record(args.ticket, json.loads(args.file.read_text()), state_dir=args.state_dir)
+            result = execution.record(args.ticket, json.loads(args.file.read_text(encoding="utf-8")), state_dir=args.state_dir)
         elif args.command == "native-settle":
             from . import host_execution
-            result = host_execution.settle(args.job_dir, args.task_id, json.loads(args.file.read_text()))
+            result = host_execution.settle(args.job_dir, args.task_id, json.loads(args.file.read_text(encoding="utf-8")))
             _, data = host_execution._job(args.job_dir)
             if data.get("submission_ticket_path"):
                 result["capacity"] = execution.refresh_ticket(data["submission_ticket_path"])
         elif args.command == "native-reserve":
             from . import host_execution
-            authorization = json.loads(args.authorization.read_text()) if args.authorization else {"source_ref": args.source_ref}
-            result = host_execution.reserve(json.loads(args.file.read_text()), args.job_dir,
+            authorization = json.loads(args.authorization.read_text(encoding="utf-8")) if args.authorization else {"source_ref": args.source_ref}
+            result = host_execution.reserve(json.loads(args.file.read_text(encoding="utf-8")), args.job_dir,
                 authorization=authorization, tool=args.tool,
-                binding=json.loads(args.binding.read_text()) if args.binding else None,
+                binding=json.loads(args.binding.read_text(encoding="utf-8")) if args.binding else None,
                 base=args.project or args.file.resolve().parent)
         elif args.command == "run":
             result = execution.run(args.file, state_dir=args.state_dir, max_seconds=args.max_seconds, once=args.once)

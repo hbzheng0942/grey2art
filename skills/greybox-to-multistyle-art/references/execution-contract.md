@@ -48,6 +48,11 @@ actual requests per second, independently of in-flight capacity. Those numbers
 illustrate syntax, not supplier limits. Server capacity/rate refusals remain
 authoritative when manual jobs or other machines share the account.
 
+Within one running queue, each action resumes after its previous successful
+dispatch. This prevents continuously active early tasks from monopolizing a
+method's rate tokens. It does not promise fairness between independent machines
+or independent queue coordinators sharing one account.
+
 Explicit frozen portfolio run limits remain effective. A current user-authorized
 operational change can be recorded in a source as
 `execution_limits:{source_ref:"ACTUAL_DECISION",max_inflight_per_provider:{lux3d:3}}`.
@@ -89,6 +94,11 @@ supplier operations pending, separate from a confirmed conflicting claim.
 supervisors retain original deadlines and durable receipts. Resume the same
 queue to import them instead of creating new tasks. Inspect phase, process
 liveness, heartbeat age, pools, task deferred reasons and capability gaps.
+
+Unexpected coordinator errors publish `phase: failed` with a sanitized exception
+type when the status storage remains writable. The original action supervisors
+and provider identities are retained. Correct the local fault and resume the
+same queue; a coordinator failure is not evidence that remote generation failed.
 
 Changing a running queue pauses new submissions until a reviewed restart.
 Unavailable ledgers never free capacity. Reconcile original provider IDs using

@@ -2,6 +2,14 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+## 0.15.2-rc.3 — Unreleased / 未发布
+
+- Rotate ready actions after each dispatch so account rate limits cannot starve later jobs. / 调度按操作轮转，避免账号限流使队尾任务长期得不到轮询。
+- Validate manual image polls and recovery against the original task before updating its ledger; check asynchronous IDs and successful outputs. / 手工图像轮询与恢复先核对原任务，再更新账本；校验异步 ID 与成功产物。
+- Use recoverable OS ownership for installer, rollback, dependency bootstrap, host configuration and private credential writes; determine runtime cleanup ownership only after acquiring the lock. / 安装、回滚、依赖初始化、宿主配置和凭据保存采用可恢复的 OS 锁，拿锁后再判断环境清理归属。
+- Reuse the shared image/native lock, explicitly read current CLI/native text as UTF-8, and record sanitized coordinator failure states. / 图像与原生任务复用统一锁，当前 CLI 与原生接入文本明确以 UTF-8 读取，后台异常保存脱敏失败状态。
+- Publish Unity JSON through unique temporary files and the shared atomic writer. / Unity JSON 使用唯一临时文件和统一原子写入，避免并发写入冲突。
+
 ## 0.15.2-rc.2 — Unreleased / 未发布
 
 - Retry short-lived Windows sharing violations when atomically publishing status and task JSON; permanent access errors remain bounded failures. / 原子写入状态与任务 JSON 时，对 Windows 短暂文件占用进行有界重试，永久权限错误仍正常报错。

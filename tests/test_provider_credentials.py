@@ -83,12 +83,22 @@ class ProviderCredentials(unittest.TestCase):
         with patch.object(credentials.os, "replace", side_effect=OSError("synthetic failure")), self.assertRaises(OSError):
             self.save("cn")
         self.assertEqual(path.read_bytes(), original)
-        self.assertEqual([p.name for p in path.parent.iterdir()], ["providers.json"])
+        self.assertEqual({p.name for p in path.parent.iterdir()}, {"providers.json", ".providers.lock"})
         lock = path.parent / ".providers.lock"
-        lock.touch(mode=0o600)
-        with self.assertRaisesRegex(ValueError, "locked"): self.save("cn")
+        with credentials.exclusive(lock):
+            with self.assertRaisesRegex(ValueError, "locked"):
+                self.save("cn")
         self.assertEqual(path.read_bytes(), original)
         self.assertTrue(lock.exists())
+        self.save("cn")
+        self.assertEqual(credentials.load("meshy", "international", "MESHY_API_KEY"), "synthetic-private-value")
+
+    def test_stale_credential_lock_does_not_block_saving(self):
+        path = credentials.store_path()
+        path.parent.mkdir(parents=True, mode=0o700)
+        (path.parent / ".providers.lock").touch(mode=0o600)
+        self.save()
+        self.assertEqual(credentials.load("meshy", "international", "MESHY_API_KEY"), "synthetic-private-value")
 
     def test_terminal_setup_hides_value_and_nonterminal_input_is_refused(self):
         output, errors = io.StringIO(), io.StringIO()

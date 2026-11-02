@@ -251,7 +251,8 @@ class InterpreterAndDiscoveryTests(unittest.TestCase):
                     installer.bootstrap_dependencies(base / 'skill', runtime)
             self.assertEqual((runtime / 'unique.txt').read_text(), 'preserve')
             self.assertEqual(executable.read_text(), 'old Python 3.10 fixture')
-            self.assertFalse((base / '.runtime.bootstrap.lock').exists())
+            with installer._operation_lock(base / '.runtime.bootstrap.lock', 'bootstrap'):
+                pass
 
     def test_real_python_invocation_is_measured_without_installing_packages(self):
         selected = installer.probe_python(sys.executable)
@@ -308,7 +309,8 @@ class InterpreterAndDiscoveryTests(unittest.TestCase):
                     installer.bootstrap_dependencies(skill, runtime)
             self.assertFalse(runtime.exists())
             self.assertEqual((sibling / 'unique.txt').read_text(), 'keep')
-            self.assertFalse((root / '.runtime.bootstrap.lock').exists())
+            with installer._operation_lock(root / '.runtime.bootstrap.lock', 'bootstrap'):
+                pass
 
     def test_real_offline_missing_pip_is_repaired_without_clearing_existing_files(self):
         for explicit in (None, sys.executable):
@@ -344,7 +346,8 @@ class InterpreterAndDiscoveryTests(unittest.TestCase):
                 self.assertEqual((runtime / 'unique-user-file.txt').read_text(), 'preserve')
                 with patch.object(installer, 'select_python', side_effect=AssertionError('ready runtime must be reused')):
                     self.assertEqual(installer.bootstrap_dependencies(skill, runtime)['status'], 'reused')
-                self.assertFalse((root / '.runtime.bootstrap.lock').exists())
+                with installer._operation_lock(root / '.runtime.bootstrap.lock', 'bootstrap'):
+                    pass
 
     def test_failed_existing_environment_repair_preserves_files_and_reports_recovery(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -366,7 +369,8 @@ class InterpreterAndDiscoveryTests(unittest.TestCase):
                     installer.bootstrap_dependencies(skill, runtime)
             self.assertEqual((runtime / 'unique.txt').read_text(), 'preserve')
             self.assertTrue((runtime / 'pyvenv.cfg').exists())
-            self.assertFalse((root / '.runtime.bootstrap.lock').exists())
+            with installer._operation_lock(root / '.runtime.bootstrap.lock', 'bootstrap'):
+                pass
 
     def test_lux_reuses_runtime_without_install_or_account_calls(self):
         selected = {'path': sys.executable, 'ok': True}

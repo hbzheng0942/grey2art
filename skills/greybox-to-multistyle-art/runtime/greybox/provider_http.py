@@ -320,14 +320,14 @@ def output_owner(output_dir, provider, task_id):
     require(not marker.is_symlink(), "Supplier output ownership marker cannot be a symlink")
     if marker.exists():
         try:
-            existing = json.loads(marker.read_text())
+            existing = json.loads(marker.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             raise ProviderError("Invalid supplier output ownership record") from None
         require(existing == expected, "Supplier output directory belongs to another task")
     else:
         require(not any(output.iterdir()), "A fresh supplier output directory or matching ownership record is required")
         try:
-            with marker.open("x") as handle:
+            with marker.open("x", encoding="utf-8") as handle:
                 json.dump(expected, handle, sort_keys=True)
         except FileExistsError:
             raise ProviderError("Supplier output directory ownership changed concurrently") from None

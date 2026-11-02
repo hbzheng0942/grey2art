@@ -35,7 +35,7 @@ def _stream_digest(path):
 
 def native_admit(job, godot_path=None):
     verified = verify_result(job)
-    source = json.loads(Path(verified["report_path"]).read_text())
+    source = json.loads(Path(verified["report_path"]).read_text(encoding="utf-8"))
     executable = engine(godot_path)
     version = subprocess.run([executable, "--version"], capture_output=True, text=True, timeout=20)
     if version.returncode != 0 or not version.stdout.strip().startswith("4."):
@@ -86,7 +86,7 @@ def native_admit(job, godot_path=None):
     probe_path = output / "probe-report.json"
     if process.returncode != 0 or errors or not probe_path.is_file():
         raise ValueError("Godot admission rejected engine error/output; inspect: " + str(output / "invocation.log"))
-    probe = json.loads(probe_path.read_text())
+    probe = json.loads(probe_path.read_text(encoding="utf-8"))
     if probe.get("status") != "passed" or probe.get("asset_sha256") != verified["asset_sha256"] or probe.get("attempt") != attempt:
         raise ValueError("Godot native checks failed; inspect: " + str(probe_path))
     if digest(verified["asset_path"]) != verified["asset_sha256"]:
@@ -112,7 +112,7 @@ def native_admit(job, godot_path=None):
 
 def verify_godot_admission(job, receipt):
     validated = validate_native_admission(job, receipt)
-    report = json.loads(Path(receipt["evidence_path"]).read_text())
+    report = json.loads(Path(receipt["evidence_path"]).read_text(encoding="utf-8"))
     if report.get("returncode") != 0 or report.get("fatal_log_lines"):
         raise ValueError("Native admission contains engine errors")
     for key in ("probe_report", "attempt_receipt", "log"):
@@ -120,7 +120,7 @@ def verify_godot_admission(job, receipt):
         path = Path(item.get("path", ""))
         if not path.is_file() or digest(path) != item.get("sha256"):
             raise ValueError("Changed native admission evidence: " + key)
-    if fatal_log_lines(Path(report["log"]["path"]).read_text()):
+    if fatal_log_lines(Path(report["log"]["path"]).read_text(encoding="utf-8")):
         raise ValueError("Actual engine log contains errors despite pass report")
     for key, item in report.get("bindings", {}).items():
         path = Path(item["path"])

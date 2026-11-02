@@ -55,11 +55,26 @@ class ImageTests(unittest.TestCase):
         self.profile = {"kind": "openai", "base_url": "https://api.example.com/v1", "model": "fixture-image-model", "credential_env": "GREYBOX_FIXTURE_IMAGE_KEY"}
         self.environment = patch.dict(os.environ, {"GREYBOX_FIXTURE_IMAGE_KEY": "fixture-secret-do-not-print"})
         self.environment.start()
+        self.processes = []
+        actual_popen = subprocess.Popen
+        def spawn_owned(*args, **kwargs):
+            process = actual_popen(*args, **kwargs)
+            self.processes.append(process)
+            return process
+        self.process_patch = patch.object(subprocess, "Popen", side_effect=spawn_owned)
+        self.process_patch.start()
         jobs.configure("fixture", self.profile, self.config)
         self.input = self.png("concept.png", color="royalblue")
         self.output = self.png("output.png", color="coral")
 
     def tearDown(self):
+        self.process_patch.stop()
+        for process in self.processes:
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.terminate()
+                process.wait(timeout=5)
         self.environment.stop()
         self.temp.cleanup()
 
@@ -427,6 +442,36 @@ class ImageTests(unittest.TestCase):
         self.assertEqual(result["state"], "submitted")
         self.assertEqual(result["provider_task_id"], task)
 
+    def test_manual_poll_rejects_wrong_or_missing_task_id_without_mutating_evidence(self):
+        with patch.object(adapters, "submit", return_value={"state": "submitted", "provider_task_id": "original"}):
+            self.submit()
+        folder = self.root / "job"
+        original_job = (folder / "job.json").read_bytes()
+        original_response = (folder / "provider-response.json").read_bytes()
+        for response in ({"state": "running", "provider_task_id": "other"},
+                         {"state": "succeeded", "items": [{"path": str(self.output)}]},
+                         {"state": "succeeded", "provider_task_id": "original", "items": []},
+                         {"state": "invalid", "provider_task_id": "original"}):
+            with self.subTest(response=response), patch.object(adapters, "status", return_value=response):
+                with self.assertRaises(adapters.ImageError):
+                    jobs.status(folder)
+            self.assertEqual((folder / "job.json").read_bytes(), original_job)
+            self.assertEqual((folder / "provider-response.json").read_bytes(), original_response)
+        with patch.object(adapters, "status", return_value={"state": "running", "provider_task_id": "original"}):
+            self.assertEqual(jobs.status(folder)["provider_task_id"], "original")
+
+    def test_reconciled_response_cannot_replace_a_known_original_task(self):
+        with patch.object(adapters, "submit", return_value={"state": "submitted", "provider_task_id": "original"}):
+            self.submit()
+        wrong = self.root / "wrong-response.json"
+        jobs._write(wrong, {"state": "succeeded", "provider_task_id": "different",
+                            "items": [{"path": str(self.output)}]})
+        folder = self.root / "job"
+        before = (folder / "job.json").read_bytes()
+        with self.assertRaises(adapters.ImageError):
+            jobs.resume(folder, response_file=wrong, source_ref="synthetic-original-evidence")
+        self.assertEqual((folder / "job.json").read_bytes(), before)
+
     def test_malformed_post_submit_response_is_unknown_and_retained(self):
         with patch.object(jobs.subprocess, "Popen"):
             jobs.submit("fixture", self.request(), self.root / "malformed", config_dir=self.config, authorization={"source_ref": "fixture"})
@@ -435,6 +480,18 @@ class ImageTests(unittest.TestCase):
             result = jobs.execute(self.root / "malformed")
         self.assertEqual(result["state"], "unknown")
         self.assertEqual(jobs._read(self.root / "malformed/provider-response.json"), response)
+
+    def test_malformed_async_or_empty_success_keeps_original_submission_unknown(self):
+        responses = [{"state": "submitted"}, {"state": "running", "provider_task_id": ""},
+                     {"state": "succeeded", "items": []}]
+        for index, response in enumerate(responses):
+            folder = "malformed-shape-" + str(index)
+            with self.subTest(response=response), patch.object(adapters, "submit", return_value=response) as submit:
+                result = self.submit(folder=folder)
+                self.assertEqual(result["state"], "unknown")
+                self.assertEqual(jobs._read(self.root / folder / "provider-response.json"), response)
+                self.assertTrue(jobs.resume(self.root / folder)["reconciliation_required"])
+                self.assertEqual(submit.call_count, 1)
 
     def test_partial_fetch_resume_does_not_redownload_expired_completed_image(self):
         response = {"state": "succeeded", "items": [{"url": "https://example.com/first"}, {"url": "https://example.com/second"}]}
