@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "kind": "production-visual-package",
+  "style_id": "REPLACE_STYLE_ID",
+  "bom": [
+    {
+      "asset_id": "REPLACE_ASSET_FAMILY_ID",
+      "image_id": "REPLACE_BOM_BOARD_EVIDENCE_ID",
+      "region": [
+        0.05,
+        0.05,
+        0.4,
+        0.4
+      ],
+      "reference_status": "production_ready"
+    }
+  ],
+  "assembly_annotations": [
+    {
+      "assembly_id": "REPLACE_RECIPE_ASSEMBLY_ID",
+      "asset_ids": [
+        "REPLACE_ASSET_FAMILY_ID"
+      ],
+      "image_id": "REPLACE_ASSEMBLY_MAP_EVIDENCE_ID",
+      "region": [
+        0.1,
+        0.2,
+        0.6,
+        0.5
+      ]
+    }
+  ],
+  "note": "Attach this JSON with role visual_package; actual image files have roles bom_board and assembly_map plus unique IDs/path/sha256. region is normalized [x,y,width,height] and must be inside the actual image. Every current sample source family and recipe assembly must be shown. Status is production_ready for generated/hybrid, approved_reuse for reuse, procedural_design for designed procedural work. IDs/regions are mechanically checked; reviewer must inspect readable images and correct object correspondence. A display BOM may contain many deterministic thumbnails without being a generation sheet."
+}

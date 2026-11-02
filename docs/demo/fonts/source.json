@@ -1,0 +1,19 @@
+{
+  "font": "Departure Mono 1.500",
+  "author": "Helena Zhang",
+  "license": "OFL-1.1",
+  "files": [
+    {
+      "file": "DepartureMono-1.500.woff2",
+      "bytes": 22496,
+      "sha256": "5b4fed1daa90708aa9c6ee1190abca9dc22164a1c1def0020386e46b61038cfb",
+      "source": "https://raw.githubusercontent.com/rektdeckard/departure-mono/75152a3f1e6dacdd248a6c397c97dbf27e33eea0/public/assets/DepartureMono-1.500.woff2"
+    },
+    {
+      "file": "OFL.txt",
+      "bytes": 4357,
+      "sha256": "b65e42750f3cb65437a97f4dfd781c58f199259949db2341012be60e32500e83",
+      "source": "https://raw.githubusercontent.com/rektdeckard/departure-mono/75152a3f1e6dacdd248a6c397c97dbf27e33eea0/public/assets/LICENSE"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+name: Feature or integration / 功能或适配建议
+description: Propose a concrete user-facing improvement. / 提出具体的使用改进。
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User task and current limitation / 使用任务与当前限制
+      description: Describe the input, intended endpoint and current workaround. / 说明输入、目标出口与当前替代做法。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior / 建议行为
+      description: Explain the change and affected existing entrypoints. / 说明变化以及对已有入口的影响。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and test scope / 证据与测试范围
+      description: Relevant host/OS/engine versions, prototype or actual session result. / 相关宿主、系统、引擎版本，原型或实际会话结果。
+  - type: textarea
+    id: integration
+    attributes:
+      label: Integration maintenance, costs and recovery / 适配维护、费用与恢复
+      description: For a new provider/engine/host, name a maintenance contact and explain configuration, charging and failure recovery. / 新供应商、引擎或宿主需说明维护联系、配置、收费和失败恢复。

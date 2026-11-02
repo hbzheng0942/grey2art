@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "kind": "supplier-registry",
+  "providers": [
+    {
+      "id": "lux3d",
+      "label": "Lux3D",
+      "desired": true,
+      "configured": false,
+      "binding": {
+        "kind": "builtin_lux"
+      },
+      "operations": [
+        "image_to_3d",
+        "text_to_3d",
+        "remesh",
+        "rig",
+        "retarget",
+        "material_transfer",
+        "export",
+        "articulate"
+      ],
+      "verification": {
+        "discovery": {
+          "state": "unverified"
+        },
+        "connection": {
+          "state": "unverified"
+        },
+        "operations": {},
+        "native": {}
+      }
+    },
+    {
+      "id": "tripo",
+      "label": "Tripo",
+      "desired": false,
+      "configured": false,
+      "binding": {
+        "kind": "builtin_api"
+      },
+      "operations": [
+        "text_to_3d",
+        "image_to_3d",
+        "multiview_to_3d",
+        "rig",
+        "animation",
+        "retarget",
+        "rig_check",
+        "remesh"
+      ],
+      "verification": {
+        "connection": {
+          "state": "unverified"
+        },
+        "operations": {},
+        "native": {}
+      },
+      "required_env": [
+        "TRIPO_API_KEY"
+      ]
+    },
+    {
+      "id": "meshy",
+      "label": "Meshy",
+      "desired": false,
+      "configured": false,
+      "binding": {
+        "kind": "builtin_api"
+      },
+      "operations": [
+        "image_to_3d",
+        "multiview_to_3d",
+        "text_to_3d",
+        "texture_refine",
+        "rig",
+        "animation",
+        "remesh"
+      ],
+      "verification": {
+        "connection": {
+          "state": "unverified"
+        },
+        "operations": {},
+        "native": {}
+      },
+      "required_env": [
+        "MESHY_API_KEY"
+      ]
+    },
+    {
+      "id": "hitem3d",
+      "label": "Hi3D / Hitem3D",
+      "desired": false,
+      "configured": false,
+      "binding": {
+        "kind": "builtin_api"
+      },
+      "operations": [
+        "image_to_3d",
+        "multiview_to_3d",
+        "texture"
+      ],
+      "verification": {
+        "connection": {
+          "state": "unverified"
+        },
+        "operations": {},
+        "native": {}
+      },
+      "required_env": [
+        "HITEM3D_CLIENT_ID",
+        "HITEM3D_CLIENT_SECRET"
+      ]
+    },
+    {
+      "id": "rodin",
+      "label": "Hyper3D Rodin",
+      "desired": false,
+      "configured": false,
+      "binding": {
+        "kind": "builtin_api"
+      },
+      "operations": [
+        "image_to_3d",
+        "text_to_3d"
+      ],
+      "verification": {
+        "connection": {
+          "state": "unverified"
+        },
+        "operations": {},
+        "native": {}
+      },
+      "required_env": [
+        "RODIN_API_KEY"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "kind": "greybox-usage-observation",
+  "event_id": "REPLACE-STABLE-EVENT-ID",
+  "issue_id": "REPLACE-STABLE-ISSUE-ID",
+  "type": "failure",
+  "stage": "REPLACE-ACTUAL-STAGE",
+  "summary": "REPLACE-WITH-CONCISE-OBSERVATION",
+  "source_ref": "REPLACE-WITH-ACTUAL-MESSAGE-OR-TOOL-REFERENCE",
+  "basis": "observed",
+  "expected": "REPLACE-WITH-AGREED-EXPECTED-BEHAVIOR",
+  "actual": "REPLACE-WITH-OBSERVED-RESULT",
+  "context": {"host": null, "model": null, "engine": null, "session_ref": null},
+  "mechanisms": [],
+  "evidence": [],
+  "intervention": null,
+  "costs": null,
+  "project_status": "open",
+  "skill_status": "untriaged",
+  "next_test": null,
+  "triage": {
+    "category": "unknown",
+    "severity": "unknown"
+  }
+}

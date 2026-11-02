@@ -1,0 +1,10 @@
+{
+  "scope_mode": "expansion",
+  "production_space_ids": [
+    "REPLACE_CURRENT_EXPANSION_SPACE_ID"
+  ],
+  "production_view_ids": [
+    "REPLACE_APPROVED_BASELINE_OBSERVATION_ID"
+  ],
+  "note": "Apply these fields to the new production table, with current execution_plan_digest/table/recipe/BOM and an actual scoped approval. Keep sample_contract exactly equal to the archived accepted original sample, apart from source_production_digest. production_space_ids must equal the current recipe assembly spaces and stay within approved detailed H2 atlas space, not merely global coarse intent; production_view_ids must cover all baseline observations intersecting those production spaces. When focused H2 adds regions, also supply sample_source_workflow:{path,sha256} pointing to the small frozen original approved H2/H3 context and its unchanged canonical evidence. Preserve original space designs, views, interfaces, focus_contract (or sample_focus_contract), and plan/section evidence; append new area detail. H4 still validates the original sample only. Submit via the expansion gate, never representative production."
+}

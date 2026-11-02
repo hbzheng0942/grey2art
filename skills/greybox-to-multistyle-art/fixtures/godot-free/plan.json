@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "kind": "greybox-art-plan",
+  "id": "free-fixture",
+  "styles": [
+    {
+      "id": "ceramic",
+      "title": "Ceramic garden"
+    },
+    {
+      "id": "orbital",
+      "title": "Orbital station"
+    }
+  ],
+  "contract": {
+    "scene": "res://main.tscn",
+    "camera": "Camera3D",
+    "spatial_organization": "two-connected-spaces",
+    "validation": {
+      "steps": [
+        {
+          "name": "baseline",
+          "hook": {
+            "node": ".",
+            "method": "greybox_validation",
+            "args": [
+              "state"
+            ]
+          },
+          "expect": {
+            "interactions": 0,
+            "zone": 0,
+            "decor_visible": true,
+            "decor_owned_by_target": true,
+            "collision_count": 4,
+            "root_identity_preserved": true,
+            "pivot_at_ground": true,
+            "source_material_preserved": true,
+            "landmark_in_front": true
+          }
+        },
+        {
+          "name": "collect",
+          "input_action": "interact",
+          "frames": 4,
+          "hook": {
+            "node": ".",
+            "method": "greybox_validation",
+            "args": [
+              "state"
+            ]
+          },
+          "expect": {
+            "interactions": 1,
+            "target_visible": false,
+            "decor_visible": false,
+            "target_collision_disabled": true,
+            "collision_count": 4
+          }
+        },
+        {
+          "name": "transition",
+          "input_action": "transition",
+          "frames": 4,
+          "hook": {
+            "node": ".",
+            "method": "greybox_validation",
+            "args": [
+              "state"
+            ]
+          },
+          "expect": {
+            "zone": 1,
+            "landmark_in_front": true,
+            "root_identity_preserved": true,
+            "interactions": 1
+          }
+        }
+      ]
+    }
+  },
+  "bindings": [
+    {
+      "id": "target_body",
+      "owner": "Target",
+      "hide": [
+        "Target/Grey"
+      ],
+      "source": {
+        "route": "procedural",
+        "primitive": "cylinder",
+        "size": [
+          1.55,
+          1.5,
+          1.55
+        ]
+      },
+      "styles": {
+        "ceramic": {
+          "material": {
+            "color": "#f1c9a4",
+            "roughness": 0.65
+          }
+        },
+        "orbital": {
+          "source": {
+            "route": "procedural",
+            "primitive": "box",
+            "size": [
+              1.5,
+              1.5,
+              1.5
+            ]
+          },
+          "material": {
+            "color": "#2b6e96",
+            "metallic": 0.55,
+            "roughness": 0.3
+          }
+        }
+      }
+    },
+    {
+      "id": "target_cap",
+      "owner": "Target/DecorAnchor",
+      "source": {
+        "route": "procedural",
+        "primitive": "sphere",
+        "size": [
+          0.8,
+          0.8,
+          0.8
+        ]
+      },
+      "styles": {
+        "ceramic": {
+          "material": {
+            "color": "#65b392"
+          }
+        },
+        "orbital": {
+          "source": {
+            "route": "procedural",
+            "primitive": "box",
+            "size": [
+              1.0,
+              0.2,
+              1.0
+            ]
+          },
+          "material": {
+            "color": "#f5b84f",
+            "metallic": 0.4
+          }
+        }
+      }
+    },
+    {
+      "id": "landmark",
+      "owner": "SharedLandmark",
+      "hide": [
+        "SharedLandmark/Grey"
+      ],
+      "anchor_mode": "bottom_center",
+      "source": {
+        "route": "procedural",
+        "primitive": "cylinder",
+        "size": [
+          0.2,
+          4,
+          2
+        ]
+      },
+      "styles": {
+        "ceramic": {
+          "material": {
+            "color": "#4c9a86"
+          }
+        },
+        "orbital": {
+          "source": {
+            "route": "procedural",
+            "primitive": "box",
+            "size": [
+              1.4,
+              4,
+              0.65
+            ]
+          },
+          "material": {
+            "color": "#5aa8d0",
+            "metallic": 0.5
+          }
+        }
+      }
+    },
+    {
+      "id": "pivot_probe",
+      "owner": "PivotProbe",
+      "anchor_mode": "bottom_center",
+      "normalize": {
+        "mode": "uniform_bounds",
+        "max_extent": 0.8
+      },
+      "source": {
+        "route": "reuse",
+        "path": "res://raw_probe.tscn"
+      }
+    }
+  ],
+  "purpose": "technical_fixture"
+}

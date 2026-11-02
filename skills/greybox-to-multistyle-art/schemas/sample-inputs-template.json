@@ -1,0 +1,45 @@
+{
+  "schema": 2,
+  "kind": "sample-inputs",
+  "style_id": "REPLACE_STYLE_ID",
+  "baseline_scene": "res://REPLACE_APPROVED_BASELINE_SCENE",
+  "scene": "res://REPLACE_ACTUAL_NATIVE_SAMPLE_SCENE",
+  "files": [
+    {
+      "id": "project-render-config",
+      "path": "res://project.godot",
+      "sha256": "REPLACE_CURRENT_SHA256",
+      "category": "render_config"
+    },
+    {
+      "id": "baseline-scene",
+      "path": "res://REPLACE_APPROVED_BASELINE_SCENE",
+      "sha256": "REPLACE_CURRENT_SHA256",
+      "category": "source"
+    },
+    {
+      "id": "native-scene",
+      "path": "res://REPLACE_ACTUAL_NATIVE_SAMPLE_SCENE",
+      "sha256": "REPLACE_CURRENT_SHA256",
+      "category": "source"
+    }
+  ],
+  "note": "Intentionally blocked draft. H4 records actual files here after sample production, without rewriting H3. Include all source scripts, models, textures, materials, assembly configuration, shaders and existing import settings used by the sample; list categories source, asset or render_config. All paths must resolve inside this project. Actual files, hashes and discoverable Godot resource closure are checked. Host must explicitly include computed/dynamic dependencies. identity.sample_inputs_digest is core.digest of this whole manifest, with no approval fields or self-reference; native/technical/gameplay/visual reports use that exact identity. Independent unreferenced expansion files do not invalidate H4. Record producer_runtime_digest=core.runtime_snapshot()[\"sha256\"] when producing the sample. H4 and expansion conservatively require the same runtime revision so copied native scripts cannot hide changed assembly rules. Under asset-routed-visual-sample-v3, model_task_bindings covers exactly the original sample H3 generated/hybrid source families. Native-only/reuse/procedural samples use an empty list. Each entry reuses the original supplier-run.json or run.json and original task ID; do not create a replacement generation. Include source_output and realized_output in files. If model bytes changed in local processing, also record processing:{method,source_ref,input_sha256,output_sha256}. The check verifies original ledger, approved reference inputs, ready state and output identities; pixel inspection still establishes visual integration. Future expansion tasks are not original sample requirements. The realized output must also be reachable from the actual native scene/config and resource/assembly references. Listing it in files alone does not prove consumption; computed loads without an inspectable native binding remain unverified.",
+  "producer_runtime_digest": "REPLACE_CORE_RUNTIME_SNAPSHOT_SHA256",
+  "model_task_bindings": [
+    {
+      "asset_id": "REPLACE_GENERATED_OR_HYBRID_ASSET_ID",
+      "run_dir": "REPLACE_ORIGINAL_SUPPLIER_OR_LEGACY_RUN_DIRECTORY",
+      "operation_id": "REPLACE_SUPPLIER_OPERATION_ID_OMIT_FOR_LEGACY_RUN",
+      "task_id": "REPLACE_ORIGINAL_PROVIDER_TASK_ID",
+      "source_output": {
+        "path": "REPLACE_ORIGINAL_SOURCE_MODEL_PATH",
+        "sha256": "REPLACE_SOURCE_MODEL_SHA256"
+      },
+      "realized_output": {
+        "path": "REPLACE_ACTUAL_SAMPLE_MODEL_PATH",
+        "sha256": "REPLACE_ACTUAL_SAMPLE_MODEL_SHA256"
+      }
+    }
+  ]
+}

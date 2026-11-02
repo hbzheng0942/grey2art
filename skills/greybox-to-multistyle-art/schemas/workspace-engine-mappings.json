@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "kind": "workspace-engine-mapping-defaults",
+  "placeholder": "Replace <case_id> with a stable case identity; these are path mappings, not native validation receipts.",
+  "engines": {
+    "godot": {"root": "art/<case_id>", "resource_root": "art/<case_id>", "code_root": "art/<case_id>"},
+    "unity": {"root": "art/<case_id>", "resource_root": "Assets/Art/<case_id>", "code_root": "Assets/Art/<case_id>"},
+    "threejs": {"root": "art/<case_id>", "resource_root": "public/art/<case_id>", "code_root": "src/art/<case_id>"},
+    "blender": {"root": "art/<case_id>", "resource_root": "art/<case_id>", "code_root": "art/<case_id>", "entry_role": "dcc", "output_kind": "dcc_spatial", "establishes_playable_acceptance": false}
+  }
+}

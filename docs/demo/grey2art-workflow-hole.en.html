@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hole · Ceramic Town · Grey2Art</title><style>
+@font-face{font-family:Grey2Art;src:url('fonts/NotoSansCJKsc-2.004-showcase-subset.woff2') format('woff2');font-weight:400;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;background:#f2f4f0;color:#1c2b25;font-family:Grey2Art,"PingFang SC","Noto Sans SC",Arial,sans-serif}
+main{width:1800px;padding:36px 40px 40px}header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px}
+h1{font-size:40px;line-height:1.3;font-weight:600;letter-spacing:-.8px;margin:0}header p{font-size:23px;color:#4e7462;margin:0}
+.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 32px;align-items:start}section{min-width:0}
+.hole .steps,.train .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+h2{font-size:34px;line-height:1.4;font-weight:600;margin:0 0 14px;display:flex;gap:14px;align-items:baseline}h2 span{font-size:24px;color:#4d8168;font-weight:400}
+.picture,.frame{aspect-ratio:3/2;overflow:hidden}
+.picture>img,.frame img{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 50%}
+[data-step="model"] .picture>img{object-position:50% 50%}
+.hole-worlds,.train-worlds{display:grid;gap:20px 32px;align-items:start}
+.hole-worlds{grid-template-columns:repeat(3,minmax(0,1fr))}
+.hole [data-step="styles"]{grid-column:1/-1}
+[data-step="styles"] .picture{aspect-ratio:auto;overflow:visible}
+.train-worlds{grid-template-columns:repeat(2,minmax(0,1fr))}
+figure{margin:0;min-width:0}figcaption{height:44px;font-size:24px;line-height:34px;padding-top:10px;text-align:center;color:#355241;white-space:nowrap}
+</style><main class="hole"><header><h1>Hole · Ceramic Town</h1><p>Grey2Art</p></header><div class="steps"><section data-step="greybox"><h2><span>01</span>Gameplay greybox</h2><div class="picture"><img src="hole-reference-greybox.png" alt="Gameplay greybox"></div></section><section data-step="concept"><h2><span>02</span>Scene concept</h2><div class="picture"><img src="ceramic-workflow-concept.png" alt="Scene concept"></div></section><section data-step="assembly"><h2><span>03</span>Native assembly</h2><div class="picture"><img src="ceramic-workflow-assembly.png" alt="Native assembly"></div></section><section data-step="styles"><h2><span>04</span>Playable art worlds</h2><div class="picture"><div class="hole-worlds"><figure><div class="frame"><img src="hole-reference-amusement.png" alt="Amusement park"></div><figcaption>Amusement park</figcaption></figure><figure><div class="frame"><img src="hole-reference-lunar.png" alt="Lunar base"></div><figcaption>Lunar base</figcaption></figure><figure><div class="frame"><img src="hole-reference-coral.png" alt="Coral market"></div><figcaption>Coral market</figcaption></figure><figure><div class="frame"><img src="hole-reference-papercraft.png" alt="Paper snow town"></div><figcaption>Paper snow town</figcaption></figure><figure><div class="frame"><img src="hole-reference-saffron.png" alt="Desert caravan"></div><figcaption>Desert caravan</figcaption></figure><figure><div class="frame"><img src="hole-reference-snack.png" alt="Snack town"></div><figcaption>Snack town</figcaption></figure></div></div></section></div></main>
+<script>const fit=()=>{document.querySelector('main').style.zoom=Math.min(1,innerWidth/1800)};addEventListener('resize',fit);fit();addEventListener('load',()=>document.fonts.ready.then(()=>document.documentElement.dataset.captureHeight=Math.ceil(document.querySelector('main').getBoundingClientRect().height)));</script></html>

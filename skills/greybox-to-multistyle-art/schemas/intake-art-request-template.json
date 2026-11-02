@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "kind": "greybox-intake-request",
+  "intent": "art",
+  "source_ref": "user:replace-with-actual-multistyle-request",
+  "stop_at": "art"
+}

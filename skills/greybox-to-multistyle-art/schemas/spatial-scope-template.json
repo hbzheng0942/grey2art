@@ -1,0 +1,25 @@
+{
+  "mode": "continuous",
+  "space_ids": [
+    "REPLACE_SPACE_A",
+    "REPLACE_SPACE_B"
+  ],
+  "transition_ids": [
+    "REPLACE_SHARED_TRANSITION"
+  ],
+  "segments": [
+    {
+      "id": "REPLACE_SEGMENT_A",
+      "space_ids": [
+        "REPLACE_SPACE_A"
+      ]
+    },
+    {
+      "id": "REPLACE_SEGMENT_B",
+      "space_ids": [
+        "REPLACE_SPACE_B"
+      ]
+    }
+  ],
+  "note": "Insert as spatial_contract.spatial_scope before directions/selection. mode is finite, large or continuous. large/continuous need >=2 explicit regions/segments covering every baseline space; continuous needs transitions. This is baseline authority for atlas coverage; do not derive it from already-generated concept images."
+}

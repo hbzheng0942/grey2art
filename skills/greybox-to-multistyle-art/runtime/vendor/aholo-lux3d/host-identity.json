@@ -1,0 +1,45 @@
+{
+  "schema": "lux3d.host-identity/v1",
+  "knownHosts": {
+    "codex": {
+      "source": 1,
+      "agentName": "codex",
+      "aliases": [
+        "codex",
+        "openai-codex",
+        "openai codex"
+      ]
+    },
+    "claude-code": {
+      "source": 2,
+      "agentName": "claude-code",
+      "aliases": [
+        "claude-code",
+        "claude code",
+        "claude_code"
+      ]
+    },
+    "deepseek": {
+      "source": 3,
+      "agentName": "deepseek",
+      "aliases": [
+        "deepseek",
+        "deepseek-cli",
+        "deepseek cli"
+      ]
+    },
+    "workbuddy": {
+      "source": 4,
+      "agentName": "workbuddy",
+      "aliases": [
+        "workbuddy",
+        "work-buddy",
+        "work buddy"
+      ]
+    }
+  },
+  "fallback": {
+    "source": 100,
+    "agentName": "detected-host-name"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "case_id": "replace-with-greybox-case-id",
+  "root": "art/replace-with-greybox-case-id",
+  "engine": "godot",
+  "resource_root": "art/replace-with-greybox-case-id",
+  "code_root": "art/replace-with-greybox-case-id",
+  "asset_owners": {
+    "shared-gameplay-prop": {"scope": "shared"},
+    "coastal-palm": {"scope": "style", "style_id": "sunset-coast"},
+    "paper-tree": {"scope": "style", "style_id": "paper-garden"}
+  },
+  "shared_asset_ids": ["shared-gameplay-prop"]
+}

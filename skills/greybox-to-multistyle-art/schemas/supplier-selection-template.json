@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "kind": "supplier-selection",
+  "gate": "H3",
+  "actor": "REPLACE_WITH_ACTUAL_USER",
+  "decision": "REPLACE_APPROVED_ONLY_AFTER_REAL_USER_DECISION",
+  "selected_option": "REPLACE_WITH_USER_SELECTED_OPTION_ID",
+  "portfolio_sha256": "REPLACE_WITH_EXACT_PORTFOLIO_DIGEST",
+  "registry_sha256": "REPLACE_WITH_SEMANTIC_REGISTRY_DIGEST",
+  "source_ref": "REPLACE_WITH_ACTUAL_H3_MESSAGE_REFERENCE",
+  "evidence": {
+    "path": "REPLACE_WITH_REAL_DECISION_RECEIPT",
+    "sha256": "REPLACE_WITH_DECISION_FILE_SHA256"
+  },
+  "decided_at": "REPLACE_WITH_ACTUAL_TIMESTAMP",
+  "allowed_fallbacks": [],
+  "allow_qualification_probes": []
+}

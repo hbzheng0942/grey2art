@@ -1,0 +1,15 @@
+{
+  "max_open_combinations": 1,
+  "families": {
+    "static-solid": {
+      "profile": {"structure": "solid textured static mesh", "method": "preserve source geometry; uniform normalization", "skeleton": "none", "engine": "godot"},
+      "runtime_profile": null,
+      "asset_ids": ["building", "tree"],
+      "pilot_asset_ids": ["building"],
+      "required_interactions": []
+    }
+  },
+  "combinations": {
+    "first-view": {"style_id": "selected-style", "asset_ids": ["building", "tree"], "required_interactions": [], "state": "queued"}
+  }
+}

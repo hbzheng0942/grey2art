@@ -1,0 +1,572 @@
+{
+  "contractId": "lux3d-commerce/v1",
+  "module": "M03",
+  "status": "plugin-openapi-implementation",
+  "specBaseline": {
+    "pageId": "81521733922",
+    "pageVersion": 23,
+    "documentVersion": "V0.22",
+    "reviewedOn": "2026-09-08"
+  },
+  "generationContractRef": "lux3d-generation/v1",
+  "clientSources": {
+    "meaning": "The client source used for account and quote routing. Source 100 is a shared placeholder for future Agent ecosystems that identify the real host Agent in account.query.agentName and quote.agentName.",
+    "valueOwner": "ecosystems-release-unit",
+    "requestInjection": "fixed-by-release-unit-adapter; legacy local units materialize during dist build; WorkBuddy loads confirmed dedicated source 4 at service startup",
+    "userOrModelOverrideAllowed": false,
+    "values": [
+      {
+        "code": 1,
+        "name": "codex",
+        "releaseUnit": "ecosystems/codex"
+      },
+      {
+        "code": 2,
+        "name": "claude-code",
+        "releaseUnit": "ecosystems/claude-code"
+      },
+      {
+        "code": 3,
+        "name": "deepseek",
+        "releaseUnit": "ecosystems/deepseek"
+      },
+      {
+        "code": 4,
+        "name": "workbuddy",
+        "releaseUnit": "ecosystems/workbuddy"
+      },
+      {
+        "code": 100,
+        "name": "agent-placeholder",
+        "releaseUnit": "shared/core"
+      }
+    ],
+    "agentPlaceholder": {
+      "source": 100,
+      "quoteBodyField": "agentName",
+      "accountQueryField": "agentName",
+      "agentNameMinLength": 1,
+      "agentNameMaxLength": 128,
+      "agentNameTextPolicy": "trimmed-non-empty-no-control-or-surrogate-characters",
+      "agentNameNormalization": "strip-before-validation",
+      "agentNameRequired": true,
+      "releaseUnitInjected": true,
+      "userOrModelOverrideAllowed": false,
+      "accountQueryIncludesAgentName": true,
+      "accountQueryScope": "source-100-only",
+      "sameNormalizedValueUsedForAccountAndQuote": true,
+      "semantics": "unique-id-context-partition-and-audit-attribution",
+      "uniqueIdContextPartitionInput": true,
+      "trustedIdentity": false,
+      "authorizationOrPricingInput": false,
+      "cosPathOrMetricTagAllowed": false
+    }
+  },
+  "commerceSource": {
+    "value": "lux_3d",
+    "meaning": "The fixed Site Service commerce/account lookup source; it is independent from numeric clientSource."
+  },
+  "publicSurface": {
+    "owner": "aholo-openapi",
+    "status": "routes-confirmed",
+    "accountEndpoint": "/lux3d/v1/account/balance",
+    "quoteEndpoint": "/lux3d/v1/pricing/openapi-quotes",
+    "baseUrls": {
+      "cn": "https://api.aholo3d.cn",
+      "intl": "https://api.aholo.ai/global"
+    },
+    "requestUrlComposition": "regional-base-url-plus-canonical-api-path; /global is part of the international base URL only",
+    "authentication": {
+      "header": "Authorization",
+      "value": "raw-api-key",
+      "bearerPrefixAllowed": false,
+      "callerSuppliedIdentityHeadersAllowed": false
+    },
+    "pluginIntegration": "shared-commerce-client-with-local-ecosystem-entrypoints-and-workbuddy-remote-service",
+    "pluginDirectSiteServiceCallAllowed": false,
+    "validationEvidence": "offline-contract-and-adapter-tests; user-supplied-public-success-screenshot; no-agent-live-e2e"
+  },
+  "accountContext": {
+    "meaning": "A real-time trusted account snapshot plus a server-issued context for one user, region, and client source.",
+    "requiredFields": [
+      "availableCredits",
+      "trialCountMap",
+      "member",
+      "memberType",
+      "snapshotAt",
+      "uniqueId",
+      "uniqueIdExpiresAt"
+    ],
+    "balance": {
+      "recomputedOnEveryRequest": true,
+      "cachedWithUniqueId": false,
+      "unknownOrFailedLookupMayReturnZero": false
+    },
+    "uniqueId": {
+      "issuedBy": "lux3d-site-service-after-successful-account-authentication",
+      "clientGenerated": false,
+      "format": "^ctx_[0-9a-f]{32}$",
+      "boundToTrustedContext": [
+        "userId",
+        "region",
+        "clientSource"
+      ],
+      "placeholderAgentPartition": {
+        "appliesWhenSource": 100,
+        "requestField": "query.agentName",
+        "normalizedWith": "strip-before-validation",
+        "keyEncoding": "normalized-agentName-verbatim",
+        "sameNormalizedAgentNameReturnsSameUniqueIdBeforeExpiry": true,
+        "differentNormalizedAgentNameGetsDifferentUniqueId": true,
+        "quoteAgentNameMustResolveToSamePartition": true,
+        "rawAgentNameStoredInRedisKey": true,
+        "trustedIdentity": false
+      },
+      "redis": {
+        "activeKey": "lux3d:{stage}:plugin:goal:active:{sourceCode}:{region}:{userId}",
+        "activeKeyAppliesToSources": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "placeholderActiveKey": "lux3d:{stage}:plugin:goal:active:100:{region}:{userId}:{agentName}",
+        "placeholderLegacyKeyFallbackAllowed": false,
+        "stageOwner": "server-runtime-configuration",
+        "regionValues": [
+          "cn",
+          "intl"
+        ],
+        "valueFields": [
+          "uniqueId",
+          "userId",
+          "sourceCode",
+          "sourceName",
+          "region",
+          "issuedAt",
+          "expiresAt"
+        ],
+        "placeholderConditionalValueField": "agentName",
+        "createSemantics": "get-or-create-with-set-nx-and-fixed-ttl",
+        "ttlOwner": "server-configuration",
+        "clientExpiryField": "uniqueIdExpiresAt",
+        "ttlRenewedOnRead": false,
+        "sameActiveKeyReturnsSameUniqueIdBeforeExpiry": true,
+        "byIdIndexUsed": false,
+        "uniqueIdReverseLookupUsed": false
+      },
+      "differentClientSourceGetsDifferentUniqueId": true,
+      "differentPlaceholderAgentNameGetsDifferentUniqueId": true,
+      "invalidatedBy": [
+        "expiry",
+        "trusted-user-change",
+        "region-change",
+        "client-source-change",
+        "placeholder-agent-name-change"
+      ]
+    },
+    "request": {
+      "method": "GET",
+      "sourceParameter": "query.source",
+      "sourceRequired": true,
+      "agentNameParameter": "query.agentName",
+      "agentNameRequiredForSource": 100,
+      "agentNameSentForDedicatedSources": false,
+      "agentNameNormalization": "strip-before-validation",
+      "agentNameMustMatchQuoteAgentName": true,
+      "callerSuppliedUserIdAllowed": false
+    },
+    "failurePolicy": {
+      "redisUnavailable": {
+        "httpStatus": 503,
+        "mode": "fail-closed",
+        "mayIssueLocalFallbackUniqueId": false
+      }
+    },
+    "semantics": {
+      "commerceSource": "lux_3d",
+      "sufficientBalanceIsConfirmation": false
+    }
+  },
+  "quotePlan": {
+    "scope": "one complete normalized plan of OpenAPI invocations",
+    "requestEnvelope": {
+      "transport": "json-body",
+      "requiredFields": [
+        "source",
+        "uniqueId",
+        "items",
+        "agentName"
+      ],
+      "source": {
+        "type": "integer",
+        "allowedValues": [
+          1,
+          2,
+          3,
+          4,
+          100
+        ],
+        "mustMatchActiveContext": true,
+        "userOrModelOverrideAllowed": false
+      },
+      "additionalFieldsAllowed": true,
+      "unknownTopLevelFieldsIgnored": true,
+      "nestedObjectsRemainStrict": true,
+      "customUniqueIdHeaderUsed": false,
+      "uniqueIdClientGenerated": false,
+      "agentName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128,
+        "textPolicy": "trimmed-non-empty-no-control-or-surrogate-characters",
+        "normalization": "strip-before-validation",
+        "requiredForAllSources": true,
+        "dedicatedSourceMappings": {
+          "1": "codex",
+          "2": "claude-code",
+          "3": "deepseek",
+          "4": "workbuddy"
+        },
+        "dedicatedSourceMappingsAreClientDefaults": true,
+        "serverRequiresSourceNameMatch": false,
+        "placeholderSource": 100,
+        "placeholderValue": "configured-real-agent-name",
+        "releaseUnitInjected": true,
+        "userOrModelOverrideAllowed": false
+      }
+    },
+    "items": {
+      "type": "map",
+      "key": "numeric-string-sequence",
+      "keyPattern": "^[1-9][0-9]{0,5}$",
+      "maximumItems": 50,
+      "itemRequiredFields": [
+        "endpoint",
+        "parameters"
+      ],
+      "itemAdditionalFieldsAllowed": false,
+      "endpoint": {
+        "pathMeaning": "region-neutral-capability-path; not a public request URL or region-prefixed HTTP path",
+        "requiredFields": [
+          "method",
+          "path"
+        ],
+        "method": [
+          "POST"
+        ],
+        "pathPrefix": "/lux3d/v1/",
+        "pathMustExclude": [
+          "scheme",
+          "host",
+          "query",
+          "fragment",
+          "dot-segment",
+          "backslash",
+          "repeated-slash"
+        ],
+        "internationalGlobalPrefixAllowed": false,
+        "automaticCaseOrTrailingSlashNormalization": false
+      },
+      "parameters": {
+        "allowedFields": [
+          "pathParameters",
+          "queryParameters",
+          "body"
+        ],
+        "completeNormalizedParameterObject": true,
+        "internalFieldType": "json-object",
+        "wireFieldType": "serialized-json-object-string",
+        "serializationBoundary": "commerce-http-adapter",
+        "callerSuppliedHeadersAllowed": false
+      }
+    },
+    "response": {
+      "requiredFields": [
+        "source",
+        "uniqueId",
+        "quoteId",
+        "pricingScope",
+        "estimatedCreditsTotal",
+        "details",
+        "quotedAt",
+        "expiresAt"
+      ],
+      "pricingScope": "BEFORE_ACCOUNT_BENEFITS",
+      "details": {
+        "type": "map",
+        "key": "request-sequence",
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "meaning": "estimatedCredits"
+        },
+        "additionalFieldsAllowed": false
+      },
+      "detailKeyMatchesRequestSequence": true,
+      "estimatedCreditsTotalEqualsSumOfDetails": true,
+      "internalFieldsForbidden": [
+        "method",
+        "path",
+        "endpoint",
+        "parameters",
+        "pricingBasis",
+        "pipelineId",
+        "sku",
+        "skuCode",
+        "userId"
+      ]
+    },
+    "contextValidation": {
+      "lookupKeyInputs": [
+        "trustedUserId",
+        "trustedRegion",
+        "body.source"
+      ],
+      "placeholderLookupKeyInput": "normalized-body.agentName",
+      "placeholderLookupKeyInputRequiredForSource": 100,
+      "dedicatedSourceAgentNameUsedForLookup": false,
+      "activeValueUniqueIdMustEqual": "body.uniqueId",
+      "byIdIndexUsed": false,
+      "uniqueIdReverseLookupUsed": false,
+      "sourceResolvedByUniqueId": false
+    },
+    "lifecycle": {
+      "uniqueIdChangedAfterBalanceRefresh": "old-quote-invalid-for-new-context-requote-required",
+      "requoteUses": [
+        "same-fixed-source",
+        "new-uniqueId",
+        "original-items"
+      ],
+      "reauthorizationRequiredWhenQuoteChanges": true
+    },
+    "semantics": {
+      "partialQuoteAllowed": false,
+      "oneUnpriceableItemFailsWholeQuote": true,
+      "nonPositiveKnownSkuAmount": "whole-quote-error",
+      "allSkuPricesMissingMayReturnZero": true,
+      "missingSkuPrice": "server-warning-and-skip",
+      "duplicateSkuItems": "preserve-and-accumulate",
+      "failedResolutionMayReturnZero": false,
+      "accountSpecificFinalDebit": false,
+      "quoteIsConfirmation": false,
+      "quoteIsBalanceReservation": false
+    }
+  },
+  "siteServiceInternalProvider": {
+    "consumer": "aholo-openapi-only",
+    "account": {
+      "method": "GET",
+      "path": "/api/lux3d/account/balance",
+      "requiredParameters": [
+        "query.source"
+      ],
+      "conditionalRequiredParameters": {
+        "source=100": [
+          "query.agentName"
+        ]
+      },
+      "trustedCurrentUserRequired": true,
+      "trustedRegionRequired": true,
+      "clientSourceParameter": "query.source",
+      "agentNameParameter": "query.agentName",
+      "agentNameUsedOnlyForSource100ContextPartition": true,
+      "commerceSource": "lux_3d",
+      "callerSuppliedUserIdAllowed": false,
+      "issuesUniqueIdOnSuccess": true,
+      "balanceRecomputedOnEveryRequest": true
+    },
+    "quote": {
+      "method": "POST",
+      "path": "/api/lux3d/pricing/openapi-quotes",
+      "requiredParameters": [
+        "body.source",
+        "body.uniqueId",
+        "body.items"
+      ],
+      "sourceParameter": "body.source",
+      "agentNameParameter": "body.agentName",
+      "agentNameUsedForSource100ContextPartition": true,
+      "uniqueIdParameter": "body.uniqueId",
+      "itemsParameter": "body.items",
+      "quoteIdGeneratedPerRequest": true,
+      "quoteIdFormat": "^quote_[0-9a-f]{32}$",
+      "defaultValiditySeconds": 300,
+      "resolution": {
+        "skuCompositionOwner": "ai-generate-service",
+        "provider": "Lux3dOpenSkuInterface",
+        "shadowEndpointSuffix": "/task/sku",
+        "requestBodyForwarding": "same-request-as-corresponding-create-endpoint",
+        "websiteFreeSkuOverridesApplied": false,
+        "steps": [
+          "canonical-create-endpoint-to-AGS-shadow-endpoint",
+          "AGS-resolves-parameter-dependent-SKU-composition",
+          "query-current-Aholo-original-SKU-amounts-once",
+          "preserve-duplicate-SKU-items-and-sum-quantity-times-amount",
+          "warn-and-skip-SKUs-absent-from-price-table",
+          "sum-each-invocation",
+          "sum-complete-plan"
+        ]
+      },
+      "failurePolicy": {
+        "unsupportedEndpoint": "whole-quote-error",
+        "skuCompositionFailure": "whole-quote-error",
+        "missingSkuAmount": "warning-and-skip-sku",
+        "malformedAmount": "whole-quote-error",
+        "uniqueIdInvalidOrExpired": "whole-quote-error",
+        "sourceMismatch": "whole-quote-error",
+        "upstreamFailure": "whole-quote-error",
+        "redisUnavailable": "service-unavailable-503-fail-closed",
+        "fallbackEstimatedCreditsTotal": null
+      }
+    }
+  },
+  "quoteAuditRecord": {
+    "owner": "lux3d-site-service",
+    "schemaVersion": 3,
+    "writeMode": "asynchronous-original-request",
+    "bucket": "qhfpm",
+    "key": "lux3dPricingRecord/{sourceName}/{region}/{uniqueId}/{quoteId}.json",
+    "regionValues": [
+      "cn",
+      "intl"
+    ],
+    "trustedPathFields": [
+      "sourceName",
+      "region",
+      "uniqueId",
+      "quoteId"
+    ],
+    "requiredJsonFields": [
+      "schemaVersion",
+      "source",
+      "sourceName",
+      "agentName",
+      "region",
+      "userId",
+      "uniqueId",
+      "quoteId",
+      "requestDigest",
+      "status",
+      "receivedAt",
+      "quotedAt",
+      "expiresAt",
+      "pricingScope",
+      "request",
+      "result"
+    ],
+    "request": {
+      "requiredFields": [
+        "source",
+        "uniqueId",
+        "items"
+      ],
+      "source": "controller-request-dto-snapshot",
+      "preservesSerializedParameterStrings": true,
+      "sanitizedBeforeAsyncSubmission": false,
+      "agentName": {
+        "requiredForNewClientsOnWire": true,
+        "legacyDedicatedSourcesMayOmitOrSendBlank": true,
+        "placeholderSourceRequiredOnWire": true,
+        "snapshotValue": "raw-controller-dto-agentName-when-present",
+        "missingFieldMayRemainMissing": true,
+        "blankValueMayRemainBlank": true,
+        "notBackfilledFromResolvedRecord": true
+      }
+    },
+    "result": {
+      "requiredFields": [
+        "estimatedCreditsTotal",
+        "details"
+      ],
+      "nullWhenQuoteFails": true
+    },
+    "sourceField": {
+      "type": "integer",
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        100
+      ]
+    },
+    "sourceNameDerivedFromValidatedSource": true,
+    "userIdAllowedInsideControlledJson": true,
+    "forbiddenValues": [
+      "apiKey",
+      "authorization"
+    ],
+    "agentNameField": {
+      "type": "string",
+      "dedicatedSourceValue": "validated-request-value-or-derived-source-name-when-missing-or-blank",
+      "placeholderSourceValue": "validated-request-agentName",
+      "semantics": "audit-attribution-only",
+      "trustedIdentity": false,
+      "authorizationOrPricingInput": false,
+      "pathOrMetricTagAllowed": false
+    }
+  },
+  "pluginImplementation": {
+    "runtime": "shared/core/runtime/commerce_client.py",
+    "ports": [
+      "AccountPort",
+      "QuotePort",
+      "QuoteVerificationPort"
+    ],
+    "quoteCommandRefreshesAccountFirst": true,
+    "quoteVerification": "in-memory-issued-quote-bound-to-account-source-region-request-and-expiry",
+    "persistedQuoteIsAuthorization": false,
+    "credentialsPersisted": false,
+    "m04SubmissionGateImplementedHere": false,
+    "m02UniqueIdPropagation": "deferred",
+    "logRedaction": [
+      "apiKey",
+      "authorization",
+      "completeSignedUrl",
+      "rawSensitivePrompt"
+    ]
+  },
+  "collection": {
+    "designPageId": "81534491793",
+    "events": [
+      "REVIEW",
+      "QUOTE",
+      "REPORT",
+      "FEEDBACK"
+    ],
+    "apiRegistrationIds": {
+      "quote": 2534,
+      "report": 2549,
+      "feedback": 2550
+    },
+    "publicationVerified": false,
+    "reportPath": "/lux3d/v1/tasks/report",
+    "feedbackPath": "/lux3d/v1/feedback/experience",
+    "wireFormat": "JSON object envelope; evolving object/array fields serialized as strings",
+    "pluginTaskId": "local persistent creative-task ID; reused across revisions and recovery",
+    "requestId": "immutable report/feedback submission key; changed content needs a new key",
+    "generationContentId": "current quoteId, optional on server",
+    "journal": "per-task logs/collection.sqlite; bind credential fingerprint, region, source and host",
+    "feedbackConsent": "explicit agreement to the exact feedbackVersion; no default consent",
+    "reviewFields": [
+      "pluginTaskId",
+      "planVersion",
+      "plan",
+      "userInputs",
+      "attachments",
+      "context"
+    ],
+    "legacyQuotes": "review fields optional; pluginTaskId/planVersion/plan supplied together",
+    "reportReceipt": [
+      "reportId",
+      "receiptStatus",
+      "checkResult"
+    ],
+    "feedbackReceipt": [
+      "feedbackId",
+      "submissionStatus"
+    ],
+    "reportSuccessMeaning": "Business success with non-empty reportId, receiptStatus=ACCEPTED and checkResult=OK means remote evaluation passed for the submitted report; it does not replace user acceptance or authorize spending."
+  }
+}

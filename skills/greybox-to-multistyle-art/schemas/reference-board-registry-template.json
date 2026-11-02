@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "kind": "reference-board-registry",
+  "source_ref": "Actual scoped production decision and its existing case record",
+  "source": {
+    "path": "art/shared/reference-board-scope.json",
+    "sha256": "REPLACE_WITH_ACTUAL_UPSTREAM_SOURCE_SHA256"
+  },
+  "host_session_id": null,
+  "channel_size": [1536, 1024],
+  "size_source_ref": "Actual channel capability or original returned image dimensions",
+  "requirements": {
+    "min_subject_long_edge_px": 400,
+    "min_subject_short_edge_px": 300,
+    "source_ref": "Actual task detail requirement; retain existing scoped minima"
+  },
+  "images": [
+    {"path": "art/shared/selected-concept.png", "sha256": "REPLACE_WITH_ACTUAL_STYLE_IMAGE_SHA256"}
+  ],
+  "image_roles": [{"role": "style"}],
+  "capabilities": {
+    "edit": true,
+    "max_references": 3,
+    "layout_guide": true,
+    "source_ref": "Actual current tool schema or configured image profile"
+  },
+  "parameters": {"n": 1, "quality": "high"},
+  "assets": [
+    {
+      "asset_id": "planter",
+      "category": "prop",
+      "function": "A freestanding ceramic planter at a path entrance.",
+      "appearance": "Rounded terracotta pot with a thick rolled rim and a compact green shrub; retain the approved colors and intrinsic marks.",
+      "structure": "An open pot volume, integral flat underside, continuous rim and readable trunk-to-canopy gaps.",
+      "modeling_contract": {"category": "prop", "use": "static"},
+      "views": [{"view_id": "three_quarter", "role": "three_quarter", "projected_aspect": 1.0}]
+    },
+    {
+      "asset_id": "stool",
+      "category": "prop",
+      "function": "A low freestanding wooden seat.",
+      "appearance": "Round wooden seat on four separated legs, preserving approved wood tone and leg proportions.",
+      "structure": "Solid seat, four separate leg contacts and visible cross braces.",
+      "modeling_contract": {"category": "prop", "use": "static"},
+      "views": [{"view_id": "three_quarter", "role": "three_quarter", "projected_aspect": 1.0}]
+    }
+  ],
+  "_notes": [
+    "This is a structural example, not real task evidence or generation authorization. Use actual asset IDs, sources and hashes.",
+    "Maintain only this asset/view registry. boards start derives scope, plan, descriptions and complete page jobs.",
+    "source supports asset_views, reference_views, or asset_proposals[].approved_reference_views with explicit view_id objects. Do not guess aliases from a view count.",
+    "For a genuinely new sourced scope with no older upstream JSON, omit source and explicitly set authority to registry. It does not mean human acceptance.",
+    "Shared pixel requirements are defaults. A view can override them only with an actual requirements_source_ref; upstream minima cannot be lowered.",
+    "Automatic pixel-budget single pages are valid. requires_single:true additionally needs single_exception:{source_ref,reason}; complex-main-asset prose is not an exemption.",
+    "The default subject_fill_ratio is a conservative 0.65 planning assumption, not a measured guarantee. Explicit overrides need subject_fill_source_ref. Never change quality minima to force a grid.",
+    "Same-asset views are grouped atomically when feasible. Otherwise start prepares one master first and visibly defers the remaining original views. Set asset.master_view_id to an explicitly requested view, or the first declared view is selected with that basis recorded.",
+    "boards advance accepts only a real technically qualified source crop with a visual pass bound to that exact image. It supplies the actual master and prepares only deferred views; missing or failed evidence remains waiting, not a new image submission.",
+    "All stages share the original WorkBuddy call/credit ceiling. Stage completion is not full-scope completion. boards compare requires the exact source and all target view hashes before a full multiview pass.",
+    "native_binding may be added as a hash-bound file reference once the current host tool mapping is known. WorkBuddy should use boards workbuddy for scoped guard registration and live binding.",
+    "New host sessions update operational binding and reconcile original pending calls. They do not clear old claims or make prior images newly accepted."
+  ]
+}

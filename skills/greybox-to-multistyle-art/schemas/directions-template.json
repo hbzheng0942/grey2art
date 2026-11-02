@@ -1,0 +1,20 @@
+{
+  "schema": 2,
+  "kind": "direction-manifest",
+  "candidates": [
+    {
+      "id": "REPLACE_STYLE_ID",
+      "concept_image_id": "REPLACE_IMAGE_EVIDENCE_ID",
+      "concept_sha256": "REPLACE_ACTUAL_IMAGE_HASH",
+      "brief": {
+        "theme": "",
+        "shape_language": "",
+        "material_language": "",
+        "spatial_composition": "",
+        "functional_identity": "",
+        "light_palette": ""
+      }
+    }
+  ],
+  "note": "Create 8–10 actual distinct image candidates. Different counts require count_override {actor:user,decision:accepted,source_ref,scope:shared/directions,candidate_set_digest,reason}. approved_import additionally requires import_approval {actor:user,decision:accepted,source_ref,scope:shared/directions,candidate_set_digest}. Hashes and declared differences do not prove artistic differentiation."
+}

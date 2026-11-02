@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "kind": "host-capability-report",
+  "host_id": "generic",
+  "session_id": "",
+  "checked_at": "",
+  "operations": {
+    "file_read": {
+      "status": "unverified",
+      "evidence": "",
+      "channel": {
+        "kind": "host_tool",
+        "target": "",
+        "supports": [
+          "read"
+        ]
+      },
+      "verification": {
+        "level": "unverified",
+        "evidence": ""
+      }
+    },
+    "file_write": {
+      "status": "unverified",
+      "evidence": "",
+      "channel": {
+        "kind": "host_tool",
+        "target": "",
+        "supports": [
+          "write"
+        ]
+      },
+      "verification": {
+        "level": "unverified",
+        "evidence": ""
+      }
+    },
+    "process_execute": {
+      "status": "unverified",
+      "evidence": "",
+      "channel": {
+        "kind": "host_tool",
+        "target": "",
+        "supports": [
+          "execute"
+        ]
+      },
+      "verification": {
+        "level": "unverified",
+        "evidence": ""
+      }
+    },
+    "image_inspect": {
+      "status": "unverified",
+      "evidence": "",
+      "channel": {
+        "kind": "host_tool",
+        "target": "",
+        "supports": [
+          "pixel_read"
+        ]
+      },
+      "verification": {
+        "level": "unverified",
+        "evidence": ""
+      }
+    },
+    "image_present": {
+      "status": "unverified",
+      "evidence": "",
+      "channel": {
+        "kind": "host_tool",
+        "target": "",
+        "supports": [
+          "display"
+        ]
+      },
+      "verification": {
+        "level": "unverified",
+        "evidence": ""
+      }
+    },
+    "human_input": {
+      "status": "unverified",
+      "evidence": "",
+      "channel": {
+        "kind": "host_tool",
+        "target": "",
+        "supports": [
+          "source_reference"
+        ]
+      },
+      "verification": {
+        "level": "unverified",
+        "evidence": ""
+      }
+    },
+    "image_generate": {
+      "status": "unverified",
+      "evidence": "",
+      "channel": {
+        "kind": "host_tool",
+        "target": "",
+        "supports": [
+          "text_to_image",
+          "reference_image"
+        ]
+      },
+      "verification": {
+        "level": "unverified",
+        "evidence": ""
+      }
+    },
+    "delegate": {
+      "status": "unverified",
+      "evidence": "",
+      "channel": {
+        "kind": "host_tool",
+        "target": "",
+        "supports": [
+          "subagents"
+        ]
+      },
+      "verification": {
+        "level": "unverified",
+        "evidence": ""
+      }
+    }
+  },
+  "note": "Blocked discovery template. Fill actual current session bindings and evidence; no host profile or declared supports establish readiness. Delegate is optional and can remain unavailable.",
+  "execution": {
+    "invocation_channel": "unverified",
+    "completion_mode": "unverified",
+    "independent_dispatch": {
+      "status": "unverified",
+      "evidence": ""
+    },
+    "background_survival": {
+      "status": "unverified",
+      "evidence": ""
+    },
+    "note": "Tool invocation alone does not prove dispatch without another model turn. Native claim/record remains agent-driven until an actual independent bridge is implemented and qualified."
+  }
+}

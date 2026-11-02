@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "kind": "reference-image-generation-receipt",
+  "tool": "REPLACE_ACTUAL_TOOL_AND_VERSION",
+  "actual_input_image_sha256": [
+    "REPLACE_ACTUAL_H1_STYLE_IMAGE_INPUT_SHA256",
+    "REPLACE_RELEVANT_H2_REGION_OR_REFERENCE_SHA256"
+  ],
+  "output_sha256": "REPLACE_WHITE_MASTER_IMAGE_SHA256",
+  "invocation_recorded": false,
+  "actual_tool_arguments": {},
+  "source_ref": "REPLACE_REAL_TOOL_INVOCATION_REFERENCE",
+  "note": "Record the actual invocation, not the intended prompt. Generated image must actually consume approved style image; user-provided image uses provenance instead. Template grants no image-call authority."
+}

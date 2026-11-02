@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "kind": "composition-probe",
+  "scope": "REPLACE_STYLE_ID",
+  "purpose": "risk_and_composition_only",
+  "captures": [
+    {
+      "image_id": "REPLACE_PROXY_CAPTURE_EVIDENCE_ID",
+      "path": "REPLACE_ACTUAL_NATIVE_IMAGE_PATH",
+      "sha256": "REPLACE_SHA256",
+      "view_id": "REPLACE_BASELINE_VIEW_ID",
+      "camera_id": "REPLACE_BASELINE_CAMERA_ID",
+      "state_id": "REPLACE_BASELINE_STATE_ID",
+      "framing": "whole_composition",
+      "visible_layers": [
+        "major_forms",
+        "functional_objects",
+        "contact",
+        "lighting_materials"
+      ],
+      "missing_layers": [
+        "environment"
+      ]
+    }
+  ],
+  "note": "Attach actual proxy_capture image evidence to art_proxy. Cover every baseline observation. Visible and missing layers partition each observation required_layers. Separate risk_review JSON has risks:[{id,status:resolved|unresolved,observation,next_action for unresolved}]. All baseline risk_ids must be observed; unresolved production risks block H3. A declared missing visual layer at S6 is not H4 completion; finish its formal assembly owner during sample production."
+}

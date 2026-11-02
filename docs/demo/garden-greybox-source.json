@@ -1,0 +1,42 @@
+{
+  "camera_global_position": [
+    0.0,
+    3.66103410720825,
+    23.6884441375732
+  ],
+  "camera_rotation": [
+    -0.280000001192093,
+    0.0,
+    0.0
+  ],
+  "capture_kind": "native staged still, no injected crop/inventory/unlock",
+  "engine": "4.7.2-stable (official)",
+  "fov": 52.0,
+  "player_position": [
+    0.0,
+    0.000188805162906647,
+    16.0
+  ],
+  "region": "0-meadow",
+  "renderer": "gl_compatibility",
+  "resolution": [
+    1280,
+    800
+  ],
+  "save_error": 0,
+  "spring_length": 8.0,
+  "archive_name": "WanderGarden-v0.2-source.zip",
+  "archive_sha256": "fc32528fd1d53f01f697ea110aca37a622e57b7cb5fc794932e4e31ed03c8480",
+  "source": "maintainer-supplied original v0.2 source archive",
+  "output_sha256": "81e39e4eb7d0eb2a26819a8bf22aef3943a1b59735e410572dc920c73280bd52",
+  "output_bytes": 201400,
+  "checked_at": "2026-10-30T16:42:55+08:00",
+  "source_zip_unchanged": true,
+  "core_source_matches_public_art_base_files": 11,
+  "existing_art_view_reference": "public art/runtime/biome_capture.gd: player center(0)+(0,0.1,16), yaw 0, spring 8, pitch -0.28, FOV 52",
+  "camera_match_scope": "Matched documented capture pose; existing art screenshots do not have full actual camera receipts for strict pixel registration.",
+  "temporary_project_and_caches_removed": true,
+  "source_kind": "maintainer-supplied v0.2 editable gameplay greybox; generated primitive geometry, not Lux3D art",
+  "public_art_source": "https://github.com/xuanyuc1999-ops/wander-garden-demos/tree/78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+  "render_scope": "Native startup and one staged region view; no full-game playthrough, human acceptance or performance qualification."
+}

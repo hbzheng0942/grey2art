@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "kind": "supplier-portfolio",
+  "registry_sha256": "REPLACE_WITH_registry_digest_OUTPUT",
+  "required_assets": [
+    "landmark_gate"
+  ],
+  "required_operations": {
+    "landmark_gate": [
+      "image_to_3d"
+    ]
+  },
+  "effective_policy": {
+    "lux_allowed_versions": [
+      "G1",
+      "G1-Turbo"
+    ]
+  },
+  "recommended_option": "balanced",
+  "recommendation_rationale": "Replace with task-specific evidence, expected accepted quality, repair effort, cost and schedule tradeoffs.",
+  "options": [
+    {
+      "id": "balanced",
+      "rationale": "Example structure only: compare the generated silhouette/detail needed at the actual camera distance.",
+      "assets": [
+        {
+          "asset_id": "landmark_gate",
+          "route": "hybrid",
+          "rationale": "Generated visible form with deterministic supports/interfaces and repeated instances.",
+          "operation_ids": [
+            "gate_standard"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "id": "gate_standard",
+          "asset_id": "landmark_gate",
+          "provider": "lux3d",
+          "region": "cn",
+          "operation": "image_to_3d",
+          "model_version": "G1",
+          "parameters": {
+            "version": "G1",
+            "faceCount": 60000,
+            "img": "REPLACE_WITH_APPROVED_REFERENCE_URL"
+          },
+          "rationale": "Replace with evidence supporting standard for this asset's shape, detail and topology requirements.",
+          "depends_on": [],
+          "pricing": {
+            "kind": "rate_card_estimate",
+            "source": {
+              "path": "pricing/official-api-pricing-extract.md",
+              "sha256": "REPLACE_WITH_REVIEWED_MANUAL_EXTRACT_HASH",
+              "checked_at": "2026-10-20T00:00:00Z"
+            },
+            "quoted_at": "2026-10-20T00:00:00Z",
+            "quantity": 1,
+            "wallet": "lux-cn",
+            "unit_credits": "REPLACE_WITH_CALCULATED_OFFICIAL_RATE_CREDITS"
+          },
+          "publish": {
+            "path": "art/REPLACE_CASE_ID/styles/REPLACE_WITH_ACTUAL_H1_STYLE_ID_1/assets/landmark_gate/v1.glb"
+          }
+        }
+      ]
+    },
+    {
+      "id": "economy",
+      "rationale": "Alternative is a proposal for human choice; quality and final accepted cost must be assessed on the complete assembly.",
+      "assets": [
+        {
+          "asset_id": "landmark_gate",
+          "route": "hybrid",
+          "rationale": "Use generated detail where visible; preserve deterministic interfaces.",
+          "operation_ids": [
+            "gate_turbo"
+          ]
+        }
+      ],
+      "operations": [
+        {
+          "id": "gate_turbo",
+          "asset_id": "landmark_gate",
+          "provider": "lux3d",
+          "region": "cn",
+          "operation": "image_to_3d",
+          "model_version": "G1-Turbo",
+          "parameters": {
+            "version": "G1-Turbo",
+            "faceCount": 30000,
+            "img": "REPLACE_WITH_APPROVED_REFERENCE_URL",
+            "enablePbr": true
+          },
+          "rationale": "Replace with evidence that this asset can meet the approved style, camera and silhouette requirements with Turbo.",
+          "depends_on": [],
+          "pricing": {
+            "kind": "rate_card_estimate",
+            "source": {
+              "path": "pricing/official-api-pricing-extract.md",
+              "sha256": "REPLACE_WITH_REVIEWED_MANUAL_EXTRACT_HASH",
+              "checked_at": "2026-10-20T00:00:00Z"
+            },
+            "quoted_at": "2026-10-20T00:00:00Z",
+            "quantity": 1,
+            "wallet": "lux-cn",
+            "unit_credits": "REPLACE_WITH_CALCULATED_OFFICIAL_RATE_CREDITS"
+          },
+          "publish": {
+            "path": "art/REPLACE_CASE_ID/styles/REPLACE_WITH_ACTUAL_H1_STYLE_ID_1/assets/landmark_gate/v1.glb"
+          }
+        }
+      ]
+    }
+  ],
+  "overview": {
+    "path": "art/workflow/overview.json",
+    "sha256": "REPLACE_WITH_EXACT_EARLY_OVERVIEW_SHA256"
+  },
+  "selected_styles": [
+    "REPLACE_WITH_ACTUAL_H1_STYLE_ID_1",
+    "REPLACE_WITH_ACTUAL_H1_STYLE_ID_2"
+  ],
+  "character_assets": [],
+  "scope_note": "For a required character scope, each option.character_work must cover every derived function with supplier/local/manual/reuse routes. New needs-driven-v2 plans inspect every new character and edit only for explicit mesh_processing needs. Necessary mesh_edit/rig/motion_generate/retarget work needs route_reason; local/manual routes also need supplier_evaluation. Reuse binds existing qualification evidence without new paid probes. An explicitly partial environment-first batch can use character_deferral with reason and scope excluded_from_this_batch; this retains the unfinished character work.",
+  "execution_limits": {
+    "max_inflight_per_provider": {
+      "lux3d": 1,
+      "meshy": 1,
+      "tripo": 1,
+      "rodin": 1,
+      "hitem3d": 1
+    }
+  },
+  "workspace": {
+    "schema": 1,
+    "case_id": "REPLACE_CASE_ID",
+    "root": "art/REPLACE_CASE_ID",
+    "engine": "godot",
+    "asset_owners": {
+      "landmark_gate": {
+        "scope": "style",
+        "style_id": "REPLACE_WITH_ACTUAL_H1_STYLE_ID_1"
+      }
+    }
+  }
+}

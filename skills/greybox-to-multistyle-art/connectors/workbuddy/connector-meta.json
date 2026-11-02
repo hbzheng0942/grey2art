@@ -1,0 +1,20 @@
+{
+  "name": "Greybox Art",
+  "name_zh": "灰盒多风格美术",
+  "name_en": "Greybox Art",
+  "description": "Route greybox, Blender spatial authoring/review and art work through native workflows.",
+  "description_zh": "按意图制作语义灰盒、审阅或创作Blender空间，以及继续多风格美术；只准备当前操作所需能力。",
+  "description_en": "Route greybox, Blender spatial authoring/review and art work through native workflows.",
+  "source": "greybox-to-multistyle-art",
+  "type": "cli",
+  "version": "0.12.0-alpha.1",
+  "minWorkbuddyVersion": "5.0.0",
+  "examples_zh": [
+    "从描述制作可玩的语义灰盒，这轮只交灰盒",
+    "保留现有玩法继续多风格美术"
+  ],
+  "examples_en": [
+    "Build a playable semantic greybox from this brief; stop at the greybox",
+    "Preserve gameplay and continue art production"
+  ]
+}

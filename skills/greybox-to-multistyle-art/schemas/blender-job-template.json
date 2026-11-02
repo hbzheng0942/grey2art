@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "job_id": "replace-with-task-id",
+  "asset_id": "replace-with-stable-asset-id",
+  "kind": "static_glb",
+  "input": {
+    "path": "/absolute/canonical/asset.glb",
+    "sha256": "replace-with-source-sha256"
+  },
+  "output_dir": "/absolute/new/task-owned/blender-job",
+  "normalize": {"unit_scale": 1.0, "anchor": "base_center"},
+  "max_dimensions_m": [3.0, 3.0, 4.0],
+  "operations": [{"type": "bevel", "width_m": 0.01, "segments": 2}],
+  "semantic_anchors": [{"id": "support", "position_m": [0.0, 0.0, 0.0]}],
+  "material_policy": "inspect",
+  "render": false
+}

@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "kind": "native-composition-check",
+  "engine": "godot",
+  "passed": false,
+  "reviewer": "replace-with-actual-reviewer",
+  "source_ref": "replace-with-actual-review-event",
+  "camera_id": "main-camera",
+  "checks": {"imports": false, "materials": false, "scale": false, "visibility": false, "interaction_continuity": false},
+  "assets": {"building": {"path": "replace-with-current-export.glb", "sha256": "replace-with-real-sha256"}},
+  "covered_interactions": [],
+  "runtime_target": "replace-if-runtime-profile-is-used",
+  "targets_by_asset": {"building": []},
+  "media": [{"path": "replace-with-native-capture.png", "sha256": "replace-with-real-sha256", "camera_id": "main-camera", "continuous": false}]
+}

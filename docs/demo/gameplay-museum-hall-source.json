@@ -1,0 +1,722 @@
+{
+  "schema": 1,
+  "kind": "museum-hall-native-gameplay-loop",
+  "output": "docs/demo/gameplay-museum-hall.gif",
+  "bytes": 222341,
+  "sha256": "2963ad05ca613389efc892eb1f63284975f0811dd4daeb17bf919dd4724ae64a",
+  "source_project": "Museum Dog / Chaos",
+  "source_entry": "res://art/museum-dog/styles/A01/runtime/revisions/7016ffcf59c4e2f2/play.tscn",
+  "source_revision": "7016ffcf59c4e2f2",
+  "source_publication": {
+    "bytes": 43626,
+    "sha256": "5c23eeda3920837205846464eb2a92997748d647983ad6869d395ae76cf378df"
+  },
+  "publication_files_checked": 85,
+  "publication_mismatches": [],
+  "capture_recipe": {
+    "path": "docs/showcase/capture_museum_hall.gd",
+    "bytes": 3143,
+    "sha256": "01093f7c999ab3396237d5a1a6e31f18832defbc60e1647f35b2cccc8ab4b238"
+  },
+  "capture": {
+    "camera_override": "fixed hall overview; no camera animation",
+    "capture_fps": 8,
+    "capture_resolution": [
+      960,
+      540
+    ],
+    "duration_seconds": 8,
+    "engine": "4.7.2-stable (official)",
+    "entry": "res://art/museum-dog/styles/A01/runtime/revisions/7016ffcf59c4e2f2/play.tscn",
+    "final_position": [
+      0.104369252920151,
+      0.0505925454199314,
+      -0.104666963219643
+    ],
+    "frames": [
+      {
+        "dog_position": [
+          0.0,
+          0.0502408780157566,
+          2.59999990463257
+        ],
+        "frame": 0,
+        "sha256": "19bbb1c7d289861a4a2b622939962475a6f9f36703d8afa04824d286fa72ebcc",
+        "simulation_seconds": 0.0
+      },
+      {
+        "dog_position": [
+          0.0,
+          0.0502408780157566,
+          2.59999990463257
+        ],
+        "frame": 1,
+        "sha256": "9cb830e18d251fa75c72ee8e6e7a1334e0dbd56d56f5f7177714fd88268862bf",
+        "simulation_seconds": 0.125
+      },
+      {
+        "dog_position": [
+          0.0,
+          0.0502408780157566,
+          2.59999990463257
+        ],
+        "frame": 2,
+        "sha256": "7e367dada11cd28063dcff117d80af1d5d4df8c68ae434457948b6a71a9ac09e",
+        "simulation_seconds": 0.25
+      },
+      {
+        "dog_position": [
+          0.0,
+          0.0502408780157566,
+          2.59999990463257
+        ],
+        "frame": 3,
+        "sha256": "f002cea1ccda4aca3e5f9ad700f0391b6c7734b273d1612868c2d9c629d49258",
+        "simulation_seconds": 0.375
+      },
+      {
+        "dog_position": [
+          -0.139999985694885,
+          0.0508392788469791,
+          2.59999990463257
+        ],
+        "frame": 4,
+        "sha256": "217a7fc75879bc840461329f7f4bfc8bbe37611fbeef2e4a615aa8050beae8f9",
+        "simulation_seconds": 0.5
+      },
+      {
+        "dog_position": [
+          -0.700000107288361,
+          0.0508393123745918,
+          2.59999990463257
+        ],
+        "frame": 5,
+        "sha256": "9765ceecedaf57549168689ee3a2c08e9575467e4e60533b60c9c77d6f26c4e3",
+        "simulation_seconds": 0.625
+      },
+      {
+        "dog_position": [
+          -1.19000017642975,
+          0.050835307687521,
+          2.59999990463257
+        ],
+        "frame": 6,
+        "sha256": "ccd97bdf3bc0526359dbdc3677ac84c163fb4f595a4282105c9b428e1d2d080d",
+        "simulation_seconds": 0.75
+      },
+      {
+        "dog_position": [
+          -1.75000035762787,
+          0.0508226305246353,
+          2.59999990463257
+        ],
+        "frame": 7,
+        "sha256": "e791269c18efedda5b55425f3bd9bf866cad8a105798adf421b7906c2aca571d",
+        "simulation_seconds": 0.875
+      },
+      {
+        "dog_position": [
+          -2.24000000953674,
+          0.0508366078138351,
+          2.59999990463257
+        ],
+        "frame": 8,
+        "sha256": "82657424e2f909e93543c2ac31168d5128c543686566e2534f56f8e30458f3c5",
+        "simulation_seconds": 1.0
+      },
+      {
+        "dog_position": [
+          -2.79999971389771,
+          0.0508392490446568,
+          2.59999990463257
+        ],
+        "frame": 9,
+        "sha256": "683f012a3489b99a6e5aae92f5970b1d1673dc608ebeec12edc9ef9a277f3620",
+        "simulation_seconds": 1.125
+      },
+      {
+        "dog_position": [
+          -3.28999948501587,
+          0.0508393123745918,
+          2.59999990463257
+        ],
+        "frame": 10,
+        "sha256": "28cb19c58da40c2fb23b445034f2cab5c287544a8e2ae82b04aed37953d3d5a9",
+        "simulation_seconds": 1.25
+      },
+      {
+        "dog_position": [
+          -3.84999895095825,
+          0.0508393123745918,
+          2.59999990463257
+        ],
+        "frame": 11,
+        "sha256": "3f940fa424e06c9d98ab9e09ff079242ded6cf4538682bee72b53d7b411cdd97",
+        "simulation_seconds": 1.375
+      },
+      {
+        "dog_position": [
+          -4.33999919891357,
+          0.0508353784680367,
+          2.59999990463257
+        ],
+        "frame": 12,
+        "sha256": "5940d1063930ff10f8344b4120745c1854d80507ed728592f7a3783381212114",
+        "simulation_seconds": 1.5
+      },
+      {
+        "dog_position": [
+          -4.70477533340454,
+          0.05043064057827,
+          2.74386978149414
+        ],
+        "frame": 13,
+        "sha256": "2ac86315a8466256e5645ece4a6a5d45f52868865ce8ea4932e18d1e584adce1",
+        "simulation_seconds": 1.625
+      },
+      {
+        "dog_position": [
+          -4.70441818237305,
+          0.0485667549073696,
+          3.16757369041443
+        ],
+        "frame": 14,
+        "sha256": "7b948297c32924f4d777ef01a93483297ee6840f5f4f91dc64a87f393531a41e",
+        "simulation_seconds": 1.75
+      },
+      {
+        "dog_position": [
+          -4.69530439376831,
+          0.0508553013205528,
+          3.47511053085327
+        ],
+        "frame": 15,
+        "sha256": "ff19ce65cd6260db3a2514f4699671caffba56e383169f00fc5002dcac02e1e6",
+        "simulation_seconds": 1.875
+      },
+      {
+        "dog_position": [
+          -4.70371246337891,
+          0.0501412153244019,
+          3.47511053085327
+        ],
+        "frame": 16,
+        "sha256": "66004a4124fe4cf228fc8fe13bfdd45dc49f4e20b6d292d21a2ff3811e389418",
+        "simulation_seconds": 2.0
+      },
+      {
+        "dog_position": [
+          -4.35371208190918,
+          0.050835307687521,
+          3.47511053085327
+        ],
+        "frame": 17,
+        "sha256": "b4cdce18238aafdd3fdee083f4bd0be21a59597015b76184f2dd7a8da3b5881f",
+        "simulation_seconds": 2.125
+      },
+      {
+        "dog_position": [
+          -3.8637113571167,
+          0.0508393160998821,
+          3.47511053085327
+        ],
+        "frame": 18,
+        "sha256": "6ca2a528a0a0eb8f239a58a1727c3adc2265c765fe2b976871886152ecc3d954",
+        "simulation_seconds": 2.25
+      },
+      {
+        "dog_position": [
+          -3.30371141433716,
+          0.050587385892868,
+          3.47511053085327
+        ],
+        "frame": 19,
+        "sha256": "a13fdc15838102a565b6b95dfca4a93cb7aa9d5002a483788f1bb538a574644a",
+        "simulation_seconds": 2.375
+      },
+      {
+        "dog_position": [
+          -2.81371140480042,
+          0.0508094094693661,
+          3.47511053085327
+        ],
+        "frame": 20,
+        "sha256": "1ba3d66dbf1a6bc111b536f8064ca6d0aeadd25c133586c1752e29563ed4637a",
+        "simulation_seconds": 2.5
+      },
+      {
+        "dog_position": [
+          -2.25371170043945,
+          0.0508353114128113,
+          3.47511053085327
+        ],
+        "frame": 21,
+        "sha256": "47be468bd14ffbeabff7a7e5e656c0ea7025926002e1f53094bbe0eeec8e043e",
+        "simulation_seconds": 2.625
+      },
+      {
+        "dog_position": [
+          -1.76371192932129,
+          0.0508392378687859,
+          3.47511053085327
+        ],
+        "frame": 22,
+        "sha256": "2bbbba525e3a60d41c6ce6070b754a51a8605ceee0617189f4cfd6492651df04",
+        "simulation_seconds": 2.75
+      },
+      {
+        "dog_position": [
+          -1.20371246337891,
+          0.0508393198251724,
+          3.47511053085327
+        ],
+        "frame": 23,
+        "sha256": "6ba78742b255a0d8814977ea31412e97b8c52c0e7bdca955ae03ca1531e492cd",
+        "simulation_seconds": 2.875
+      },
+      {
+        "dog_position": [
+          -0.713712632656097,
+          0.0508353151381016,
+          3.47511053085327
+        ],
+        "frame": 24,
+        "sha256": "147a6c19a4e72b879f2e7107fcb8a1c4f2bd4007aa36af6d6c60490a61937381",
+        "simulation_seconds": 3.0
+      },
+      {
+        "dog_position": [
+          -0.153712511062622,
+          0.0508352369070053,
+          3.47511053085327
+        ],
+        "frame": 25,
+        "sha256": "3e41b26391c9f2c019bb950194e3b76f0cf75f71fa4e336abfbe14d4511be15b",
+        "simulation_seconds": 3.125
+      },
+      {
+        "dog_position": [
+          0.336287498474121,
+          0.0508353151381016,
+          3.47511053085327
+        ],
+        "frame": 26,
+        "sha256": "fc0444ae414e243103a18994628ac896c376133d235af8169b7da685adc24e6b",
+        "simulation_seconds": 3.25
+      },
+      {
+        "dog_position": [
+          0.896287500858307,
+          0.0508352369070053,
+          3.47511053085327
+        ],
+        "frame": 27,
+        "sha256": "71747fee2ce28c3cbb8d85f18470f85e1f243767af475909f1d5c7e0c89de80a",
+        "simulation_seconds": 3.375
+      },
+      {
+        "dog_position": [
+          1.22196042537689,
+          0.0508771687746048,
+          3.40469098091125
+        ],
+        "frame": 28,
+        "sha256": "f799fdf1ba610fbb7d4a061689614a34d8aee414f6ccc1c32eb24b31ac0af6d1",
+        "simulation_seconds": 3.5
+      },
+      {
+        "dog_position": [
+          1.69114577770233,
+          0.0508357919752598,
+          3.30715274810791
+        ],
+        "frame": 29,
+        "sha256": "e03201201db1ea7ad0072e49ec45888c573a7fd0c9656e89d814c77c60001d9f",
+        "simulation_seconds": 3.625
+      },
+      {
+        "dog_position": [
+          2.16077923774719,
+          0.0508382245898247,
+          3.26266932487488
+        ],
+        "frame": 30,
+        "sha256": "1563600cef228f2614da67eb3107a6af31585cbb74b0b4024fc020e64d6cf0c0",
+        "simulation_seconds": 3.75
+      },
+      {
+        "dog_position": [
+          2.72077965736389,
+          0.050808023661375,
+          3.26266932487488
+        ],
+        "frame": 31,
+        "sha256": "9be9483aa91d7c5de8b85e46f5ac27d2e17b8bd37378a63fdb8229f59f1c9964",
+        "simulation_seconds": 3.875
+      },
+      {
+        "dog_position": [
+          3.21077966690063,
+          0.0508391782641411,
+          3.26266932487488
+        ],
+        "frame": 32,
+        "sha256": "8e1c894ee17105904235aa18cedb166755fd16bb2b4353b51efedb47cba5d0af",
+        "simulation_seconds": 4.0
+      },
+      {
+        "dog_position": [
+          3.77077913284302,
+          0.0508393123745918,
+          3.26266932487488
+        ],
+        "frame": 33,
+        "sha256": "d49d7b82dd4e9839a5f23ffb9f87eb0d0861e8268f0d35e43bc1e0424505acdc",
+        "simulation_seconds": 4.125
+      },
+      {
+        "dog_position": [
+          4.26077938079834,
+          0.0508393198251724,
+          3.26266932487488
+        ],
+        "frame": 34,
+        "sha256": "667ca5f0cbd271e79539ffc17d9bf4b84188c4f64aa31e8a3ca8206c72743adf",
+        "simulation_seconds": 4.25
+      },
+      {
+        "dog_position": [
+          4.6988410949707,
+          0.0503147952258587,
+          3.26266932487488
+        ],
+        "frame": 35,
+        "sha256": "e729137a4ecbc35ca45ef1edcf401b968fcefab9d806280cd1cc54d0f1b17f8b",
+        "simulation_seconds": 4.375
+      },
+      {
+        "dog_position": [
+          4.6988410949707,
+          0.0501777417957783,
+          3.26266932487488
+        ],
+        "frame": 36,
+        "sha256": "37129cd25713c9b9666d23b8a7e4e68894c744aec809cee717a68b88718a816e",
+        "simulation_seconds": 4.5
+      },
+      {
+        "dog_position": [
+          4.6988410949707,
+          0.0501785427331924,
+          3.26266932487488
+        ],
+        "frame": 37,
+        "sha256": "36c7414f89562f1e459b266b15cec475e91d41e6005b056c84b7d60470789b53",
+        "simulation_seconds": 4.625
+      },
+      {
+        "dog_position": [
+          4.20883989334106,
+          0.0508393160998821,
+          3.26266932487488
+        ],
+        "frame": 38,
+        "sha256": "d15d360943acb60e96c3f8b73fd3a865ff94e5dbbeadb1c589da605eefcd1fd9",
+        "simulation_seconds": 4.75
+      },
+      {
+        "dog_position": [
+          4.20476913452148,
+          0.049520555883646,
+          3.25234198570251
+        ],
+        "frame": 39,
+        "sha256": "a1d87e0e067cd01d53b5c55f25b6b7134213c0b89cf5bcee0f117f7ba4788a5c",
+        "simulation_seconds": 4.875
+      },
+      {
+        "dog_position": [
+          4.18744802474976,
+          0.0511399656534195,
+          3.24380803108215
+        ],
+        "frame": 40,
+        "sha256": "4c59ef9ce6268db5dba39c54aa47bfe60432856fe88aa3628c258665ba55a6e7",
+        "simulation_seconds": 5.0
+      },
+      {
+        "dog_position": [
+          4.13629531860352,
+          0.0516108646988869,
+          3.14987063407898
+        ],
+        "frame": 41,
+        "sha256": "f095f5b698ad2b66a1377afc5ba01a18d88aa36b856362b03b47d83b889aa714",
+        "simulation_seconds": 5.125
+      },
+      {
+        "dog_position": [
+          3.92816686630249,
+          0.050891537219286,
+          2.90225577354431
+        ],
+        "frame": 42,
+        "sha256": "d6b200ff75a658e940dce16613c29cc4b69921654aba4f9350719cf1d687168d",
+        "simulation_seconds": 5.25
+      },
+      {
+        "dog_position": [
+          3.39436912536621,
+          0.0508353114128113,
+          2.84287905693054
+        ],
+        "frame": 43,
+        "sha256": "3ffe22b738f763fe3c2983170c9895beaeb624a908e45f77c10fe4f64608f038",
+        "simulation_seconds": 5.375
+      },
+      {
+        "dog_position": [
+          2.90436935424805,
+          0.0508393123745918,
+          2.84287905693054
+        ],
+        "frame": 44,
+        "sha256": "9e8c859846274c269a3567891496b6f7675da45f12f0ab1bf06e37169b8790fe",
+        "simulation_seconds": 5.5
+      },
+      {
+        "dog_position": [
+          2.34436964988708,
+          0.050792284309864,
+          2.84287905693054
+        ],
+        "frame": 45,
+        "sha256": "538f68af8845ba8fec5bca9dbcecf3894f953dcea98629bb25e075eee35ac28c",
+        "simulation_seconds": 5.625
+      },
+      {
+        "dog_position": [
+          1.85436940193176,
+          0.0508197546005249,
+          2.84287905693054
+        ],
+        "frame": 46,
+        "sha256": "544044ad6aa5a9fab89fa10f68a5e3b7d96258b680aa0d309bf576663f64b0b0",
+        "simulation_seconds": 5.75
+      },
+      {
+        "dog_position": [
+          1.29436922073364,
+          0.0508393011987209,
+          2.84287905693054
+        ],
+        "frame": 47,
+        "sha256": "0ad24ca168266a1b19314fb2a2aeccb0918075607b2f3915878487266959a9be",
+        "simulation_seconds": 5.875
+      },
+      {
+        "dog_position": [
+          0.804369449615479,
+          0.0508393160998821,
+          2.84287905693054
+        ],
+        "frame": 48,
+        "sha256": "65c74f29a8b6dbff28b6b90fd5fe548bb08dfd0b936e835bcb8c2c48ee6a6e22",
+        "simulation_seconds": 6.0
+      },
+      {
+        "dog_position": [
+          0.244369268417358,
+          0.0508393198251724,
+          2.84287905693054
+        ],
+        "frame": 49,
+        "sha256": "e9f629808ddf7551eb3ef46cb47f82e7c0be494c80542bbd98d7aa4c151956fc",
+        "simulation_seconds": 6.125
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0508393198251724,
+          2.49287939071655
+        ],
+        "frame": 50,
+        "sha256": "7e3648d09cc50c8668b2ba9025cfa4c0a5b6d4e8547259588d686bddb4c544ff",
+        "simulation_seconds": 6.25
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0508393198251724,
+          1.93287992477417
+        ],
+        "frame": 51,
+        "sha256": "d7daaeb6e5a5d0e6378146a6533fa9049fbcc04372f5d5516551f34b76417eab",
+        "simulation_seconds": 6.375
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0508393533527851,
+          1.44288015365601
+        ],
+        "frame": 52,
+        "sha256": "d42927dcabd1a798063338415dbb55f63879e30c562146331f8c4f26b8dfe2fd",
+        "simulation_seconds": 6.5
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0508168265223503,
+          0.882880389690399
+        ],
+        "frame": 53,
+        "sha256": "a965d904ae3a3b959449296c47213af2be72ac7dfd9ac590fe1528556d6155fd",
+        "simulation_seconds": 6.625
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0508392453193665,
+          0.39288055896759
+        ],
+        "frame": 54,
+        "sha256": "99b511d235a23d123397c36152cd4da08e62e4f29f33941f963c346d28ed3043",
+        "simulation_seconds": 6.75
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0501714274287224,
+          -0.0971194505691528
+        ],
+        "frame": 55,
+        "sha256": "456a5b912cab70e453ffa5252455b5205098e9d2772a2f8f06fae689a67fc5a2",
+        "simulation_seconds": 6.875
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0505925454199314,
+          -0.104666963219643
+        ],
+        "frame": 56,
+        "sha256": "e85a1b90d6469b49e3494e712f8232608750348a7552ba44fea7c2c6a274c3b1",
+        "simulation_seconds": 7.0
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0505925454199314,
+          -0.104666963219643
+        ],
+        "frame": 57,
+        "sha256": "db22eb280a9b89af7f1c2df3b69efbca12a2fe0ff0256c0d00600dfa643206e3",
+        "simulation_seconds": 7.125
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0505925454199314,
+          -0.104666963219643
+        ],
+        "frame": 58,
+        "sha256": "cf36c8db2c4bf6c5c8bf3e790fbd1b7c7f307e40e677161d1d0357a2b535e693",
+        "simulation_seconds": 7.25
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0505925454199314,
+          -0.104666963219643
+        ],
+        "frame": 59,
+        "sha256": "b13ae10b44845cc3d6d99b8a5d14f9ead4b732233b3671034fc77eaa6c28863a",
+        "simulation_seconds": 7.375
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0505925454199314,
+          -0.104666963219643
+        ],
+        "frame": 60,
+        "sha256": "df7f3c8a97b47a0367628b82277e8a55985f07041b5e897697fb3646da03b595",
+        "simulation_seconds": 7.5
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0505925454199314,
+          -0.104666963219643
+        ],
+        "frame": 61,
+        "sha256": "eb649614b650b93eb51cb94199339c7da3119ddd1c560d205aa759a6724edc8d",
+        "simulation_seconds": 7.625
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0505925454199314,
+          -0.104666963219643
+        ],
+        "frame": 62,
+        "sha256": "6139eb3cd01da49c4e9dabac27ac30dfc2c1cd77bdc593fd7762cb7469dfab7f",
+        "simulation_seconds": 7.75
+      },
+      {
+        "dog_position": [
+          0.104369252920151,
+          0.0505925454199314,
+          -0.104666963219643
+        ],
+        "frame": 63,
+        "sha256": "e3851bd45e8a4cfa84ceaf15bd66c1e0fb1e825ff9e90ae2fc0a6322757dffcd",
+        "simulation_seconds": 7.875
+      }
+    ],
+    "hud_hidden": true,
+    "initial_position": [
+      0.0,
+      0.150000005960464,
+      2.59999990463257
+    ],
+    "input_method": "original dog_* Input actions; no teleport after initial spawn",
+    "kind": "native_gameplay_with_fixed_overview_camera",
+    "missing_sources": [],
+    "not_real_time_fps_measurement": true,
+    "publication_sha256": "5c23eeda3920837205846464eb2a92997748d647983ad6869d395ae76cf378df",
+    "registry_sha256": "1773d6f77aabd914a18290175c57f6f32d7c719885a6a18eb2e71a7de3bc5cee",
+    "renderer": "gl_compatibility",
+    "scene_assembly_failures": [],
+    "simulation_fps": 24
+  },
+  "encode": {
+    "width": 384,
+    "height": 216,
+    "fps": 8,
+    "palette_colors": 96,
+    "dither": "none",
+    "requested_duration_sec": 8,
+    "treatment": "Full native frames, proportional downscale, no crop, retouching, synthesized motion or speed change; silent GIF loop. Fixed hall overview camera; original game Input actions drive the dog and live physics/visitors."
+  },
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 384,
+        "height": 216,
+        "duration": "8.010000",
+        "nb_read_frames": "64"
+      }
+    ],
+    "format": {
+      "duration": "8.010000",
+      "size": "222341"
+    }
+  },
+  "full_decode_passed": true,
+  "unique_decoded_frames": 64,
+  "scope": "Recorded current published local A01 polish candidate using its canonical shared assets. Fixed simulation capture is not real-time performance or human art acceptance evidence."
+}

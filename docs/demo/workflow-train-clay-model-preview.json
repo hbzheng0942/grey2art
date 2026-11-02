@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "kind": "Actual GLB material preview; no new geometry or generated image",
+  "source": {
+    "project": "train-parkour",
+    "revision": "a6b17d3c83a8e986fc232fd721ab80b51827644a",
+    "file": "art/source/clay-enrichment/terrace-garden-house/source.glb",
+    "bytes": 15081624,
+    "sha256": "5d52fea2f1729b9b51e26cc67071ba20b7978bd85218951154b3a6bce3560bc8"
+  },
+  "blender_version": "5.1.2",
+  "generator": {
+    "file": "scripts/render_glb_preview.py",
+    "sha256": "6255587133004b6e29838488797568301dc3e59ef7af2b7c8ba1cf1589843da0"
+  },
+  "recipe": {
+    "engine": "CYCLES",
+    "device": "CPU",
+    "samples": 32,
+    "threads": 2,
+    "resolution": [
+      1536,
+      1024
+    ],
+    "view_transform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "background": "Render alpha composited over pure white",
+    "lighting": "Neutral soft studio preview: direct highlights suppressed by light contribution controls; model materials unchanged",
+    "environment": {
+      "diffuse_strength": 0.18,
+      "glossy_ray_strength": 0.015
+    },
+    "area_lights": [
+      {
+        "name": "Soft key",
+        "offset_in_radius_units": [
+          3,
+          -4,
+          5
+        ],
+        "energy_per_radius_squared": 350,
+        "diameter_in_radius_units": 8,
+        "diffuse_factor": 1,
+        "specular_factor": 0.08
+      },
+      {
+        "name": "Soft fill",
+        "offset_in_radius_units": [
+          -4,
+          -1,
+          2.5
+        ],
+        "energy_per_radius_squared": 150,
+        "diameter_in_radius_units": 10,
+        "diffuse_factor": 1,
+        "specular_factor": 0.05
+      }
+    ],
+    "added_scene_geometry": false,
+    "camera": {
+      "projection": "orthographic",
+      "azimuth_degrees": -45.0,
+      "elevation_degrees": 28.0,
+      "margin_factor": 1.22,
+      "fit": "Actual mesh vertex projection, centered in image plane",
+      "ortho_scale": 2.147439956665039,
+      "target": [
+        0.02440313622355461,
+        -0.03838425502181053,
+        -0.10214604437351227
+      ],
+      "location": [
+        2.218076705932617,
+        -2.232057809829712,
+        1.5473883152008057
+      ]
+    },
+    "bounds": {
+      "min": [
+        -0.4274448752403259,
+        -0.5019131898880005,
+        -0.4780126214027405
+      ],
+      "max": [
+        0.3995548188686371,
+        0.501971960067749,
+        0.47788769006729126
+      ]
+    },
+    "mesh_objects": 1,
+    "triangles": 286892,
+    "source_operation": "Imported unchanged, with original PBR materials and textures"
+  },
+  "output": {
+    "file": "workflow-train-clay-model-preview.png",
+    "bytes": 660560,
+    "sha256": "b71ea25b6707b5652b9626c21f05671a6424550da2f7e43071def16e3ef02a37"
+  },
+  "source_unchanged_after_render": true,
+  "scope": "Model preview only; not an engine assembly, gameplay or performance check",
+  "verification": {
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "six_background_sample_points_rgb": {
+      "(0, 0)": [
+        255,
+        255,
+        255
+      ],
+      "(1535, 0)": [
+        255,
+        255,
+        255
+      ],
+      "(0, 1023)": [
+        255,
+        255,
+        255
+      ],
+      "(1535, 1023)": [
+        255,
+        255,
+        255
+      ],
+      "(20, 20)": [
+        255,
+        255,
+        255
+      ],
+      "(1515, 1003)": [
+        255,
+        255,
+        255
+      ]
+    },
+    "nonwhite_bounds": [
+      328,
+      91,
+      1208,
+      932
+    ],
+    "subject_width_fraction": 0.5729166666666666,
+    "subject_height_fraction": 0.8212890625,
+    "source_sha256_after_render": "5d52fea2f1729b9b51e26cc67071ba20b7978bd85218951154b3a6bce3560bc8",
+    "camera_unchanged_from_previous_preview": true,
+    "material_texture_geometry_edits": false,
+    "visual_observation": "Full three-quarter model with softened direct highlights and retained self-shading; pure white background. Display lighting changed, not source material roughness."
+  }
+}

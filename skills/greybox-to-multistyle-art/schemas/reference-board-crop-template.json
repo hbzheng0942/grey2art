@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "kind": "reference-board-crop-request",
+  "selected_concept_sha256": "REPLACE_ACTUAL_CONCEPT_IMAGE_SHA256",
+  "board": {
+    "path": "REPLACE_ACTUAL_PROJECT_RELATIVE_BOARD_PATH",
+    "sha256": "REPLACE_ACTUAL_BOARD_SHA256"
+  },
+  "generation_receipt": {
+    "path": "REPLACE_SHARED_REFERENCE_IMAGE_GENERATION_RECEIPT_PATH",
+    "sha256": "REPLACE_SHARED_INVOCATION_RECEIPT_SHA256"
+  },
+  "asset_id": "long_fence",
+  "view_id": "three_quarter",
+  "role": "three_quarter",
+  "roi": [32, 32, 1504, 280],
+  "padding": 24,
+  "min_subject_long_edge_px": 1024,
+  "min_subject_short_edge_px": 128,
+  "critical_feature_fraction_of_short_edge": 0.1,
+  "min_feature_px": 12,
+  "output": "REPLACE_PROJECT_ASSET_ROOT/long_fence-three_quarter-v1.png",
+  "receipt_output": "REPLACE_PROJECT_ASSET_ROOT/long_fence-three_quarter-v1.crop.json"
+}

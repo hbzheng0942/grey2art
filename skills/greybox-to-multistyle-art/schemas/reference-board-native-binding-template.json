@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "kind": "reference-board-native-binding",
+  "host": "workbuddy",
+  "tool": "DeferExecuteTool",
+  "source_ref": "REPLACE_CURRENT_WORKBUDDY_TOOL_SCHEMA_EVIDENCE",
+  "input_transport": "local_paths",
+  "prompt_argument": "prompt",
+  "image_arguments": [
+    "image1",
+    "image2",
+    "image3"
+  ],
+  "max_references": 3,
+  "parameter_arguments": {},
+  "fixed_arguments": {},
+  "arguments_container": "params",
+  "envelope_arguments": {
+    "toolName": "ImageGen"
+  }
+}

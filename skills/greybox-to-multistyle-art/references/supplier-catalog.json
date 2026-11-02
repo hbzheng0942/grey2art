@@ -1,0 +1,254 @@
+{
+  "schema": 1,
+  "kind": "supplier-knowledge-catalog",
+  "reviewed_at": "2026-10-20",
+  "scope": "Descriptive research, not an executable registry, current rate card or benchmark ranking. Refresh model/API/pricing facts before a proposal. URLs never authorize installation, network calls or spending.",
+  "providers": [
+    {
+      "id": "lux3d",
+      "model_families": [
+        "G1",
+        "G1-Turbo"
+      ],
+      "sources": [
+        {
+          "type": "pinned_contract",
+          "path": "runtime/vendor/aholo-lux3d/core/contracts/lux3d-generation.v1.json"
+        },
+        {
+          "type": "official_pricing",
+          "url": "https://lux3d.aholo3d.cn/lux3d/home?view=pricing&lang=zh_CN"
+        },
+        {
+          "type": "official_pricing",
+          "url": "https://lux3d.aholo.ai/lux3d/home?view=pricing"
+        },
+        {
+          "type": "official_account_manual",
+          "url": "https://aholo.featurebase.app/zh-CN/help/articles/6916933-dashboardji-fen-yu-api-mi-yao"
+        }
+      ],
+      "strengths": [
+        {
+          "claim": "Bundled generation, commerce, remesh, rig, retarget and material/export bridge supports one API workflow.",
+          "evidence": "bundled-contract"
+        },
+        {
+          "claim": "Low-cost reusable prop production is a routing hypothesis from this project's experience; validate the current actual quote and accepted quality.",
+          "evidence": "project-observation; not a universal ranking"
+        }
+      ],
+      "limitations": [
+        {
+          "claim": "Character likeness/rig suitability require a task-specific comparison; prior weak character results are not a permanent product prohibition.",
+          "evidence": "user-project-observation"
+        },
+        {
+          "claim": "G1 and Turbo must be selected explicitly per task with supported parameters; no blanket standard or Turbo default.",
+          "evidence": "current-user-policy"
+        }
+      ],
+      "quote_mode": "current_provider_quote_preferred; every_new_bundled_Lux_submission_requires_valid_live_quote_within_approved_credit_ceiling; sourced_rate_card_for_preliminary_comparison_only",
+      "needs_validation": [
+        "current account price and credit-to-money purchase basis",
+        "same-reference quality comparison",
+        "target-engine material and scale fitting"
+      ],
+      "pricing_reviewed_at": "2026-10-23"
+    },
+    {
+      "id": "tripo",
+      "model_families": [
+        "discover exact API model IDs and operation availability per account"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://developers.tripo3d.ai/en/docs/codex-plugin"
+        },
+        {
+          "type": "official",
+          "url": "https://developers.tripo3d.ai/en/docs/animations-rig"
+        },
+        {
+          "type": "official",
+          "url": "https://developers.tripo3d.ai/en/docs/animations-retarget"
+        },
+        {
+          "type": "official",
+          "url": "https://developers.tripo3d.ai/en/pricing"
+        }
+      ],
+      "strengths": [
+        {
+          "claim": "Documented generation integrations, rig checks, rigging and retarget operations make it a candidate for an integrated character chain.",
+          "evidence": "official-operation-docs; quality not benchmarked here"
+        }
+      ],
+      "limitations": [
+        {
+          "claim": "Studio and API wallets/terms differ; a Studio plan does not establish available API credits.",
+          "evidence": "official-account-docs"
+        },
+        {
+          "claim": "A named Mixamo skeleton convention does not invoke Adobe Mixamo.",
+          "evidence": "API-operation-semantics"
+        }
+      ],
+      "quote_mode": "official_API_rate_card_estimate; no_standalone_task_quote_endpoint_identified_in_reviewed_public_docs",
+      "needs_validation": [
+        "actual API credentials/account connection and authorized useful generation",
+        "actual API model IDs and wallet",
+        "same-reference character/prop quality",
+        "native rig/material acceptance"
+      ],
+      "adapter_status": "dedicated_API_implemented_offline_tested; credentials_not_configured; live_connection_generation_native_validation_pending",
+      "pricing_reviewed_at": "2026-10-23"
+    },
+    {
+      "id": "meshy",
+      "model_families": [
+        "discover current mesh generation model/version per API account"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.meshy.ai/mcp"
+        },
+        {
+          "type": "official",
+          "url": "https://docs.meshy.ai/en/api/rigging"
+        },
+        {
+          "type": "official",
+          "url": "https://docs.meshy.ai/en/api/animation"
+        },
+        {
+          "type": "official",
+          "url": "https://docs.meshy.ai/en/api/pricing"
+        }
+      ],
+      "strengths": [
+        {
+          "claim": "Official REST/MCP integration plus generation, remesh, humanoid rigging and animation operations offer a candidate complete chain.",
+          "evidence": "official-operation-docs; quality not benchmarked here"
+        }
+      ],
+      "limitations": [
+        {
+          "claim": "Web and API allowances differ; free Web actions must not be priced as free API calls.",
+          "evidence": "official-pricing-docs"
+        },
+        {
+          "claim": "Rig/animation input restrictions and upstream task requirements must be satisfied; a generated mesh is not evidence of animation readiness.",
+          "evidence": "official-rig-animation-docs"
+        }
+      ],
+      "quote_mode": "official_API_rate_card_estimate; no_standalone_task_quote_endpoint_identified_in_reviewed_public_docs",
+      "needs_validation": [
+        "actual API credentials/account connection and authorized useful generation",
+        "effective purchased API credit conversion",
+        "same-reference asset quality",
+        "native rig/material acceptance"
+      ],
+      "adapter_status": "dedicated_API_implemented_offline_tested; credentials_not_configured; live_connection_generation_native_validation_pending",
+      "pricing_reviewed_at": "2026-10-23"
+    },
+    {
+      "id": "hitem3d",
+      "model_families": [
+        "Discover exact current Hi3D/Hitem3D API model IDs for the selected account"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://www.hitem3d.ai/pricing"
+        },
+        {
+          "type": "official",
+          "url": "https://docs.hi3d.ai/en/api/getting-started/quickstart"
+        },
+        {
+          "type": "official",
+          "url": "https://docs.hi3d.ai/en/api/api-reference/list/create-task"
+        },
+        {
+          "type": "official_API_pricing",
+          "url": "https://docs.hi3d.ai/en/api/getting-started/pricing"
+        }
+      ],
+      "strengths": [
+        {
+          "claim": "Official Hi3D API documents an asynchronous task workflow using api.hitem3d.ai; a Blender plugin is linked from the documentation.",
+          "evidence": "official-API-docs; no quality benchmark or adapter invocation in this release"
+        }
+      ],
+      "limitations": [
+        {
+          "claim": "Use the exact product identity if the user means another Hi3D tool; this catalog entry represents Hi3D/Hitem3D and does not establish an installed adapter.",
+          "evidence": "official-product-docs; local integration unverified"
+        }
+      ],
+      "quote_mode": "official_API_rate_card_estimate; no_standalone_task_quote_endpoint_identified_in_reviewed_public_docs",
+      "needs_validation": [
+        "actual API credentials/account connection and authorized useful generation",
+        "current model IDs and supported exact parameters",
+        "supported operations/formats",
+        "API pricing and wallet",
+        "quality benchmark"
+      ],
+      "adapter_status": "dedicated_API_implemented_offline_tested; credentials_not_configured; live_connection_generation_native_validation_pending",
+      "pricing_reviewed_at": "2026-10-23"
+    },
+    {
+      "id": "rodin",
+      "model_families": [
+        "discover current Gen-family model/version per account"
+      ],
+      "sources": [
+        {
+          "type": "official",
+          "url": "https://docs.hyper3d.ai/en"
+        },
+        {
+          "type": "official",
+          "url": "https://docs.hyper3d.ai/en/get-started/features"
+        },
+        {
+          "type": "official",
+          "url": "https://hyper3d.ai/pricing?lang=en"
+        },
+        {
+          "type": "official_API_pricing",
+          "url": "https://docs.hyper3d.ai/en/api-specification/rodin-gen2-5#pricing"
+        }
+      ],
+      "strengths": [
+        {
+          "claim": "Documented asynchronous generation/download API makes Rodin an additional asset supplier candidate.",
+          "evidence": "official-API-docs; quality not benchmarked here"
+        }
+      ],
+      "limitations": [
+        {
+          "claim": "Polling uses the jobs subscription key and download uses the generation UUID; preserve both without interchanging them.",
+          "evidence": "official-API-docs"
+        },
+        {
+          "claim": "Web subscription/credit prices do not establish API eligibility or actual per-operation cash cost.",
+          "evidence": "official-API-and-pricing-docs"
+        }
+      ],
+      "quote_mode": "official_API_rate_card_estimate; no_standalone_task_quote_endpoint_identified_in_reviewed_public_docs",
+      "needs_validation": [
+        "actual API credentials/account connection and authorized useful generation",
+        "API entitlement",
+        "current model and operation pricing",
+        "same-reference quality",
+        "native materials and fitting"
+      ],
+      "adapter_status": "dedicated_API_implemented_offline_tested; credentials_not_configured; live_connection_generation_native_validation_pending",
+      "pricing_reviewed_at": "2026-10-23"
+    }
+  ]
+}

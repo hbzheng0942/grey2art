@@ -1,0 +1,567 @@
+{
+  "schema": 1,
+  "kind": "bilingual-workflow-case-figures",
+  "sources": [
+    {
+      "file": "hole-reference-greybox.png",
+      "bytes": 310563,
+      "sha256": "18038dfffc99197a924941bd82c61e4b5a1f57ad4990bf30e421563fc3c178bc"
+    },
+    {
+      "file": "ceramic-workflow-concept.png",
+      "bytes": 2430654,
+      "sha256": "f0042441f541120eb9bbdb9848eb0891fe56fe042d93f1d37477fee87e13c7bb"
+    },
+    {
+      "file": "ceramic-workflow-assembly.png",
+      "bytes": 1964055,
+      "sha256": "46f67c66f5de04727acf2369fbdcab7094cfe8df292aff0ecdd4bbe700282b9b"
+    },
+    {
+      "file": "train-greybox-native.jpg",
+      "bytes": 192213,
+      "sha256": "90a4997bae754a1962c82fe79df50a5d530ff0005449bfdc4fef6e133087e463",
+      "kind": "Shared R2 native gameplay input view; not the historical clay greybox-comfort screenshot"
+    },
+    {
+      "file": "train-pixel-native.jpg",
+      "bytes": 386639,
+      "sha256": "625c2dab01f6003aeb9eccc327d5c68719d2b2e7e45de025e666ad67f6d45883"
+    },
+    {
+      "file": "workflow-train-clay-assembly.png",
+      "bytes": 1196400,
+      "sha256": "ebdcabb6190a8df00c9480d31ec76b72cf5c2ca65aebdfd580d759ceb1d82a0b",
+      "source_project": "train-parkour",
+      "source_path": "art/workflows/clay-pilot/production-v3/review-08/station-02.png",
+      "treatment": "original bytes",
+      "kind": "P8 actual native assembly candidate; not final art acceptance"
+    },
+    {
+      "file": "workflow-train-clay-native.jpg",
+      "bytes": 203265,
+      "sha256": "ba79322bd5d2e06696202ae125b6ebb0da1f68403ba363d7b34357c51389aff3",
+      "source_project": "train-parkour",
+      "source_path": "art/workflows/clay-pilot/production-v3/review-21/station-01.jpg",
+      "treatment": "original bytes",
+      "kind": "P21 native review frame; not human art acceptance"
+    },
+    {
+      "file": "hole-reference-amusement.png",
+      "bytes": 701316,
+      "sha256": "690fa6bd8c34e85280d50d305aa791489ca7024f0be158bc05965ea5ba5e3635",
+      "source_project": "hole",
+      "source_receipt": "docs/demo/hole-workflow-camera.json",
+      "kind": "Godot native style frame, camera matched to selected ceramic view",
+      "treatment": "original fixed-camera capture bytes"
+    },
+    {
+      "file": "hole-reference-lunar.png",
+      "bytes": 933143,
+      "sha256": "58ac05a312db02e6a99adf5a99b8e23f43eb23a2dbf2458c052fca12589c5310",
+      "source_project": "hole",
+      "source_receipt": "docs/demo/hole-workflow-camera.json",
+      "kind": "Godot native style frame, camera matched to selected ceramic view",
+      "treatment": "original fixed-camera capture bytes"
+    },
+    {
+      "file": "hole-reference-coral.png",
+      "bytes": 1057508,
+      "sha256": "6da956bc20ec6e7c90baa3e379c55623eea02625f563e1f48f73df243343d880",
+      "source_project": "hole",
+      "source_receipt": "docs/demo/hole-workflow-camera.json",
+      "kind": "Godot native style frame, camera matched to selected ceramic view",
+      "treatment": "original fixed-camera capture bytes"
+    },
+    {
+      "file": "hole-reference-papercraft.png",
+      "bytes": 895723,
+      "sha256": "51d2887a42ec50557c55011828488858ef9cdeb5e74f0cf22f032fcb598c5cc8",
+      "source_project": "hole",
+      "source_receipt": "docs/demo/hole-workflow-camera.json",
+      "kind": "Godot native style frame, camera matched to selected ceramic view",
+      "treatment": "original fixed-camera capture bytes"
+    },
+    {
+      "file": "hole-reference-saffron.png",
+      "bytes": 984278,
+      "sha256": "1be5a583880e9cda9ca38988f93af1b536c26e3c47056672975c766b9e1ed2aa",
+      "source_project": "hole",
+      "source_receipt": "docs/demo/hole-workflow-camera.json",
+      "kind": "Godot native style frame, camera matched to selected ceramic view",
+      "treatment": "original fixed-camera capture bytes"
+    },
+    {
+      "file": "hole-reference-snack.png",
+      "bytes": 969711,
+      "sha256": "fbef6bae9ce87b784778d9fbbbc0f5f6b34798e38c4456361a575a6c0e29a7d0",
+      "source_project": "hole",
+      "source_receipt": "docs/demo/hole-workflow-camera.json",
+      "kind": "Godot native style frame, camera matched to selected ceramic view",
+      "treatment": "original fixed-camera capture bytes"
+    },
+    {
+      "file": "workflow-train-clay-model-preview.png",
+      "bytes": 660560,
+      "sha256": "b71ea25b6707b5652b9626c21f05671a6424550da2f7e43071def16e3ef02a37",
+      "source_receipt": "docs/demo/workflow-train-clay-model-preview.json",
+      "kind": "Actual selected G1 terrace-garden-house GLB rendered on pure white; not a concept or repaired AI image"
+    },
+    {
+      "file": "workflow-train-clay-model-preview.json",
+      "bytes": 3967,
+      "sha256": "d5b07bb5300e3fc7d15b4a4ec1daa971486e9e07d73333d62077638e8dcdd482",
+      "kind": "Selected-model source, geometry and render identity"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "grey2art-workflow-hole.en.png",
+      "bytes": 1900908,
+      "sha256": "0510f2230db2848d69b4577faf8c3a1b4ed9dcd1a3c705a030cf6600ab4e815a",
+      "case": "hole",
+      "language": "en",
+      "labels": [
+        "Gameplay greybox",
+        "Scene concept",
+        "Native assembly",
+        "Playable art worlds"
+      ],
+      "html": "grey2art-workflow-hole.en.html",
+      "html_sha256": "412e98fd733c3e56e3235adb04ef0efc513c4edd32440bbdcc8796b26ff8cb55",
+      "width": 1800,
+      "height": 1536,
+      "generator_sha256": "997d1da8cda7b5e50e3ec09536576009daf5796b7f3ff80cc2e1a8c588fd9824"
+    },
+    {
+      "file": "grey2art-workflow-hole.zh-CN.png",
+      "bytes": 1898487,
+      "sha256": "0d63fbb1e9c92bea189566f0cacdc5e5efe2fd0ac2f4e16468e653f5936ed441",
+      "case": "hole",
+      "language": "zh-CN",
+      "labels": [
+        "玩法灰盒",
+        "场景概念",
+        "原生装配",
+        "多风格可玩原型"
+      ],
+      "html": "grey2art-workflow-hole.zh-CN.html",
+      "html_sha256": "438840203eb5506e6e2ce8c3ec8205c5b80a32a9e2b7548d03fc2439966208f1",
+      "width": 1800,
+      "height": 1536,
+      "generator_sha256": "997d1da8cda7b5e50e3ec09536576009daf5796b7f3ff80cc2e1a8c588fd9824"
+    },
+    {
+      "file": "grey2art-workflow-train.en.png",
+      "bytes": 1790183,
+      "sha256": "ec06994cfe2daa4b9935712e72a1b9e06c854af2a3de1a5f21ccb7488da92572",
+      "case": "train",
+      "language": "en",
+      "labels": [
+        "Gameplay greybox",
+        "Scene concepts",
+        "Spatial recipe",
+        "Assembly design",
+        "Asset board",
+        "3D asset",
+        "Assembly sample",
+        "Playable result",
+        "Style expansion"
+      ],
+      "html": "grey2art-workflow-train.en.html",
+      "html_sha256": "0110f9a93d9f4fc32d9e778039e492a863a90cd8fa1b01c6df3689925053c258",
+      "width": 1800,
+      "height": 1529,
+      "generator_sha256": "877c9cb59a9388823ac8c4a80773be9356e08b608ac9644cd09abeb051a22848"
+    },
+    {
+      "file": "grey2art-workflow-train.zh-CN.png",
+      "bytes": 1772562,
+      "sha256": "a4af9c8f2628d84d12ba02f4a657bd34790f5a2da29a78bfeca59dcc82240ea8",
+      "case": "train",
+      "language": "zh-CN",
+      "labels": [
+        "玩法灰盒",
+        "多场景概念",
+        "空间配方解析",
+        "场景组装设计",
+        "资产图板",
+        "3D资产",
+        "组装样段",
+        "可玩结果",
+        "风格拓展"
+      ],
+      "html": "grey2art-workflow-train.zh-CN.html",
+      "html_sha256": "135d03d60516c1f476e834c050687d57022b227fc0d45a44633ced7d7da0f4cf",
+      "width": 1800,
+      "height": 1529,
+      "generator_sha256": "877c9cb59a9388823ac8c4a80773be9356e08b608ac9644cd09abeb051a22848"
+    }
+  ],
+  "reconstructed_design_diagrams": [
+    {
+      "file": "workflow-train-clay-recipe.en.svg",
+      "bytes": 3741,
+      "sha256": "30ff185e597a2bd3037b6acd6ff5ae28fc566d01a10223cfda760f6ca876b7d0",
+      "language": "en",
+      "diagram": "spatial_recipe",
+      "kind": "editorial diagram reconstructed from actual recipe and world design",
+      "source_records": [
+        {
+          "file": "scene-production-plan.json",
+          "bytes": 65754,
+          "sha256": "e118ce2f1b7d8064c45af0138cea0323579fe7e8d8d25c010980fc079895cecc",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/scene-production-plan.json"
+        },
+        {
+          "file": "recipe.json",
+          "bytes": 832,
+          "sha256": "a57c53d24bd6ecee070c3411d39b0a95372c5c2e22eed20c1b3cf0533aa3e067",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/production-v1/recipe.json"
+        }
+      ],
+      "source_design_state": "proposed_not_visually_calibrated",
+      "scope": "Seven proposed scene beats and actual v1 first-kit spacing. Not exact route topology, current P21 parameter certification or accepted art."
+    },
+    {
+      "file": "workflow-train-clay-assembly-design.en.svg",
+      "bytes": 97041,
+      "sha256": "433373165812ed7d40638ccf2f7f23497b58b2cb70b6b721f8163c00c0ae15e8",
+      "language": "en",
+      "diagram": "assembly_design",
+      "kind": "editorial station diagram reconstructed from actual route samples and assembly instance origins",
+      "source_records": [
+        {
+          "file": "scene-production-plan.json",
+          "bytes": 65754,
+          "sha256": "e118ce2f1b7d8064c45af0138cea0323579fe7e8d8d25c010980fc079895cecc",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/scene-production-plan.json"
+        },
+        {
+          "file": "greybox.json",
+          "bytes": 1051162,
+          "sha256": "fb3ae7538eb1ce4f76a1150d0a62843c79ced67a4917f7f578669a7a1fa46311",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/greybox.json"
+        },
+        {
+          "file": "assembly.json",
+          "bytes": 1817323,
+          "sha256": "2796bbfe266413eeb09e3e3d4969fe7c87965360fa547e59aa66bf22e43c8960",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/production-v3/assembly.json"
+        }
+      ],
+      "display_roi": {
+        "x": [
+          -250,
+          250
+        ],
+        "z": [
+          1250,
+          2350
+        ]
+      },
+      "selected_instance_origins": 1245,
+      "category_counts": {
+        "architecture": 296,
+        "nature": 498,
+        "props": 451
+      },
+      "scope": "Simplified top-down origin markers and actual station track samples. Markers are not metric footprints, an original historical planning screenshot or an accepted construction plan."
+    },
+    {
+      "file": "workflow-train-clay-recipe.zh-CN.svg",
+      "bytes": 3747,
+      "sha256": "e098620344e544ce7941f3126fa2042663fc365d803ac1e93d1574a9ba087129",
+      "language": "zh-CN",
+      "diagram": "spatial_recipe",
+      "kind": "editorial diagram reconstructed from actual recipe and world design",
+      "source_records": [
+        {
+          "file": "scene-production-plan.json",
+          "bytes": 65754,
+          "sha256": "e118ce2f1b7d8064c45af0138cea0323579fe7e8d8d25c010980fc079895cecc",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/scene-production-plan.json"
+        },
+        {
+          "file": "recipe.json",
+          "bytes": 832,
+          "sha256": "a57c53d24bd6ecee070c3411d39b0a95372c5c2e22eed20c1b3cf0533aa3e067",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/production-v1/recipe.json"
+        }
+      ],
+      "source_design_state": "proposed_not_visually_calibrated",
+      "scope": "Seven proposed scene beats and actual v1 first-kit spacing. Not exact route topology, current P21 parameter certification or accepted art."
+    },
+    {
+      "file": "workflow-train-clay-assembly-design.zh-CN.svg",
+      "bytes": 97025,
+      "sha256": "64d431e2da48a73328b9367ee936136f5a3d5f2a680bdcc64303bb65c638ef68",
+      "language": "zh-CN",
+      "diagram": "assembly_design",
+      "kind": "editorial station diagram reconstructed from actual route samples and assembly instance origins",
+      "source_records": [
+        {
+          "file": "scene-production-plan.json",
+          "bytes": 65754,
+          "sha256": "e118ce2f1b7d8064c45af0138cea0323579fe7e8d8d25c010980fc079895cecc",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/scene-production-plan.json"
+        },
+        {
+          "file": "greybox.json",
+          "bytes": 1051162,
+          "sha256": "fb3ae7538eb1ce4f76a1150d0a62843c79ced67a4917f7f578669a7a1fa46311",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/greybox.json"
+        },
+        {
+          "file": "assembly.json",
+          "bytes": 1817323,
+          "sha256": "2796bbfe266413eeb09e3e3d4969fe7c87965360fa547e59aa66bf22e43c8960",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/production-v3/assembly.json"
+        }
+      ],
+      "display_roi": {
+        "x": [
+          -250,
+          250
+        ],
+        "z": [
+          1250,
+          2350
+        ]
+      },
+      "selected_instance_origins": 1245,
+      "category_counts": {
+        "architecture": 296,
+        "nature": 498,
+        "props": 451
+      },
+      "scope": "Simplified top-down origin markers and actual station track samples. Markers are not metric footprints, an original historical planning screenshot or an accepted construction plan."
+    }
+  ],
+  "asset_reference_board": {
+    "kind": "curated asset reference board",
+    "outputs": [
+      {
+        "file": "workflow-train-clay-assets.en.png",
+        "bytes": 1025429,
+        "sha256": "8b34191c09bd4a04f591287e37c0821588c8c10b286949d56d69b008c9211674",
+        "language": "en"
+      },
+      {
+        "file": "workflow-train-clay-assets.zh-CN.png",
+        "bytes": 1019214,
+        "sha256": "83ee92ea4a604bbd6b7e6028cebfad122c845a7da21f833cdb3322001ba355cf",
+        "language": "zh-CN"
+      }
+    ],
+    "sources": [
+      {
+        "file": "terrace-garden-house.png",
+        "bytes": 1938881,
+        "sha256": "0d16dd49ed7e248f1a4bfa117711ca63c31e4fe5edf2fe0874da97d1eb08ad0f",
+        "source_project": "train-parkour",
+        "source_path": "art/workflows/clay-pilot/production-v3/lux-enrichment/references/terrace-garden-house.png",
+        "asset": "terrace-garden-house",
+        "kind": "actual image-generation modeling reference; not a GLB render",
+        "selection": {
+          "file": "selection.json",
+          "bytes": 2313,
+          "sha256": "ae1c272edd68bec5a7da88c721f43a32c847b73759b419e50f9da4db2dfd35ab",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/production-v3/lux-enrichment/selection.json"
+        },
+        "recorded_use": "Native cardinal front inspection revealed source facade +X, not -Z; corrected to +90 degrees before final placement. Intact closed doorway, rear cornice seams remain; middle ground candidate.",
+        "selection_state": "source_review_passed_scene_candidate"
+      },
+      {
+        "file": "station-corner-pavilion.png",
+        "bytes": 1572800,
+        "sha256": "d441ca8a62067f1178c2fba70e654c13c027f34924c746588eb62e6b492dfb51",
+        "source_project": "train-parkour",
+        "source_path": "art/workflows/clay-pilot/production-v3/hero-assets/references/station-corner-pavilion.png",
+        "asset": "station-corner-pavilion",
+        "kind": "actual image-generation modeling reference; not a GLB render",
+        "selection": {
+          "file": "selection.json",
+          "bytes": 2623,
+          "sha256": "970147038276742b6d701c22896a383545afbc3820dc466c3700ea0d266eb02c",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/production-v3/hero-standard/selection.json"
+        },
+        "recorded_use": "Improved standard-tier scene candidate; final near-view quality not accepted.",
+        "selection_state": "source_review_passed_scene_candidate"
+      },
+      {
+        "file": "island-city-crown.png",
+        "bytes": 1584503,
+        "sha256": "0c39efb8980280da095d7ca5ec9791dd63a080cc141eebc03a48c9fea6cbaaec",
+        "source_project": "train-parkour",
+        "source_path": "art/workflows/clay-pilot/production-v3/hero-assets/references/island-city-crown.png",
+        "asset": "island-city-crown",
+        "kind": "actual image-generation modeling reference; not a GLB render",
+        "selection": {
+          "file": "selection.json",
+          "bytes": 2623,
+          "sha256": "970147038276742b6d701c22896a383545afbc3820dc466c3700ea0d266eb02c",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/production-v3/hero-standard/selection.json"
+        },
+        "recorded_use": "Middle/far-distance skyline candidate only; near-view commercial quality rejected.",
+        "selection_state": "source_review_passed_scene_candidate"
+      },
+      {
+        "file": "clay-flower-shrub-cluster.png",
+        "bytes": 1692325,
+        "sha256": "1b5e0b1ef58c52b4f43ddb90fe2779cdfa7367691c0b5ed9df7671f48ba24f3e",
+        "source_project": "train-parkour",
+        "source_path": "art/workflows/clay-pilot/production-v3/hero-assets/references/clay-flower-shrub-cluster.png",
+        "asset": "clay-flower-shrub-cluster",
+        "kind": "actual image-generation modeling reference; not a GLB render",
+        "selection": {
+          "file": "production-plan.json",
+          "bytes": 11043,
+          "sha256": "2735887e4ce0e25fcd06e204812def9830779fd35c2d3c57161458d73c0d6664",
+          "source_project": "train-parkour",
+          "source_path": "art/workflows/clay-pilot/production-v3/hero-assets/production-plan.json"
+        },
+        "recorded_use": "低位花灌木，暖绿、深绿与少量紫色果/花；以整体叶团形成轮廓，减少透明叶片。",
+        "selection_state": "integrated_technical_checks_passed_final_visual_pending"
+      }
+    ],
+    "treatment": "Four existing modeling references and concise intended roles. Complete reference subjects are preserved on white; source bytes unchanged. No new image generation and no model render claim.",
+    "scope": "Curated from actual references and selection/production records, not an original historical board. Selected model candidates retain their recorded quality and distance limits; the reference board does not certify their rendered output."
+  },
+  "rendered_cases": [
+    "train"
+  ],
+  "treatment": "1800px canvases with equal edge-aligned 3:2 image windows. Source captures and original model bytes remain unchanged; proportional CSS cover crops display edges without stretching or added filler. Hole uses three equal stage windows above six full-frame fixed-camera native styles in a 2x3 grid. Train uses nine equal windows in a 3x3 sequence: greybox, scene concepts, spatial recipe, reconstructed scene assembly design, a curated four-card asset-reference board, an actual 3D asset rendered on white, P8 assembly sample, P21 playable result and pixel style expansion. V1 spatial blockout remains bound as recipe-validation evidence rather than a separate visual stage. Spatial diagrams are editorial reconstructions from real source records, not original historical screenshots. The rejected station-main-building model and its reference are not used.",
+  "train_concept_suite": {
+    "file": "workflow-train-clay-concepts.png",
+    "bytes": 2696068,
+    "sha256": "877735d492336baff6a25d24221ef617d587b4f92d5847f68bb1450a9483d9b4",
+    "kind": "four actual clay scene concepts",
+    "dependencies": [
+      {
+        "file": "station.png",
+        "bytes": 2076279,
+        "sha256": "ee30c16f367c84f26329a99c0324f64ed3a619886bfd82bdf6f86f8b9264f74c",
+        "source_path": "art/workflows/clay-pilot/production-v1/concepts/station.png",
+        "kind": "scene concept"
+      },
+      {
+        "file": "canyon.png",
+        "bytes": 2328400,
+        "sha256": "bf777fb6c814c2ab69a87e1b382e340445344087ec958ec953143dee36803ffc",
+        "source_path": "art/workflows/clay-pilot/production-v1/concepts/canyon.png",
+        "kind": "scene concept"
+      },
+      {
+        "file": "tunnel.png",
+        "bytes": 2052489,
+        "sha256": "91611d8967c57a1c466209e116514ffc12e852b9fe70eb78365d89c01b361d2e",
+        "source_path": "art/workflows/clay-pilot/production-v1/concepts/tunnel.png",
+        "kind": "scene concept"
+      },
+      {
+        "file": "finale-v2.png",
+        "bytes": 2145147,
+        "sha256": "ddc84ec779cda430c0f2240a2f482c56d8d33c4b6f19f0f273d9139fc3766cad",
+        "source_path": "art/workflows/clay-pilot/production-v1/concepts/finale-v2.png",
+        "kind": "scene concept"
+      }
+    ],
+    "treatment": "Four actual concept sources proportionally cropped to aligned 3:2 windows; no stretching or native-frame claim",
+    "temporary_html_removed": true
+  },
+  "hole_camera_receipt": {
+    "path": "docs/demo/hole-workflow-camera.json",
+    "file": "hole-workflow-camera.json",
+    "bytes": 8416,
+    "sha256": "341c4dfcc7c99713815b6f45ded90e25554ccf761ca3257cfeb663850f4941da"
+  },
+  "train_case": {
+    "style": "clay",
+    "native_revision": "P21",
+    "assembly_sample_revision": "P8",
+    "concept_manifest": {
+      "file": "concepts.json",
+      "bytes": 3959,
+      "sha256": "6521b4d9c575ec2c68a5040826cec28b80568b93a845f46cd7d24a39bdc6fc23",
+      "source_project": "train-parkour",
+      "source_path": "art/workflows/clay-pilot/production-v1/concepts.json"
+    },
+    "scene_recipe": {
+      "file": "recipe.json",
+      "bytes": 832,
+      "sha256": "a57c53d24bd6ecee070c3411d39b0a95372c5c2e22eed20c1b3cf0533aa3e067",
+      "source_project": "train-parkour",
+      "source_path": "art/workflows/clay-pilot/production-v1/recipe.json"
+    },
+    "scene_design": {
+      "file": "scene-production-plan.json",
+      "bytes": 65754,
+      "sha256": "e118ce2f1b7d8064c45af0138cea0323579fe7e8d8d25c010980fc079895cecc",
+      "source_project": "train-parkour",
+      "source_path": "art/workflows/clay-pilot/scene-production-plan.json"
+    },
+    "assembly_records": {
+      "file": "assembly.json",
+      "bytes": 1817323,
+      "sha256": "2796bbfe266413eeb09e3e3d4969fe7c87965360fa547e59aa66bf22e43c8960",
+      "source_project": "train-parkour",
+      "source_path": "art/workflows/clay-pilot/production-v3/assembly.json"
+    },
+    "spatial_validation": {
+      "kind": "actual V1 native blockout evidence, not an extra visual stage",
+      "frame": {
+        "file": "station-02.png",
+        "bytes": 336558,
+        "sha256": "4a32017f9c218bbe7137dc0823b35fca713de7a96ac7c5a8db8a009d9a63e805",
+        "source_project": "train-parkour",
+        "source_path": "art/workflows/clay-pilot/production-v1/lookdev-base/station-02.png"
+      },
+      "source_capture": {
+        "file": "capture.json",
+        "bytes": 9590,
+        "sha256": "aa37366b0f604be7d560724bf2581b5933192ee78558b6252ef1d4e9a0f7cff5",
+        "source_project": "train-parkour",
+        "source_path": "art/workflows/clay-pilot/production-v1/lookdev-base/capture.json"
+      }
+    },
+    "assembly_capture": {
+      "file": "capture.json",
+      "bytes": 16848,
+      "sha256": "1c9145a300436448faf96c66012b38ea5c4a8340011c5b1359cea04d5ff399eb",
+      "source_project": "train-parkour",
+      "source_path": "art/workflows/clay-pilot/production-v3/review-08/capture.json"
+    },
+    "native_capture": {
+      "file": "capture.json",
+      "bytes": 10308,
+      "sha256": "b51d588952c6e53d3cd1fbd78d7111864cf02058040f08fda903108a1ab2d863",
+      "source_project": "train-parkour",
+      "source_path": "art/workflows/clay-pilot/production-v3/review-21/capture.json"
+    },
+    "selected_model_preview": {
+      "file": "docs/demo/workflow-train-clay-model-preview.png",
+      "source_receipt": "docs/demo/workflow-train-clay-model-preview.json"
+    },
+    "selection_correction": "Earlier task 3845486 station-main-building candidate was rejected and is excluded. The model stage uses the verified selected terrace-garden-house G1 asset; see its dedicated preview receipt."
+  },
+  "scope": "Historical case stages: concepts/references and native frames retain distinct identities. These figures illustrate the process, not current-release production qualification or human acceptance.",
+  "font": "Existing OFL Noto CJK subset with system sans-serif fallback for additional Chinese characters.",
+  "generator": {
+    "path": "scripts/render_workflow_cases.py",
+    "sha256": "877c9cb59a9388823ac8c4a80773be9356e08b608ac9644cd09abeb051a22848"
+  }
+}

@@ -1,0 +1,402 @@
+{
+  "brand": "Grey2Art",
+  "layout": "one case per 2x2 comparison sheet",
+  "canvas": {
+    "width": 1000,
+    "height": "per-case native aspect ratio",
+    "html_preview": "Proportional fit to viewport width; no horizontal scrolling"
+  },
+  "catalog": {
+    "file": "docs/showcase/catalog.json",
+    "bytes": 13127,
+    "sha256": "fd3268e158a985c2d1d1e6d73a8d9dfdc2ed3f4ea4afdb8bfe241f05064c3861"
+  },
+  "renderer": {
+    "file": "scripts/render_case_sheets.py",
+    "bytes": 8933,
+    "sha256": "6b0f599ccfa28fc3a2b8399447e1c35b31ac370a04917667bddd1cbba83d733a"
+  },
+  "font": {
+    "file": "docs/demo/fonts/NotoSansCJKsc-2.004-showcase-subset.woff2",
+    "bytes": 46412,
+    "sha256": "34c915ab9f6e26d23d6b2bf36b2c72fcc5d25ee9e14be758143410360a9d139d",
+    "family": "Grey2Art Sans",
+    "weight": "Static regular 400; browser-synthesized 600 for headings",
+    "license": "OFL-1.1"
+  },
+  "image_operation": "Real frames fill equal edge-aligned viewports within each case using proportional cover. Native per-case ratios limit edge crop; no stretching or filler bars. Source capture bytes unchanged",
+  "png_exported": true,
+  "languages": [
+    "en",
+    "zh-CN"
+  ],
+  "cases": [
+    {
+      "id": "hole",
+      "name": "Hole",
+      "canvas": {
+        "width": 1000,
+        "height": 805,
+        "frame_aspect": "3 / 2"
+      },
+      "source_revision": "ab75441b078713b14842a284ddebfe306ab03aa3",
+      "outputs": [
+        {
+          "file": "docs/demo/grey2art-case-hole.html",
+          "bytes": 2710,
+          "sha256": "8573af650650503a54442995304fb38cf2916a8b21bef4ffba0f77638f984454"
+        },
+        {
+          "file": "docs/demo/grey2art-case-hole.png",
+          "bytes": 667069,
+          "sha256": "2d30c87f9730a4cea3fdf2b313ab3c3aa6302220e84d9f67048f92f012fe2841"
+        },
+        {
+          "file": "docs/demo/grey2art-case-hole.zh-CN.html",
+          "bytes": 2704,
+          "sha256": "ad17895ad9bd0b2a95cdf7d1e7e8b2b7be30f3df012137d687064adfeed50c9e"
+        },
+        {
+          "file": "docs/demo/grey2art-case-hole.zh-CN.png",
+          "bytes": 667152,
+          "sha256": "085c997d928ef6e186f3b5b946cdbf7a2f41b7b8575a19a0b673a91e43af65f2"
+        }
+      ],
+      "sources": [
+        {
+          "file": "docs/demo/hole-reference-greybox.png",
+          "bytes": 310563,
+          "sha256": "18038dfffc99197a924941bd82c61e4b5a1f57ad4990bf30e421563fc3c178bc",
+          "label": "Gameplay greybox",
+          "display_label": "Gameplay greybox",
+          "role": "input",
+          "display_treatment": "reference-frame",
+          "camera_receipt": {
+            "file": "docs/demo/hole-reference-camera.json",
+            "bytes": 6621,
+            "sha256": "763a4e6816c9fe844e1058dea281f0bd87b5225bbbd8e8773c2c112d85ed3a5c"
+          }
+        },
+        {
+          "file": "docs/demo/hole-ceramic-selected-native.png",
+          "bytes": 2220902,
+          "sha256": "021bd068e10e4931a0b4a2282c77027f00408955d8c67a28b7f81a18187188c1",
+          "label": "Ceramic town",
+          "display_label": "Ceramic town",
+          "role": "art_style",
+          "display_treatment": "reference-frame",
+          "camera_receipt": {
+            "file": "docs/demo/hole-reference-camera.json",
+            "bytes": 6621,
+            "sha256": "763a4e6816c9fe844e1058dea281f0bd87b5225bbbd8e8773c2c112d85ed3a5c"
+          }
+        },
+        {
+          "file": "docs/demo/hole-orbital-selected-native.png",
+          "bytes": 1401032,
+          "sha256": "4dffff7406e9b3fefee44d8888beee91cb6f3c3ba32f41d4c65b143e8388890c",
+          "label": "Orbital sci-fi",
+          "display_label": "Orbital sci-fi",
+          "role": "art_style",
+          "display_treatment": "reference-frame",
+          "camera_receipt": {
+            "file": "docs/demo/hole-reference-camera.json",
+            "bytes": 6621,
+            "sha256": "763a4e6816c9fe844e1058dea281f0bd87b5225bbbd8e8773c2c112d85ed3a5c"
+          }
+        },
+        {
+          "file": "docs/demo/hole-reference-mycelium.png",
+          "bytes": 995708,
+          "sha256": "4417f837bd2570249bbcb97b668b8086231b2e4aebbdc0d0b3b6cd097541f8f0",
+          "label": "Mushroom forest",
+          "display_label": "Mushroom forest",
+          "role": "art_style",
+          "display_treatment": "reference-frame",
+          "camera_receipt": {
+            "file": "docs/demo/hole-reference-camera.json",
+            "bytes": 6621,
+            "sha256": "763a4e6816c9fe844e1058dea281f0bd87b5225bbbd8e8773c2c112d85ed3a5c"
+          }
+        }
+      ],
+      "languages": {
+        "en": {
+          "name": "Hole",
+          "outputs": [
+            {
+              "file": "docs/demo/grey2art-case-hole.html",
+              "bytes": 2710,
+              "sha256": "8573af650650503a54442995304fb38cf2916a8b21bef4ffba0f77638f984454"
+            },
+            {
+              "file": "docs/demo/grey2art-case-hole.png",
+              "bytes": 667069,
+              "sha256": "2d30c87f9730a4cea3fdf2b313ab3c3aa6302220e84d9f67048f92f012fe2841"
+            }
+          ],
+          "labels": [
+            "Gameplay greybox",
+            "Ceramic town",
+            "Orbital sci-fi",
+            "Mushroom forest"
+          ]
+        },
+        "zh-CN": {
+          "name": "\u9ed1\u6d1e",
+          "outputs": [
+            {
+              "file": "docs/demo/grey2art-case-hole.zh-CN.html",
+              "bytes": 2704,
+              "sha256": "ad17895ad9bd0b2a95cdf7d1e7e8b2b7be30f3df012137d687064adfeed50c9e"
+            },
+            {
+              "file": "docs/demo/grey2art-case-hole.zh-CN.png",
+              "bytes": 667152,
+              "sha256": "085c997d928ef6e186f3b5b946cdbf7a2f41b7b8575a19a0b673a91e43af65f2"
+            }
+          ],
+          "labels": [
+            "\u73a9\u6cd5\u7070\u76d2",
+            "\u9676\u74f7\u5c0f\u9547",
+            "\u8f68\u9053\u79d1\u5e7b",
+            "\u8611\u83c7\u68ee\u6797"
+          ]
+        }
+      }
+    },
+    {
+      "id": "train-parkour",
+      "name": "Train Parkour",
+      "canvas": {
+        "width": 1000,
+        "height": 707,
+        "frame_aspect": "16 / 9"
+      },
+      "source_revision": "0986dc2cfec6a7b21e0e257c83ec1b62fd960ebb",
+      "outputs": [
+        {
+          "file": "docs/demo/grey2art-case-train-parkour.html",
+          "bytes": 2725,
+          "sha256": "9d8f458c3a6b392c7b060a1a2a83ebdfac03fbf68c7f3effd96c623dd01132dd"
+        },
+        {
+          "file": "docs/demo/grey2art-case-train-parkour.png",
+          "bytes": 632957,
+          "sha256": "9531b8ee16207d834fd45f8fc6728495a6ee6ba79438b8e0a000aa769dee84df"
+        },
+        {
+          "file": "docs/demo/grey2art-case-train-parkour.zh-CN.html",
+          "bytes": 2719,
+          "sha256": "a0ef50eb49d07729ac2152f865edd3c394e5a9485d090c3ec384ea487750087b"
+        },
+        {
+          "file": "docs/demo/grey2art-case-train-parkour.zh-CN.png",
+          "bytes": 632938,
+          "sha256": "1c927a572afcaf873d1fa0fc7e89921712e9d34bbcc8a5362a805e57b86ab30a"
+        }
+      ],
+      "sources": [
+        {
+          "file": "docs/demo/train-greybox-native.jpg",
+          "bytes": 192213,
+          "sha256": "90a4997bae754a1962c82fe79df50a5d530ff0005449bfdc4fef6e133087e463",
+          "label": "Gameplay greybox",
+          "display_label": "Gameplay greybox",
+          "role": "input",
+          "display_treatment": "fit-to-tile"
+        },
+        {
+          "file": "docs/demo/train-clay-native.jpg",
+          "bytes": 366148,
+          "sha256": "cccd6eb01d0c042316493cefe1ddc775622cd4fb719ce4c02e8c1722de2aad41",
+          "label": "Colorful clay",
+          "display_label": "Colorful clay",
+          "role": "art_style",
+          "display_treatment": "fit-to-tile"
+        },
+        {
+          "file": "docs/demo/train-pixel-native.jpg",
+          "bytes": 386639,
+          "sha256": "625c2dab01f6003aeb9eccc327d5c68719d2b2e7e45de025e666ad67f6d45883",
+          "label": "Pixel skyline",
+          "display_label": "Pixel skyline",
+          "role": "art_style",
+          "display_treatment": "fit-to-tile"
+        },
+        {
+          "file": "docs/demo/train-halloween-native.jpg",
+          "bytes": 359666,
+          "sha256": "7cae742a20cf1dda7512fa24b90390e8f9d71061cdbd9c358d7f98eee3260fbb",
+          "label": "Halloween comic",
+          "display_label": "Halloween comic",
+          "role": "art_style",
+          "display_treatment": "fit-to-tile"
+        }
+      ],
+      "languages": {
+        "en": {
+          "name": "Train Parkour",
+          "outputs": [
+            {
+              "file": "docs/demo/grey2art-case-train-parkour.html",
+              "bytes": 2725,
+              "sha256": "9d8f458c3a6b392c7b060a1a2a83ebdfac03fbf68c7f3effd96c623dd01132dd"
+            },
+            {
+              "file": "docs/demo/grey2art-case-train-parkour.png",
+              "bytes": 632957,
+              "sha256": "9531b8ee16207d834fd45f8fc6728495a6ee6ba79438b8e0a000aa769dee84df"
+            }
+          ],
+          "labels": [
+            "Gameplay greybox",
+            "Colorful clay",
+            "Pixel skyline",
+            "Halloween comic"
+          ]
+        },
+        "zh-CN": {
+          "name": "\u5217\u8f66\u8dd1\u9177",
+          "outputs": [
+            {
+              "file": "docs/demo/grey2art-case-train-parkour.zh-CN.html",
+              "bytes": 2719,
+              "sha256": "a0ef50eb49d07729ac2152f865edd3c394e5a9485d090c3ec384ea487750087b"
+            },
+            {
+              "file": "docs/demo/grey2art-case-train-parkour.zh-CN.png",
+              "bytes": 632938,
+              "sha256": "1c927a572afcaf873d1fa0fc7e89921712e9d34bbcc8a5362a805e57b86ab30a"
+            }
+          ],
+          "labels": [
+            "\u73a9\u6cd5\u7070\u76d2",
+            "\u5f69\u8272\u9ecf\u571f",
+            "\u50cf\u7d20\u5929\u9645\u7ebf",
+            "\u9178\u8272\u6f2b\u753b\u9b3c\u8282"
+          ]
+        }
+      }
+    },
+    {
+      "id": "wander-garden",
+      "name": "Wander Garden",
+      "canvas": {
+        "width": 1000,
+        "height": 766,
+        "frame_aspect": "8 / 5"
+      },
+      "source_revision": "78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+      "outputs": [
+        {
+          "file": "docs/demo/grey2art-case-wander-garden.html",
+          "bytes": 2732,
+          "sha256": "d4efc93f4c3258a71c9a7734897fa76dfbb2215d633233e4a5af6be4ddb83ce7"
+        },
+        {
+          "file": "docs/demo/grey2art-case-wander-garden.png",
+          "bytes": 448016,
+          "sha256": "26ba1302b042ad9f0738101ecf3a215583ca9ddaee50502b290bea57d27b794b"
+        },
+        {
+          "file": "docs/demo/grey2art-case-wander-garden.zh-CN.html",
+          "bytes": 2718,
+          "sha256": "86285c1c46a2bf2039c5acbe20a41a4d6704a5ea3beee29f2e507d7de4b44d6a"
+        },
+        {
+          "file": "docs/demo/grey2art-case-wander-garden.zh-CN.png",
+          "bytes": 446575,
+          "sha256": "be47d44c2b5d59307e2b456324b5be2a2eb2e8204b212691a026343ca3d64696"
+        }
+      ],
+      "sources": [
+        {
+          "file": "docs/demo/garden-greybox-native.png",
+          "bytes": 201400,
+          "sha256": "81e39e4eb7d0eb2a26819a8bf22aef3943a1b59735e410572dc920c73280bd52",
+          "label": "Gameplay greybox",
+          "display_label": "Gameplay greybox",
+          "role": "input",
+          "display_treatment": "fit-to-tile",
+          "camera_receipt": {
+            "file": "docs/demo/garden-greybox-source.json",
+            "bytes": 1669,
+            "sha256": "5855f64f8da86665f3d74515c8a9adc6ab9ac0015fb0703f0c805a3c71fe49be"
+          }
+        },
+        {
+          "file": "docs/demo/garden-original-native.png",
+          "bytes": 619404,
+          "sha256": "c29fd0d63fa2b4ad29ccb87fee4660a92b571bc2ab1853555dff460a346ad727",
+          "label": "Original low-poly",
+          "display_label": "Original low-poly",
+          "role": "art_style",
+          "display_treatment": "fit-to-tile"
+        },
+        {
+          "file": "docs/demo/garden-ink-native.png",
+          "bytes": 638861,
+          "sha256": "aa269a518edc7ef68d6cba71fdeb65e1c706ebe014a7c2cb7a8be59472f4603a",
+          "label": "Ink storybook",
+          "display_label": "Ink storybook",
+          "role": "art_style",
+          "display_treatment": "fit-to-tile"
+        },
+        {
+          "file": "docs/demo/garden-halloween-native.png",
+          "bytes": 650343,
+          "sha256": "a4a64479905a00357b6bec306cd93c1dc64f8c4e7f89dc1fcca8dcf94204f30b",
+          "label": "Pumpkin moon",
+          "display_label": "Pumpkin moon",
+          "role": "art_style",
+          "display_treatment": "fit-to-tile"
+        }
+      ],
+      "languages": {
+        "en": {
+          "name": "Wander Garden",
+          "outputs": [
+            {
+              "file": "docs/demo/grey2art-case-wander-garden.html",
+              "bytes": 2732,
+              "sha256": "d4efc93f4c3258a71c9a7734897fa76dfbb2215d633233e4a5af6be4ddb83ce7"
+            },
+            {
+              "file": "docs/demo/grey2art-case-wander-garden.png",
+              "bytes": 448016,
+              "sha256": "26ba1302b042ad9f0738101ecf3a215583ca9ddaee50502b290bea57d27b794b"
+            }
+          ],
+          "labels": [
+            "Gameplay greybox",
+            "Original low-poly",
+            "Ink storybook",
+            "Pumpkin moon"
+          ]
+        },
+        "zh-CN": {
+          "name": "\u6f2b\u91ce\u7530\u56ed",
+          "outputs": [
+            {
+              "file": "docs/demo/grey2art-case-wander-garden.zh-CN.html",
+              "bytes": 2718,
+              "sha256": "86285c1c46a2bf2039c5acbe20a41a4d6704a5ea3beee29f2e507d7de4b44d6a"
+            },
+            {
+              "file": "docs/demo/grey2art-case-wander-garden.zh-CN.png",
+              "bytes": 446575,
+              "sha256": "be47d44c2b5d59307e2b456324b5be2a2eb2e8204b212691a026343ca3d64696"
+            }
+          ],
+          "labels": [
+            "\u73a9\u6cd5\u7070\u76d2",
+            "\u539f\u7248\u4f4e\u591a\u8fb9\u5f62",
+            "\u58a8\u7ebf\u7ae5\u8bdd",
+            "\u5357\u74dc\u6708\u591c"
+          ]
+        }
+      }
+    }
+  ]
+}

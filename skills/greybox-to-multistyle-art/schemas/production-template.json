@@ -1,0 +1,141 @@
+{
+  "schema": 2,
+  "kind": "production-table",
+  "style_id": "REPLACE_STYLE_ID",
+  "execution_plan_digest": "REPLACE_CURRENT_EXECUTABLE_PLAN_DIGEST",
+  "sample_contract": {
+    "scene_comparison": "feature-view-v1",
+    "style_id": "REPLACE_STYLE_ID",
+    "scene": "res://REPLACE_NATIVE_SAMPLE_SCENE",
+    "input_digest": "REPLACE_H3_KNOWN_INPUT_CONTRACT_DIGEST",
+    "execution_plan_digest": "REPLACE_ORIGINAL_SAMPLE_EXECUTABLE_PLAN_DIGEST",
+    "required_technical_checks": [
+      "material_calibration",
+      "scale_fit",
+      "assembly_seams"
+    ],
+    "required_gameplay_checks": [],
+    "required_critical_features": [],
+    "baseline_scene": "res://REPLACE_APPROVED_BASELINE_SCENE",
+    "sample_space_ids": [
+      "REPLACE_SAMPLE_SPACE_ID"
+    ],
+    "required_view_ids": [
+      "REPLACE_BASELINE_OBSERVATION_ID"
+    ],
+    "required_composition_layers": [
+      "major_forms",
+      "environment",
+      "functional_objects",
+      "contact",
+      "lighting_materials"
+    ]
+  },
+  "note": "assembly_recipe JSON requires schema:2,kind:assembly-recipe,style_id,execution_plan_digest. scope_decision JSON binds style_id and execution_plan_digest; stage approval binds all bytes. Expansion additionally sets sample_contract.source_production_digest to the archived original accepted production stage. The original sample contract remains unchanged. Reuse a valid prior human decision only for exact unchanged stage digest. sample_contract.input_digest describes known preproduction inputs/contract. Do not include a future output hash at H3: H4 separately records sample_inputs evidence and identity.sample_inputs_digest after actual assets and native scene exist. Current asset-routed-visual-sample-v3 production requires explicit asset_proposals and a real assembly recipe with spatial_design_digest and assemblies. Every newly generated mesh in a generated/hybrid proposal must be covered by a validated modeling-reference-package with actual single/multiview image hashes and style/neutral-lighting reviews. No text_to_3d generation. See assembly-recipe-template.json and modeling-reference package template. Current asset-routed-visual-sample-v3 adds scope_mode, baseline-bound sample_space_ids/required_view_ids, required_composition_layers, composition_owners and visual_features. H3 stage also includes actual bom_board and assembly_map image evidence plus production-visual-package JSON. Broader future_backlog is informational and does not block the complete current sample. generated/hybrid routes require real production-ready references, reuse requires approved_reuse, procedural dominant appearance needs rationale plus actual visual evidence. Never use a reference-only or missing design as ready. For S9 expansion, keep the entire original sample_contract unchanged except its existing source_production_digest binding. Set scope_mode=expansion and separately declare production_space_ids/production_view_ids for the current larger recipe. Do not widen the frozen H4 sample just to widen production; use production-expansion-scope-template.json. asset_route_contract=asset-routes-v1 is part of the H3 production-table bytes and stage digest. It cannot be downgraded by relabeling a workflow top-level policy. A scene may mix reused appearance modules and procedural structure without any new AI task: record the source families as reuse and procedural. Reserve family route=hybrid for a family containing an actual new AI generation operation.",
+  "effective_policy": {
+    "lux_selection": "current_explicit_user_policy_else_task_based",
+    "allowed_versions": [
+      "G1",
+      "G1-Turbo"
+    ],
+    "note": "Narrow allowed_versions to the current user policy before planning. The G1 parameter below is an example, not a generic restriction."
+  },
+  "asset_proposals": [
+    {
+      "asset_id": "REPLACE_ASSET_FAMILY_ID",
+      "route": "REPLACE_REUSE_PROCEDURAL_GENERATED_OR_HYBRID",
+      "reason": "REPLACE_ROUTE_VERSION_AND_FACE_COUNT_RATIONALE",
+      "task_analysis": {
+        "shape_complexity": "REPLACE_TOPOLOGY_SILHOUETTE_AND_THIN_PARTS_ANALYSIS",
+        "detail_and_screen_coverage": "REPLACE_REQUIRED_DETAIL_WORLD_SIZE_CAMERA_DISTANCE_AND_SCREEN_COVERAGE",
+        "quality_target": "REPLACE_CONCEPT_CRITICAL_FEATURES_AND_ACCEPTANCE_CRITERIA",
+        "materials_and_postprocess": "REPLACE_PBR_TEXTURE_IMPORT_FITTING_AND_POSTPROCESS_NEEDS",
+        "reuse_and_instancing": "REPLACE_EXISTING_SOURCE_REUSE_AND_EXPECTED_INSTANCE_COUNT",
+        "cost_tradeoff": "REPLACE_COMPARISON_OF_VIABLE_ROUTES_AND_CURRENT_QUOTED_COSTS"
+      },
+      "generation": {
+        "operation": "REPLACE_IMAGE_TO_3D_OR_MULTIVIEW_TO_3D",
+        "region": "REPLACE_CN_OR_INTERNATIONAL",
+        "parameters": {
+          "version": "G1",
+          "faceCount": null
+        }
+      },
+      "current_quote": {
+        "receipt_path": "REPLACE_PROVIDER_QUOTE_RECEIPT",
+        "quoted_at": "REPLACE_QUOTE_TIMESTAMP",
+        "credits_per_task": null,
+        "task_count": null,
+        "total_credits": null
+      },
+      "procedural_visual_match": {
+        "reason": "REPLACE_ONLY_IF_DOMINANT_APPEARANCE_IS_PROCEDURAL",
+        "evidence_image_id": "REPLACE_ACTUAL_BOM_IMAGE_ID",
+        "observed_match": "REPLACE_ACTUAL_TARGET_MATCH_OBSERVATION"
+      },
+      "generated_visual_role": "REPLACE_IF_HYBRID_VISIBLE_SHAPE_RESPONSIBILITY",
+      "controlled_structure_role": "REPLACE_IF_HYBRID_EXACT_INTERFACE_RESPONSIBILITY",
+      "route_evaluation": {
+        "generated": "REPLACE_TASK_SPECIFIC_GENERATED_SUITABILITY_AND_EVIDENCE",
+        "reuse": "REPLACE_TASK_SPECIFIC_REUSE_SUITABILITY_AND_EVIDENCE",
+        "procedural": "REPLACE_TASK_SPECIFIC_PROCEDURAL_SUITABILITY_AND_EVIDENCE"
+      }
+    }
+  ],
+  "asset_selection_note": "First apply the current explicit user model policy; without one, select supplier/model/version and integer Lux faceCount 10000..300000 by actual visual needs, same-reference evidence and approved cost. The G1 parameter is an example. A user who defaults to G1 and permits Turbo only on explicit request must receive that behavior in plans and submissions. Preserve existing assets and historical parameters. G1 omits enablePbr; G1-Turbo omits customSize. Cost alternatives compare feasible AI suppliers/models/source-family and processing combinations at the approved visual target. Omit generation for reuse/procedural assets; preserve provenance. Show sourced estimates, wallet/currency caps, optional processing and retries before paid submission. Image-conditioned new mesh generation only. This draft grants no authorization.",
+  "modeling_references": {
+    "path": "REPLACE_STYLE_MODELING_REFERENCE_PACKAGE_JSON",
+    "sha256": "REPLACE_ACTUAL_PACKAGE_HASH"
+  },
+  "scope_mode": "complete_sample",
+  "composition_owners": {
+    "major_forms": [
+      "REPLACE_RECIPE_ASSEMBLY_ID"
+    ],
+    "environment": [
+      "REPLACE_RECIPE_ASSEMBLY_ID"
+    ],
+    "functional_objects": [
+      "REPLACE_RECIPE_ASSEMBLY_ID"
+    ],
+    "contact": [
+      "REPLACE_RECIPE_ASSEMBLY_ID"
+    ],
+    "lighting_materials": [
+      "REPLACE_RECIPE_ASSEMBLY_ID"
+    ]
+  },
+  "visual_features": [
+    {
+      "id": "REPLACE_CRITICAL_FEATURE_ID",
+      "concept_view_id": "REPLACE_APPROVED_ATLAS_VIEW_ID",
+      "importance": "dominant",
+      "responsibility": "appearance",
+      "target": "REPLACE_APPROVED_FORM_AND_MATERIAL_TARGET",
+      "asset_ids": [
+        "REPLACE_ASSET_FAMILY_ID"
+      ],
+      "native_view_ids": [
+        "REPLACE_BASELINE_OBSERVATION_ID"
+      ],
+      "feature_kind": "form"
+    }
+  ],
+  "native_visual_note": "Non-mesh visual features may use asset_ids:[] and assembly_ids naming recipe units with native_realization. Each native owner binds kind (material/lighting/shader/vfx/environment), actual scene/node/material target, method and an actual H3 BOM/assembly evidence_image_id. This declares planned work and evidence, not executed scripts or visual acceptance. Native-only plans may have empty asset_proposals and visual-package bom, but keep actual BOM/assembly board images, annotations, composition ownership and all H4 feature/view checks. Every executable mesh binding still needs an asset proposal; precise_geometry features still need actual asset_ids. Do not use native ownership or skip to conceal mesh generation or omit critical effects. Classify each feature_kind as form/surface/light/atmosphere/motion. Form features always need asset_ids even when responsibility is environment; dominant form sources also need route_evaluation and procedural target-match evidence where applicable. AI/hybrid routes must bind real image-conditioned generation operations. See asset-routes.md.",
+  "native_visual_feature_example": {
+    "id": "REPLACE_NATIVE_FEATURE_ID",
+    "concept_view_id": "REPLACE_APPROVED_ATLAS_VIEW_ID",
+    "importance": "dominant",
+    "responsibility": "environment",
+    "target": "REPLACE_OBSERVED_LIGHTING_OR_MATERIAL_PHENOMENON",
+    "asset_ids": [],
+    "assembly_ids": [
+      "REPLACE_NATIVE_ASSEMBLY_ID"
+    ],
+    "native_view_ids": [
+      "REPLACE_BASELINE_OBSERVATION_ID"
+    ],
+    "feature_kind": "light"
+  },
+  "asset_route_contract": "asset-routes-v1"
+}

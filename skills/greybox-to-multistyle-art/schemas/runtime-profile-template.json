@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "kind": "runtime-profile",
+  "engine": "REPLACE_WITH_ACTUAL_ENGINE",
+  "target": "REPLACE_WITH_DEVICE_RESOLUTION_AND_SCENE_CONTEXT",
+  "budgets": [],
+  "note": "An empty budget list means no numerical targets have been established, never performance approval. Add sourced budgets with id, metric, unit, nonnegative ceiling limit (not a minimum FPS threshold), classification hard/target, source_ref, and optional asset_ids. Bind this file by path/hash from the processing family. Reports carry targets [{budget_id,value,unit}]. A changed provisional target needs reason plus hash-bound measured evidence; a hard ceiling must not be exceeded. Specify triangles versus quads explicitly; do not compare mixed units. Preserve previous profiles and evidence when revising. No GPU/device performance is inferred from face counts."
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 2,
+  "kind": "style-selection",
+  "directions_digest": "REPLACE_CURRENT_DIRECTIONS_STAGE_DIGEST",
+  "selected": [
+    {
+      "style_id": "REPLACE_STYLE_ID",
+      "concept_image_id": "REPLACE_ACTUAL_IMAGE_ID",
+      "concept_sha256": "REPLACE_ACTUAL_IMAGE_HASH"
+    }
+  ],
+  "note": "Stage approval binds this file and current directions. Never copy old selections to changed images without actual user decision."
+}

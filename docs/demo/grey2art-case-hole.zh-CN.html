@@ -1,0 +1,30 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黑洞 / Grey2Art 案例对照</title><style>
+@font-face{font-family:'Grey2Art Sans';src:url('fonts/NotoSansCJKsc-2.004-showcase-subset.woff2') format('woff2');font-weight:400;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:100%;background:#0d0d11;color:#f5f2eb;overflow-x:hidden}
+body{font-family:'Grey2Art Sans','Noto Sans SC','PingFang SC',sans-serif;-webkit-font-smoothing:antialiased}
+main{width:1000px;height:805px;padding:20px}
+header{height:46px;margin-bottom:10px;display:flex;align-items:baseline;justify-content:space-between}
+h1{font-size:28px;font-weight:600;letter-spacing:-.6px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+figure{margin:0;background:#19181f;min-width:0}
+.viewport{aspect-ratio:3 / 2;overflow:hidden}
+img{display:block;height:100%;width:100%;object-fit:cover}
+figcaption{height:32px;display:flex;align-items:center;gap:12px;padding:0 11px;white-space:nowrap}
+figcaption b{font-size:15px;font-weight:400}
+</style><main><header><h1>黑洞</h1></header>
+<div class="grid"><figure class="reference-frame"><div class="viewport"><img src="hole-reference-greybox.png" alt="黑洞: 玩法灰盒" style=""></div><figcaption><b>玩法灰盒</b></figcaption></figure><figure class="reference-frame"><div class="viewport"><img src="hole-ceramic-selected-native.png" alt="黑洞: 陶瓷小镇" style=""></div><figcaption><b>陶瓷小镇</b></figcaption></figure><figure class="reference-frame"><div class="viewport"><img src="hole-orbital-selected-native.png" alt="黑洞: 轨道科幻" style=""></div><figcaption><b>轨道科幻</b></figcaption></figure><figure class="reference-frame"><div class="viewport"><img src="hole-reference-mycelium.png" alt="黑洞: 蘑菇森林" style=""></div><figcaption><b>蘑菇森林</b></figcaption></figure></div></main>
+<script>
+function fitPreview() {
+  const scale = Math.min(1, innerWidth / 1000);
+  document.querySelector('main').style.zoom = scale;
+  document.body.style.height = `${805 * scale}px`;
+  document.documentElement.dataset.previewOverflow = String(document.documentElement.scrollWidth > innerWidth);
+}
+addEventListener('resize', fitPreview); fitPreview();
+document.fonts.ready.then(() => {
+  document.documentElement.dataset.fontStatus = [...document.fonts].some(font => font.family === 'Grey2Art Sans' && font.status === 'loaded') ? 'loaded' : 'error';
+  document.documentElement.dataset.labelOverflow = String([...document.querySelectorAll('figcaption')].some(caption => caption.scrollWidth > caption.clientWidth));
+});
+</script></html>

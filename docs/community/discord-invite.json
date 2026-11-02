@@ -1,0 +1,11 @@
+{
+  "invite_url": "https://discord.gg/BKAVwyEMQh",
+  "code": "BKAVwyEMQh",
+  "guild_name": "Grey2Art",
+  "channel_name": "moderator-only",
+  "expires_at": null,
+  "checked_at": "2026-10-30T17:44:18+08:00",
+  "source": "https://discord.com/api/v10/invites/BKAVwyEMQh",
+  "verification_scope": "Read-only public invite metadata; no server join or message.",
+  "configured_as": "Permanent invite supplied by the maintainer."
+}

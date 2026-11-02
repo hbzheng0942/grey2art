@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "source": "Maintainer-selected ceramic zone-b camera, replayed for enamel gallery case",
+  "camera": {
+    "projection": "orthographic",
+    "keep_aspect": "keep_height",
+    "target": [
+      -12,
+      0,
+      -8
+    ],
+    "position": [
+      -12.0,
+      16.0,
+      6.0
+    ],
+    "size": 19.0,
+    "resolution": [
+      1536,
+      1024
+    ],
+    "renderer": "mobile"
+  },
+  "capture_recipe": {
+    "path": "docs/showcase/capture_hole_reference.gd",
+    "sha256": "06c2108511f0b443815c32a11aaa743e9dbb49a8612ef8904c1279e79bebe98c"
+  },
+  "new_captures": [
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "enamel",
+      "source_project": "games/hole/styles/enamel/project",
+      "source_manifest_sha256": "6b5b2b83e7d96c3ec4319299a7f088e9169aedc9fd2b8e71abadf37dcf907fbe",
+      "regular_source_bytes_copied": 9889935,
+      "shared_resource_links": 71,
+      "output": "docs/demo/hole-reference-enamel.png",
+      "output_bytes": 575694,
+      "output_sha256": "07233d84269019bbc762fb2d62ec6c32aee76a26a1ad5740fbd5124ecf070c8e",
+      "elapsed_seconds": 295.684,
+      "observed_free_after_import_minus_before": -654286848,
+      "observed_free_after_cleanup_minus_before": -31035392,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-31T00:28:52+08:00"
+    }
+  ],
+  "scope": "Actual native stills from unchanged selected style projects. Only camera and debug/UI visibility changed in a disposable small-source overlay; large assets linked, not copied. No art production, scene-object changes, gameplay or performance acceptance.",
+  "volume_observation_limit": "Global free-space deltas include concurrent activity and delayed accounting.",
+  "source_repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+  "source_commit": "ab75441b078713b14842a284ddebfe306ab03aa3",
+  "source_style_version": "studio-enamel-deterministic-assembly-20261013",
+  "canonical_asset_verification": {
+    "unique_assets": 71,
+    "unique_bytes": 355170849,
+    "all_content_sha256_match_canonical_names": true
+  }
+}

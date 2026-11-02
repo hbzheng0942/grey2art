@@ -1,0 +1,278 @@
+{
+  "schema": 1,
+  "source": "Maintainer-selected ceramic zone-b camera, replayed for six other styles",
+  "camera": {
+    "projection": "orthographic",
+    "keep_aspect": "keep_height",
+    "target": [
+      -12,
+      0,
+      -8
+    ],
+    "position": [
+      -12.0,
+      16.0,
+      6.0
+    ],
+    "size": 19.0,
+    "resolution": [
+      1536,
+      1024
+    ],
+    "renderer": "mobile"
+  },
+  "capture_recipe": {
+    "path": "docs/showcase/capture_hole_reference.gd",
+    "sha256": "06c2108511f0b443815c32a11aaa743e9dbb49a8612ef8904c1279e79bebe98c"
+  },
+  "new_captures": [
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "amusement",
+      "source_project": "games/hole/styles/amusement/project",
+      "source_manifest_sha256": "0f6df3942f1c5dac1cd39867acaf1542cc17ae71e5ad5c60f3c4b644422cddd8",
+      "regular_source_bytes_copied": 765122,
+      "shared_resource_links": 139,
+      "output": "docs/demo/hole-reference-amusement.png",
+      "output_bytes": 701316,
+      "output_sha256": "690fa6bd8c34e85280d50d305aa791489ca7024f0be158bc05965ea5ba5e3635",
+      "elapsed_seconds": 74.697,
+      "observed_free_after_import_minus_before": -331317248,
+      "observed_free_after_cleanup_minus_before": -16388096,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-30T19:03:23+08:00"
+    },
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "lunar",
+      "source_project": "games/hole/styles/lunar/project",
+      "source_manifest_sha256": "c0af4c787050adc70749d79db01f3f5f8936f45d904826f14d3e3066cc93d0b4",
+      "regular_source_bytes_copied": 714852,
+      "shared_resource_links": 107,
+      "output": "docs/demo/hole-reference-lunar.png",
+      "output_bytes": 933143,
+      "output_sha256": "58ac05a312db02e6a99adf5a99b8e23f43eb23a2dbf2458c052fca12589c5310",
+      "elapsed_seconds": 80.117,
+      "observed_free_after_import_minus_before": -281718784,
+      "observed_free_after_cleanup_minus_before": 84353024,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-30T19:04:44+08:00"
+    },
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "coral",
+      "source_project": "games/hole/styles/coral/project",
+      "source_manifest_sha256": "d234abcb2190135eb74d3589fb6da71aec6ea056b23fa0f58c85be4f35273a7d",
+      "regular_source_bytes_copied": 714354,
+      "shared_resource_links": 108,
+      "output": "docs/demo/hole-reference-coral.png",
+      "output_bytes": 1057508,
+      "output_sha256": "6da956bc20ec6e7c90baa3e379c55623eea02625f563e1f48f73df243343d880",
+      "elapsed_seconds": 75.069,
+      "observed_free_after_import_minus_before": -339730432,
+      "observed_free_after_cleanup_minus_before": 38494208,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-30T19:05:59+08:00"
+    },
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "papercraft",
+      "source_project": "games/hole/styles/papercraft/project",
+      "source_manifest_sha256": "bd07407922f260a8b48c58d04b305287a3a3c1b4b32cd74d4d3b6665f63483c1",
+      "regular_source_bytes_copied": 715445,
+      "shared_resource_links": 108,
+      "output": "docs/demo/hole-reference-papercraft.png",
+      "output_bytes": 895723,
+      "output_sha256": "51d2887a42ec50557c55011828488858ef9cdeb5e74f0cf22f032fcb598c5cc8",
+      "elapsed_seconds": 71.294,
+      "observed_free_after_import_minus_before": -351510528,
+      "observed_free_after_cleanup_minus_before": -19091456,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-30T19:07:11+08:00"
+    },
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "saffron",
+      "source_project": "games/hole/styles/saffron/project",
+      "source_manifest_sha256": "5e0327724b81b9e2d480eb22491a3f55ac64084bf7eea61fb469c187fe8c8a17",
+      "regular_source_bytes_copied": 714796,
+      "shared_resource_links": 108,
+      "output": "docs/demo/hole-reference-saffron.png",
+      "output_bytes": 984278,
+      "output_sha256": "1be5a583880e9cda9ca38988f93af1b536c26e3c47056672975c766b9e1ed2aa",
+      "elapsed_seconds": 75.751,
+      "observed_free_after_import_minus_before": -449634304,
+      "observed_free_after_cleanup_minus_before": -44785664,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-30T19:08:27+08:00"
+    },
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "snack",
+      "source_project": "games/hole/styles/snack/project",
+      "source_manifest_sha256": "60e6216e758a9d754a93786fb4055bd6e7002821a8c6ae6ef73cd6142c8209f2",
+      "regular_source_bytes_copied": 673637,
+      "shared_resource_links": 109,
+      "output": "docs/demo/hole-reference-snack.png",
+      "output_bytes": 969711,
+      "output_sha256": "fbef6bae9ce87b784778d9fbbbc0f5f6b34798e38c4456361a575a6c0e29a7d0",
+      "elapsed_seconds": 82.344,
+      "observed_free_after_import_minus_before": -367722496,
+      "observed_free_after_cleanup_minus_before": -20938752,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-30T19:09:49+08:00"
+    }
+  ],
+  "scope": "Actual native stills from unchanged selected style projects. Only camera and debug/UI visibility changed in a disposable small-source overlay; large assets linked, not copied. No art production, scene-object changes, gameplay or performance acceptance.",
+  "volume_observation_limit": "Global free-space deltas include concurrent activity and delayed accounting."
+}

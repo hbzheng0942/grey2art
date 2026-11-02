@@ -1,0 +1,26 @@
+{
+  "plan": {
+    "case_id": "replace-case-id",
+    "writer": "scene-integrator",
+    "status": "active",
+    "objective": "Replace with the user's current playable multi-style objective",
+    "current_stage": "shared/baseline",
+    "constraints": ["Record actual gameplay and spatial constraints; reference their owning artifacts"],
+    "quality_floor": ["Complete representative composition before polishing isolated details"],
+    "remaining": ["Finish the active style's agreed complete H4 loop/slice, record project lessons, then release queued selected styles; defer nonblocking polish"],
+    "proposals": [],
+    "references": {
+      "workflow": "art/workflow.json",
+      "workgraph": "art/workgraph.json",
+      "approved_inputs": [],
+      "ledgers": []
+    }
+  },
+  "event": {
+    "type": "requirement",
+    "summary": "Record the actual task and initial scope",
+    "source_ref": "REPLACE_WITH_ACTUAL_USER_MESSAGE_REFERENCE",
+    "scope": "case",
+    "evidence": []
+  }
+}

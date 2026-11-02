@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "kind": "greybox-build-plan",
+  "id": "prototype",
+  "engine": "godot",
+  "goal": "playable",
+  "brief": {
+    "question": "Can the player move, read the space and complete the intended interaction?"
+  },
+  "player": {
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "speed": 5,
+    "height": 1.8,
+    "radius": 0.35,
+    "view": "top_down"
+  },
+  "camera": {
+    "offset": [
+      0,
+      12,
+      8
+    ]
+  },
+  "entities": [
+    {
+      "id": "floor",
+      "role": "walkable_surface",
+      "shape": "box",
+      "position": [
+        0,
+        -0.5,
+        0
+      ],
+      "size": [
+        16,
+        1,
+        12
+      ],
+      "color": [
+        0.45,
+        0.48,
+        0.52,
+        1
+      ],
+      "collider": true,
+      "behavior": "none"
+    },
+    {
+      "id": "token",
+      "role": "objective_item",
+      "shape": "sphere",
+      "position": [
+        2,
+        0.5,
+        0
+      ],
+      "size": [
+        1,
+        1,
+        1
+      ],
+      "color": [
+        0.9,
+        0.7,
+        0.2,
+        1
+      ],
+      "collider": false,
+      "behavior": "collectible"
+    },
+    {
+      "id": "exit",
+      "role": "completion_zone",
+      "shape": "box",
+      "position": [
+        4,
+        0.5,
+        0
+      ],
+      "size": [
+        1,
+        1,
+        2
+      ],
+      "color": [
+        0.2,
+        0.7,
+        0.4,
+        1
+      ],
+      "collider": false,
+      "behavior": "goal"
+    }
+  ],
+  "validation": {
+    "required_checks": [],
+    "coverage": {}
+  },
+  "objective": {
+    "required_ids": [
+      "token"
+    ],
+    "goal_id": "exit"
+  }
+}

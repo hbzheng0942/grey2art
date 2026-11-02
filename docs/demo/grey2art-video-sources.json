@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "created_at": "2026-10-30T15:49:13.257159+08:00",
+  "purpose": "Small README gameplay previews from existing native recordings.",
+  "source_repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+  "source_revision": "0986dc2cfec6a7b21e0e257c83ec1b62fd960ebb",
+  "source_manifest": "media/manifest.json",
+  "source_manifest_sha256": "531953bba6611c1cb50d6f1ac571e30b21291941d18defb08aafe4578ab4fa16",
+  "tool": {
+    "ffmpeg": "ffmpeg version 8.1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "command_template": [
+    "ffmpeg",
+    "-n",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-ss",
+    "2",
+    "-i",
+    "SOURCE",
+    "-t",
+    "12",
+    "-vf",
+    "scale=960:-2",
+    "-an",
+    "-map_metadata",
+    "-1",
+    "-c:v",
+    "libx264",
+    "-crf",
+    "25",
+    "-preset",
+    "medium",
+    "-movflags",
+    "+faststart",
+    "OUTPUT"
+  ],
+  "treatment": {
+    "image_change": "Downscale full frame only; no crop, inpainting, grading or overlays.",
+    "audio": "Removed; both source recordings already have no audio.",
+    "frame_rate": "No forced output frame rate, frame interpolation or speed change.",
+    "container_metadata": "Source metadata removed; H.264/MP4 faststart."
+  },
+  "evidence_boundary": "Source is fixed-input offline native rendering. Encoded 30 fps is not real-time performance evidence; clips are not a human playtest or current Skill production/acceptance qualification. Greybox/H07 matching is approximate, not pixel-synchronized.",
+  "files": [
+    {
+      "output": "docs/demo/train-greybox-preview.mp4",
+      "bytes": 1490504,
+      "sha256": "462c13d874d03f76bd1225f01d3eaa5fca7de87ffff02abbc55ff1fbdf91a210",
+      "source": {
+        "path": "media/train/raw/T01_greybox_clean_native_1080p30.mp4",
+        "canonical_asset": "shared/assets/sha256/3f/3fccd775bfb780153c3c64b9a4d1c9876a847008d9e2b235ad0f965ec866f00b.mp4",
+        "bytes": 17753687,
+        "sha256": "3fccd775bfb780153c3c64b9a4d1c9876a847008d9e2b235ad0f965ec866f00b",
+        "version": "m1.7r2-unified-v2",
+        "platform": "Godot4.7.2 Vulkan native",
+        "capture_mode": "fixed-input offline native render; clean UI",
+        "sync_level": "same physics60/pace3/main driver; approximate visual match",
+        "hash_matched_before_and_after_transcode": true
+      },
+      "trim": {
+        "source_start_sec": 2,
+        "source_end_sec_exclusive": 14,
+        "duration_sec": 12
+      },
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 960,
+            "height": 540,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1",
+            "duration": "12.000000",
+            "nb_frames": "360"
+          }
+        ],
+        "format": {
+          "duration": "12.000000",
+          "size": "1490504"
+        }
+      },
+      "validation": {
+        "full_decode_exit_code": 0,
+        "full_decode_error_log_bytes": 0,
+        "visual_review_sample_sec": [
+          1,
+          5,
+          10
+        ],
+        "visual_review": "Each sample opened: native greybox or Halloween game scene visible; no debug text, added captions, watermark or blank frames. Original orange gameplay obstacles remain visible.",
+        "under_3_mb_soft_target": true
+      }
+    },
+    {
+      "output": "docs/demo/train-halloween-preview.mp4",
+      "bytes": 5123369,
+      "sha256": "ae4af9bf5ed71fc016fe365d932e882704976b0714210b3b5ebb63ebfc6c42af",
+      "source": {
+        "path": "media/train/raw/T02_T04_H07_city08_T2_FestivalV2_clean_native_1080p30.mp4",
+        "canonical_asset": "shared/assets/sha256/f0/f0f3bf5fb0e6b5c537b7e6407f1f4315761969c95b3d39a283861e600a5302af.mp4",
+        "bytes": 85230505,
+        "sha256": "f0f3bf5fb0e6b5c537b7e6407f1f4315761969c95b3d39a283861e600a5302af",
+        "version": "city08 + T2 + FestivalV2 + train-readability",
+        "platform": "Godot4.7.2 Vulkan native",
+        "capture_mode": "fixed-input offline native render; clean UI",
+        "sync_level": "same main driver",
+        "hash_matched_before_and_after_transcode": true
+      },
+      "trim": {
+        "source_start_sec": 2,
+        "source_end_sec_exclusive": 14,
+        "duration_sec": 12
+      },
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 960,
+            "height": 540,
+            "r_frame_rate": "30/1",
+            "avg_frame_rate": "30/1",
+            "duration": "12.000000",
+            "nb_frames": "360"
+          }
+        ],
+        "format": {
+          "duration": "12.000000",
+          "size": "5123369"
+        }
+      },
+      "validation": {
+        "full_decode_exit_code": 0,
+        "full_decode_error_log_bytes": 0,
+        "visual_review_sample_sec": [
+          1,
+          5,
+          10
+        ],
+        "visual_review": "Each sample opened: native greybox or Halloween game scene visible; no debug text, added captions, watermark or blank frames. Original orange gameplay obstacles remain visible.",
+        "under_3_mb_soft_target": false
+      }
+    }
+  ]
+}

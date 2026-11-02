@@ -1,0 +1,6 @@
+{
+  "runtime": {"type": "python", "version": "3.11"},
+  "init": {"darwin": "", "linux": "", "win32": ""},
+  "status": {"darwin": "", "linux": "", "win32": ""},
+  "statusMatch": "\"configured\": true"
+}

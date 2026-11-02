@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "kind": "greybox-workgraph",
+  "integrator": "scene-integrator",
+  "resource_caps": {
+    "image": 2,
+    "lux": 2,
+    "cpu": 2,
+    "gpu": 1,
+    "import": 1
+  },
+  "leases": [],
+  "tasks": [
+    {
+      "id": "style-a-hero-family",
+      "owner": "asset-worker",
+      "style": "style-a",
+      "assembly": "arrival-court",
+      "kind": "work",
+      "state": "pending",
+      "estimate_minutes": 30,
+      "depends_on": [],
+      "inputs": [
+        {
+          "path": "design/style-a/approved-assembly.json",
+          "sha256": "REPLACE_WITH_ACTUAL_SHA256"
+        }
+      ],
+      "allowed_output_dirs": [
+        "art/tasks/style-a-hero-family"
+      ],
+      "outputs": [
+        "art/tasks/style-a-hero-family/asset-manifest.json"
+      ],
+      "resources": {
+        "lux": 1
+      },
+      "exclusive_locks": [],
+      "acceptance_criteria": [
+        {
+          "id": "hero-silhouette",
+          "description": "Approved hero silhouette and medium-scale construction match the concept commitment; bind native evidence."
+        },
+        {
+          "id": "material-scale",
+          "description": "Measured fitting and material calibration pass in the target style."
+        }
+      ],
+      "visual_priority": {
+        "tier": "composition",
+        "rationale": "Required for the complete arrival sample, including environment and gameplay views."
+      },
+      "work_unit": {
+        "observable_result": "Approved hero silhouette and medium-scale construction match the concept commitment; bind native evidence.",
+        "stop_condition": "Deliver the bounded output and evidence, or record a concrete blocker; reassess before local polishing.",
+        "active_minutes_budget": 25
+      }
+    },
+    {
+      "id": "style-a-terrain-interface",
+      "owner": "terrain-worker",
+      "style": "style-a",
+      "assembly": "arrival-court",
+      "kind": "work",
+      "state": "pending",
+      "estimate_minutes": 20,
+      "depends_on": [],
+      "inputs": [
+        {
+          "path": "design/style-a/approved-assembly.json",
+          "sha256": "REPLACE_WITH_ACTUAL_SHA256"
+        }
+      ],
+      "allowed_output_dirs": [
+        "art/tasks/style-a-terrain-interface"
+      ],
+      "outputs": [
+        "art/tasks/style-a-terrain-interface/interface-manifest.json"
+      ],
+      "resources": {
+        "cpu": 1
+      },
+      "exclusive_locks": [],
+      "acceptance_criteria": [
+        {
+          "id": "interfaces",
+          "description": "Collision baseline, support anchors, openings and shared boundaries are preserved."
+        }
+      ],
+      "visual_priority": {
+        "tier": "composition",
+        "rationale": "Required for the complete arrival sample, including environment and gameplay views."
+      },
+      "work_unit": {
+        "observable_result": "Collision baseline, support anchors, openings and shared boundaries are preserved.",
+        "stop_condition": "Deliver the bounded output and evidence, or record a concrete blocker; reassess before local polishing.",
+        "active_minutes_budget": 25
+      }
+    },
+    {
+      "id": "style-a-publish-arrival",
+      "owner": "scene-integrator",
+      "style": "style-a",
+      "assembly": "arrival-court",
+      "kind": "publish",
+      "state": "pending",
+      "estimate_minutes": 10,
+      "depends_on": [
+        "style-a-hero-family",
+        "style-a-terrain-interface"
+      ],
+      "inputs": [
+        {
+          "path": "design/style-a/approved-assembly.json",
+          "sha256": "REPLACE_WITH_ACTUAL_SHA256"
+        }
+      ],
+      "allowed_output_dirs": [
+        "art/integration/style-a-arrival"
+      ],
+      "outputs": [
+        "art/integration/style-a-arrival/publication-manifest.json"
+      ],
+      "resources": {
+        "import": 1,
+        "cpu": 1
+      },
+      "exclusive_locks": [
+        "publication"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "complete-assembly",
+          "description": "Complete composition meets concept commitments and native gameplay checks; workflow user acceptance remains separate."
+        }
+      ],
+      "visual_priority": {
+        "tier": "composition",
+        "rationale": "Required for the complete arrival sample, including environment and gameplay views."
+      },
+      "work_unit": {
+        "observable_result": "Complete composition meets concept commitments and native gameplay checks; workflow user acceptance remains separate.",
+        "stop_condition": "Deliver the bounded output and evidence, or record a concrete blocker; reassess before local polishing.",
+        "active_minutes_budget": 25
+      }
+    }
+  ],
+  "scheduling_policy": "visual-completeness-v1",
+  "observations": {}
+}

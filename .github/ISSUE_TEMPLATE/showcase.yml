@@ -1,0 +1,38 @@
+name: Showcase submission / 案例投稿
+description: Share a real playable art prototype or clearly labeled work in progress. / 分享真实可玩美术原型或明确标注的制作中案例。
+body:
+  - type: textarea
+    id: case
+    attributes:
+      label: Game, author and links / 游戏、作者与链接
+      description: Public author name/link, source/play/download link, relevant project revision and actual Skill version if known. / 公开署名、源码／试玩／下载入口、相关工程提交与已知实际 Skill 版本。
+    validations:
+      required: true
+  - type: textarea
+    id: variants
+    attributes:
+      label: Greybox and actual styles / 灰盒与实际风格
+      description: A complete multi-style homepage case needs a real greybox plus at least two implemented art styles. Label single-style work, concepts and unfinished variants. / 完整多风格首页案例需真实灰盒加至少两种已实现风格；单风格、概念及未完成版本分别注明。
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Media, capture method and remaining work / 媒体、采集方式与剩余工作
+      description: Comparable native views and short clean gameplay footage; explain offline recording, cuts/crops, manual fixes, gameplay checks and known defects. / 可比原生视图和简短干净玩法实录；说明离线采集、剪辑／裁框、人工修补、玩法检查与已知缺陷。
+    validations:
+      required: true
+  - type: textarea
+    id: rights
+    attributes:
+      label: Media ownership and permission / 媒体权利与授权
+      description: Identify copyright holders, applicable license or permission for display/redistribution, and third-party notices. / 列明版权主体、展示／再分发许可或授权及第三方声明。
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Publication check / 公开内容检查
+      options:
+        - label: I reviewed the submission for keys, signed URLs, private records and unrelated assets. / 已检查 key、签名 URL、私人记录与无关资产。
+          required: true

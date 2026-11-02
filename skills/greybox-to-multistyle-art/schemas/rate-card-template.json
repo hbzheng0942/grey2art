@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "kind": "supplier-rate-card",
+  "id": "REPLACE_WITH_DATED_CARD_VERSION",
+  "provider": "REPLACE_WITH_SUPPLIER_ID",
+  "wallet": "REPLACE_WITH_API_WALLET_ID",
+  "source": {"path": "pricing/official-api-pricing-extract.md", "sha256": "REPLACE_WITH_REVIEWED_MANUAL_EXTRACT_HASH", "checked_at": "2026-10-20T00:00:00Z"},
+  "rates": [
+    {
+      "id": "REPLACE_WITH_DOCUMENTED_BASE_RULE_ID",
+      "operation": "image_to_3d",
+      "model_version": "REPLACE_WITH_EXACT_API_MODEL_VERSION",
+      "parameter_domains": {"faceCount": {"values": [30000, 60000]}, "texture_mode": {"values": ["none", "pbr"], "default": "none"}},
+      "nonbillable_parameters": ["img"],
+      "base": {"unit_credits": "REPLACE_WITH_OFFICIAL_BASE_CREDITS"},
+      "addons": [{"id": "REPLACE_WITH_DOCUMENTED_ADDON_RULE_ID", "when": {"texture_mode": "pbr"}, "unit_credits": "REPLACE_WITH_OFFICIAL_TEXTURE_ADDON_CREDITS"}]
+    }
+  ]
+}

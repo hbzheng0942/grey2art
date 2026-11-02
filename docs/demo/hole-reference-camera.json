@@ -1,0 +1,193 @@
+{
+  "source": "Historical ceramic/orbital zone-b camera replay, selected by maintainer screenshot",
+  "camera": {
+    "projection": "orthographic",
+    "keep_aspect": "keep_height",
+    "target": [
+      -12,
+      0,
+      -8
+    ],
+    "position": [
+      -12.0,
+      16.0,
+      6.0
+    ],
+    "size": 19.0,
+    "resolution": [
+      1536,
+      1024
+    ],
+    "renderer": "mobile",
+    "rendering_driver": "metal"
+  },
+  "historical_references": [
+    {
+      "style": "ceramic",
+      "source_record": "greybox-art-pipeline: runs/hole-lookdev-validated/ceramic/baseline/ceramic-native.json",
+      "record_sha256": "96c90a5526df478e8166079764b5156982b18af3cd4cb62e160e9e1adca03ef9",
+      "original_frame": "ceramic-zone-b.png",
+      "frame_sha256": "46f67c66f5de04727acf2369fbdcab7094cfe8df292aff0ecdd4bbe700282b9b",
+      "recorded_camera": {
+        "keepAspect": "height",
+        "position": [
+          -12,
+          16,
+          6
+        ],
+        "size": 19,
+        "target": [
+          -12,
+          0,
+          -8
+        ]
+      },
+      "viewport": [
+        1536,
+        1024
+      ],
+      "renderer": "mobile",
+      "rendering_driver": "metal",
+      "captured_at_unix": 1792128242.97565,
+      "native_state": "historical case-final-v2 / baseline condition; not relabeled as new capture",
+      "selected_output": "docs/demo/hole-ceramic-selected-native.png",
+      "selected_output_sha256": "021bd068e10e4931a0b4a2282c77027f00408955d8c67a28b7f81a18187188c1",
+      "selected_output_bytes": 2220902,
+      "source_repository_frame": "games/hole/process/ceramic/stage-history.png",
+      "selected_output_relation": "Maintainer-supplied PNG; RGBA pixels match the historical frame, PNG bytes differ."
+    },
+    {
+      "style": "orbital",
+      "source_record": "greybox-art-pipeline: runs/hole-lookdev-validated/orbital/baseline/orbital-native.json",
+      "record_sha256": "399f62f00b3f265cf5a9f54d1401a1477c9ebce5320d52ddbd256d8cae6eb25a",
+      "original_frame": "orbital-zone-b.png",
+      "frame_sha256": "4dffff7406e9b3fefee44d8888beee91cb6f3c3ba32f41d4c65b143e8388890c",
+      "recorded_camera": {
+        "keepAspect": "height",
+        "position": [
+          -12,
+          16,
+          6
+        ],
+        "size": 19,
+        "target": [
+          -12,
+          0,
+          -8
+        ]
+      },
+      "viewport": [
+        1536,
+        1024
+      ],
+      "renderer": "mobile",
+      "rendering_driver": "metal",
+      "captured_at_unix": 1792128264.93494,
+      "native_state": "historical case-final-v2 / baseline condition; not relabeled as new capture",
+      "selected_output": "docs/demo/hole-orbital-selected-native.png",
+      "selected_output_sha256": "4dffff7406e9b3fefee44d8888beee91cb6f3c3ba32f41d4c65b143e8388890c",
+      "selected_output_bytes": 1401032,
+      "source_repository_frame": "games/hole/process/orbital/stage-history.png",
+      "selected_output_relation": "Exact original historical PNG bytes."
+    }
+  ],
+  "new_captures": [
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "greybox",
+      "source_project": "games/hole/shared/greybox/project",
+      "source_manifest_sha256": "2b7860ce440add297679d36edcd4f61e758b8d89ab7060720e380cf0f8b324a4",
+      "regular_source_bytes_copied": 724275,
+      "shared_resource_links": 11,
+      "output": "docs/demo/hole-reference-greybox.png",
+      "output_bytes": 310563,
+      "output_sha256": "18038dfffc99197a924941bd82c61e4b5a1f57ad4990bf30e421563fc3c178bc",
+      "elapsed_seconds": 3.786,
+      "observed_free_after_import_minus_before": -1249280,
+      "observed_free_after_cleanup_minus_before": -3616768,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-30T17:21:02+08:00"
+    },
+    {
+      "capture_kind": "native still; paused simulation; only debug/UI hidden",
+      "engine": "4.7.2-stable (official)",
+      "keep_aspect": "keep_height",
+      "position": [
+        -12.0,
+        16.0,
+        6.0
+      ],
+      "projection": "orthographic",
+      "renderer": "mobile",
+      "resolution": [
+        1536,
+        1024
+      ],
+      "rotation_radians": [
+        -0.851966321468353,
+        0.0,
+        0.0
+      ],
+      "save_error": 0,
+      "size": 19.0,
+      "target": [
+        -12,
+        0,
+        -8
+      ],
+      "style": "mycelium",
+      "source_project": "games/hole/styles/mycelium/project",
+      "source_manifest_sha256": "0560f8ed32f975b973ab0c3ee188f635eb9ec29a63fe8f725620933aa85aaa1a",
+      "regular_source_bytes_copied": 715019,
+      "shared_resource_links": 108,
+      "output": "docs/demo/hole-reference-mycelium.png",
+      "output_bytes": 995708,
+      "output_sha256": "4417f837bd2570249bbcb97b668b8086231b2e4aebbdc0d0b3b6cd097541f8f0",
+      "elapsed_seconds": 73.733,
+      "observed_free_after_import_minus_before": -189001728,
+      "observed_free_after_cleanup_minus_before": 196075520,
+      "task_overlay_removed": true,
+      "recorded_at": "2026-10-30T17:22:16+08:00"
+    }
+  ],
+  "temporal_and_acceptance_scope": "New greybox/mycelium stills reproduce the historical camera. Ceramic and orbital remain historical native images with their own original capture identities. No new art production, gameplay acceptance or performance qualification.",
+  "volume_observation_limit": "Global free-space deltas include concurrent activity and delayed accounting; only copied small-source bytes and retained new PNG sizes are task-attributable.",
+  "selected_reference": {
+    "source": "Maintainer-supplied ceramic native frame",
+    "file": "hole-ceramic-selected-native.png",
+    "attachment_sha256": "021bd068e10e4931a0b4a2282c77027f00408955d8c67a28b7f81a18187188c1",
+    "decoded_rgba_md5": "fa979870d786331a42f09116f4a3284d",
+    "pixel_identity_verified_by": "Parent audit: ffmpeg decoded RGBA framemd5 matches historical ceramic-zone-b and process/stage-history; PNG encoding differs.",
+    "bytes": 2220902,
+    "resolution": [
+      1536,
+      1024
+    ]
+  },
+  "display_treatment": "reference-frame: full unchanged frame; contain fit only, no crop, repainting, color grading or scene-object changes."
+}

@@ -1,0 +1,1362 @@
+{
+  "schema": 1,
+  "name": "greybox-to-multistyle-art",
+  "version": "0.15.0",
+  "kind": "source-only-internal-alpha",
+  "sourceIdentity": "0.15.0-alpha.1: concise usage recaps, recorder/environment context, local Issue drafts and explicit offline feedback collection; prior task and asset identities are preserved.",
+  "sourceManifestSHA256": "f11b2eecd9174267d41f0424f54556414cc89caee6fe3b9e5bd925049f603029",
+  "nativeValidation": "Feedback behavior is checked with local synthetic CLI cases; actual host capture coverage and reduced rework remain unmeasured. Historical native/provider evidence retains its original version; see references/candidate-status.md.",
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1095,
+      "sha256": "e3d03327473b629d7776f4ae952f709b068f7f150dfacf225ddef7fcae06ecae"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 13293,
+      "sha256": "aebc03c6d8fd5f748a5271356909d5bd593a74780fae844d60ea2ef88aaa08af"
+    },
+    {
+      "path": "connectors/workbuddy/board-guard/README.md",
+      "bytes": 13017,
+      "sha256": "b51084734e1812dc2cfd3ffc4f1ec8ce6caab14984f839f98645f1b70987370f"
+    },
+    {
+      "path": "connectors/workbuddy/board-guard/probe-runtime.mjs",
+      "bytes": 5989,
+      "sha256": "0aead9cfdba4f7e0f975ac1eb7f886ce6965725e9bdedf6fc2786f10b5cd52a2"
+    },
+    {
+      "path": "connectors/workbuddy/bootstrap.py",
+      "bytes": 2372,
+      "sha256": "966c8e9289339de06ac7168027b464e8c568254138b33e0ee6e5d530b5a1ede4"
+    },
+    {
+      "path": "connectors/workbuddy/cli.template.json",
+      "bytes": 202,
+      "sha256": "65f20fc614cf20668deaf97b456eb4c3633ecb36f3726d0908c551a282f6432b"
+    },
+    {
+      "path": "connectors/workbuddy/connector-meta.json",
+      "bytes": 874,
+      "sha256": "9ad40ecf54104d0b18c8cd79115b927ec8d4cc6b55912146fe602614d512c8c1"
+    },
+    {
+      "path": "connectors/workbuddy/icon.svg",
+      "bytes": 246,
+      "sha256": "3c89c397c99570fe0aa8d73349d1ddfd9218ada92f89dd82b2ece10aab188f7a"
+    },
+    {
+      "path": "connectors/workbuddy/requirements.txt",
+      "bytes": 108,
+      "sha256": "d703c90e4b2f57f63203283516aecb3c2591a8b74eeab17c0bce5b2994acbd5a"
+    },
+    {
+      "path": "connectors/workbuddy/skills/greybox-host-bridge/SKILL.md",
+      "bytes": 6208,
+      "sha256": "17014c2feafda917bf0db816cce7fa0817417eb30086e956cc529d863ebbceec"
+    },
+    {
+      "path": "fixtures/godot-free/README.md",
+      "bytes": 2850,
+      "sha256": "72617d6fc4136cd1964cfe337e183e9783a036e01ed2cdbe71f93e2eff042f5c"
+    },
+    {
+      "path": "fixtures/godot-free/main.gd",
+      "bytes": 5892,
+      "sha256": "2ec9f145e9d3003884c261db1f56d7b3b481c41c9e74661edcd6ceeab0b84d68"
+    },
+    {
+      "path": "fixtures/godot-free/main.tscn",
+      "bytes": 154,
+      "sha256": "43ff4320a1d0e28c99cb054639d70cb9526ccae10b75de59e3a814078aa72866"
+    },
+    {
+      "path": "fixtures/godot-free/plan.json",
+      "bytes": 4499,
+      "sha256": "5d10bb46ed00ac0974c7d3d96c63330cf8010218204f5f459b0a2afc43f78f25"
+    },
+    {
+      "path": "fixtures/godot-free/project.godot",
+      "bytes": 365,
+      "sha256": "e228f1446a627145e8fd7cb911a58a459f6127c88931f699dae3853b60f8ca7f"
+    },
+    {
+      "path": "fixtures/godot-free/raw_probe.tscn",
+      "bytes": 459,
+      "sha256": "a90d8f462db7509844ab78320994e68e1b478c2f116ff3b494d582e5f32979fc"
+    },
+    {
+      "path": "install-macos.command",
+      "bytes": 302,
+      "sha256": "3c2d09eebae8d291c9f41c879606c2fd7dea13eb214988b12f8127401bb190be"
+    },
+    {
+      "path": "install-windows.cmd",
+      "bytes": 294,
+      "sha256": "76d0939c7c6e986289e2d8e8393d8c568764af973281942a8219993a6840b21c"
+    },
+    {
+      "path": "references/art-realization.md",
+      "bytes": 4477,
+      "sha256": "d1f4854a4b5038f25615684b71d4cc91f162fdbcff62ba59bdf55bcf71451252"
+    },
+    {
+      "path": "references/asset-optimization.md",
+      "bytes": 6787,
+      "sha256": "7401c6598015ed66d2985188c63643566a707d40c68f6caeca17408afe9be9cd"
+    },
+    {
+      "path": "references/asset-routes.md",
+      "bytes": 5506,
+      "sha256": "073405f320d22d8df542414342907cd2ac08392701c903b2f6e273901f3b3d6c"
+    },
+    {
+      "path": "references/blender-backend.md",
+      "bytes": 7573,
+      "sha256": "de376ba913704a1bc7617f6c8f2c11a2be4972a3ee3fbbdbda13097ccc589182"
+    },
+    {
+      "path": "references/blender-production.md",
+      "bytes": 4576,
+      "sha256": "7f98fe399e7e5d7f699e4abdb2aef4f68f9629beb57cdb36919b338cc6a989da"
+    },
+    {
+      "path": "references/board-registry.md",
+      "bytes": 6099,
+      "sha256": "e6286866c438831a1f1dbe6453021b506a67914220e38400154a010344f68383"
+    },
+    {
+      "path": "references/candidate-status.md",
+      "bytes": 5760,
+      "sha256": "96650ad8433290afe5c3a29acb7df20d4d84dd3c1a40bb60e94336349bcbd19f"
+    },
+    {
+      "path": "references/capability-preflight.md",
+      "bytes": 6753,
+      "sha256": "3dca9907035b1352403bb0da50de7b506ab65626a8dc546daba9a47115eba5b2"
+    },
+    {
+      "path": "references/character-pipeline.md",
+      "bytes": 12082,
+      "sha256": "be796099efab42f1146af89894904e41690b38af277a3b3295fe1def1712a3f6"
+    },
+    {
+      "path": "references/concept-authoring.md",
+      "bytes": 9625,
+      "sha256": "6471de2a01ad7fb2a772c0580fead9741482c4054cbf502ecbca39610438a1d8"
+    },
+    {
+      "path": "references/continuity.md",
+      "bytes": 8422,
+      "sha256": "1f622221262128b7d982a8e142bbffebb9ea872f16b98be9fa43c476a52ea940"
+    },
+    {
+      "path": "references/engine-adapters.md",
+      "bytes": 7826,
+      "sha256": "c106f63e5f858dcb54b2056fd6ca7bbc7539453eb41706253ba48099b4d96099"
+    },
+    {
+      "path": "references/execution-contract.md",
+      "bytes": 8473,
+      "sha256": "506838305e5fcb733e58b1a77b70d3738517b99a334a72af00352fd6b021be1f"
+    },
+    {
+      "path": "references/field-lessons.md",
+      "bytes": 3881,
+      "sha256": "97abe263a16addbab43a35bbbc82c20ac729f3d4b14e3bb8e58ef87d90913025"
+    },
+    {
+      "path": "references/greybox-authoring.md",
+      "bytes": 11416,
+      "sha256": "fa46c278dc30c0b896528d52ef935ff7625e75dd5f6f55190e5392ad24da3ce6"
+    },
+    {
+      "path": "references/greybox-knowledge.md",
+      "bytes": 7741,
+      "sha256": "e04a2e1b1b590f83af65e3563632ede8dcc430168680fc6642c7426deac199b8"
+    },
+    {
+      "path": "references/hosts-v04.md",
+      "bytes": 9483,
+      "sha256": "b980df30cbac5f21472f1d045a438c6287a138380804c84bcc319802330ccf21"
+    },
+    {
+      "path": "references/human-decisions.md",
+      "bytes": 7368,
+      "sha256": "9d5192e5c9c3e1115e3622ca8d5059bd19e9b8418aba2d56cd33ebc5d8d290a2"
+    },
+    {
+      "path": "references/hybrid-production.md",
+      "bytes": 10989,
+      "sha256": "db1ceded9660659626f93fd76c70ec0bdfb0331460c99ea0a55e12b5b44e92b0"
+    },
+    {
+      "path": "references/image-services.md",
+      "bytes": 10420,
+      "sha256": "56d0b5243974cfe3e378d0bf8f48ec1c3c935e1249059a9895c5448e826c9b58"
+    },
+    {
+      "path": "references/intake-routing.md",
+      "bytes": 10170,
+      "sha256": "5049c7419509e6d228215dea53d128b06a7f1486985b22955ed62f3bc8c77e2c"
+    },
+    {
+      "path": "references/look-development.md",
+      "bytes": 9890,
+      "sha256": "d5d9d8beb63ae1c842ebfad20fa8cb49ce76f0cd51aae3b8585b481382387786"
+    },
+    {
+      "path": "references/lux-bridge.md",
+      "bytes": 13539,
+      "sha256": "f6fa00a11e41804e2a6dd9655576556df1a2eae0f167d3530c3a160d54e7bf56"
+    },
+    {
+      "path": "references/migration-v04.md",
+      "bytes": 3159,
+      "sha256": "3cf20d56a90947aa15bb5426c4a20a4bfd59222e932da437781538051d19b8c9"
+    },
+    {
+      "path": "references/modeling-reference-protocol.md",
+      "bytes": 22066,
+      "sha256": "f0fbf2673a3d657c3699f8fec3fdcbc7e1c564902baaa5647839692d2067d575"
+    },
+    {
+      "path": "references/modeling-references.md",
+      "bytes": 12597,
+      "sha256": "139e26d4513860f4173d7473d55f36cc7e2a22c85fa1733767f116d4b8932d9f"
+    },
+    {
+      "path": "references/new-case-recipes.md",
+      "bytes": 3491,
+      "sha256": "9d62ac98e636d11508d77fd595a9d8cc6d677a233cff8864f2e615b5f4241141"
+    },
+    {
+      "path": "references/orchestration.md",
+      "bytes": 8394,
+      "sha256": "16a22a9626a12d203bfb9d342ff64633fe81fed4823c178a6dab06f5a22fab20"
+    },
+    {
+      "path": "references/production-control.md",
+      "bytes": 10721,
+      "sha256": "15e26168a7a66fbef355d8c08c58ca59d73cdb8bfd510c667cd2fa50a24c41e3"
+    },
+    {
+      "path": "references/project-layout.md",
+      "bytes": 10457,
+      "sha256": "149be79d39a9fb642f92a06173cfde325e0b3a350d2c8b0486ccd0e77a0a74b0"
+    },
+    {
+      "path": "references/provider-accounts.md",
+      "bytes": 4511,
+      "sha256": "ba160ac07e9a7691d8c8af103cad90aa625cc2c97339915baba11d5099795007"
+    },
+    {
+      "path": "references/provider-meshy-tripo.md",
+      "bytes": 17878,
+      "sha256": "2366d45c61f2aee42eed91fe3adb5c9de391f681d6fe48ab8fdfba0208f638cf"
+    },
+    {
+      "path": "references/provider-rodin-hi3d.md",
+      "bytes": 10241,
+      "sha256": "2a825fb8688816dbdcd4e3da77af655e24f1a30233b6b43c452ecfa67defc0aa"
+    },
+    {
+      "path": "references/quickstart-en.md",
+      "bytes": 7877,
+      "sha256": "958ff1c6b0472c87f9543ca52eae72e809434b650256ea1a1ac83eef97d1d94c"
+    },
+    {
+      "path": "references/quickstart-zh.md",
+      "bytes": 6775,
+      "sha256": "038cf230853a9a202e80d42b0fd3f818e9571984fd65328404debb7a6d6c5133"
+    },
+    {
+      "path": "references/render-capability-recipes.md",
+      "bytes": 6728,
+      "sha256": "6ed91660a2d6e60dc206bc2a595e83be239c544ab5e9021832313c434761c252"
+    },
+    {
+      "path": "references/research-sources.md",
+      "bytes": 7732,
+      "sha256": "c36765d3ec2acc8ad059d756f9dcd64e4549d4fa82cdb65c508e8934a2dbb6a6"
+    },
+    {
+      "path": "references/scene-comparison.md",
+      "bytes": 6257,
+      "sha256": "d2db0dd1af6b204d61bd4cb9cd01b8258538c28d8cb5bb9df87a857bc6d71073"
+    },
+    {
+      "path": "references/scene-effects.md",
+      "bytes": 11879,
+      "sha256": "23902b2eeed8dbd730f548286fdf4970a8c1d957a3bd59713fec0f927a00195a"
+    },
+    {
+      "path": "references/spatial-contract.md",
+      "bytes": 5125,
+      "sha256": "ce4c1bf527e10a2e99cab2b57e2fe8619e1fbfd36da2531ea945e0a98c7c96ae"
+    },
+    {
+      "path": "references/supplier-catalog.json",
+      "bytes": 9964,
+      "sha256": "b77dc533c3a430dbe39192634a568c1e49ccde70ad214b803394c6faef0adbb9"
+    },
+    {
+      "path": "references/suppliers.md",
+      "bytes": 14203,
+      "sha256": "9c9e32235d81bd61d576ad29b208200c07dfe3640c1d37cd4e0f945c4a3b14d2"
+    },
+    {
+      "path": "references/task-context.md",
+      "bytes": 4941,
+      "sha256": "1659a137d5d779d2faa199ad1c1cf367f72977d7dd47031f072cae8a7cf2eaed"
+    },
+    {
+      "path": "references/terrain-operators.md",
+      "bytes": 6640,
+      "sha256": "630c1b14557f9dde38bbef9b84ef5b135084b7be7344ac3d886625fa962ea20a"
+    },
+    {
+      "path": "references/ue-greybox-experimental.md",
+      "bytes": 3942,
+      "sha256": "f646df9c66f5e4b2efc77eee054a04b8d5719d19f10760111e21426e0a38cabc"
+    },
+    {
+      "path": "references/unity-runtime.md",
+      "bytes": 10035,
+      "sha256": "6d641cb59de2267bc029f59379f6d32e78345abc85246f894cd37ce57d037ddb"
+    },
+    {
+      "path": "references/usage-feedback.md",
+      "bytes": 10082,
+      "sha256": "bbe93fcf7082ac5ea733f6f563f9d6630faf03f49e266a3895171e392e5f5fb5"
+    },
+    {
+      "path": "references/visual-feature-analysis.md",
+      "bytes": 8260,
+      "sha256": "52d35386f07d425a6a42319d5f680c746d1cc864710fe14762c046374bdfa33f"
+    },
+    {
+      "path": "references/visual-harness.md",
+      "bytes": 10389,
+      "sha256": "ea81cb66b927a96db8a56b02ab357893e7cc42264a200372334a49843b18281c"
+    },
+    {
+      "path": "references/workflow-risks.md",
+      "bytes": 4192,
+      "sha256": "380106282bbec051cf6db9eeac705cdf42391c3fca96133cf1f38550b39df42e"
+    },
+    {
+      "path": "references/workflow-vnext.md",
+      "bytes": 36493,
+      "sha256": "798fa83be85a169d3c918e3942901e0ef89fc5df87a6a8c4ed531bb3b5f22771"
+    },
+    {
+      "path": "runtime/blender/backend_job.py",
+      "bytes": 14568,
+      "sha256": "a8d0bc66d22de05d2d9b0659f189f4cd197021c16dd8e52f8c49128507fade39"
+    },
+    {
+      "path": "runtime/blender/effects_job.py",
+      "bytes": 15930,
+      "sha256": "e023ffb9e7f9cc9040ec9f9e11e4385f1a49fabe23b38fa524a6add0fa5e4f56"
+    },
+    {
+      "path": "runtime/godot/art_layer.gd",
+      "bytes": 7288,
+      "sha256": "71e29a893b3255d90a671470cae5cd7649ca94f66d26dced9a408b0427090ab7"
+    },
+    {
+      "path": "runtime/godot/asset_admission.gd",
+      "bytes": 7189,
+      "sha256": "002c97e8d22d90e3d9586a4e5aa1653010949f2bf5648ba96d5bf1b29c7a8980"
+    },
+    {
+      "path": "runtime/godot/effects.gd",
+      "bytes": 9641,
+      "sha256": "52f2a19ecaac2266e47e9d462a35a603a6c29785ec109535652f469f40211d74"
+    },
+    {
+      "path": "runtime/godot/grass.gdshader",
+      "bytes": 474,
+      "sha256": "804d14de340cb4331904e102dbd5a879e22b633feceb28ce1b6eeb2c46c7290d"
+    },
+    {
+      "path": "runtime/godot/ground.gdshader",
+      "bytes": 1051,
+      "sha256": "932dfa8562b22919ebc72ba4a50ebf73ee12f8a443fdcae9e72b4131484b246c"
+    },
+    {
+      "path": "runtime/godot/validate.gd",
+      "bytes": 4757,
+      "sha256": "470dc2f4eb70eb2a24048591572a38c4dd9b28569ad418d5c4381a74631266a5"
+    },
+    {
+      "path": "runtime/godot/water.gdshader",
+      "bytes": 2227,
+      "sha256": "cbe0b76848a1c784b4339973f693e1476e604b158fb721bbe62c0ec38bb4fc71"
+    },
+    {
+      "path": "runtime/greybox/__init__.py",
+      "bytes": 65,
+      "sha256": "c2c50efcc2a912018579e653f45ddd268d7933855811846fc26520c0382c297f"
+    },
+    {
+      "path": "runtime/greybox/account_profiles.py",
+      "bytes": 7701,
+      "sha256": "3392ec204ce53bccfe492997a365e4917308ea3e16bc1f39548f90f3a4423646"
+    },
+    {
+      "path": "runtime/greybox/asset_metrics.py",
+      "bytes": 16980,
+      "sha256": "e4e25c946def847497d25eb06f79b8d5115ecc6ad9a97e3746693a4f2513e4b0"
+    },
+    {
+      "path": "runtime/greybox/asset_routes.py",
+      "bytes": 10998,
+      "sha256": "b6f15907bd89adc8822eee6b4c8e7b17076b6bcf3427d0ae7acb1ba9cf5dac7d"
+    },
+    {
+      "path": "runtime/greybox/blender.py",
+      "bytes": 13656,
+      "sha256": "b39ebe2ce269470e5060325e0585188cb3c19b4e8b341e19b86c0c2d2a295dc1"
+    },
+    {
+      "path": "runtime/greybox/blender_godot.py",
+      "bytes": 8039,
+      "sha256": "fc04e828ae0a62a762f30dd256d147a889df6722b43fe51954bd06bfb4317d1b"
+    },
+    {
+      "path": "runtime/greybox/blender_jobs.py",
+      "bytes": 13067,
+      "sha256": "229543d7f00ad01abc21acf9e30a735cd820b769486d3385484a2a980e77b000"
+    },
+    {
+      "path": "runtime/greybox/board_native.py",
+      "bytes": 12089,
+      "sha256": "66528b390b9422116a6f2ba77f32ee7d0d5dd01104a98e2287d9f312184b3cb4"
+    },
+    {
+      "path": "runtime/greybox/board_production.py",
+      "bytes": 68570,
+      "sha256": "0d8edc840978b797cb1bc788fb03c11ecdd3f4e081b2ace3f92b2cb3b5a03710"
+    },
+    {
+      "path": "runtime/greybox/board_registry.py",
+      "bytes": 49056,
+      "sha256": "d874d02554b3c959ed9da0dd5a53611d4f61fd8188582e8699c97d22e53900db"
+    },
+    {
+      "path": "runtime/greybox/board_workbuddy.py",
+      "bytes": 17928,
+      "sha256": "f86788149df39c0cf63654fc1851945ae7e07ad50ab34ebdd7e9038396bd724e"
+    },
+    {
+      "path": "runtime/greybox/character_gate.py",
+      "bytes": 8050,
+      "sha256": "cd8b1f3f99a985d38e992a9aa13fd888965384505ecc8d4644194b2dd80033b5"
+    },
+    {
+      "path": "runtime/greybox/characters.py",
+      "bytes": 16674,
+      "sha256": "72b3fd6321649a7cb0cac986c57c99cc09fe7998d2639e7a7595b60fc8033c64"
+    },
+    {
+      "path": "runtime/greybox/cli.py",
+      "bytes": 31911,
+      "sha256": "12bef6c5f3a482b7b8c9f16e87adada531a5bbaf31a9c3890e4bfa07bfdcbc25"
+    },
+    {
+      "path": "runtime/greybox/continuity.py",
+      "bytes": 27703,
+      "sha256": "12a06602e14aa5fccce1610103b2f1c95049fc301fe1f46766ec31a08c06f5bd"
+    },
+    {
+      "path": "runtime/greybox/core.py",
+      "bytes": 72743,
+      "sha256": "cc2245773d441266730440ee69b05528f1b24415914e6b02111f0a4b8470ea30"
+    },
+    {
+      "path": "runtime/greybox/delivery.py",
+      "bytes": 19871,
+      "sha256": "796ad3331926e501b71d37795e22cc6699863267bc5b77e9dc6d377447e9eb2d"
+    },
+    {
+      "path": "runtime/greybox/effects.py",
+      "bytes": 10347,
+      "sha256": "27a0e27d7c2804d8759bb5688143c996a4b3ea33896f70cd4110e54de80a86d6"
+    },
+    {
+      "path": "runtime/greybox/engine_cli.py",
+      "bytes": 3727,
+      "sha256": "57557b589e3add7e850ad7887529c71224bd065500ff1db034cbf4b1193f4e1c"
+    },
+    {
+      "path": "runtime/greybox/engine_workspace.py",
+      "bytes": 23315,
+      "sha256": "62f6828d73f99982f338b58faed97debe33547425d22dc7c824dcb1b572f81b9"
+    },
+    {
+      "path": "runtime/greybox/engines.py",
+      "bytes": 6605,
+      "sha256": "dc41e928a820732509e76d132a095bd080b888c260c9c0872dd0d15a9ac8c652"
+    },
+    {
+      "path": "runtime/greybox/execution.py",
+      "bytes": 37750,
+      "sha256": "c32683ed1b278d4159d99c3f96f0c86df6c5a2cabcdb1e568cd52f5e96e0696a"
+    },
+    {
+      "path": "runtime/greybox/execution_capacity.py",
+      "bytes": 9943,
+      "sha256": "563555498e597d5813c5d585c12f22bc6f07d808db45231ef67d576b52d50b36"
+    },
+    {
+      "path": "runtime/greybox/execution_cli.py",
+      "bytes": 5696,
+      "sha256": "8920e10faa398295155938015ff2858ed796da9e2c63ed5a3fcb992b61f5262b"
+    },
+    {
+      "path": "runtime/greybox/execution_errors.py",
+      "bytes": 4817,
+      "sha256": "e23323914c00e2cab1a532e44737639832c22410f1bff6bff6235bcdbce151f9"
+    },
+    {
+      "path": "runtime/greybox/execution_process.py",
+      "bytes": 3551,
+      "sha256": "ee2ba7cfd826a238fc2a71282c2412c1c89944c5c79117d7b3e1905663010f2c"
+    },
+    {
+      "path": "runtime/greybox/feedback.py",
+      "bytes": 40053,
+      "sha256": "db77efd1916fdbfbf49ebb1fdeb6c87d9f0db1373d1849f1c71759a360889887"
+    },
+    {
+      "path": "runtime/greybox/feedback_cli.py",
+      "bytes": 2321,
+      "sha256": "ed0669591fda27ca00354d63710e5d8fffff3ff3a30a4a72abf283147919a2b6"
+    },
+    {
+      "path": "runtime/greybox/feedback_collection.py",
+      "bytes": 18225,
+      "sha256": "c6238552f9db41709e1d0181df60acb47bcba9597c9997b6934a06077c660936"
+    },
+    {
+      "path": "runtime/greybox/godot.py",
+      "bytes": 34988,
+      "sha256": "4e7b91fed1347bbfe443c1a1ea37f7d6f4c6be178bd167aa946cd4790dd363d5"
+    },
+    {
+      "path": "runtime/greybox/greybox_godot.py",
+      "bytes": 21162,
+      "sha256": "25a5d3266f5896417b1c9c955a827bb32631bbe40a47860af8c2dc1a6280f183"
+    },
+    {
+      "path": "runtime/greybox/greybox_unity.py",
+      "bytes": 20477,
+      "sha256": "ac46c65235849d007c9d90b29588c4283a04ac9ae8f91433bddc4ccf14f29a5b"
+    },
+    {
+      "path": "runtime/greybox/harness.py",
+      "bytes": 32443,
+      "sha256": "18cf6545ab1ca0c95f310492749262c2cff07c74635fe071780a310ee313bd2a"
+    },
+    {
+      "path": "runtime/greybox/harness_cli.py",
+      "bytes": 2978,
+      "sha256": "5c3a49d5ba497e5d5e989461de185fcaf08093c73ad8bc77e722852c0fd608ab"
+    },
+    {
+      "path": "runtime/greybox/host.py",
+      "bytes": 18134,
+      "sha256": "d5f3767b75b5759155007409f247acefd096dd55609112d87aefc6474c6867c4"
+    },
+    {
+      "path": "runtime/greybox/host_cli.py",
+      "bytes": 3519,
+      "sha256": "65620dd926fecc3d7a770b08563d3a307ef884cf245600bb15804f123edd2fad"
+    },
+    {
+      "path": "runtime/greybox/host_execution.py",
+      "bytes": 16679,
+      "sha256": "9250dfefd46746b1e026d0c49ba94a24f1b0275c3c2d3d2523409a8b6bfaa1d8"
+    },
+    {
+      "path": "runtime/greybox/host_setup.py",
+      "bytes": 10117,
+      "sha256": "19b02b24a987e9c08b5da6b9108e87a23f9b1e6bcc03e4b9233e0fc6eec6c6a6"
+    },
+    {
+      "path": "runtime/greybox/image_adapters.py",
+      "bytes": 23206,
+      "sha256": "a9588c0e2bca48c9f056a227c2237d04de40f8d4f2a003fec4efe8a262c99076"
+    },
+    {
+      "path": "runtime/greybox/image_cli.py",
+      "bytes": 5761,
+      "sha256": "8f34fe27d8a98f0e010ffc41e81b77624b971a080b439c969e463049a23fdda7"
+    },
+    {
+      "path": "runtime/greybox/image_execution.py",
+      "bytes": 14007,
+      "sha256": "1f864d6bd8fa8967c87d0653d8a2138b6e923fd300f54260124c23ef8ce60045"
+    },
+    {
+      "path": "runtime/greybox/image_jobs.py",
+      "bytes": 30670,
+      "sha256": "7b422b1b68f260e21140b4ef1532b7d31ae4244f908a08180a8f4faeab8f48fc"
+    },
+    {
+      "path": "runtime/greybox/image_policy.py",
+      "bytes": 9565,
+      "sha256": "e4b417589e9739c5cdb915e22d3443068f3b518c041eeb81b967749ed0221c38"
+    },
+    {
+      "path": "runtime/greybox/intake.py",
+      "bytes": 13955,
+      "sha256": "22adaccbb32d205b93f3c1408e25f4a1952173188fefcb84a826f064fdb75915"
+    },
+    {
+      "path": "runtime/greybox/knowledge.py",
+      "bytes": 14782,
+      "sha256": "c471bbf42a8ccc2921397ca930aace74a270c0ec51aeb9fb92bd921acc748451"
+    },
+    {
+      "path": "runtime/greybox/layout.py",
+      "bytes": 42148,
+      "sha256": "81f20208f01ddef95dc62ca9b3fa98fc5d3d13416b068923c334d225aa28cdf2"
+    },
+    {
+      "path": "runtime/greybox/lux.py",
+      "bytes": 37195,
+      "sha256": "d7002c3b862327961f252d91d8c9cdbca55f02fef7dbcf07f425ee3c5310a103"
+    },
+    {
+      "path": "runtime/greybox/mcp_bridge.py",
+      "bytes": 4570,
+      "sha256": "94ca47a70d1fcec3a6a5e4f297680c4aa126f1397da11880c6acf1522579f17b"
+    },
+    {
+      "path": "runtime/greybox/modeling_refs.py",
+      "bytes": 21170,
+      "sha256": "af133a3c96c98b8beb0c7498f5939be62d9bdc90692d813a0e128b17ca681dd6"
+    },
+    {
+      "path": "runtime/greybox/overview.py",
+      "bytes": 36049,
+      "sha256": "be1395220dfd76fb2d74b136cb2554623457fa999aabc59f004224282376362a"
+    },
+    {
+      "path": "runtime/greybox/pre_handoff.py",
+      "bytes": 11577,
+      "sha256": "790d72060778d18705dd1991b7fbe5abb5d215a23bed59f5a42b0edad7381087"
+    },
+    {
+      "path": "runtime/greybox/production_control.py",
+      "bytes": 38279,
+      "sha256": "88337809de1465e7c3c74832359cc530b5048c3a03bc897c711360d0d27df5d6"
+    },
+    {
+      "path": "runtime/greybox/prompt_templates/board.txt",
+      "bytes": 2801,
+      "sha256": "81c7860d063a603d67345337878a4dbdde8da62d37af64e7dc9c4f61ed100403"
+    },
+    {
+      "path": "runtime/greybox/provider_adapter.py",
+      "bytes": 2512,
+      "sha256": "bc0783ceb0b5b99fac6f1ec5671f63ecb40174bce6d967de4a75019b83f51870"
+    },
+    {
+      "path": "runtime/greybox/provider_credentials.py",
+      "bytes": 7420,
+      "sha256": "308dc96f5b3aa7c4ab7287fba5d9017cf017fbb79e77d2ed31acb5640555d019"
+    },
+    {
+      "path": "runtime/greybox/provider_http.py",
+      "bytes": 20208,
+      "sha256": "c7bd4153a0a9bbfb965996b3cc34e13c369a7aef1c2b31170ff870889186b189"
+    },
+    {
+      "path": "runtime/greybox/providers/__init__.py",
+      "bytes": 84,
+      "sha256": "939aaf92dac880044966a07e507da83850a1da3498f8753cf5572bb50e638b67"
+    },
+    {
+      "path": "runtime/greybox/providers/hitem3d.py",
+      "bytes": 18717,
+      "sha256": "8f77f79d008b4e13d28299c1ce5bb94c2503f742bc175aa02feddf485b6dca86"
+    },
+    {
+      "path": "runtime/greybox/providers/meshy.py",
+      "bytes": 21017,
+      "sha256": "e90a3315f6aa41360144b243a2fb904d552a2711fe5228dfa5f67ea8387a79b2"
+    },
+    {
+      "path": "runtime/greybox/providers/rodin.py",
+      "bytes": 18706,
+      "sha256": "583b6697fcab7224e63c505f847969e1d973c8a6341d2b77e620360bd982367d"
+    },
+    {
+      "path": "runtime/greybox/providers/tripo.py",
+      "bytes": 30900,
+      "sha256": "94bf8bf6a6c84ba06aa4025576c1f6bf6f51829c04e702b364872202c661888b"
+    },
+    {
+      "path": "runtime/greybox/quote_preview.py",
+      "bytes": 12943,
+      "sha256": "6a1a4a4aa86e034868c60b4e3b6e4dd4617ee172e6216cca2a8bcaeaf65e45ef"
+    },
+    {
+      "path": "runtime/greybox/reference_boards.py",
+      "bytes": 54179,
+      "sha256": "80ea386fbdd444dcc766545d1a3c5a98c1cf1eea4e51a3be9a978277ca8224fe"
+    },
+    {
+      "path": "runtime/greybox/runtime_profile.py",
+      "bytes": 4310,
+      "sha256": "da7bf31dae9129f5267216295f3070dcdefec3cc972f9dc574069b6e6efef85c"
+    },
+    {
+      "path": "runtime/greybox/scene_review.py",
+      "bytes": 20630,
+      "sha256": "b4c9d6890ce9b2c06af6cd9a83129e24bbc11abe743877c9d4a2cb53199557d2"
+    },
+    {
+      "path": "runtime/greybox/scene_review_cli.py",
+      "bytes": 3016,
+      "sha256": "0f95d1012171caea4106402a506e4507a776a78021e4b24e6611da28991f7028"
+    },
+    {
+      "path": "runtime/greybox/supplier_execution.py",
+      "bytes": 29741,
+      "sha256": "9e4cddacf059a145bf93d5d43e61a4d45a66e1901908bf82dd044e97754462d5"
+    },
+    {
+      "path": "runtime/greybox/supplier_jobs.py",
+      "bytes": 67742,
+      "sha256": "775267d7b0ad75eafd8529d923b6e9155c85fadc41cca3685df539a31a3fd9e1"
+    },
+    {
+      "path": "runtime/greybox/suppliers.py",
+      "bytes": 37306,
+      "sha256": "bdeebcefc606d9e951860bd57a4b181e71fb00ca8d7a335aacf1633bf9ecc76f"
+    },
+    {
+      "path": "runtime/greybox/task_context.py",
+      "bytes": 15974,
+      "sha256": "391b489029f57498e31f6145caa326139d028f6afcfa48764f79d6450b8077e0"
+    },
+    {
+      "path": "runtime/greybox/task_context_cli.py",
+      "bytes": 2497,
+      "sha256": "e9787324c4dc290dd974c5cdd1c03b4abbbb8aa8d270b5c56a418fbe1552b6cf"
+    },
+    {
+      "path": "runtime/greybox/unity.py",
+      "bytes": 41381,
+      "sha256": "dc71c286649652f66576d904b58eddafec2bb0b8b7ae0e46e9e2fa37003a62c8"
+    },
+    {
+      "path": "runtime/greybox/workbuddy_board_guard.py",
+      "bytes": 45462,
+      "sha256": "d1ce38de92d4febe44d6d9f5d9c46021577822cf65ce7fbbd0280f415d0703da"
+    },
+    {
+      "path": "runtime/greybox/workflow.py",
+      "bytes": 85272,
+      "sha256": "8989d81a03973b754ad18ac890018859022ee1100a009ba644684ac76c600df9"
+    },
+    {
+      "path": "runtime/greybox/workgraph.py",
+      "bytes": 27680,
+      "sha256": "0bbee7cd7f7d157c0881b1fb1b02e07f69ae7d79505318e2a86aa0f34d047af5"
+    },
+    {
+      "path": "runtime/greybox_templates/godot/greybox_runtime.gd",
+      "bytes": 13061,
+      "sha256": "0ca15259e1d0e7dfc320fd1aa485944a83d2554ce61544d1aa5d3af136a3161c"
+    },
+    {
+      "path": "runtime/greybox_templates/unity/Editor/AuthoringBridge.cs",
+      "bytes": 27525,
+      "sha256": "980486fe8b5a67c0a1a2d71a099d5c853d9bfc67d67abaacd8f836963218dec2"
+    },
+    {
+      "path": "runtime/greybox_templates/unity/GreyboxController.cs",
+      "bytes": 11187,
+      "sha256": "7952c9bc5dbd9f9a5c5f81be3a05cfd67ccf703824f73511066ccd7762f23a22"
+    },
+    {
+      "path": "runtime/greybox_templates/unity/GreyboxEntity.cs",
+      "bytes": 1215,
+      "sha256": "6f960048f4126dd317c0ac0fe129b3d4accb3ba2147ad0edf2cf08f6c4fc5762"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/art_dressing.gd",
+      "bytes": 5097,
+      "sha256": "2988644b154442f325e284e8e7c098113bf929ec74ec98e30831315733048ba3"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/art_fit.gd",
+      "bytes": 3849,
+      "sha256": "bc2924c75b221cf0915f42ca464230ad37cb13a54be27f21dd52804be54c983f"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/art_floor.gdshader",
+      "bytes": 5657,
+      "sha256": "3252163bcf274711a3e63ae893bb30b240f912ac28bef0397b3c894fb8eba669"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/art_outside.gdshader",
+      "bytes": 1442,
+      "sha256": "e2b8c845d7b540b066bd45fa9cddc0362cea1a4c3f2fcdeb96f2b940466d0f70"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/art_stage.gd",
+      "bytes": 7002,
+      "sha256": "6566971c82e4da617084efde6bc22daafbf453d22e188284174a68a3404412fb"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/capture_pilot.gd",
+      "bytes": 16109,
+      "sha256": "925c8fd822a137088eea14e0933803ba38809ebcaeb77e5420fc7438c2e8bacc"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/look_controls.gd",
+      "bytes": 753,
+      "sha256": "7cd73661a79fb46d254484f6881a25b52e66dc53d27dd328b5c63a1d0d0c187a"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/material_converter.gd",
+      "bytes": 3743,
+      "sha256": "538807df3fb2d63fc75211ccfb238cafd59049290d4f039c3f0082816884cf3c"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/material_probe.gd",
+      "bytes": 5345,
+      "sha256": "dab46bde512defe8c9b9315288e985f3d872e8e7452d7f3fc42ef9ac0c8348e7"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/pilot_object.gdshader",
+      "bytes": 1997,
+      "sha256": "3524560e3658ef3df20567ab46528725270d101cb31c84d824201f3aeb032e73"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/pilot_visual_factory.gd",
+      "bytes": 7546,
+      "sha256": "13f1974a8603e2e2e44a88f44fc539896aa61508716c00132cda1e1c3f169769"
+    },
+    {
+      "path": "runtime/legacy/adapters/godot/render_profile.gd",
+      "bytes": 1709,
+      "sha256": "aa0ccbc37ed749c93a620bc1d6fb498b2eda33a0828a0f8810aa6a3489770b6d"
+    },
+    {
+      "path": "runtime/legacy/package.json",
+      "bytes": 305,
+      "sha256": "fd24f6a05667d7972521ace3b5c257cc5051750c554cf747156d0e9026f7c53a"
+    },
+    {
+      "path": "runtime/legacy/requirements-lookdev.txt",
+      "bytes": 81,
+      "sha256": "32d45b3d56b6a32ae9177fe2a1606232a0169469d493195060a26ef51e6e93c2"
+    },
+    {
+      "path": "runtime/legacy/scripts/lookdev.py",
+      "bytes": 7085,
+      "sha256": "01eaba6ef23ecab65253590e2c0c6e4928812f16bee91333855c8d6d7ea377be"
+    },
+    {
+      "path": "runtime/legacy/scripts/lookdev_core.py",
+      "bytes": 23599,
+      "sha256": "bc3c13a0b62dadb8dcab76e6a7d1edde77983de79ca31d28c9c9f04f1704ac50"
+    },
+    {
+      "path": "runtime/legacy/scripts/prepare-visual-probe.py",
+      "bytes": 2255,
+      "sha256": "8e42f50a183d2352b2ee2eb92820e759fd4e4ad77d37a2942cfe46a6f5bfec8c"
+    },
+    {
+      "path": "runtime/legacy/scripts/render_contract.py",
+      "bytes": 2943,
+      "sha256": "e794d2cabe360c57f91c0921cbf222fb9187a352965573305893e70f3ceb5c66"
+    },
+    {
+      "path": "runtime/legacy/scripts/visual_harness.py",
+      "bytes": 6591,
+      "sha256": "891459edf6e591555c09c33e9d44322019c62072caeb3633c023fa8d97f54f6e"
+    },
+    {
+      "path": "runtime/legacy/src/art-direction.mjs",
+      "bytes": 6304,
+      "sha256": "959cbfcc51e1908e521a874b353c8a2821c78dc8f55fecaf00c4f27e56d682d8"
+    },
+    {
+      "path": "runtime/legacy/src/art-realization.mjs",
+      "bytes": 6126,
+      "sha256": "782424310cb236b9b9f9fae3caa2a8bb76752b138f1fa9d94b57747234669166"
+    },
+    {
+      "path": "runtime/legacy/src/asset-plan.mjs",
+      "bytes": 11401,
+      "sha256": "260360090e1b33bd34f1c2085fd972209bacb7b7c417e515a59cc1d644b78cff"
+    },
+    {
+      "path": "runtime/legacy/src/image-batch.mjs",
+      "bytes": 6089,
+      "sha256": "2e2bda0df3a57f4c656f32f6334907c7d0127b6bb8523a5fce6ba4a69c23ab6a"
+    },
+    {
+      "path": "runtime/legacy/src/metrics.mjs",
+      "bytes": 1817,
+      "sha256": "d6d61b8e06f6271cd9ecd5ed049fc10ef9c891b0889fa1d0df1b29eb986e3b1d"
+    },
+    {
+      "path": "runtime/legacy/src/native-queue.mjs",
+      "bytes": 6093,
+      "sha256": "55f4118b72a26c0f31f01e9bb042148a07af5c3ea2c031ee4051f7b24f9f0b21"
+    },
+    {
+      "path": "runtime/legacy/src/scene-review.mjs",
+      "bytes": 2060,
+      "sha256": "ddef2e21b2ecf2c7ce696e6ddc443a83fe7503b9fcadb6e86e783931ea4d3e76"
+    },
+    {
+      "path": "runtime/legacy/src/spatial-concept.mjs",
+      "bytes": 7682,
+      "sha256": "c0eb1c6a76a76b4bc33b2dded714cdfd4c0f9cc9e128c93dda713da15c5ea337"
+    },
+    {
+      "path": "runtime/legacy/src/storage.mjs",
+      "bytes": 2378,
+      "sha256": "91557ddfdd359f2dd0bd996c88a5336173b97574e04e7cb55beee359c612b5bd"
+    },
+    {
+      "path": "runtime/unity/Editor/GreyboxBridge.cs",
+      "bytes": 38989,
+      "sha256": "b5c0af6bf6bc8febafc6be60d9f5aa809238e715d54589404cc7be4b18853aee"
+    },
+    {
+      "path": "runtime/unity/GreyboxGrass.cs",
+      "bytes": 11462,
+      "sha256": "512c5d4b4541f64cb49313d20c81479ea6b96b5e6e97c2c5790e51e43f5333fe"
+    },
+    {
+      "path": "runtime/unity/Shaders/Grass.shader",
+      "bytes": 1717,
+      "sha256": "82a5df13b2738ec53695c011ea375b07a9a76e954824ad4b508ef876349f6701"
+    },
+    {
+      "path": "runtime/unity/Shaders/Ground.shader",
+      "bytes": 2882,
+      "sha256": "f74795e95fc540263e67fdb2b9b5d3ed4667ffa3d24ee069f5f8dca644b4d0bd"
+    },
+    {
+      "path": "runtime/unity/Shaders/Water.shader",
+      "bytes": 3928,
+      "sha256": "d86d8b9e14d6ca563f9e0ccd777530e7fc63b6c8696cc114c01f7bfb74d61624"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/LICENSE",
+      "bytes": 1074,
+      "sha256": "29d4167a32cb3456367209798c9d93d6012a2eaff90a66d6b210214ee7b52fe0"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/adapter.json",
+      "bytes": 195,
+      "sha256": "5d9abfe5db259058b0de28b58e55547b607a0f4b9f4ac5ea763d9eae194f5894"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/contracts/lux3d-commerce.v1.json",
+      "bytes": 18292,
+      "sha256": "c00612c751eacbbfc8626da2e5de6cce2c04e92f907087d0db7163b2d6245e80"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/contracts/lux3d-generation.v1.json",
+      "bytes": 21220,
+      "sha256": "63c1b0b1b751b03bcf11f624a4acf154c748829d6c82d12f9eeb803416f59477"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/contracts/lux3d-workflow.v2.json",
+      "bytes": 5485,
+      "sha256": "b65d5da26f6db3a469348565f8df8e4cb6751a5a3d5204a38a2ff5c64fa0472a"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/runtime/asset_uploader.py",
+      "bytes": 13979,
+      "sha256": "cc4b66688934ccb431a52ee6cdd84004756399aa068334152e85680fb3fe4290"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/runtime/collection_support.py",
+      "bytes": 17241,
+      "sha256": "a9c8612b03a0d47c9fd97eb0afa87fa070d879cc349e770d6cacba58abba5d75"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/runtime/commerce_client.py",
+      "bytes": 24209,
+      "sha256": "ec56bc62cfa38bebe48ebc888bdf86fddd2113aac5db73f07bf97d73f45e4b10"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/runtime/lux3d_client.py",
+      "bytes": 87778,
+      "sha256": "bb65929aa1bc9190e5e3cb10cbdc42c5ff413509c10becfed2d927bb70548ee4"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/runtime/requirements.txt",
+      "bytes": 20,
+      "sha256": "c3fa4117d05dc932a5553870af7d40f7ecb8cd9ebdece596a0bd20c18bdee7e8"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/runtime/task_metadata.py",
+      "bytes": 2912,
+      "sha256": "a6b0b2fcd5bb70c3d8f5ccc88f483f4f20b784b41b9416ae4258c4f29c36d35d"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/core/runtime/workflow_contracts.py",
+      "bytes": 16756,
+      "sha256": "678fbf95f2bc15f222081131c70c3d0c2b18d2723bb516ae0552bb69e49f1ac1"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/host-identity.json",
+      "bytes": 814,
+      "sha256": "03f71ed3f4117e0d1967d563afbe5a6643c044f14dcd74d62affc968a3a9f17a"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/scripts/host_identity.py",
+      "bytes": 9276,
+      "sha256": "d041e40b075d30b2f4a595404f24ce6775bf5cbc0561bfc86eb89631fec9f79a"
+    },
+    {
+      "path": "runtime/vendor/aholo-lux3d/scripts/setup_runtime.py",
+      "bytes": 9362,
+      "sha256": "3a8c19f2ff263cfcb87db511e3a750889c0b69d3767ef2fc649278559b3e2860"
+    },
+    {
+      "path": "runtime/vendor/manifest.json",
+      "bytes": 4214,
+      "sha256": "8390909137bc0dd4fd36eeafba4ca9179a6068cadb0496395f0bb26fa9e07468"
+    },
+    {
+      "path": "schemas/assembly-recipe-template.json",
+      "bytes": 2309,
+      "sha256": "ab4e012e3335ea8ed473a50921d7e5ed80ede814e82a11f5ca3f248c25b49b04"
+    },
+    {
+      "path": "schemas/atlas-template.json",
+      "bytes": 1169,
+      "sha256": "5994a9ca8c955f7a0f780ca704074a03920bc8e98a56df9a285525191ffb6690"
+    },
+    {
+      "path": "schemas/blender-job-template.json",
+      "bytes": 580,
+      "sha256": "f925515dce9eb461e4b43db76f52ff2dffe7a0a5837720c3e9bc1fa9c8c18952"
+    },
+    {
+      "path": "schemas/blender-native-admission-template.json",
+      "bytes": 471,
+      "sha256": "fe5df4fb1ca314c0d69bff5eb5ff7386c42dcb92a71b659b8f9edd99171525df"
+    },
+    {
+      "path": "schemas/capability-template.json",
+      "bytes": 3032,
+      "sha256": "5292fb7f2f1b858355ba8457a9011a0d79a62e7d2b0b9e52c2be1ae9cb2cfe5f"
+    },
+    {
+      "path": "schemas/composition-probe-template.json",
+      "bytes": 1147,
+      "sha256": "376addf664f2d1fce383e7b7fb56f3e8e1f1915c6b9b6e4d3a0a99ec4d0a8f14"
+    },
+    {
+      "path": "schemas/continuity-template.json",
+      "bytes": 985,
+      "sha256": "731192fca4292efeff65345d155501df546d03c15a92e1b4842e453db95ad488"
+    },
+    {
+      "path": "schemas/directions-template.json",
+      "bytes": 841,
+      "sha256": "735819c17d6090744857d5a5b7b6e95cfeb33d969e4725d858636e201326f96d"
+    },
+    {
+      "path": "schemas/execution-queue-template.json",
+      "bytes": 603,
+      "sha256": "f24765f96dde760db4d7ff9f5eef0e7142a96a00bb9acd129e8244d199c4a166"
+    },
+    {
+      "path": "schemas/focused-atlas-template.json",
+      "bytes": 2943,
+      "sha256": "1febf501fef655899fed360c213d768d60e5d68fa7ef28f14056359653d5db0e"
+    },
+    {
+      "path": "schemas/greybox-build-plan-template.json",
+      "bytes": 1633,
+      "sha256": "8b4717f7bb48faf82f88009bc238f47f49b14311037e8134a6d5e4df44d4ad92"
+    },
+    {
+      "path": "schemas/host-template.json",
+      "bytes": 3232,
+      "sha256": "d5d166c4be1996337a15143abc75fddd0b0240e9604ae75d8dd476d261fb3585"
+    },
+    {
+      "path": "schemas/intake-art-request-template.json",
+      "bytes": 156,
+      "sha256": "13cd32566727c70687a0daea944eb9b7881ff5f52ec846d2374436d5e82a414d"
+    },
+    {
+      "path": "schemas/intake-request-template.json",
+      "bytes": 180,
+      "sha256": "89c92759af88822d8f10c2cbc61ec5ddc393ed0116d2ec4b96683cd8a60df070"
+    },
+    {
+      "path": "schemas/knowledge-index.json",
+      "bytes": 11337,
+      "sha256": "99e6f3bfe264fe92ede234aa59b64f6d9670d0314542e7d99999a3f128e1e304"
+    },
+    {
+      "path": "schemas/modeling-references-template.json",
+      "bytes": 2093,
+      "sha256": "e53bfaec721040d234363b5e29bbd9b5036435acffd7f76bb32baf31d114802d"
+    },
+    {
+      "path": "schemas/native-composition-check-template.json",
+      "bytes": 728,
+      "sha256": "a8a4d187115f3b84e0d20199f7357ffab08c2c66b6e9e7bcd9c8f1b8562f21b4"
+    },
+    {
+      "path": "schemas/native-spatial-intake-template.json",
+      "bytes": 186,
+      "sha256": "1ac0c7d6556836fc8dd0c7ee70f041a4490d673989a1e1df42da43b623543169"
+    },
+    {
+      "path": "schemas/native-spatial-overview-template.json",
+      "bytes": 536,
+      "sha256": "4e63d430dfd7f53261f363279388bc8940e26543abdb54fbb3c0bc82aac05f99"
+    },
+    {
+      "path": "schemas/observation-contract-template.json",
+      "bytes": 874,
+      "sha256": "d0c6d36a054dc2e3e815f1eabe753f9513774aaa7025d8d07abdc1840745ff4e"
+    },
+    {
+      "path": "schemas/overview-template.json",
+      "bytes": 831,
+      "sha256": "7d2b9e6a08bdf399f65668344088345d351e4b6984893b964efc3cca29e33874"
+    },
+    {
+      "path": "schemas/portfolio-template.json",
+      "bytes": 5187,
+      "sha256": "65abe109c9f21284e58707e3e7c9ea1417a8f404e5c3307f18e57535ec487870"
+    },
+    {
+      "path": "schemas/pre-handoff-review-template.json",
+      "bytes": 1221,
+      "sha256": "99193d65ee92aba70ee40020b1266a05999ba68b3e7633e1d6fc791820e3af48"
+    },
+    {
+      "path": "schemas/production-control-settings-template.json",
+      "bytes": 546,
+      "sha256": "0973079dbad63d95e2270d2cdb4aa4135c4e87d2cee3f7d8b9e30ffb15e14848"
+    },
+    {
+      "path": "schemas/production-expansion-scope-template.json",
+      "bytes": 1121,
+      "sha256": "3eee7c790112ce9aedb26a639744b085f9c48502a4b8594fcec3c5fc86682b85"
+    },
+    {
+      "path": "schemas/production-template.json",
+      "bytes": 9183,
+      "sha256": "d13444897f195048955c902b00334f592924e92dc49f6cf334563baf535e6789"
+    },
+    {
+      "path": "schemas/production-visual-package-template.json",
+      "bytes": 1244,
+      "sha256": "a943c270ba77db8ab456dd39abc767d09b011c728b1c9ac81d091b6887aee78d"
+    },
+    {
+      "path": "schemas/rate-card-template.json",
+      "bytes": 921,
+      "sha256": "488cd3fc64ffbb1067652112ae249b88ac77facda1cccd1594742f6fc40c2264"
+    },
+    {
+      "path": "schemas/reference-board-crop-template.json",
+      "bytes": 846,
+      "sha256": "6d33b48e830791d9c39ed7c08cd969a0a57a34031c16b15398e739f718bc4245"
+    },
+    {
+      "path": "schemas/reference-board-native-binding-template.json",
+      "bytes": 487,
+      "sha256": "6626d44f8a651dde45695d5bd5597d7c97970341d88f4dd57a712657beb2f350"
+    },
+    {
+      "path": "schemas/reference-board-plan-template.json",
+      "bytes": 991,
+      "sha256": "208d6271831316dda37aaa41d8fbf0ccfd0614b3113d73e0bfbc0c043e8d7973"
+    },
+    {
+      "path": "schemas/reference-board-prepare-template.json",
+      "bytes": 2948,
+      "sha256": "ea089398e080483f7b7656965cf560ab52146b1216733989cd040a379d0b1e2b"
+    },
+    {
+      "path": "schemas/reference-board-production-template.json",
+      "bytes": 2895,
+      "sha256": "8d9922891da4b6f292a497ae8c07a60a874771a6167209b012ee712036ca66a9"
+    },
+    {
+      "path": "schemas/reference-board-registry-template.json",
+      "bytes": 4263,
+      "sha256": "b11bb5586c933bf163ba9581bba581a2ae092b6c912c9b7542444819954b4499"
+    },
+    {
+      "path": "schemas/reference-image-receipt-template.json",
+      "bytes": 643,
+      "sha256": "935b3aa8918b7e7aa21ff1974b98ab96166ac58d3d492fdac6780e824f07536c"
+    },
+    {
+      "path": "schemas/runtime-profile-template.json",
+      "bytes": 846,
+      "sha256": "d028893252fbaa31a3c785918df7cbd6b6f229a3ddf841070372be1f197a4e91"
+    },
+    {
+      "path": "schemas/sample-inputs-template.json",
+      "bytes": 3230,
+      "sha256": "7c749cce9ed063330b76b05c1f904f4a80eb342c0e03fa6fb23aee11221e6da1"
+    },
+    {
+      "path": "schemas/sample-template.json",
+      "bytes": 3133,
+      "sha256": "4d7849316ede3b5019cae2669b6b3011e935749de4669245231ea68f2ac3cbc8"
+    },
+    {
+      "path": "schemas/selection-template.json",
+      "bytes": 431,
+      "sha256": "20f46233e38eaabf2714397df037af8aac1cc74cc304915a98e7b6a61e86719c"
+    },
+    {
+      "path": "schemas/spatial-design-template.json",
+      "bytes": 2113,
+      "sha256": "e4ae6d9af1e6348020d188312a210702e93c0edfbba23b3fa5400e69739ef970"
+    },
+    {
+      "path": "schemas/spatial-scope-template.json",
+      "bytes": 711,
+      "sha256": "572a1349fe0039d7a9fa7fa64364ab30aa0bce1f63f37262735627212d4d4e78"
+    },
+    {
+      "path": "schemas/supplier-selection-template.json",
+      "bytes": 646,
+      "sha256": "bbc0f08a86c4ee997224d6c01e1a4435f0a765bf99e892766f310160a28bcb57"
+    },
+    {
+      "path": "schemas/suppliers-template.json",
+      "bytes": 2734,
+      "sha256": "af4725706a4f169cd7c88baf69016d3b4a463ab4993912e2396ba359819bd7f3"
+    },
+    {
+      "path": "schemas/usage-feedback-template.json",
+      "bytes": 743,
+      "sha256": "c563a268ac500da1f3a41e864caa0072f2cb4252fa79fef7acb8f5c85a6f7b16"
+    },
+    {
+      "path": "schemas/workflow-template.json",
+      "bytes": 2001,
+      "sha256": "a8994e7bccc51760f6b4abbfeda1607f27569e6a6e2f97f9a5da6851e6ce00ee"
+    },
+    {
+      "path": "schemas/workgraph-template.json",
+      "bytes": 4722,
+      "sha256": "d0e2647ad17d291c34e462d9dbb31000952f769f68a2d01f6fa9185360d9f45f"
+    },
+    {
+      "path": "schemas/workspace-engine-mappings.json",
+      "bytes": 746,
+      "sha256": "ed23202987c7eafccb67c0da7b0c32aec5142441bb126552accd6da55a856df3"
+    },
+    {
+      "path": "schemas/workspace-template.json",
+      "bytes": 491,
+      "sha256": "e4f323013e5018c747587d598e01f4d426b8e6a9fb4dc5e8a2bdba3c7cccf3be"
+    },
+    {
+      "path": "scripts/asset_metrics.py",
+      "bytes": 341,
+      "sha256": "d79ca293b24e816d1eae47919bd81c63a3c71d216bfa733577631cb8eea509d3"
+    },
+    {
+      "path": "scripts/character_check.py",
+      "bytes": 328,
+      "sha256": "a3448679d9a9020abd1cae95de92e3a95595dd9d5afa7f9d0e9cc6af9aaa6700"
+    },
+    {
+      "path": "scripts/configure_provider.py",
+      "bytes": 357,
+      "sha256": "6c88afa713bbad3dc4dbe423b898104b47c953d028d7c1c6759a3bfa91096067"
+    },
+    {
+      "path": "scripts/executor.py",
+      "bytes": 327,
+      "sha256": "30a64fbddf1083de5af04d802db3128076b9c290f054cc1cf057c30b47fe0c48"
+    },
+    {
+      "path": "scripts/greybox.py",
+      "bytes": 324,
+      "sha256": "87ec057078a0c9b176c9b6f5cad7b5ac08eb7d240d625dcc8f283f3b65261610"
+    },
+    {
+      "path": "scripts/greybox_mcp.py",
+      "bytes": 322,
+      "sha256": "f8b83737691bc43aceee310151b192734c69872b4873880a85a12cab18f13c7b"
+    },
+    {
+      "path": "scripts/image.py",
+      "bytes": 339,
+      "sha256": "eee0b841296a7eb8b1367cd084f1013db1cf113108ea119c00ec8fa1fd243798"
+    },
+    {
+      "path": "scripts/install.py",
+      "bytes": 28269,
+      "sha256": "91debed3039251eb9f5ac6c2b4f96219d3264a33ef52324a9d71f88b05cc3a78"
+    },
+    {
+      "path": "scripts/knowledge.py",
+      "bytes": 336,
+      "sha256": "fb710fb00921b10ee52662fdbf487dc30c50a00dacb2d4108ae5f39463fd75b3"
+    },
+    {
+      "path": "scripts/lookdev.py",
+      "bytes": 1436,
+      "sha256": "9be6373af7bed7bd6608f49d30915218c0b49de5df13d77a30c9908b146d7c55"
+    },
+    {
+      "path": "scripts/production_control.py",
+      "bytes": 3275,
+      "sha256": "7a8fa5805291967cae94b874d15aa3b52490de9caae7108217f7f5de87bfae94"
+    },
+    {
+      "path": "scripts/progress.py",
+      "bytes": 2847,
+      "sha256": "a6043c5f062863bfedc9383ad2ec464d26402a8fb104e700286ce2e6c5484838"
+    },
+    {
+      "path": "scripts/reference_boards.py",
+      "bytes": 352,
+      "sha256": "6bdd085bd1992375d0444dbd32c61f87e9d8e653abd777627dbd9d673cfe95ab"
+    },
+    {
+      "path": "scripts/workbuddy_board_guard.py",
+      "bytes": 355,
+      "sha256": "b37f4376b4b117617ec904f26dccb53fdee44851856279257ce52f9e88a9560a"
+    },
+    {
+      "path": "scripts/workflow_check.py",
+      "bytes": 4413,
+      "sha256": "d47cdc96e8cd65807b5385a8003c8b412bd3d2b9304a0c4203637b237f0eca8d"
+    },
+    {
+      "path": "scripts/workgraph.py",
+      "bytes": 1305,
+      "sha256": "7718b1b51639c2c9fb1cb32729871c297ed3bd517ba1a828e0092f2f1eed1196"
+    }
+  ],
+  "sourceManifestAlgorithm": "SHA-256 of UTF-8 JSON(files), sort_keys=true, separators=(comma,colon), ensure_ascii=true; excludes MANIFEST.json itself."
+}

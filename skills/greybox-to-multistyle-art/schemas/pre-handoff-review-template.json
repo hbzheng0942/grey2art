@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "kind": "pre-handoff-review",
+  "input_digest": "REPLACE_FROM_READ_ONLY_REVIEW_INPUTS",
+  "reviewer": {
+    "agent_id": "REPLACE_ACTUAL_REVIEW_AGENT_ID",
+    "task_id": "REPLACE_ACTUAL_REVIEW_TASK_ID"
+  },
+  "source_ref": "REPLACE_ACTUAL_REVIEW_MESSAGE_REFERENCE",
+  "independence": "independent",
+  "examined_images": [],
+  "coverage": [
+    {
+      "id": "REPLACE_REQUIRED_CRITERION_FROM_INPUTS",
+      "status": "pending",
+      "note": "",
+      "evidence": []
+    }
+  ],
+  "findings": [],
+  "unreviewed": [],
+  "note": "Intentionally pending. Embed truthful receipt as stage.review after inspecting actual input artifacts. Stage.producer is {agent_id,task_id}. For independent mode both reviewer identities differ from producer. Host without subagents may explicitly use unverified_serial with limitation; never call it independent. Each required criterion must be satisfied with note and bound path/sha256 evidence; all required images must be examined. Unresolved blocker/repair prevents handoff. Review cannot grant user approval. Its digest excludes itself and human approval fields; H4 human visual_review is also excluded to avoid circular approval, but final stage_digest includes both."
+}

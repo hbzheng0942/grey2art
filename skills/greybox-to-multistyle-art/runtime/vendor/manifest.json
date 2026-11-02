@@ -1,0 +1,101 @@
+{
+  "schema": "greybox.vendor/v1",
+  "provider": "lux3d",
+  "repository": "https://github.com/manycore-research/Aholo-Lux3D",
+  "commit": "81c495ad0f01784b3d86f8d5b4a97558e80a78ca",
+  "version": "1.2.0",
+  "license": "MIT",
+  "selection": "Minimal maintained OpenAPI runtime, contracts and private setup; no workflow runner, preview, MCP, or collection invocation. Original files unmodified.",
+  "files": [
+    {
+      "path": "aholo-lux3d/LICENSE",
+      "upstreamPath": "LICENSE",
+      "sha256": "29d4167a32cb3456367209798c9d93d6012a2eaff90a66d6b210214ee7b52fe0",
+      "bytes": 1074
+    },
+    {
+      "path": "aholo-lux3d/adapter.json",
+      "upstreamPath": "plugins/common/aholo-lux3d/adapter.json",
+      "sha256": "5d9abfe5db259058b0de28b58e55547b607a0f4b9f4ac5ea763d9eae194f5894",
+      "bytes": 195
+    },
+    {
+      "path": "aholo-lux3d/host-identity.json",
+      "upstreamPath": "plugins/common/aholo-lux3d/host-identity.json",
+      "sha256": "03f71ed3f4117e0d1967d563afbe5a6643c044f14dcd74d62affc968a3a9f17a",
+      "bytes": 814
+    },
+    {
+      "path": "aholo-lux3d/scripts/setup_runtime.py",
+      "upstreamPath": "plugins/common/aholo-lux3d/scripts/setup_runtime.py",
+      "sha256": "3a8c19f2ff263cfcb87db511e3a750889c0b69d3767ef2fc649278559b3e2860",
+      "bytes": 9362
+    },
+    {
+      "path": "aholo-lux3d/scripts/host_identity.py",
+      "upstreamPath": "plugins/common/aholo-lux3d/scripts/host_identity.py",
+      "sha256": "d041e40b075d30b2f4a595404f24ce6775bf5cbc0561bfc86eb89631fec9f79a",
+      "bytes": 9276
+    },
+    {
+      "path": "aholo-lux3d/core/runtime/requirements.txt",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/runtime/requirements.txt",
+      "sha256": "c3fa4117d05dc932a5553870af7d40f7ecb8cd9ebdece596a0bd20c18bdee7e8",
+      "bytes": 20
+    },
+    {
+      "path": "aholo-lux3d/core/runtime/lux3d_client.py",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/runtime/lux3d_client.py",
+      "sha256": "bb65929aa1bc9190e5e3cb10cbdc42c5ff413509c10becfed2d927bb70548ee4",
+      "bytes": 87778
+    },
+    {
+      "path": "aholo-lux3d/core/runtime/commerce_client.py",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/runtime/commerce_client.py",
+      "sha256": "ec56bc62cfa38bebe48ebc888bdf86fddd2113aac5db73f07bf97d73f45e4b10",
+      "bytes": 24209
+    },
+    {
+      "path": "aholo-lux3d/core/runtime/collection_support.py",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/runtime/collection_support.py",
+      "sha256": "a9c8612b03a0d47c9fd97eb0afa87fa070d879cc349e770d6cacba58abba5d75",
+      "bytes": 17241
+    },
+    {
+      "path": "aholo-lux3d/core/runtime/workflow_contracts.py",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/runtime/workflow_contracts.py",
+      "sha256": "678fbf95f2bc15f222081131c70c3d0c2b18d2723bb516ae0552bb69e49f1ac1",
+      "bytes": 16756
+    },
+    {
+      "path": "aholo-lux3d/core/runtime/asset_uploader.py",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/runtime/asset_uploader.py",
+      "sha256": "cc4b66688934ccb431a52ee6cdd84004756399aa068334152e85680fb3fe4290",
+      "bytes": 13979
+    },
+    {
+      "path": "aholo-lux3d/core/runtime/task_metadata.py",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/runtime/task_metadata.py",
+      "sha256": "a6b0b2fcd5bb70c3d8f5ccc88f483f4f20b784b41b9416ae4258c4f29c36d35d",
+      "bytes": 2912
+    },
+    {
+      "path": "aholo-lux3d/core/contracts/lux3d-generation.v1.json",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/contracts/lux3d-generation.v1.json",
+      "sha256": "63c1b0b1b751b03bcf11f624a4acf154c748829d6c82d12f9eeb803416f59477",
+      "bytes": 21220
+    },
+    {
+      "path": "aholo-lux3d/core/contracts/lux3d-commerce.v1.json",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/contracts/lux3d-commerce.v1.json",
+      "sha256": "c00612c751eacbbfc8626da2e5de6cce2c04e92f907087d0db7163b2d6245e80",
+      "bytes": 18292
+    },
+    {
+      "path": "aholo-lux3d/core/contracts/lux3d-workflow.v2.json",
+      "upstreamPath": "plugins/common/aholo-lux3d/core/contracts/lux3d-workflow.v2.json",
+      "sha256": "b65d5da26f6db3a469348565f8df8e4cb6751a5a3d5204a38a2ff5c64fa0472a",
+      "bytes": 5485
+    }
+  ]
+}

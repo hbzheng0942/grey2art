@@ -1,0 +1,42 @@
+{
+  "schema": 2,
+  "kind": "assembly-recipe",
+  "style_id": "REPLACE_STYLE_ID",
+  "execution_plan_digest": "REPLACE_APPROVED_EXECUTION_PLAN_DIGEST",
+  "spatial_design_digest": "REPLACE_APPROVED_SPATIAL_DESIGN_STAGE_DIGEST",
+  "assemblies": [
+    {
+      "id": "REPLACE_ASSEMBLY_UNIT_ID",
+      "asset_ids": [
+        "REPLACE_PRODUCTION_ASSET_ID"
+      ],
+      "space_ids": [
+        "REPLACE_BASELINE_SPACE_ID"
+      ],
+      "anchor_and_support": "REPLACE_SEMANTIC_ANCHORS_AND_SUPPORT_INTERFACES",
+      "scale_and_fit": "REPLACE_UNITS_UNIFORM_FIT_AND_PROTECTED_PLAY_ENVELOPE",
+      "material_and_lighting": "REPLACE_SHARED_MATERIAL_CALIBRATION_AND_TARGET_LIGHTING",
+      "seam_integration": "REPLACE_CONTACT_JUNCTIONS_TRANSITION_TREATMENT",
+      "depends_on": []
+    }
+  ],
+  "note": "Every proposed asset/source must be covered by a work unit. Asset IDs and space IDs must exist in the approved production table and spatial scope. Dependencies must form an acyclic graph. This plan describes real construction work; prose does not replace later native execution/visual checks. Non-mesh scene/material/lighting/shader/VFX work may use an empty asset_ids list only with native_realization, and must be referenced by a visual feature assembly_ids entry. These are planned responsibilities, not execution receipts. All actual mesh sources remain asset proposals. Every native realization also binds an actual H3 BOM/assembly image; native-only assemblies still need spatial scope, fit, support/contact treatment and assembly annotations.",
+  "native_only_assembly_example": {
+    "id": "REPLACE_NATIVE_ASSEMBLY_ID",
+    "asset_ids": [],
+    "space_ids": [
+      "REPLACE_BASELINE_SPACE_ID"
+    ],
+    "native_realization": {
+      "kind": "lighting",
+      "target": "REPLACE_ACTUAL_SCENE_NODE_OR_MATERIAL_TARGET",
+      "method": "REPLACE_REUSED_RECIPE_OR_OFFICIAL_NATIVE_API_METHOD",
+      "evidence_image_id": "REPLACE_ACTUAL_H3_BOM_OR_ASSEMBLY_IMAGE_ID"
+    },
+    "anchor_and_support": "REPLACE_EXISTING_SCENE_SUPPORT_AND_NON_GEOMETRY_SCOPE",
+    "scale_and_fit": "REPLACE_EFFECT_SPACE_AND_PROTECTED_PLAY_ENVELOPE",
+    "material_and_lighting": "REPLACE_TARGET_RESPONSE_AND_RENDERER_REQUIREMENTS",
+    "seam_integration": "REPLACE_CONTACT_AND_VISUAL_TRANSITION_TREATMENT",
+    "depends_on": []
+  }
+}

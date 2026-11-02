@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "project": "Grey2Art",
+  "layout": {
+    "rows": 3,
+    "columns": 3,
+    "frame_aspect": "8 / 5",
+    "one_frame_per": "game-and-art-style combination"
+  },
+  "unique_games": 7,
+  "unique_game_style_combinations": 9,
+  "scope": "Existing native game art frames. Source and capture identity are retained; these examples are independent of current Skill release qualification.",
+  "cases": [
+    {
+      "id": "night-racing-halloween",
+      "game": "night-racing",
+      "style": "halloween",
+      "title": {
+        "en": "Night Racing · Acid Halloween",
+        "zh-CN": "万圣夜竞速 · 酸色漫画"
+      },
+      "image": "docs/demo/colleague-halloween-racing-native.png",
+      "source": {
+        "repository": "https://github.com/shencaiyiyi11-byte/playable-game-gallery",
+        "revision": "3ed4658b1a8e61df961c9d2a36ca3662827e33af",
+        "path": "halloween-racing/game.pck",
+        "runtime_scene": "res://art/arcade-racing/styles/halloween/runtime/e3-full-v1/play.tscn",
+        "capture_record": "docs/demo/colleague-gallery-stills.json",
+        "play": "https://shencaiyiyi11-byte.github.io/playable-game-gallery/play.html?game=halloween-racing",
+        "kind": "native-gameplay-recording-frame"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_fraction_each_side": 0.0,
+        "edge_crop_axis": "none"
+      },
+      "sha256": "b92d6d92f16b66b0c26eb9e52efd019bf79cdd101c743fd5479dd14ee3661782",
+      "bytes": 236273,
+      "width": 864,
+      "height": 540
+    },
+    {
+      "id": "museum-dog-mammoth-hall",
+      "game": "museum-dog",
+      "style": "A01-inflatable",
+      "title": {
+        "en": "Museum Dog · Mammoth Hall",
+        "zh-CN": "狗闹博物馆 · 猛犸象大厅"
+      },
+      "image": "docs/demo/gallery-museum-hall.jpg",
+      "source": {
+        "project": "Museum Dog / Chaos",
+        "runtime_scene": "res://art/museum-dog/styles/A01/runtime/revisions/7016ffcf59c4e2f2/play.tscn",
+        "native_recording_frame": 32,
+        "capture_record": "docs/demo/gameplay-museum-hall-source.json",
+        "clip": "docs/demo/gameplay-museum-hall.gif",
+        "repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+        "path": "games/museum-dog/GAME.md",
+        "kind": "native-gameplay-recording-frame",
+        "runtime_revision": "7016ffcf59c4e2f2",
+        "revision": "ab75441b078713b14842a284ddebfe306ab03aa3"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_fraction_each_side": 0.05,
+        "edge_crop_axis": "horizontal"
+      },
+      "sha256": "8e1c894ee17105904235aa18cedb166755fd16bb2b4353b51efedb47cba5d0af",
+      "bytes": 153991,
+      "width": 960,
+      "height": 540
+    },
+    {
+      "id": "garden-ink-stars",
+      "game": "wander-garden",
+      "style": "ink-storybook",
+      "title": {
+        "en": "Wander Garden · Ink Star Valley",
+        "zh-CN": "漫野田园 · 墨线星谷"
+      },
+      "image": "docs/demo/gallery-garden-star-valley.png",
+      "source": {
+        "repository": "https://github.com/xuanyuc1999-ops/wander-garden-demos",
+        "revision": "78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+        "path": "demos/02-ink-storybook/previews/regions/4-stars.png",
+        "kind": "published-native-region-preview",
+        "play": "https://xuanyuc1999-ops.github.io/wander-garden-demos/"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_fraction_each_side": 0.0,
+        "edge_crop_axis": "none"
+      },
+      "sha256": "a09c945dfd6163c3d48ffdce503bca0a21f3b4175d7a6ce46ed01be926df34fa",
+      "bytes": 912115,
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "id": "bubble-animal-city",
+      "game": "bubble-buddies",
+      "style": "animal-city",
+      "title": {
+        "en": "Bubble Buddies · Animal City",
+        "zh-CN": "Bubble Buddies · 动物都市"
+      },
+      "image": "docs/demo/gallery-bubble-animal-city.png",
+      "source": {
+        "repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+        "revision": "ab75441b078713b14842a284ddebfe306ab03aa3",
+        "path": "games/bubble-buddies/previews/d1-r9-native.png",
+        "version": "d1-whole-shop-r9 / CONTROL46",
+        "kind": "published-native-game-frame"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_fraction_each_side": 0.0,
+        "edge_crop_axis": "none"
+      },
+      "sha256": "b0542de952cb0092cbd1739feb1bd9c94d88b9643508d2554e6a5147c1b66b5f",
+      "bytes": 746875,
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "id": "no-signal-painted-gothic",
+      "game": "no-signal",
+      "style": "painted-gothic",
+      "title": {
+        "en": "NO SIGNAL · Painted Gothic",
+        "zh-CN": "失联航次 · 手绘哥特"
+      },
+      "image": "docs/demo/colleague-no-signal-halloween-native.png",
+      "source": {
+        "repository": "https://github.com/shencaiyiyi11-byte/playable-game-gallery",
+        "revision": "3ed4658b1a8e61df961c9d2a36ca3662827e33af",
+        "path": "no-signal-halloween/game.pck",
+        "runtime_scene": "res://art/halloween_s01/s01.tscn",
+        "capture_record": "docs/demo/colleague-gallery-stills.json",
+        "play": "https://shencaiyiyi11-byte.github.io/playable-game-gallery/play.html?game=no-signal-halloween",
+        "kind": "native-gameplay-recording-frame"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_fraction_each_side": 0.0,
+        "edge_crop_axis": "none"
+      },
+      "sha256": "78e0d13e024108ea2f000f24699f37784bb5e83525213e251c2234c49196293a",
+      "bytes": 472184,
+      "width": 864,
+      "height": 540
+    },
+    {
+      "id": "train-paper-atlas",
+      "game": "train-parkour",
+      "style": "paper-atlas",
+      "title": {
+        "en": "Train Parkour · Paper Atlas",
+        "zh-CN": "列车跑酷 · 纸艺地图"
+      },
+      "image": "docs/demo/gallery-train-paper-atlas.jpg",
+      "source": {
+        "repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+        "revision": "ab75441b078713b14842a284ddebfe306ab03aa3",
+        "path": "games/train-parkour/styles/paper-atlas/thumbnail.jpg",
+        "version": "R9 full-course refinement",
+        "kind": "published-native-game-frame"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_fraction_each_side": 0.05,
+        "edge_crop_axis": "horizontal"
+      },
+      "sha256": "0f5dc8fe86c440ae92dc8da46afe22274d128d202e37e2dda144963f10123463",
+      "bytes": 299892,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "id": "hole-enamel",
+      "game": "hole",
+      "style": "enamel",
+      "title": {
+        "en": "Hole · Enamel Toy Harbor",
+        "zh-CN": "黑洞 · 搪瓷玩具港"
+      },
+      "image": "docs/demo/hole-reference-enamel.png",
+      "source": {
+        "repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+        "revision": "ab75441b078713b14842a284ddebfe306ab03aa3",
+        "path": "games/hole/styles/enamel/project",
+        "capture_record": "docs/demo/hole-gallery-camera.json",
+        "kind": "new-reference-camera-native-still",
+        "version": "studio-enamel-deterministic-assembly-20261013",
+        "capture_record_sha256": "c16aa0c535df2f5661e7bfe19f5bd2d240fab5a38a11924d7727b50f85c4755f"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_axis": "vertical",
+        "edge_crop_fraction_each_side": 0.03125
+      },
+      "width": 1536,
+      "height": 1024,
+      "bytes": 575694,
+      "sha256": "07233d84269019bbc762fb2d62ec6c32aee76a26a1ad5740fbd5124ecf070c8e"
+    },
+    {
+      "id": "night-racing-sunset",
+      "game": "night-racing",
+      "style": "sunset-coast",
+      "title": {
+        "en": "Night Racing · Sunset Coast",
+        "zh-CN": "街头竞速 · 落日海岸"
+      },
+      "image": "docs/demo/colleague-sunset-native.png",
+      "source": {
+        "repository": "https://github.com/shencaiyiyi11-byte/playable-game-gallery",
+        "revision": "3ed4658b1a8e61df961c9d2a36ca3662827e33af",
+        "path": "sunset/game.pck",
+        "runtime_scene": "res://art/arcade-racing/styles/sunset/runtime/revisions/finish-v1/play.tscn",
+        "capture_record": "docs/demo/colleague-gallery-stills.json",
+        "play": "https://shencaiyiyi11-byte.github.io/playable-game-gallery/play.html?game=sunset",
+        "kind": "native-gameplay-recording-frame"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_fraction_each_side": 0.05,
+        "edge_crop_axis": "horizontal"
+      },
+      "sha256": "caafabaf36cb37d9bcf70a9a917369d4d84ba34619b39a21bb23a76df385a917",
+      "bytes": 423035,
+      "width": 960,
+      "height": 540
+    },
+    {
+      "id": "garden-pumpkin-forest",
+      "game": "wander-garden",
+      "style": "halloween",
+      "title": {
+        "en": "Wander Garden · Pumpkin Forest",
+        "zh-CN": "漫野田园 · 南瓜幽林"
+      },
+      "image": "docs/demo/gallery-garden-halloween.png",
+      "source": {
+        "repository": "https://github.com/xuanyuc1999-ops/wander-garden-demos",
+        "revision": "78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+        "path": "demos/03-halloween/previews/regions/1-forest.png",
+        "kind": "published-native-region-preview",
+        "play": "https://xuanyuc1999-ops.github.io/wander-garden-demos/"
+      },
+      "display": {
+        "aspect_ratio": "8 / 5",
+        "fit": "cover",
+        "position": "center",
+        "treatment": "Original native frame bytes retained; proportional CSS cover only. No filler bars, stretch, repaint or grading.",
+        "edge_crop_fraction_each_side": 0.0,
+        "edge_crop_axis": "none"
+      },
+      "sha256": "9655c7b1d52be5c5208635003bd9da28980f90a37bc9c89b74b1995a5c780748",
+      "bytes": 896203,
+      "width": 1280,
+      "height": 800
+    }
+  ]
+}

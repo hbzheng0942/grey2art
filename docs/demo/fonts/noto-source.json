@@ -1,0 +1,52 @@
+{
+  "font": "Noto Sans CJK SC 2.004",
+  "documentation_family": "Grey2Art Sans",
+  "author": "Adobe; Noto project",
+  "license": "OFL-1.1",
+  "upstream": "https://github.com/notofonts/noto-cjk/tree/Sans2.004",
+  "source_input": {
+    "archive": "WanderGarden-v0.2-source.zip",
+    "path": "assets/fonts/NotoSansCJKsc-Regular.otf",
+    "bytes": 16437364,
+    "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+    "upstream_reference": "https://github.com/notofonts/noto-cjk/blob/Sans2.004/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf"
+  },
+  "modification": "WOFF2 subset for both overview languages plus printable ASCII; internal family renamed Grey2Art Sans. Static weight 400; CSS synthesizes 600 headings.",
+  "subset": {
+    "tools": {
+      "fonttools": "4.68.0",
+      "brotli": "1.2.1"
+    },
+    "character_count": 203,
+    "character_file": "showcase-characters.txt",
+    "options": {
+      "flavor": "woff2",
+      "name_IDs": [
+        "*"
+      ],
+      "name_legacy": true,
+      "name_languages": [
+        "*"
+      ],
+      "recalc_timestamp": false
+    }
+  },
+  "files": [
+    {
+      "file": "NotoSansCJKsc-2.004-showcase-subset.woff2",
+      "bytes": 46412,
+      "sha256": "34c915ab9f6e26d23d6b2bf36b2c72fcc5d25ee9e14be758143410360a9d139d"
+    },
+    {
+      "file": "NotoSansCJKsc-OFL.txt",
+      "bytes": 4353,
+      "sha256": "a01a391b3cc44676298e459fca4a0afdac011d2219fecbe7bb8f6a0f7ece23e4"
+    },
+    {
+      "file": "showcase-characters.txt",
+      "bytes": 419,
+      "sha256": "48b8375d8b0ece1d32668f98aae16ffdcf303635030355a68977b08ef2ad2390"
+    }
+  ],
+  "license_upstream": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/LICENSE"
+}

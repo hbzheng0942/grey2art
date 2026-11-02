@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "kind": "workflow-overview-intake",
+  "id": "native-spatial-review",
+  "goals": [
+    "Review the existing Blender scene and its affected native views without modifying the source"
+  ],
+  "input": {
+    "mode": "spatial_only",
+    "format": "blend",
+    "baseline_verified": false
+  },
+  "authoring_carrier": "blender",
+  "endpoint": "spatial",
+  "target_engine": null,
+  "delivery_mode": "spatial_design",
+  "operation": "review",
+  "style_count": 1,
+  "providers": [],
+  "character": {
+    "presence": "none"
+  }
+}

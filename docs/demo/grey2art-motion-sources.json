@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "created_at": "2026-10-30T17:02:11.668364+08:00",
+  "purpose": "README autoplay loops from existing actual native recordings.",
+  "tool": {
+    "ffmpeg": "ffmpeg version 8.1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "treatment": {
+    "game_frames": "Downscale full frames; Train panels are placed side by side. No crop, repaint, inpainting, added UI, grading or overlays.",
+    "gif": "96-color palette, no dithering, infinite loop. GIF colors are quantized; requested frame reduction only, no interpolation or synthesized frames.",
+    "timing": "No intentional speed change. GIF uses centisecond delays; Hole 8fps timing quantizes to a 7.01s loop from 7s requested input. Encoded rates are delivery parameters, not runtime FPS.",
+    "audio": "GIF has no audio; Hole original audio is omitted."
+  },
+  "evidence_boundary": "Both sources use offline native rendering, with fixed/automatic input. Train is only approximately visually matched. Hole source is an automatic normal-movement route, not a human playtest. These loops are not real-time performance, art acceptance, current Skill production or final gameplay acceptance evidence.",
+  "total_gif_bytes": 7732553,
+  "files": [
+    {
+      "output": "docs/demo/train-greybox-halloween-motion.gif",
+      "identity": "Actual native Train greybox (left) and H07 (right), approximate matching action.",
+      "source_previews": [
+        {
+          "path": "docs/demo/train-greybox-preview.mp4",
+          "sha256": "462c13d874d03f76bd1225f01d3eaa5fca7de87ffff02abbc55ff1fbdf91a210",
+          "bytes": 1490504,
+          "original_source": {
+            "path": "media/train/raw/T01_greybox_clean_native_1080p30.mp4",
+            "canonical_asset": "shared/assets/sha256/3f/3fccd775bfb780153c3c64b9a4d1c9876a847008d9e2b235ad0f965ec866f00b.mp4",
+            "bytes": 17753687,
+            "sha256": "3fccd775bfb780153c3c64b9a4d1c9876a847008d9e2b235ad0f965ec866f00b",
+            "version": "m1.7r2-unified-v2",
+            "platform": "Godot4.7.2 Vulkan native",
+            "capture_mode": "fixed-input offline native render; clean UI",
+            "sync_level": "same physics60/pace3/main driver; approximate visual match",
+            "hash_matched_before_and_after_transcode": true
+          }
+        },
+        {
+          "path": "docs/demo/train-halloween-preview.mp4",
+          "sha256": "ae4af9bf5ed71fc016fe365d932e882704976b0714210b3b5ebb63ebfc6c42af",
+          "bytes": 5123369,
+          "original_source": {
+            "path": "media/train/raw/T02_T04_H07_city08_T2_FestivalV2_clean_native_1080p30.mp4",
+            "canonical_asset": "shared/assets/sha256/f0/f0f3bf5fb0e6b5c537b7e6407f1f4315761969c95b3d39a283861e600a5302af.mp4",
+            "bytes": 85230505,
+            "sha256": "f0f3bf5fb0e6b5c537b7e6407f1f4315761969c95b3d39a283861e600a5302af",
+            "version": "city08 + T2 + FestivalV2 + train-readability",
+            "platform": "Godot4.7.2 Vulkan native",
+            "capture_mode": "fixed-input offline native render; clean UI",
+            "sync_level": "same main driver",
+            "hash_matched_before_and_after_transcode": true
+          }
+        }
+      ],
+      "source_preview_receipt": "docs/demo/grey2art-video-sources.json",
+      "trim": {
+        "input_preview_start_sec": 1,
+        "input_preview_end_sec_exclusive": 9,
+        "original_recording_start_sec": 3,
+        "original_recording_end_sec_exclusive": 11
+      },
+      "command": [
+        "ffmpeg",
+        "-n",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-ss",
+        "1",
+        "-i",
+        "docs/demo/train-greybox-preview.mp4",
+        "-ss",
+        "1",
+        "-i",
+        "docs/demo/train-halloween-preview.mp4",
+        "-filter_complex",
+        "[0:v]trim=duration=8,setpts=PTS-STARTPTS,fps=10,scale=384:216:flags=lanczos[g];[1:v]trim=duration=8,setpts=PTS-STARTPTS,fps=10,scale=384:216:flags=lanczos[h];[g][h]hstack=inputs=2,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle",
+        "-an",
+        "-map_metadata",
+        "-1",
+        "-loop",
+        "0",
+        "docs/demo/train-greybox-halloween-motion.gif"
+      ],
+      "requested_frame_rate": 10,
+      "visual_review_sample_sec": [
+        0,
+        3,
+        6
+      ],
+      "bytes": 3808929,
+      "sha256": "b1547d4fead57a00dc809b6fc73f789fa5fb931ed7348366991eede33e29fe14",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "gif",
+            "width": 768,
+            "height": 216,
+            "r_frame_rate": "10/1",
+            "avg_frame_rate": "10/1",
+            "duration": "8.000000",
+            "nb_read_frames": "80"
+          }
+        ],
+        "format": {
+          "duration": "8.000000",
+          "size": "3808929"
+        }
+      },
+      "validation": {
+        "full_decode_exit_code": 0,
+        "full_decode_error_log_bytes": 0,
+        "decoded_frames": 80,
+        "consecutive_duplicate_decoded_frames": 0,
+        "source_hashes_verified": true,
+        "visual_review": "Final GIF contact-sheet samples opened. Actual moving game scene visible, no added captions, debug text, watermark or blank sample. Full original frame preserved for each panel."
+      }
+    },
+    {
+      "output": "docs/demo/hole-ceramic-motion.gif",
+      "identity": "Actual ceramic Hole native action; automatic normal-movement route.",
+      "source": {
+        "path": "media/hole/raw/H01_ceramic_clean_native_auto.mp4",
+        "asset": "shared/assets/sha256/f1/f15b53396379a23faad64b8cf981acd2a06539c953fac3c9519c03ba15871458.mp4",
+        "sha256": "f15b53396379a23faad64b8cf981acd2a06539c953fac3c9519c03ba15871458",
+        "bytes": 73738854,
+        "type": "approved existing native recording",
+        "version_note": "Recorded source is frozen separately from the later portable engineering package.",
+        "capture_record": {
+          "shot_id": "H01",
+          "style": "ceramic",
+          "version": "hole-lookdev-validated / case-final-v2 / combined",
+          "platform": "native Godot 4.7.2 / Metal Mobile",
+          "capture_mode": "offline fixed-step auto route; clean UI",
+          "match_group": "hole_native_same_route_v1",
+          "sync_level": "H01/H02 simulation events equal; appearance differs",
+          "duration_sec": "20.033333",
+          "resolution": "1920x1080",
+          "encoded_fps": "30/1",
+          "audio": "native game SFX / AAC stereo 48kHz",
+          "usable_timecodes": "00:00.20-00:19.83; vehicles 00:00.50-00:04.00; buildings 00:05.50-00:08.20",
+          "status": "可剪",
+          "notes": "UI/debug/labels/tips hidden per current request. Auto route; not human playtest or real-time performance. Prepared by normal simulated movement for 6.0s; no teleport/forced growth. Same start/state/route and 71 consumed objects in recorded interval."
+        }
+      },
+      "source_repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+      "source_revision": "ab75441b078713b14842a284ddebfe306ab03aa3",
+      "source_manifest_sha256": "531953bba6611c1cb50d6f1ac571e30b21291941d18defb08aafe4578ab4fa16",
+      "trim": {
+        "source_start_sec": 0.5,
+        "source_end_sec_exclusive": 7.5,
+        "requested_duration_sec": 7
+      },
+      "command": [
+        "ffmpeg",
+        "-n",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-ss",
+        "0.5",
+        "-i",
+        "SOURCE:media/hole/raw/H01_ceramic_clean_native_auto.mp4",
+        "-t",
+        "7",
+        "-filter_complex",
+        "fps=8,scale=480:270:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle",
+        "-an",
+        "-map_metadata",
+        "-1",
+        "-loop",
+        "0",
+        "docs/demo/hole-ceramic-motion.gif"
+      ],
+      "requested_frame_rate": 8,
+      "visual_review_sample_sec": [
+        0,
+        2.5,
+        5
+      ],
+      "bytes": 3923624,
+      "sha256": "01120b24665f5883707c5e4e329b5e0f34ba3765c58a5fe5994739dfb0e8793a",
+      "ffprobe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "gif",
+            "width": 480,
+            "height": 270,
+            "r_frame_rate": "8/1",
+            "avg_frame_rate": "25/3",
+            "duration": "7.010000",
+            "nb_read_frames": "56"
+          }
+        ],
+        "format": {
+          "duration": "7.010000",
+          "size": "3923624"
+        }
+      },
+      "validation": {
+        "full_decode_exit_code": 0,
+        "full_decode_error_log_bytes": 0,
+        "decoded_frames": 56,
+        "consecutive_duplicate_decoded_frames": 0,
+        "source_hashes_verified": true,
+        "visual_review": "Final GIF contact-sheet samples opened. Actual moving game scene visible, no added captions, debug text, watermark or blank sample. Full original frame preserved for each panel."
+      }
+    }
+  ]
+}

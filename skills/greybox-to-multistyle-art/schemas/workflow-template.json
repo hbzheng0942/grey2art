@@ -1,0 +1,62 @@
+{
+  "schema": 2,
+  "kind": "greybox-art-workflow",
+  "selected_styles": [],
+  "requires_lux": false,
+  "concept_source": "generate",
+  "stages": [
+    {
+      "id": "preflight",
+      "scope": "shared",
+      "revision": 1,
+      "status": "draft",
+      "actor": "host",
+      "decision_note": "",
+      "consumes": {},
+      "evidence": []
+    },
+    {
+      "id": "baseline",
+      "scope": "shared",
+      "revision": 1,
+      "status": "draft",
+      "actor": "host",
+      "decision_note": "",
+      "consumes": {},
+      "evidence": []
+    },
+    {
+      "id": "directions",
+      "scope": "shared",
+      "revision": 1,
+      "status": "draft",
+      "actor": "host",
+      "decision_note": "",
+      "consumes": {
+        "shared/baseline": "REPLACE_WITH_STAGE_DIGEST"
+      },
+      "evidence": []
+    },
+    {
+      "id": "selection",
+      "scope": "shared",
+      "revision": 1,
+      "status": "draft",
+      "actor": "user",
+      "decision_note": "",
+      "consumes": {
+        "shared/directions": "REPLACE_WITH_STAGE_DIGEST"
+      },
+      "evidence": [],
+      "approval": {
+        "actor": "user",
+        "decision": "pending",
+        "source_ref": "",
+        "scope": "shared/selection",
+        "stage_digest": ""
+      }
+    }
+  ],
+  "note": "Intentionally blocked draft. Current policy requires actual H1/H2/H3/H4 review receipts, baseline observation views/states, S6 composition captures and risk coverage, an exact complete-sample H3 with visible BOM/assembly maps and visual responsibility. Start from the related templates. stage_digest and schema 2 identity are retained; image-conditioned-v1 frozen checkpoints are historical and cannot authorize a new run. Never relabel old approvals as v2. Add required artifacts, inspect actual review inputs, record independent review and then the actual scoped user response. Existing unchanged approvals remain valid only at their exact digest and dependency scope.",
+  "production_policy": "asset-routed-visual-sample-v3"
+}

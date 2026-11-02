@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "engine": "godot",
+  "asset_sha256": "replace-with-exported-GLB-sha256",
+  "status": "pending",
+  "evidence_path": "/absolute/native-import-report.json",
+  "evidence_sha256": "replace-with-native-report-sha256",
+  "checks": {"mesh_bounds": false, "materials": false, "stable_ids": false},
+  "note": "The actual JSON engine report must repeat engine, asset_sha256, status and these checks. Import admission does not prove gameplay or art acceptance."
+}

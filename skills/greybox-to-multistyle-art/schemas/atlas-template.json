@@ -1,0 +1,21 @@
+{
+  "schema": 2,
+  "kind": "concept-atlas",
+  "style_id": "REPLACE_STYLE_ID",
+  "direction_concept_sha256": "REPLACE_SELECTED_IMAGE_HASH",
+  "scope_mode": "full",
+  "required_space_ids": [],
+  "required_transition_ids": [],
+  "views": [
+    {
+      "id": "view-1",
+      "concept_image_id": "REPLACE_IMAGE_EVIDENCE_ID",
+      "concept_sha256": "REPLACE_ACTUAL_IMAGE_HASH",
+      "camera_id": "REPLACE_CAMERA_ID",
+      "role": "key_scene",
+      "space_ids": [],
+      "segment_id": "REPLACE_BASELINE_SEGMENT_ID_FOR_LARGE_OR_CONTINUOUS"
+    }
+  ],
+  "note": "Transition views use role:transition and transition_id. Views bind images; spatial_graph must cover spaces/transitions and bind atlas_digest. Human approval is required for atlas and spatial design separately; one actual user message may approve both. required_space_ids and required_transition_ids must equal the approved baseline spatial_scope. Large/continuous spaces require at least two baseline regions/segments, a distinct key_scene image and camera for each segment with its segment_id, and actual transition views. A single overview or repeated image cannot stand in for regional design expansion."
+}

@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "kind": "greybox-knowledge-index",
+  "workflow_stages": {
+    "preflight": "setup",
+    "baseline": "intake",
+    "directions": "concept",
+    "selection": "concept",
+    "atlas": "spatial",
+    "spatial_design": "spatial",
+    "art_proxy": "native",
+    "production_plan": "production",
+    "representative_sample": "native"
+  },
+  "stages": {
+    "setup": {
+      "aliases": ["S0", "preflight"],
+      "read": ["references/hosts-v04.md"],
+      "topics": ["capability-preflight", "image-services", "provider-accounts", "migration", "quickstart", "quickstart-zh", "usage-feedback"],
+      "review_questions": ["Which operation does the current endpoint require, and which discovered capabilities have actually executed?"],
+      "command_hints": ["python scripts/greybox.py host --help"]
+    },
+    "intake": {
+      "aliases": ["S1", "baseline", "route"],
+      "read": ["references/intake-routing.md", "references/spatial-contract.md"],
+      "topics": ["continuity", "project-layout", "workflow", "greybox-design", "new-case", "usage-feedback"],
+      "review_questions": ["What endpoint did the user request? Which spatial and interaction facts come from the actual project?"],
+      "command_hints": ["python scripts/greybox.py route --help", "python scripts/progress.py focus --help"]
+    },
+    "greybox": {
+      "aliases": ["greybox/build", "greybox/validate", "greybox/play", "greybox/handoff"],
+      "read": ["references/greybox-authoring.md"],
+      "topics": ["greybox-design", "spatial-contract", "engine", "ue-experiment", "usage-feedback"],
+      "review_questions": ["Does the editable native scene or gameplay baseline satisfy the requested endpoint, and which observations actually came from that carrier?"],
+      "command_hints": ["python scripts/greybox.py greybox --help"]
+    },
+    "concept": {
+      "aliases": ["S2", "S3", "H1", "directions", "selection"],
+      "read": ["references/concept-authoring.md"],
+      "topics": ["image-services", "spatial-contract", "human-decisions", "field-lessons", "visual-feature-analysis", "scene-effects", "look-development"],
+      "review_questions": ["Does the actual request contain the intended image bytes? Which spatial facts must hold and which forms must be redesigned?", "Do actual images preserve critical relations and exhibit distinct design changes? Mark invisible checks unresolved.", "Which important visible properties depend on geometry, material, light, atmosphere or motion, and which uncertain prerequisite needs the existing native probe?"],
+      "command_hints": ["python scripts/greybox.py image --help", "python scripts/workflow_check.py --help"]
+    },
+    "spatial": {
+      "aliases": ["S4", "S5", "H2", "atlas", "spatial_design"],
+      "read": ["references/asset-routes.md", "references/concept-authoring.md", "references/spatial-contract.md"],
+      "topics": ["hybrid-production", "human-decisions", "project-layout", "terrain", "visual-feature-analysis", "scene-comparison", "scene-effects", "look-development"],
+      "review_questions": ["Which landmarks and interfaces are shared across views, and which hidden geometry remains a design hypothesis?", "Do measured play envelopes, working sides and protected views fit the proposed assemblies?", "Which important visible properties depend on geometry, material, light, atmosphere or motion, and which uncertain prerequisite needs the existing native probe?"],
+      "command_hints": ["python scripts/workflow_check.py --help"]
+    },
+    "references": {
+      "aliases": ["modeling_references", "modeling-references"],
+      "read": ["references/asset-routes.md", "references/modeling-references.md"],
+      "topics": ["modeling-reference-protocol", "image-services", "suppliers", "characters", "human-decisions"],
+      "review_questions": ["Does the registered asset/view scope cover the required production, and do boards next / boards production status show the actual pending action?",
+      "What are the asset category and actual use? Read that category before drafting its structure, interfaces and views.", "For skeletal characters, which single A/T or anatomy-appropriate natural stance is required, and did actual pixels preserve it across views?", "Does each actual image expose the needed volume/support/interfaces and approved identity under neutral light? Record visible findings; unclear cannot submit."],
+      "command_hints": ["python scripts/greybox.py references --help", "python scripts/greybox.py boards start --help", "python scripts/greybox.py boards workbuddy start --help"]
+    },
+    "production": {
+      "aliases": ["S7", "S9", "H3", "production_plan", "expansion"],
+      "read": ["references/asset-routes.md", "references/hybrid-production.md", "references/production-control.md"],
+      "topics": ["modeling-references", "suppliers", "lux", "meshy-tripo", "rodin-hi3d", "characters", "asset-optimization", "blender", "orchestration", "human-decisions", "visual-feature-analysis", "scene-comparison", "scene-effects", "look-development", "usage-feedback"],
+      "review_questions": ["Which dominant forms have explicit generated/reuse/procedural route evaluation, and which selected model tasks remain pending?", "Does this exact authorized sample cover its whole composition and required processing, with unresolved original tasks preserved?", "Which family pilot and native observation justify expanding the method?", "For characters, what did the actual source GLB inspection establish before choosing reuse, rigging or repair, and which first deformation test remains?", "Which important visible properties depend on geometry, material, light, atmosphere or motion, and which uncertain prerequisite needs the existing native probe?"],
+      "command_hints": ["python scripts/production_control.py --help", "python scripts/greybox.py provider --help"]
+    },
+    "native": {
+      "aliases": ["S6", "S8", "H4", "art_proxy", "representative_sample"],
+      "read": ["references/asset-routes.md", "references/engine-adapters.md", "references/visual-harness.md", {"path": "references/unity-runtime.md", "engines": ["unity"]}],
+      "topics": ["scene-effects", "look-development", "art-realization", "asset-optimization", "blender", "field-lessons", "characters", "scene-comparison", "visual-feature-analysis", "render-capability-recipes", "usage-feedback"],
+      "review_questions": ["Is this a cheap S6 proxy or final production? Before final authoring, where are its H3 asset routes, references and original model tasks?", "Were scale, materials, interfaces and gameplay checked in the actual native camera/state?", "What is the largest visible gap, and what evidence distinguishes a material/import defect from lighting or missing geometry?", "For animated characters, does a continuous first-action capture show useful deformation, contacts and transitions on this exact rig?"],
+      "command_hints": ["python scripts/greybox.py engine --help", "python scripts/greybox.py validate --help"]
+    },
+    "delivery": {
+      "aliases": ["S10", "H5", "acceptance"],
+      "read": ["references/human-decisions.md"],
+      "topics": ["workflow", "project-layout", "candidate-status", "continuity", "workflow-risks", "research-sources", "usage-feedback"],
+      "review_questions": ["Does the exact deliverable cover every selected style and promised space, with current native evidence and the actual user's decision?"],
+      "command_hints": ["python scripts/greybox.py delivery-review-inputs --help", "python scripts/greybox.py delivery-manifest --help"]
+    }
+  },
+  "topics": {
+    "capability-preflight": {"read": ["references/capability-preflight.md"]},
+    "image-services": {"read": ["references/image-services.md"]},
+    "provider-accounts": {"read": ["references/provider-accounts.md"]},
+    "migration": {"read": ["references/migration-v04.md"]},
+    "quickstart": {"read": ["references/quickstart-en.md"]},
+    "quickstart-zh": {"read": ["references/quickstart-zh.md"]},
+    "continuity": {"read": ["references/continuity.md"]},
+    "project-layout": {"read": ["references/project-layout.md"]},
+    "workflow": {"read": ["references/workflow-vnext.md"]},
+    "greybox-design": {"read": ["references/greybox-knowledge.md"]},
+    "spatial-contract": {"read": ["references/spatial-contract.md"]},
+    "engine": {"read": ["references/engine-adapters.md", {"path": "references/unity-runtime.md", "engines": ["unity"]}]},
+    "ue-experiment": {"read": ["references/ue-greybox-experimental.md"]},
+    "human-decisions": {"read": ["references/human-decisions.md"]},
+    "field-lessons": {"read": ["references/field-lessons.md"]},
+    "visual-feature-analysis": {"read": ["references/visual-feature-analysis.md"]},
+    "scene-comparison": {"read": ["references/scene-comparison.md"]},
+    "hybrid-production": {"read": ["references/hybrid-production.md"]},
+    "modeling-references": {"read": ["references/modeling-references.md"]},
+    "modeling-reference-protocol": {"read": ["references/modeling-reference-protocol.md"]},
+    "suppliers": {"read": ["references/suppliers.md"]},
+    "lux": {"read": ["references/lux-bridge.md"]},
+    "meshy-tripo": {"read": ["references/provider-meshy-tripo.md"]},
+    "rodin-hi3d": {"read": ["references/provider-rodin-hi3d.md"]},
+    "characters": {"read": ["references/character-pipeline.md"]},
+    "asset-optimization": {"read": ["references/asset-optimization.md"]},
+    "blender": {"read": ["references/blender-production.md", "references/blender-backend.md"]},
+    "orchestration": {"read": ["references/orchestration.md", "references/execution-contract.md"]},
+    "execution": {"read": ["references/execution-contract.md"]},
+    "scene-effects": {"read": ["references/scene-effects.md"]},
+    "look-development": {"read": ["references/look-development.md"]},
+    "art-realization": {"read": ["references/art-realization.md"]},
+    "candidate-status": {"read": ["references/candidate-status.md"]},
+    "terrain": {"read": ["references/terrain-operators.md"]},
+    "new-case": {"read": ["references/new-case-recipes.md"]},
+    "research-sources": {"read": ["references/research-sources.md"]},
+    "usage-feedback": {"read": ["references/usage-feedback.md"]},
+    "workflow-risks": {"read": ["references/workflow-risks.md"]},
+    "render-capability-recipes": {"read": ["references/render-capability-recipes.md"]}
+  },
+  "asset_categories": {
+    "humanoid": {"read_by_stage": {"references": ["references/character-pipeline.md"], "production": ["references/modeling-references.md", "references/character-pipeline.md"], "native": ["references/character-pipeline.md"]}},
+    "animal": {"read_by_stage": {"references": ["references/character-pipeline.md"], "production": ["references/modeling-references.md", "references/character-pipeline.md"], "native": ["references/character-pipeline.md"]}},
+    "prop": {"read_by_stage": {"references": [], "production": ["references/modeling-references.md"], "native": []}},
+    "architecture": {"read_by_stage": {"references": [], "production": ["references/modeling-references.md"], "native": []}},
+    "vegetation": {"read_by_stage": {"references": [], "production": ["references/modeling-references.md"], "native": []}},
+    "mechanism": {"read_by_stage": {"references": [], "production": ["references/modeling-references.md"], "native": []}}
+  }
+}

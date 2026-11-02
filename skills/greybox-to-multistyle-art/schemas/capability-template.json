@@ -1,0 +1,99 @@
+{
+  "schema": 2,
+  "session_id": "REPLACE_WITH_CURRENT_HOST_SESSION",
+  "checked_at": "REPLACE_WITH_CURRENT_TIMEZONE_AWARE_ISO8601",
+  "capabilities": {
+    "engine": {
+      "status": "unverified",
+      "interface": "REPLACE_WITH_PROJECT_GODOT_EXECUTABLE",
+      "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT",
+      "channel": {
+        "kind": "cli",
+        "target": "REPLACE_WITH_PROJECT_GODOT_EXECUTABLE",
+        "supports": []
+      },
+      "verification": {
+        "level": "invocation_verified",
+        "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT"
+      }
+    },
+    "native_capture": {
+      "status": "unverified",
+      "interface": "greybox.py validate",
+      "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT",
+      "channel": {
+        "kind": "cli",
+        "target": "greybox.py validate",
+        "supports": [
+          "screenshot"
+        ]
+      },
+      "verification": {
+        "level": "discovered",
+        "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT"
+      }
+    },
+    "image_generate": {
+      "status": "unverified",
+      "interface": "REPLACE_WITH_DISCOVERED_NATIVE_OR_MCP_OR_API_CALLABLE",
+      "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT",
+      "channel": {
+        "kind": "host_tool",
+        "target": "REPLACE_WITH_DISCOVERED_NATIVE_OR_MCP_OR_API_CALLABLE",
+        "supports": [
+          "text_to_image",
+          "reference_image"
+        ]
+      },
+      "verification": {
+        "level": "discovered",
+        "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT"
+      }
+    },
+    "lux": {
+      "status": "unverified",
+      "interface": "greybox.lux",
+      "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT",
+      "channel": {
+        "kind": "bundled_openapi",
+        "target": "greybox.lux",
+        "supports": [],
+        "region": "cn"
+      },
+      "verification": {
+        "level": "connection_verified",
+        "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT"
+      }
+    },
+    "image_edit": {
+      "status": "unverified",
+      "interface": "REPLACE_WITH_DISCOVERED_IMAGE_EDIT_CALLABLE",
+      "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT",
+      "channel": {
+        "kind": "host_tool",
+        "target": "REPLACE_WITH_DISCOVERED_IMAGE_EDIT_CALLABLE",
+        "supports": [
+          "reference_image"
+        ]
+      },
+      "verification": {
+        "level": "discovered",
+        "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT"
+      }
+    },
+    "geometry_backend": {
+      "status": "unverified",
+      "interface": "REPLACE_WITH_INSTALLED_DCC_OR_TERRAIN_COMMAND",
+      "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT",
+      "channel": {
+        "kind": "cli",
+        "target": "REPLACE_WITH_INSTALLED_DCC_OR_TERRAIN_COMMAND",
+        "supports": []
+      },
+      "verification": {
+        "level": "discovered",
+        "evidence": "REPLACE_WITH_ACTUAL_DISCOVERY_OR_PROBE_RECEIPT"
+      }
+    }
+  }
+}

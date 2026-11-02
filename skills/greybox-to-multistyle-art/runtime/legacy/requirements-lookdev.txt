@@ -1,0 +1,2 @@
+# Native capture additionally requires the user's Godot 4 executable.
+Pillow>=10

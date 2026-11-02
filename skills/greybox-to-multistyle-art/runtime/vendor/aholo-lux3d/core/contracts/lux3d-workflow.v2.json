@@ -1,0 +1,223 @@
+{
+  "contractId": "lux3d-workflow/v2",
+  "module": "M01",
+  "status": "implementation-baseline",
+  "prdBaseline": {
+    "pageId": "81517801984",
+    "pageVersion": 46,
+    "documentVersion": "V2.0-current-revision",
+    "reviewedOn": "2026-09-08"
+  },
+  "referenceModules": [
+    "understanding",
+    "planning",
+    "review",
+    "execution",
+    "assembly",
+    "results"
+  ],
+  "capabilities": {
+    "sourceOfTruth": "tool-definition-or-tool-result",
+    "staticPromptCatalogForbidden": true,
+    "unavailableCapabilityBehavior": "explicit-error"
+  },
+  "task": {
+    "requiredFields": [
+      "schema",
+      "accountRef",
+      "environmentRef",
+      "stage",
+      "status",
+      "taskId",
+      "request",
+      "commerce",
+      "updatedAt"
+    ],
+    "businessStates": [
+      "draft",
+      "waiting_user",
+      "ready",
+      "submitted",
+      "running",
+      "succeeded",
+      "failed",
+      "cancelled",
+      "unknown",
+      "output_invalid",
+      "delivery_failed"
+    ],
+    "runtimeStates": [
+      "awaiting_submission_gate",
+      "submission_gate_passed_for_call",
+      "submission_blocked",
+      "submission_rejected",
+      "submission_unknown",
+      "submitted",
+      "running",
+      "query_error",
+      "provider_succeeded",
+      "output_invalid",
+      "delivery_failed",
+      "succeeded",
+      "failed",
+      "cancelled"
+    ],
+    "taskIdNullableBeforeSubmission": true,
+    "legacyStateMigration": {
+      "from": "lux3d.workflow-state/v1",
+      "to": "lux3d.workflow-state/v2",
+      "resubmissionAllowedDuringMigration": false
+    },
+    "queryHealthSeparateFromProviderState": true
+  },
+  "errors": {
+    "requiredFields": [
+      "code",
+      "message",
+      "retryAction",
+      "requiresUserAction",
+      "resumeAt"
+    ],
+    "retryActions": [
+      "none",
+      "retry_query",
+      "reconcile_submission",
+      "retry_failed_step"
+    ],
+    "codes": [
+      "INPUT_INVALID",
+      "SCHEMA_INVALID",
+      "API_KEY_INVALID",
+      "PERMISSION_DENIED",
+      "REGION_MISMATCH",
+      "ACCOUNT_NOT_FOUND",
+      "BALANCE_UNAVAILABLE",
+      "QUOTE_UNAVAILABLE",
+      "QUOTE_EXPIRED",
+      "CONCURRENCY_LIMIT",
+      "SUBMISSION_BLOCKED",
+      "SUBMISSION_REJECTED",
+      "SUBMISSION_UNKNOWN",
+      "QUERY_TEMPORARILY_FAILED",
+      "REMOTE_TASK_FAILED",
+      "REMOTE_TASK_CANCELLED",
+      "ARTIFACT_INCOMPLETE",
+      "CAPABILITY_UNSUPPORTED",
+      "UPSTREAM_UNAVAILABLE"
+    ]
+  },
+  "commerce": {
+    "accountContext": {
+      "requiredFields": [
+        "accountRef",
+        "source",
+        "region",
+        "availableCredits",
+        "snapshotAt",
+        "uniqueId",
+        "uniqueIdExpiresAt"
+      ],
+      "uniqueIdServerIssued": true,
+      "uniqueIdClientGenerated": false,
+      "uniqueIdScope": "trusted-user-source-region-redis-ttl",
+      "sourceOwnedByEcosystemReleaseUnit": true
+    },
+    "quote": {
+      "scope": "one-normalized-openapi-call-plan",
+      "requiredFields": [
+        "source",
+        "uniqueId",
+        "quoteId",
+        "pricingScope",
+        "estimatedCreditsTotal",
+        "details",
+        "quotedAt",
+        "expiresAt"
+      ],
+      "detailsShape": "numeric-string-sequence-to-estimated-credits-integer",
+      "publicDetailMetadataAllowed": false,
+      "partialSuccessAllowed": false,
+      "unknownPriceMayReturnZero": false
+    }
+  },
+  "confirmation": {
+    "source": "current-visible-conversation",
+    "persistentAuthorizationServiceProvided": false,
+    "persistedApprovedFieldTrusted": false,
+    "submissionGateRequired": true,
+    "submissionGateReusable": false,
+    "trustedQuoteVerificationRequired": true,
+    "submissionRegistryRequired": true,
+    "testMocksVendoredIntoPlugin": false,
+    "hardBudgetGuaranteeProvided": false
+  },
+  "retry": {
+    "createBlindRetry": false,
+    "queryRetryAllowed": true,
+    "technicalRetryMaximumPerStep": 1,
+    "retryCountKey": "stepId",
+    "newAttemptResetsRetryCount": false,
+    "crossConversationAutomaticResubmitAllowed": false
+  },
+  "execution": {
+    "requiredFields": [
+      "stepId",
+      "attemptId",
+      "requestKey",
+      "taskId",
+      "retryCount"
+    ],
+    "requestKeyStableForUnknownSubmissionReconciliation": true,
+    "newTechnicalRetryUsesNewAttemptId": true,
+    "retryCountAccumulatesByStepId": true,
+    "submissionRegistryLifecycle": [
+      "reserved",
+      "accepted-with-taskId",
+      "rejected-and-released",
+      "unknown-awaiting-reconciliation"
+    ]
+  },
+  "artifacts": {
+    "requiredFields": [
+      "artifactId",
+      "sourceStepId",
+      "format",
+      "path",
+      "version",
+      "size",
+      "sha256",
+      "validation"
+    ],
+    "providerUrlPersistent": false,
+    "generationPreviewDeliveryAcceptanceAreSeparate": true
+  },
+  "assembly": {
+    "ownedByRuntimeAdapter": "M07",
+    "sharedContractOwnedBy": "M01",
+    "requiredInput": [
+      "objects",
+      "instances",
+      "coordinateSystem",
+      "unit",
+      "targetFormat"
+    ],
+    "transform": {
+      "translation": "three-number-array",
+      "rotation": "three-number-euler-array-with-explicit-unit",
+      "scale": "three-positive-number-array"
+    },
+    "renderingIncluded": false,
+    "layoutJsonIsCompletedScene": false
+  },
+  "security": {
+    "forbiddenPersistentValues": [
+      "apiKey",
+      "authorization",
+      "uploadToken",
+      "stsCredential",
+      "completeSignedUrl"
+    ],
+    "regionIsolationRequired": true,
+    "callerSuppliedUserIdAllowed": false
+  }
+}

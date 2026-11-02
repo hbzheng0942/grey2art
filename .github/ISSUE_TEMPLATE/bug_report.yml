@@ -1,0 +1,37 @@
+name: Bug report / 缺陷反馈
+description: A reproducible problem in the Skill or runtime. / 可复现的 Skill 或 runtime 问题。
+body:
+  - type: markdown
+    attributes:
+      value: "Ask your agent to export usage feedback. Paste the reviewed issue-draft.md and attach usage-feedback.md plus usage-feedback.json when available; unknown details can stay unknown. Use a small redacted example. Keep keys, signed URLs and private ledgers out of this issue. / 可让 agent『导出这次使用反馈』，检查后粘贴 issue-draft.md，并附 usage-feedback.md 和 usage-feedback.json；未知信息保留未知。请提供最小脱敏示例，不上传 key、签名 URL 或私人账本。"
+  - type: input
+    id: version
+    attributes:
+      label: Skill version and source / Skill 版本与源码
+      placeholder: Version, tag or commit; unknown is acceptable.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Host, OS, engine and provider / 宿主、系统、引擎与供应商
+      description: Include relevant versions and tool/model if it affects reproduction. / 附相关版本；工具或模型影响复现时一并说明。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps, expected and actual result / 复现步骤、预期与实际结果
+      description: State the current stage and smallest input needed. / 说明当前阶段和所需最小输入。
+    validations:
+      required: true
+  - type: textarea
+    id: recovery
+    attributes:
+      label: Submission and recovery state / 提交与恢复状态
+      description: Was the operation accepted, unknown, completed or downloaded? Keep original task IDs private. / 操作已接受、未知、完成还是已下载？原任务 ID 私下保留。
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted evidence / 脱敏证据
+      description: Relevant error, small screenshot or log excerpt; include remaining uncertainty. / 相关错误、小型截图或日志节选，并注明不确定项。

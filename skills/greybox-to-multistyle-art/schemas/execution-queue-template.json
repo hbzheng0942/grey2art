@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "kind": "greybox-execution-queue",
+  "pools": {
+    "REPLACE_ACCOUNT_REGION_OPERATION_POOL": {
+      "capacity": 1,
+      "source_ref": "REPLACE_WITH_CURRENT_ACCOUNT_CAPACITY_EVIDENCE"
+    }
+  },
+  "sources": [
+    {
+      "kind": "image",
+      "path": "REPLACE_WITH_ABSOLUTE_RESERVED_IMAGE_JOB_DIRECTORY",
+      "pools": {"REPLACE_PROFILE_NAME": "REPLACE_ACCOUNT_REGION_OPERATION_POOL"}
+    }
+  ],
+  "limits": {
+    "submit_timeout": 300,
+    "status_timeout": 30,
+    "fetch_timeout": 300,
+    "poll_interval": 2,
+    "max_submit": 8,
+    "max_status": 8,
+    "max_fetch": 2
+  }
+}

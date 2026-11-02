@@ -1,0 +1,38 @@
+{
+  "id": "representative_sample",
+  "scope": "REPLACE_STYLE_ID",
+  "revision": 1,
+  "status": "draft",
+  "actor": "user",
+  "decision_note": "",
+  "consumes": {
+    "REPLACE_STYLE_ID/production_plan": "REPLACE_ARCHIVED_SOURCE_PRODUCTION_STAGE_DIGEST"
+  },
+  "identity": {
+    "style_id": "REPLACE_STYLE_ID",
+    "scene": "res://REPLACE_NATIVE_SAMPLE_SCENE",
+    "attempt_id": "REPLACE_ACTUAL_ATTEMPT_ID",
+    "input_digest": "REPLACE_H3_KNOWN_INPUT_CONTRACT_DIGEST",
+    "execution_plan_digest": "REPLACE_ORIGINAL_SAMPLE_PLAN_DIGEST",
+    "sample_inputs_digest": "REPLACE_H4_ACTUAL_SAMPLE_INPUTS_MANIFEST_DIGEST"
+  },
+  "evidence": [],
+  "approval": {
+    "actor": "user",
+    "decision": "pending",
+    "source_ref": "",
+    "scope": "REPLACE_STYLE_ID/representative_sample",
+    "stage_digest": ""
+  },
+  "note": "Required evidence: sample_source_production (archived original accepted production stage JSON), native_sample (schema2 native-sample manifest with exact identity and captures path/sha256), native_capture images, technical_report, gameplay_report, visual_review. All reports schema2 with exact identity. Technical/gameplay reports need passed:true, full passed_check_ids, no errors/failed_check_ids; gameplay_verified:true. Visual review needs actor:user,visual_accepted:true,source_ref matching actual stage approval and passed_feature_ids covering all critical features. Synthetic fixtures are never production evidence. Required sample_inputs evidence is a schema2 sample-inputs manifest authored at H4. identity.sample_inputs_digest = digest(manifest); all reports repeat this identity. This is separate from H3 input_digest, so normal generation does not require predicting future model hashes or reapproving H3. Current listed source/assets/render configuration bytes and discoverable native dependencies are rechecked before expansion. Paths are limited to the project; symlink escapes and external roots are unsupported in this manifest. sample_inputs also binds producer_runtime_digest to core.runtime_snapshot()[\"sha256\"]; runtime changes require new applicable sample validation before expansion. Under complete-visual-sample-v2, captures additionally bind image_id/view_id/camera_id/state_id/framing/visible_layers/missing_layers to approved baseline observation views for the sample spaces. H4 cannot contain missing layers or substitute an interaction closeup for the whole-composition view. Independent review is recorded before user visual_review and approval. New asset-routed-visual-sample-v3 additionally checks sample_inputs.model_task_bindings against every original generated/hybrid source: original completed task, reviewed conditioning images and actual model output identity. Pending model tasks cannot be replaced silently with procedural geometry.",
+  "producer": {
+    "agent_id": "REPLACE_PRODUCER_AGENT_ID",
+    "task_id": "REPLACE_PRODUCER_TASK_ID"
+  },
+  "review": {
+    "schema": 1,
+    "kind": "pre-handoff-review",
+    "input_digest": "REPLACE_AFTER_ACTUAL_REVIEW",
+    "note": "Populate using pre-handoff-review-template.json; pending review does not authorize expansion."
+  }
+}

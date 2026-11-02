@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "kind": "reference-board-production-input",
+  "host_session_id": "actual-current-host-session-or-null",
+  "scope": {
+    "source_ref": "actual-user-decision-or-upstream-scope-reference; this text is not approval",
+    "source": {
+      "path": "art/shared/reference-board-scope.json",
+      "sha256": "REPLACE_WITH_SHA256_OF_INDEPENDENT_UPSTREAM_SCOPE_FILE"
+    },
+    "asset_views": [
+      {"asset_id": "example-prop", "view_id": "three_quarter", "role": "three_quarter"}
+    ]
+  },
+  "prepare_spec": {
+    "path": "art/shared/reference-board-prepare.json",
+    "sha256": "REPLACE_WITH_SHA256_OF_COMPLETE_PREPARE_SPEC"
+  },
+  "native_binding": {
+    "path": "art/shared/current-native-binding.json",
+    "sha256": "REPLACE_WITH_SHA256_OF_ACTUAL_CURRENT_TOOL_BINDING"
+  },
+  "forbidden_output_sha256": [],
+  "_notes": [
+    "All referenced file paths are project-relative; input images stay shared at their canonical paths.",
+    "scope.source is independent of this file and prepare_spec. Preferred source shape: schema 1, kind reference-board-scope, asset_views with exact asset_id/view_id/role entries.",
+    "Upstream BOMs may instead provide explicit reference_views, or asset_proposals[].approved_reference_views as view_id/role objects. Names and view aliases are never inferred.",
+    "The upstream source, scope, prepare plan and object descriptions must cover exactly the same asset/views. Unresolved views or placeholder designs block production.",
+    "native_binding may be omitted until the actual host tool schema is known; map each prepared page before claiming it.",
+    "Each page gets one exclusive claim before native invocation. A pending/unknown call keeps its original claim; record/recover the original result without resubmission.",
+    "Crop ROIs must be observed, not copied automatically from layout slots. Frozen subject/detail pixel requirements are inherited unchanged.",
+    "Final per-crop reviews bind the actual cropped image path/hash, orientation, verdict, concrete observation and inspection_source_ref.",
+    "Same-asset views split across pages require qualified identity_master/source_review bindings. Same-page multiview creation remains joint design exploration until an explicit cross-view comparison is recorded.",
+    "review also accepts {reviews:[...],cross_view_reviews:[{asset_id,verdict,observation,source_ref,images:[{view_id,image:{path,sha256}}]}]}. Every scoped multiview asset needs a separate comparison bound to all current crop hashes before completion.",
+    "bind-session updates only operational context/history. Existing pending claims keep their original session, dispatch and call identity; new sessions reconcile them without regeneration.",
+    "A source-bound declared scope and recorded visual verdicts do not supply human approval, independently verified native execution or 3D quality acceptance."
+  ]
+}

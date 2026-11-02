@@ -1,0 +1,12 @@
+{
+  "name": "greybox-art-pipeline",
+  "version": "0.0.1-experiment",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "doctor": "node scripts/image-batch.mjs doctor",
+    "benchmark": "node scripts/benchmark.mjs"
+  }
+}

@@ -1,0 +1,715 @@
+{
+  "schema": 1,
+  "kind": "garden-ink-native-gameplay-loop",
+  "output": "docs/demo/gameplay-garden-ink.gif",
+  "bytes": 1486124,
+  "sha256": "4d98c710957c6e67783bf2903c262de17f50f9630cad9c87700d2eccd6a9be89",
+  "source_repository": "https://github.com/xuanyuc1999-ops/wander-garden-demos",
+  "source_revision": "78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+  "source_project": "demos/02-ink-storybook/project",
+  "source_entry": "play_meadow.tscn",
+  "style": "Ink Cel Storybook",
+  "source_resource_manifest": {
+    "bytes": 40676,
+    "sha256": "15e42099ead7e5b9bcd66d4f00aa3145f7f4a2c6deb4b0807a75e59532723904"
+  },
+  "verified_lfs_resource_paths": 158,
+  "verified_unique_lfs_bytes": 468783466,
+  "resource_mismatches_after": [],
+  "source_runtime_files_checked": 72,
+  "source_runtime_mismatches": [],
+  "local_config_change": "Only a task-owned custom user-data directory; runtime source unchanged. Unused raw/reference trees ignored for import.",
+  "capture_recipe": {
+    "path": "docs/showcase/capture_garden_ink.gd",
+    "bytes": 2573,
+    "sha256": "77e5bde60ceef93ffbeaf25c0d9a15846e3bb6d07e80385cbffb783e6feb371f"
+  },
+  "capture": {
+    "camera": "native follow orbit; yaw0 pitch-.28 spring8 fov52",
+    "capture_fps": 8,
+    "capture_resolution": [
+      960,
+      540
+    ],
+    "duration_seconds": 8,
+    "engine": "4.7.2-stable (official)",
+    "frames": [
+      {
+        "frame": 0,
+        "player_position": [
+          -3.0,
+          0.000130206346511841,
+          15.0
+        ],
+        "sha256": "954654e9b6d298ba1e41fec7d89bd698682dc2bb5aa692dd5f2b1d5c7f34b343",
+        "simulation_seconds": 0.0
+      },
+      {
+        "frame": 1,
+        "player_position": [
+          -3.0,
+          0.000130206346511841,
+          15.0
+        ],
+        "sha256": "8b42e89cfbc7544b3e5a95885739c59666ec6bbe3a88686074805153c5c40527",
+        "simulation_seconds": 0.125
+      },
+      {
+        "frame": 2,
+        "player_position": [
+          -3.0,
+          0.000838843348901719,
+          14.9850015640259
+        ],
+        "sha256": "dd8dae6e00764110c572ba16eed926635977bec28477229756be5781b43eb4b5",
+        "simulation_seconds": 0.25
+      },
+      {
+        "frame": 3,
+        "player_position": [
+          -3.0,
+          0.000834404432680458,
+          14.8625020980835
+        ],
+        "sha256": "f28e6bc13a387965580ea9ea83d6a600d73a307ea781559360a19fc46195102f",
+        "simulation_seconds": 0.375
+      },
+      {
+        "frame": 4,
+        "player_position": [
+          -3.0,
+          0.000834202801343054,
+          14.6250019073486
+        ],
+        "sha256": "90aebe61f52f24f249f8a17b36ea3d0b3062927a01200e5436c4da1b91af8dfb",
+        "simulation_seconds": 0.5
+      },
+      {
+        "frame": 5,
+        "player_position": [
+          -3.0,
+          0.000834615260828286,
+          14.415002822876
+        ],
+        "sha256": "58362b8af38ba6edaea70a1b9a28aae4c4384e4fef6f689afa81ef3a8a803fdb",
+        "simulation_seconds": 0.625
+      },
+      {
+        "frame": 6,
+        "player_position": [
+          -3.0,
+          0.000835455779451877,
+          14.1750049591064
+        ],
+        "sha256": "a2ab3fac084bd773568c30f6d367db66752ce2e90baae0c0fd0d4833bc87fda5",
+        "simulation_seconds": 0.75
+      },
+      {
+        "frame": 7,
+        "player_position": [
+          -3.0,
+          0.000839760294184089,
+          13.9650058746338
+        ],
+        "sha256": "ad9cbfa38d8719e089ac94723e0c06445c77127acd7bf5a0b8e5afa5a529bffc",
+        "simulation_seconds": 0.875
+      },
+      {
+        "frame": 8,
+        "player_position": [
+          -3.0,
+          0.000834279984701425,
+          13.7250070571899
+        ],
+        "sha256": "e91713bd81d1f8260d3d02f5e07cf73041efd3b20d5bcaf28d3f9b7b01f7db36",
+        "simulation_seconds": 1.0
+      },
+      {
+        "frame": 9,
+        "player_position": [
+          -3.0,
+          0.00083807623013854,
+          13.515007019043
+        ],
+        "sha256": "b08af8da641ed56105f0dcbe07ab13ff29136eae9e12880bbdced2cbf613e734",
+        "simulation_seconds": 1.125
+      },
+      {
+        "frame": 10,
+        "player_position": [
+          -3.0,
+          0.00083462247857824,
+          13.2750082015991
+        ],
+        "sha256": "8e719634942d5f9a98e13ba17e36304cdb28242f533cd2cf4bbc726b52fa7093",
+        "simulation_seconds": 1.25
+      },
+      {
+        "frame": 11,
+        "player_position": [
+          -3.0,
+          0.000839289918076247,
+          13.0650081634521
+        ],
+        "sha256": "801c59a8e56ecdb417659966649694232c8ff989d7e6e6018705b17e3aecc3f1",
+        "simulation_seconds": 1.375
+      },
+      {
+        "frame": 12,
+        "player_position": [
+          -3.0,
+          0.000833983183838427,
+          12.8250064849854
+        ],
+        "sha256": "4a8d904bfafb72a462df8cf90e1214acaff31c74cc0ad696baa70d9eac6e578d",
+        "simulation_seconds": 1.5
+      },
+      {
+        "frame": 13,
+        "player_position": [
+          -3.0,
+          0.000839274551253766,
+          12.6150054931641
+        ],
+        "sha256": "382f7fb8330f9c32c4279e14cce84933042f5a1a998acbf545a03df0a89a5be5",
+        "simulation_seconds": 1.625
+      },
+      {
+        "frame": 14,
+        "player_position": [
+          -3.0,
+          0.000838806270621717,
+          12.3750057220459
+        ],
+        "sha256": "29a5db85b8788324929ef0576f99caa927f324471b04d0999b83977c0a63fedf",
+        "simulation_seconds": 1.75
+      },
+      {
+        "frame": 15,
+        "player_position": [
+          -3.0,
+          0.000833172758575529,
+          12.1650056838989
+        ],
+        "sha256": "7ce0ab8f72a99d48c77f51df7c7f1b8b651bce0cd0e579b05c947c0b5b708aae",
+        "simulation_seconds": 1.875
+      },
+      {
+        "frame": 16,
+        "player_position": [
+          -3.0,
+          0.000837550964206457,
+          11.9250059127808
+        ],
+        "sha256": "1218aacde50318f0a35c5cce5ad6b80d1b9c0e5f92651f7463b519e8d8f9e08a",
+        "simulation_seconds": 2.0
+      },
+      {
+        "frame": 17,
+        "player_position": [
+          -3.0,
+          0.000833215599413961,
+          11.7150068283081
+        ],
+        "sha256": "06ba08f987d0406631dcea54a6e295ae7ecfbc63e87d2b26c4bbb5bff51972ae",
+        "simulation_seconds": 2.125
+      },
+      {
+        "frame": 18,
+        "player_position": [
+          -3.0,
+          0.000839830667246133,
+          11.4750089645386
+        ],
+        "sha256": "45a7e647d44bd9651ca8a1c85008fe6bacdc1510b6df07098b0be93a3063e7c6",
+        "simulation_seconds": 2.25
+      },
+      {
+        "frame": 19,
+        "player_position": [
+          -3.0,
+          0.000834340753499418,
+          11.2650098800659
+        ],
+        "sha256": "91a8037bf1d6bb6167f2c645f28bf03522b9333a539bca27e088e304b777fb21",
+        "simulation_seconds": 2.375
+      },
+      {
+        "frame": 20,
+        "player_position": [
+          -3.0,
+          0.000833307043649256,
+          11.0250091552734
+        ],
+        "sha256": "acac11ec9d353c0ada01611317f20d264fecb4ececc28848a2b6c85724434002",
+        "simulation_seconds": 2.5
+      },
+      {
+        "frame": 21,
+        "player_position": [
+          -3.0,
+          0.000833212514407933,
+          10.8150091171265
+        ],
+        "sha256": "55986618f94bbee4c47557fda962d79e0d2f20d57c76d006b4e97faed0448a53",
+        "simulation_seconds": 2.625
+      },
+      {
+        "frame": 22,
+        "player_position": [
+          -3.0,
+          0.000836766499560326,
+          10.575008392334
+        ],
+        "sha256": "574993e253981b39e89f837fcef91e825db97316e0ee476325f84dd073dbc4be",
+        "simulation_seconds": 2.75
+      },
+      {
+        "frame": 23,
+        "player_position": [
+          -3.0,
+          0.000838092179037631,
+          10.3650074005127
+        ],
+        "sha256": "91ab176afd17fa9d3b2fd40de95aed1de5f8b11c07dbece3dfda573b127c2994",
+        "simulation_seconds": 2.875
+      },
+      {
+        "frame": 24,
+        "player_position": [
+          -3.0,
+          4.47765924036503e-05,
+          10.1250066757202
+        ],
+        "sha256": "71f37f53c6d378707c84cb0fcb4a99daa1e92f2ad8f478d7ce350c1c5358ed26",
+        "simulation_seconds": 3.0
+      },
+      {
+        "frame": 25,
+        "player_position": [
+          -3.0,
+          0.000835819926578552,
+          9.91500759124756
+        ],
+        "sha256": "294b0e3cef825bf643dea7a540a26c2c2a1eeef31b56f1006d8df369c7110e04",
+        "simulation_seconds": 3.125
+      },
+      {
+        "frame": 26,
+        "player_position": [
+          -3.0,
+          0.000832124904263765,
+          9.67500972747803
+        ],
+        "sha256": "3300a756242fd557a631b4020d3f1d51d2969b2f1a363578cfe556abb8420637",
+        "simulation_seconds": 3.25
+      },
+      {
+        "frame": 27,
+        "player_position": [
+          -3.0,
+          0.000833132653497159,
+          9.46500587463379
+        ],
+        "sha256": "4f837c4e55a615f78374216f2c455d60f0e73249d77ab0d4326751c7fa93a40f",
+        "simulation_seconds": 3.375
+      },
+      {
+        "frame": 28,
+        "player_position": [
+          -3.0,
+          0.000839389977045357,
+          9.22500419616699
+        ],
+        "sha256": "a087e3503ee256951d2c5cc467e663ed6c09d798c6ab53702da5e049fe6c591a",
+        "simulation_seconds": 3.5
+      },
+      {
+        "frame": 29,
+        "player_position": [
+          -3.0,
+          0.00083976803580299,
+          9.01500511169434
+        ],
+        "sha256": "c8e9764e87fea8ebc0e7e546686fe1cb137d57ea828296a493662c9bfb0787fa",
+        "simulation_seconds": 3.625
+      },
+      {
+        "frame": 30,
+        "player_position": [
+          -3.0,
+          0.000837253814097494,
+          8.77500438690186
+        ],
+        "sha256": "326075e5d0d6d9f77f58b426c6416f14da67b2afa9faf896d71636c9bd18ab56",
+        "simulation_seconds": 3.75
+      },
+      {
+        "frame": 31,
+        "player_position": [
+          -3.0,
+          0.000833197496831417,
+          8.56500434875488
+        ],
+        "sha256": "81d47e2fc8eaa9f101ea58c85a0efe15e7b077402285b206b3fd9a939086a469",
+        "simulation_seconds": 3.875
+      },
+      {
+        "frame": 32,
+        "player_position": [
+          -3.0,
+          0.000839427462778986,
+          8.32500267028809
+        ],
+        "sha256": "183504d89c295f2fb334c4f8fcca1f324a454997a11f1cb05ae57f8fe65dcd03",
+        "simulation_seconds": 4.0
+      },
+      {
+        "frame": 33,
+        "player_position": [
+          -3.0,
+          3.94557719118893e-05,
+          8.11500263214111
+        ],
+        "sha256": "807d805f701aa034e2db1b0dfb29ef86ba42665a339ae435908cedf7e73ae83f",
+        "simulation_seconds": 4.125
+      },
+      {
+        "frame": 34,
+        "player_position": [
+          -3.0,
+          0.000839584274217486,
+          7.875
+        ],
+        "sha256": "ebd220dd450a9abec42906fa85bbcdd7abbfe6e2582a8449f63075c216f97c16",
+        "simulation_seconds": 4.25
+      },
+      {
+        "frame": 35,
+        "player_position": [
+          -3.0,
+          5.0229427870363e-05,
+          7.66499996185303
+        ],
+        "sha256": "8fc233df9e521bd38de68ee20f42acb5e9167125e7c491ce34296e93b715824d",
+        "simulation_seconds": 4.375
+      },
+      {
+        "frame": 36,
+        "player_position": [
+          -3.0,
+          5.07303630001843e-05,
+          7.42500829696655
+        ],
+        "sha256": "56242d09cf6a9d008ade48f737247d1ab3a0328ff1a1a0ac2bbce58bf6595e9d",
+        "simulation_seconds": 4.5
+      },
+      {
+        "frame": 37,
+        "player_position": [
+          -3.0,
+          0.000839515007100999,
+          7.21500825881958
+        ],
+        "sha256": "562102c844507d28e12161eabd75b5cda88b0d0a0f9416dd0c164d5583a79ed6",
+        "simulation_seconds": 4.625
+      },
+      {
+        "frame": 38,
+        "player_position": [
+          -3.0,
+          0.00083591602742672,
+          6.97500896453857
+        ],
+        "sha256": "df4609342260ea1659bdffd40a04ab46c0b205f11986a9d63f8c4d3b77bbd473",
+        "simulation_seconds": 4.75
+      },
+      {
+        "frame": 39,
+        "player_position": [
+          -3.0,
+          5.08136581629515e-05,
+          6.76500797271729
+        ],
+        "sha256": "1dd0155a94952cf6c383fb83276c9cbddfda224ae91b3a39cedbeed773127f18",
+        "simulation_seconds": 4.875
+      },
+      {
+        "frame": 40,
+        "player_position": [
+          -2.98939347267151,
+          0.000830672273878008,
+          6.53561401367188
+        ],
+        "sha256": "cc9d24245f986956f3103b2c7bf61c47da664a9f99b293aacd4d4e35c0339b45",
+        "simulation_seconds": 5.0
+      },
+      {
+        "frame": 41,
+        "player_position": [
+          -2.90277290344238,
+          3.31015908159316e-05,
+          6.41223478317261
+        ],
+        "sha256": "885a524a54eb2292da1210facf875474231e6e1dc16c005cdc0b5ae98cc75199",
+        "simulation_seconds": 5.125
+      },
+      {
+        "frame": 42,
+        "player_position": [
+          -2.6995837688446,
+          0.000837840081658214,
+          6.37542295455933
+        ],
+        "sha256": "c156b40e3535b2bbf1b97b3ece1bfe12fcdc50d41e62922610128f77974d233f",
+        "simulation_seconds": 5.25
+      },
+      {
+        "frame": 43,
+        "player_position": [
+          -2.48958325386047,
+          0.000838718318846077,
+          6.37542295455933
+        ],
+        "sha256": "7d548a0b3f65516b6bd157fb31c2dcf9508610bd400d94640fe335561239bdfa",
+        "simulation_seconds": 5.375
+      },
+      {
+        "frame": 44,
+        "player_position": [
+          -2.24958324432373,
+          0.000830205739475787,
+          6.37542295455933
+        ],
+        "sha256": "a3bb26002b35d3bb4e22a4fb7f0dff20003e181cf666adac363a257e8c127b6c",
+        "simulation_seconds": 5.5
+      },
+      {
+        "frame": 45,
+        "player_position": [
+          -2.03958678245544,
+          2.73421173915267e-05,
+          6.37542295455933
+        ],
+        "sha256": "1e7f06d12bfed3c9b6819603a826933626129276510ed6d1679d695e82a4b255",
+        "simulation_seconds": 5.625
+      },
+      {
+        "frame": 46,
+        "player_position": [
+          -1.79958689212799,
+          0.000830263074021786,
+          6.37542295455933
+        ],
+        "sha256": "467cbf34b5f9159bbcefe7976ea68c5ae808f21d2a8d4a1aa5479c6563b6a1f9",
+        "simulation_seconds": 5.75
+      },
+      {
+        "frame": 47,
+        "player_position": [
+          -1.58958661556244,
+          0.000835311773698777,
+          6.37542295455933
+        ],
+        "sha256": "d17fc0ed0bb00bc512560348e09ccc2a204b253d40214e435d877223bb107c40",
+        "simulation_seconds": 5.875
+      },
+      {
+        "frame": 48,
+        "player_position": [
+          -1.34958648681641,
+          0.000839878572151065,
+          6.37542295455933
+        ],
+        "sha256": "8ff7f6c48647273de755d2988455fb9486e925fce5998822f515c64e061d2d7c",
+        "simulation_seconds": 6.0
+      },
+      {
+        "frame": 49,
+        "player_position": [
+          -1.13958632946014,
+          0.00083398399874568,
+          6.37542295455933
+        ],
+        "sha256": "8ab54a14741c1ab4a170c9978e8fb4d4a86a3fe77a246654860ab9e19152cc86",
+        "simulation_seconds": 6.125
+      },
+      {
+        "frame": 50,
+        "player_position": [
+          -0.899586260318756,
+          0.000833335507195443,
+          6.37542295455933
+        ],
+        "sha256": "3e3a259235be001befb40a8dc9d556aa5e05071c07a0547c4ec82156007fc39b",
+        "simulation_seconds": 6.25
+      },
+      {
+        "frame": 51,
+        "player_position": [
+          -0.689586222171783,
+          0.000834775040857494,
+          6.37542295455933
+        ],
+        "sha256": "43f63e6f59392da43b875c7b55ca7aa34adbf61c3b5f5d5d0bee5d8a192ed41e",
+        "simulation_seconds": 6.375
+      },
+      {
+        "frame": 52,
+        "player_position": [
+          -0.449586302042007,
+          0.000831666926387697,
+          6.37542295455933
+        ],
+        "sha256": "ee3bec68d35719741f3cd6b65d4c546b6438275cbbbe226eb600b0bf5250774d",
+        "simulation_seconds": 6.5
+      },
+      {
+        "frame": 53,
+        "player_position": [
+          -0.239586293697357,
+          0.00083741353591904,
+          6.37542295455933
+        ],
+        "sha256": "083354311f456e77e58a469854a3bd27d6ad6dfe210b3bd36ba58284949b27ed",
+        "simulation_seconds": 6.625
+      },
+      {
+        "frame": 54,
+        "player_position": [
+          0.000413715839385986,
+          0.000830494042020291,
+          6.37542295455933
+        ],
+        "sha256": "e2803b1ed91b676dfad0136d824324387283906b38365970222a3bfda8825d51",
+        "simulation_seconds": 6.75
+      },
+      {
+        "frame": 55,
+        "player_position": [
+          0.210413724184036,
+          0.000836203515063971,
+          6.37542295455933
+        ],
+        "sha256": "cf4071f5a8d4a3c0e9cfd46eb546100481ba2103532848ffcc7ea4aa27665c05",
+        "simulation_seconds": 6.875
+      },
+      {
+        "frame": 56,
+        "player_position": [
+          0.450413674116135,
+          5.64155634492636e-05,
+          6.37542295455933
+        ],
+        "sha256": "b161ccd1d716d270ebaa8c1841b48954e2a687ab2c32de06d632cbba7910e3c3",
+        "simulation_seconds": 7.0
+      },
+      {
+        "frame": 57,
+        "player_position": [
+          0.660405278205872,
+          0.000839541084133089,
+          6.37542295455933
+        ],
+        "sha256": "0b956d3aad6577ee9ea3c94c521c170034ea035ef639882d93a020df421ec116",
+        "simulation_seconds": 7.125
+      },
+      {
+        "frame": 58,
+        "player_position": [
+          0.900405287742615,
+          0.000839363783597946,
+          6.37542295455933
+        ],
+        "sha256": "827cd98d817979221f9d1c5e20016f325b9c2520cf912a478d5ec97b7a988ec6",
+        "simulation_seconds": 7.25
+      },
+      {
+        "frame": 59,
+        "player_position": [
+          1.11040198802948,
+          4.52094827778637e-05,
+          6.37542295455933
+        ],
+        "sha256": "2a9feba0eb591fa3826eb79c9a3e47f45abea40f5be39db8bcd0ae3358b95826",
+        "simulation_seconds": 7.375
+      },
+      {
+        "frame": 60,
+        "player_position": [
+          1.15373539924622,
+          0.000830692297313362,
+          6.37542295455933
+        ],
+        "sha256": "fea867b8d23d5f4f28ba8af6177f1cf8b0ec9fa96b86852b9fe5d5f26c9c9b38",
+        "simulation_seconds": 7.5
+      },
+      {
+        "frame": 61,
+        "player_position": [
+          1.15373539924622,
+          0.000830692297313362,
+          6.37542295455933
+        ],
+        "sha256": "a207eec9e0c0a44e22dae0388fc9d8f5504dc9a2ff6374de7a4b69c08320805b",
+        "simulation_seconds": 7.625
+      },
+      {
+        "frame": 62,
+        "player_position": [
+          1.15373539924622,
+          0.000830692297313362,
+          6.37542295455933
+        ],
+        "sha256": "80b421e74a135e60438e32e03b1295358d46d5259dca5402838634576521919b",
+        "simulation_seconds": 7.75
+      },
+      {
+        "frame": 63,
+        "player_position": [
+          1.15373539924622,
+          0.000830692297313362,
+          6.37542295455933
+        ],
+        "sha256": "3ffa8a80278b0591086a1ae58513224833d4347ae50e7aa337d0320590382899",
+        "simulation_seconds": 7.875
+      }
+    ],
+    "hud_hidden": true,
+    "input_method": "original forward/right actions; only initial spawn staged",
+    "kind": "native_garden_ink_gameplay",
+    "not_real_time_fps_measurement": true,
+    "renderer": "gl_compatibility",
+    "simulation_fps": 24,
+    "source_entry": "res://play_meadow.tscn"
+  },
+  "encode": {
+    "width": 384,
+    "height": 216,
+    "fps": 8,
+    "palette_colors": 96,
+    "dither": "none",
+    "requested_duration_sec": 8,
+    "treatment": "Full native 960x540 gameplay frames, proportional downscale, silent GIF loop. Original forward/right input drives the animated character; no crop, image pan, synthesized frames or speed change."
+  },
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 384,
+        "height": 216,
+        "duration": "8.010000",
+        "nb_read_frames": "64"
+      }
+    ],
+    "format": {
+      "duration": "8.010000",
+      "size": "1486124"
+    }
+  },
+  "full_decode_passed": true,
+  "unique_decoded_frames": 64,
+  "runtime_log_errors": [],
+  "scope": "Short native gameplay recording of the published colleague art project; staged initial position and native orbit camera. Fixed simulation capture is not real-time FPS or full-game acceptance."
+}

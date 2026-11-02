@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "kind": "reference-board-prepare-input",
+  "purpose": "modeling",
+  "plan": {
+    "schema": 1,
+    "kind": "reference-board-plan-input",
+    "channel_size": [
+      1536,
+      1024
+    ],
+    "size_source_ref": "REPLACE_ACTUAL_RETURNED_IMAGE_OR_DOCUMENTED_CHANNEL_SIZE",
+    "views": [
+      {
+        "asset_id": "planter",
+        "view_id": "three_quarter",
+        "role": "three_quarter",
+        "projected_aspect": 1,
+        "projected_dimensions": {
+          "width": 1,
+          "height": 1,
+          "source_ref": "REPLACE_ACTUAL_PROJECTED_WIDTH_HEIGHT_EVIDENCE"
+        },
+        "min_subject_long_edge_px": 400,
+        "min_subject_short_edge_px": 300
+      },
+      {
+        "asset_id": "stool",
+        "view_id": "three_quarter",
+        "role": "three_quarter",
+        "projected_aspect": 1,
+        "min_subject_long_edge_px": 400,
+        "min_subject_short_edge_px": 300
+      }
+    ]
+  },
+  "images": [
+    {
+      "path": "art/shared/selected-concept.png",
+      "sha256": "REPLACE_ACTUAL_INPUT_SHA256"
+    },
+    {
+      "path": "art/shared/stool-front-master.png",
+      "sha256": "REPLACE_ACTUAL_IDENTITY_MASTER_SHA256"
+    }
+  ],
+  "image_roles": [
+    {
+      "role": "style"
+    },
+    {
+      "role": "identity_master",
+      "asset_id": "stool",
+      "source_view_id": "front",
+      "target_view_ids": [
+        "three_quarter"
+      ],
+      "source_review": {
+        "path": "art/shared/stool-front-master.review.json",
+        "sha256": "REPLACE_ACTUAL_REVIEW_FILE_SHA256"
+      }
+    }
+  ],
+  "objects": [
+    {
+      "asset_id": "planter",
+      "view_id": "three_quarter",
+      "role": "three_quarter",
+      "category": "prop",
+      "function": "A freestanding planted ceramic pot",
+      "appearance": "Rounded terracotta pot with a thick rolled rim and one compact green shrub; preserve the approved colors and surface pattern.",
+      "structure": "Open pot volume, integral flat bottom, continuous rim and readable trunk/canopy gaps.",
+      "modeling_contract": {
+        "category": "prop",
+        "use": "static",
+        "structure": "Open ceramic pot with an integral base and a compact shrub."
+      }
+    },
+    {
+      "asset_id": "stool",
+      "view_id": "three_quarter",
+      "role": "three_quarter",
+      "category": "prop",
+      "function": "A low freestanding seat",
+      "appearance": "Round wooden seat on four separated legs; preserve the approved wood tone and leg proportions.",
+      "structure": "Solid seat, four leg contacts and cross braces visible without merging.",
+      "modeling_contract": {
+        "category": "prop",
+        "use": "static",
+        "structure": "Round seat on four separate legs with visible cross braces."
+      }
+    }
+  ],
+  "capabilities": {
+    "edit": true,
+    "max_references": 3,
+    "layout_guide": true,
+    "source_ref": "REPLACE_CURRENT_TOOL_SCHEMA_OR_CONFIGURED_PROFILE_EVIDENCE"
+  },
+  "parameters": {}
+}

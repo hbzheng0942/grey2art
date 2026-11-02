@@ -1,0 +1,41 @@
+{
+  "schema": 2,
+  "style_id": "REPLACE_STYLE_ID",
+  "atlas_digest": "REPLACE_APPROVED_ATLAS_STAGE_DIGEST",
+  "space_ids": [
+    "REPLACE_SPACE_A",
+    "REPLACE_SPACE_B"
+  ],
+  "transition_ids": [
+    "REPLACE_TRANSITION"
+  ],
+  "space_designs": [
+    {
+      "space_id": "REPLACE_SPACE_A",
+      "art_intent": "REPLACE_WORLD_FUNCTION_AND_CONCEPT_CRITICAL_FORM",
+      "gameplay_invariants": "REPLACE_LOCKED_TOPOLOGY_OCCUPANCY_CAMERA_ACTION_CLEARANCE",
+      "visual_freedom": "REPLACE_ADAPTABLE_MASSING_SILHOUETTE_MATERIAL_AND_FITTING_ENVELOPE",
+      "foreground": "REPLACE_NEAR_FIELD_INTERACTABLES_AND_READING",
+      "midground": "REPLACE_PLAYABLE_SPACE_COMPOSITION_AND_LANDMARKS",
+      "background": "REPLACE_FAR_FIELD_ENCLOSURE_DEPTH_AND_OCCLUSION"
+    },
+    {
+      "space_id": "REPLACE_SPACE_B",
+      "art_intent": "REPLACE_WORLD_FUNCTION_AND_CONCEPT_CRITICAL_FORM",
+      "gameplay_invariants": "REPLACE_LOCKED_TOPOLOGY_OCCUPANCY_CAMERA_ACTION_CLEARANCE",
+      "visual_freedom": "REPLACE_ADAPTABLE_MASSING_SILHOUETTE_MATERIAL_AND_FITTING_ENVELOPE",
+      "foreground": "REPLACE_NEAR_FIELD_INTERACTABLES_AND_READING",
+      "midground": "REPLACE_PLAYABLE_SPACE_COMPOSITION_AND_LANDMARKS",
+      "background": "REPLACE_FAR_FIELD_ENCLOSURE_DEPTH_AND_OCCLUSION"
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "REPLACE_TRANSITION",
+      "from_space_id": "REPLACE_SPACE_A",
+      "to_space_id": "REPLACE_SPACE_B",
+      "continuity_rule": "REPLACE_SHARED_ANCHORS_SCALE_MATERIAL_TERRAIN_EDGE_AND_SIGHTLINE_RULES"
+    }
+  ],
+  "note": "Use as the spatial_graph evidence for a user-confirmed spatial_design stage. Supply actual plan_view and section_or_volume evidence. Full atlases cover all baseline spaces/transitions. A focused large/continuous atlas covers exactly its detailed required_space_ids/required_transition_ids while the full baseline remains unchanged; external boundary endpoints may reference coarse neighboring spaces and must preserve global_layout endpoint/continuity records. Bind the approved atlas stage digest. Assembly recipe subsequently binds this spatial_design stage digest."
+}

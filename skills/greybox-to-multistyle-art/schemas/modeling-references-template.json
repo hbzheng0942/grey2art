@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "kind": "modeling-reference-package",
+  "policy": "game-asset-reference-v2",
+  "style_id": "REPLACE_STYLE_ID",
+  "selected_concept_sha256": "REPLACE_H1_SELECTED_IMAGE_SHA256",
+  "assets": [
+    {
+      "asset_id": "REPLACE_ASSET",
+      "mode": "single",
+      "modeling_contract": {
+        "category": "REPLACE_CATEGORY",
+        "use": "REPLACE_USE",
+        "structure": "REPLACE_INTENDED_VOLUME_AND_CRITICAL_CONSTRUCTION"
+      },
+      "views": [
+        {
+          "id": "REPLACE_ASSET_front",
+          "role": "front",
+          "origin": "host_generated",
+          "image": {
+            "path": "art/references/REPLACE_ASSET/front.png",
+            "sha256": "REPLACE_ACTUAL_IMAGE_SHA256"
+          },
+          "generation_receipt": {
+            "path": "art/references/REPLACE_ASSET/front-receipt.json",
+            "sha256": "REPLACE_RECEIPT_SHA256"
+          }
+        }
+      ],
+      "review": {
+        "actor": "agent",
+        "images_digest": "REPLACE_core.digest_OF_EXACT_VIEWS",
+        "contract_digest": "REPLACE_core.digest_OF_MODELING_CONTRACT",
+        "observations": [
+          {
+            "view_id": "REPLACE_ASSET_front",
+            "status": "unclear",
+            "observation": "REPLACE_VISIBLE_SHAPE_INTERFACE_POSE_LIGHTING_FINDINGS",
+            "source_ref": "REPLACE_ACTUAL_PIXEL_INSPECTION_TOOL_RESULT_OR_USER_REVIEW"
+          }
+        ]
+      }
+    }
+  ],
+  "note": "Intentionally blocked. category: humanoid/animal/prop/architecture/vegetation/mechanism; use: static/rigid_motion/skeletal_animation. Read modeling-references.md and only the applicable category. Skeletal humanoids need pose A or T; animals natural_stance; both need pose_details and the same pose on each view. Architecture/mechanisms need interfaces. Other skeletal assets need deformation_plan. Review exact pixels per view with pass/fail/unclear observations; multiview also needs cross_view_observation. Failed/unclear cannot submit; validation cannot authenticate viewing or judge pose. Preserve legacy v1 for recovery, never label it v2-reviewed."
+}

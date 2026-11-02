@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "catalog": {
+    "file": "docs/showcase/gallery.json",
+    "bytes": 11499,
+    "sha256": "74e290caee54b2e20c4c4cf9045746ee6fa8b57bbacce457baf2e4753c5212e8"
+  },
+  "renderer": {
+    "file": "scripts/render_gameplay_gallery.py",
+    "bytes": 6548,
+    "sha256": "bab0eda16fb336b9a6a929b87b9c21099a1c7ef7122dbf0ab47102808c7cbcb3"
+  },
+  "canvas": {
+    "width": 1800,
+    "height": 1342
+  },
+  "outputs": [
+    {
+      "file": "docs/demo/grey2art-gallery.html",
+      "bytes": 4443,
+      "sha256": "0edb7c2d6bf54051a4a7116428321f01f3716c9bd2ed732fe9ef4d112fe07bbd"
+    },
+    {
+      "file": "docs/demo/grey2art-gallery.png",
+      "bytes": 1851714,
+      "sha256": "c0fad5d41ebd2e29382817dde99543017ab16daead579d3d6c627a68eb5d0cc8"
+    },
+    {
+      "file": "docs/demo/grey2art-gallery.zh-CN.html",
+      "bytes": 4456,
+      "sha256": "4bb4cfe87a65b75537dbdd7b09617fdbf149485593cc3b146302b7741b053612"
+    },
+    {
+      "file": "docs/demo/grey2art-gallery.zh-CN.png",
+      "bytes": 1859312,
+      "sha256": "29d5851e53ea9f82549d19c9afc55dee371f50d6aa9522cb71b9b636453df16f"
+    }
+  ],
+  "font": {
+    "file": "fonts/NotoSansCJKsc-2.004-showcase-subset.woff2",
+    "bytes": 46412,
+    "sha256": "34c915ab9f6e26d23d6b2bf36b2c72fcc5d25ee9e14be758143410360a9d139d",
+    "fallback_families": [
+      "Noto Sans SC",
+      "PingFang SC",
+      "sans-serif"
+    ],
+    "coverage": "Shared existing subset; additional Chinese title glyphs use browser CJK fallback. The exported PNG fixes the rendered glyph appearance."
+  },
+  "source_count": 9,
+  "unique_games": 7,
+  "source_operation": "Verified source bytes unchanged. CSS proportional cover in 8:5 tiles; edge crop depends on native aspect. No added filler bars or stretching.",
+  "scope": "Native art showcase only; no claim of current release end-to-end qualification or measured runtime performance."
+}

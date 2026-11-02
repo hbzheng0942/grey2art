@@ -1,0 +1,42 @@
+Generate ONE flat asset board, requested native size $size, on an opaque pure-white background.
+$layout
+
+Actual supplied images, in order:
+$inputs
+
+Each listed slot contains one complete object/view. Render each exactly once,
+in slot order. Preserve the explicit category/species, recognizable silhouette,
+construction, functional openings, intrinsic colors/materials and authored patterns.
+Honor each modeling contract, pose, interface and view direction. For multiple views
+of one asset, keep its identity, proportions, materials and exact body/part pose;
+only the camera moves. Do not replace one subject with a similar neighboring subject.
+
+Each slot's projected_aspect is its expected 2D silhouette width divided by height
+in the requested view. Optional projected_dimensions carries the measured/estimated
+projection width, height and source_ref. These are view-specific projection estimates,
+not nominal 3D world dimensions. Use them to guide the viewpoint and silhouette;
+preserve the approved construction, intrinsic proportions and pose without stretching
+or deforming the object to force an exact numerical ratio. Any nominal world dimensions
+in the modeling contract or structural description retain their separate meaning.
+Use estimated_subject_size (width, height in native pixels) to allocate subject detail
+and slot occupancy. Meet the native subject minima and critical-feature requirements
+in pixel_requirements while retaining the complete silhouette and white margin.
+Those planning estimates do not establish compliance; actual output pixels need review.
+
+Different assets may be scaled independently within their regions. Views sharing an
+asset_id depict the SAME object: preserve geometry, landmark count and placement,
+asymmetry, colors and the exact pose; keep a consistent subject scale across these
+views. Follow each role literally; front, side and back are different camera directions,
+not repeated three-quarter views or redesigned variations. Do not mirror asymmetric
+features to invent an unseen side. If a hidden feature is unspecified, keep it simple
+and consistent with the supplied master rather than adding new design details.
+Use most of each allotted region for the object with a small clear white margin.
+Keep complete silhouettes, including protrusions, handles, fingers, limbs and integral
+bases, separated by white space. They do not share a scene ground line. Do not
+overlap subjects, crop parts, merge their shadows or place subjects on each other.
+Use neutral soft illumination with no strong cast/contact shadow or baked highlight.
+Do not draw a scene, floor, horizon, invented pedestal, extra object, frame, grid line,
+number, caption, label or watermark. Layout boundaries are guides, not crop coordinates.
+
+Structured subjects for this page:
+$objects

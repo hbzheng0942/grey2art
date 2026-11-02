@@ -1,0 +1,139 @@
+{
+  "brand": "Grey2Art",
+  "layout": "three game rows by four columns",
+  "canvas": {
+    "width": 1800,
+    "height": 1226,
+    "html_preview": "Proportional fit to viewport width; no horizontal scrolling"
+  },
+  "frame_aspects": {
+    "hole": "3 / 2",
+    "train-parkour": "16 / 9",
+    "wander-garden": "8 / 5"
+  },
+  "font": {
+    "family": "Grey2Art Sans",
+    "source_family": "Noto Sans CJK SC 2.004",
+    "file": "fonts/NotoSansCJKsc-2.004-showcase-subset.woff2",
+    "sha256": "34c915ab9f6e26d23d6b2bf36b2c72fcc5d25ee9e14be758143410360a9d139d",
+    "bytes": 46412,
+    "weight": "Static regular 400; browser-synthesized 600 for headings",
+    "license": "OFL-1.1"
+  },
+  "image_operation": "Real frames fill equal edge-aligned viewports within each game row using proportional cover. Native per-case ratios limit edge crop; no stretching or filler bars. Source bytes unchanged",
+  "catalog_sha256": "fd3268e158a985c2d1d1e6d73a8d9dfdc2ed3f4ea4afdb8bfe241f05064c3861",
+  "placeholders": [],
+  "sources": [
+    {
+      "case": "hole",
+      "file": "hole-reference-greybox.png",
+      "sha256": "18038dfffc99197a924941bd82c61e4b5a1f57ad4990bf30e421563fc3c178bc",
+      "bytes": 310563,
+      "display_treatment": "reference-frame"
+    },
+    {
+      "case": "hole",
+      "file": "hole-ceramic-selected-native.png",
+      "sha256": "021bd068e10e4931a0b4a2282c77027f00408955d8c67a28b7f81a18187188c1",
+      "bytes": 2220902,
+      "display_treatment": "reference-frame"
+    },
+    {
+      "case": "hole",
+      "file": "hole-orbital-selected-native.png",
+      "sha256": "4dffff7406e9b3fefee44d8888beee91cb6f3c3ba32f41d4c65b143e8388890c",
+      "bytes": 1401032,
+      "display_treatment": "reference-frame"
+    },
+    {
+      "case": "hole",
+      "file": "hole-reference-mycelium.png",
+      "sha256": "4417f837bd2570249bbcb97b668b8086231b2e4aebbdc0d0b3b6cd097541f8f0",
+      "bytes": 995708,
+      "display_treatment": "reference-frame"
+    },
+    {
+      "case": "train-parkour",
+      "file": "train-greybox-native.jpg",
+      "sha256": "90a4997bae754a1962c82fe79df50a5d530ff0005449bfdc4fef6e133087e463",
+      "bytes": 192213,
+      "display_treatment": "fit-to-tile"
+    },
+    {
+      "case": "train-parkour",
+      "file": "train-clay-native.jpg",
+      "sha256": "cccd6eb01d0c042316493cefe1ddc775622cd4fb719ce4c02e8c1722de2aad41",
+      "bytes": 366148,
+      "display_treatment": "fit-to-tile"
+    },
+    {
+      "case": "train-parkour",
+      "file": "train-pixel-native.jpg",
+      "sha256": "625c2dab01f6003aeb9eccc327d5c68719d2b2e7e45de025e666ad67f6d45883",
+      "bytes": 386639,
+      "display_treatment": "fit-to-tile"
+    },
+    {
+      "case": "train-parkour",
+      "file": "train-halloween-native.jpg",
+      "sha256": "7cae742a20cf1dda7512fa24b90390e8f9d71061cdbd9c358d7f98eee3260fbb",
+      "bytes": 359666,
+      "display_treatment": "fit-to-tile"
+    },
+    {
+      "case": "wander-garden",
+      "file": "garden-greybox-native.png",
+      "sha256": "81e39e4eb7d0eb2a26819a8bf22aef3943a1b59735e410572dc920c73280bd52",
+      "bytes": 201400,
+      "display_treatment": "fit-to-tile"
+    },
+    {
+      "case": "wander-garden",
+      "file": "garden-original-native.png",
+      "sha256": "c29fd0d63fa2b4ad29ccb87fee4660a92b571bc2ab1853555dff460a346ad727",
+      "bytes": 619404,
+      "display_treatment": "fit-to-tile"
+    },
+    {
+      "case": "wander-garden",
+      "file": "garden-ink-native.png",
+      "sha256": "aa269a518edc7ef68d6cba71fdeb65e1c706ebe014a7c2cb7a8be59472f4603a",
+      "bytes": 638861,
+      "display_treatment": "fit-to-tile"
+    },
+    {
+      "case": "wander-garden",
+      "file": "garden-halloween-native.png",
+      "sha256": "a4a64479905a00357b6bec306cd93c1dc64f8c4e7f89dc1fcca8dcf94204f30b",
+      "bytes": 650343,
+      "display_treatment": "fit-to-tile"
+    }
+  ],
+  "renderer": {
+    "file": "scripts/render_showcase.py",
+    "bytes": 11060,
+    "sha256": "feda0e6d26092885875c1291167bf10976062388d07b11b0f7e37f57fa136538"
+  },
+  "outputs": [
+    {
+      "file": "docs/demo/grey2art-overview.html",
+      "bytes": 6799,
+      "sha256": "ebd44a6f10977e1d9ca1a35c8998a6716c43303eb42f48683cf42d561b8ce2a3"
+    },
+    {
+      "file": "docs/demo/grey2art-overview.png",
+      "bytes": 1481793,
+      "sha256": "de1f4039587f12210cbd1a8b63e681e4689dae7be81e2e39d1f94d5ab430ef49"
+    },
+    {
+      "file": "docs/demo/grey2art-overview.zh-CN.html",
+      "bytes": 6797,
+      "sha256": "f155b286da1307abc8f3f8fe2f9035c65d8bdefd7452aa597f29d29caa44a775"
+    },
+    {
+      "file": "docs/demo/grey2art-overview.zh-CN.png",
+      "bytes": 1482931,
+      "sha256": "db982f3e76bd0a0a055b601b466ba6f4c68c012f3844a46a4ecfed303826b1a1"
+    }
+  ]
+}

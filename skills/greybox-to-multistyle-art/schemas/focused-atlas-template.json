@@ -1,0 +1,32 @@
+{
+  "schema": 2,
+  "kind": "concept-atlas",
+  "style_id": "replace-style",
+  "direction_concept_sha256": "REPLACE_SELECTED_CONCEPT_HASH",
+  "scope_mode": "focused",
+  "required_space_ids": ["entry", "interaction"],
+  "required_transition_ids": ["entry-to-interaction", "interaction-to-later"],
+  "global_layout": {
+    "spaces": [
+      {"space_id": "entry", "intent": "REPLACE_COARSE_ENTRY_INTENT"},
+      {"space_id": "interaction", "intent": "REPLACE_COARSE_PLAYABLE_INTENT"},
+      {"space_id": "later", "intent": "REPLACE_FUTURE_REGION_INTENT_NOT_PRODUCTION_READY"}
+    ],
+    "boundaries": [
+      {"id": "entry-to-interaction", "from_space_id": "entry", "to_space_id": "interaction", "continuity_rule": "REPLACE_APPROVED_SUPPORT_CLEARANCE_AND_SIGHTLINE_RULE"},
+      {"id": "interaction-to-later", "from_space_id": "interaction", "to_space_id": "later", "continuity_rule": "REPLACE_DOWNSTREAM_INTERFACE_RULE"}
+    ]
+  },
+  "focus_contract": {
+    "playable_loop": "REPLACE_CONCRETE_CONTINUOUS_ACTION_LOOP_AND_EXIT",
+    "entry": {"space_id": "entry", "view_id": "entry-key", "interface": "REPLACE_ENTRY_CAMERA_CLEARANCE_AND_SUPPORT_CONSTRAINTS"},
+    "exit": {"space_id": "interaction", "view_id": "exit-seam", "interface": "REPLACE_EXIT_TRANSITION_AND_DOWNSTREAM_CONSTRAINTS"}
+  },
+  "views": [
+    {"id": "entry-key", "concept_image_id": "entry-image", "concept_sha256": "REPLACE_ACTUAL_IMAGE_HASH", "camera_id": "entry-camera", "role": "key_scene", "space_ids": ["entry"], "segment_id": "REPLACE_BASELINE_ENTRY_SEGMENT"},
+    {"id": "interaction-key", "concept_image_id": "interaction-image", "concept_sha256": "REPLACE_ACTUAL_IMAGE_HASH", "camera_id": "interaction-camera", "role": "key_scene", "space_ids": ["interaction"], "segment_id": "REPLACE_BASELINE_INTERACTION_SEGMENT"},
+    {"id": "internal-seam", "concept_image_id": "internal-image", "concept_sha256": "REPLACE_ACTUAL_IMAGE_HASH", "camera_id": "internal-camera", "role": "transition", "transition_id": "entry-to-interaction", "space_ids": ["entry", "interaction"]},
+    {"id": "exit-seam", "concept_image_id": "exit-image", "concept_sha256": "REPLACE_ACTUAL_IMAGE_HASH", "camera_id": "exit-camera", "role": "transition", "transition_id": "interaction-to-later", "space_ids": ["interaction", "later"]}
+  ],
+  "note": "Intentionally unfinished large/continuous example. Replace IDs with the complete unchanged baseline's real spaces/segments/transitions. Global coarse layout must cover all baseline spaces/transitions. Detailed spaces form a connected continuous slice, with every touching boundary covered. Spatial graph uses exactly required_space_ids/required_transition_ids and preserves global boundary endpoint/rule records. Actual images and scoped H2 remain mandatory. Future regions need new H2 detail before their production; preserve original accepted sample context when widening H2. Finite scenes use full atlas coverage. This example grants no approval."
+}

@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "project": "Grey2Art",
+  "reviewed_on": "2026-10-30",
+  "layout": {
+    "rows": 3,
+    "columns": 4,
+    "first_column": "greybox_or_explicit_placeholder",
+    "remaining_columns": "three_existing_art_versions"
+  },
+  "scope": "Showcase media, not installation dependencies or end-to-end qualification for the current Skill release.",
+  "rights": "Source game and media rights retained; public beta included-content review remains required.",
+  "cases": [
+    {
+      "id": "hole",
+      "name": {
+        "en": "Hole",
+        "zh-CN": "黑洞"
+      },
+      "detail": "docs/showcase/hole.md",
+      "repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+      "source_revision": "ab75441b078713b14842a284ddebfe306ab03aa3",
+      "credit": "Grey2Art showcase contributors; published by hbzheng0942",
+      "input": {
+        "kind": "greybox",
+        "label": {
+          "en": "Gameplay greybox",
+          "zh-CN": "玩法灰盒"
+        },
+        "image": "docs/demo/hole-reference-greybox.png",
+        "sha256": "18038dfffc99197a924941bd82c61e4b5a1f57ad4990bf30e421563fc3c178bc",
+        "bytes": 310563,
+        "source_path": "games/hole/shared/greybox/project",
+        "version": "original-v0.3-input",
+        "capture": "new_reference_camera_native_orthographic_still",
+        "human_art_acceptance": "pending",
+        "current_skill_release_reproduction": false,
+        "width": 1536,
+        "height": 1024,
+        "camera_receipt": "docs/demo/hole-reference-camera.json",
+        "overview_treatment": "reference-frame"
+      },
+      "art_versions": [
+        {
+          "kind": "art_style",
+          "label": {
+            "en": "Ceramic town",
+            "zh-CN": "陶瓷小镇"
+          },
+          "image": "docs/demo/hole-ceramic-selected-native.png",
+          "sha256": "021bd068e10e4931a0b4a2282c77027f00408955d8c67a28b7f81a18187188c1",
+          "bytes": 2220902,
+          "source_path": "games/hole/process/ceramic/stage-history.png",
+          "version": "hole-lookdev-validated / case-final-v2 / baseline",
+          "capture": "historical_native_orthographic_still",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1536,
+          "height": 1024,
+          "camera_receipt": "docs/demo/hole-reference-camera.json",
+          "overview_treatment": "reference-frame",
+          "source_record": "greybox-art-pipeline: runs/hole-lookdev-validated/ceramic/baseline/ceramic-native.json",
+          "selection": "maintainer-supplied PNG; decoded pixels identical to historical source"
+        },
+        {
+          "kind": "art_style",
+          "label": {
+            "en": "Orbital sci-fi",
+            "zh-CN": "轨道科幻"
+          },
+          "image": "docs/demo/hole-orbital-selected-native.png",
+          "sha256": "4dffff7406e9b3fefee44d8888beee91cb6f3c3ba32f41d4c65b143e8388890c",
+          "bytes": 1401032,
+          "source_path": "games/hole/process/orbital/stage-history.png",
+          "version": "hole-lookdev-validated / case-final-v2 / baseline",
+          "capture": "historical_native_orthographic_still",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1536,
+          "height": 1024,
+          "camera_receipt": "docs/demo/hole-reference-camera.json",
+          "overview_treatment": "reference-frame",
+          "source_record": "greybox-art-pipeline: runs/hole-lookdev-validated/orbital/baseline/orbital-native.json",
+          "selection": "historical stage-history PNG; original bytes preserved"
+        },
+        {
+          "kind": "art_style",
+          "label": {
+            "en": "Mushroom forest",
+            "zh-CN": "蘑菇森林"
+          },
+          "image": "docs/demo/hole-reference-mycelium.png",
+          "sha256": "4417f837bd2570249bbcb97b668b8086231b2e4aebbdc0d0b3b6cd097541f8f0",
+          "bytes": 995708,
+          "source_path": "games/hole/styles/mycelium/project",
+          "version": "five-worlds-mycelium-001",
+          "capture": "new_reference_camera_native_orthographic_still",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1536,
+          "height": 1024,
+          "camera_receipt": "docs/demo/hole-reference-camera.json",
+          "overview_treatment": "reference-frame"
+        }
+      ],
+      "comparison": "Two historical native ceramic/orbital frames and two new greybox/mycelium captures share the recorded orthographic camera: position [-12,16,6], target [-12,0,-8], KEEP_HEIGHT size 19, 1536x1024. Historical scene objects and asset bounds are preserved; every full frame is displayed without a detail crop.",
+      "media_guide": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases/blob/0986dc2cfec6a7b21e0e257c83ec1b62fd960ebb/media/README.md",
+      "recordings": {
+        "available_styles": [
+          "ceramic",
+          "orbital"
+        ],
+        "method": "native offline fixed-step automatic route; original game audio",
+        "complete_selected_comparison": false,
+        "performance_claim": false
+      }
+    },
+    {
+      "id": "train-parkour",
+      "name": {
+        "en": "Train Parkour",
+        "zh-CN": "列车跑酷"
+      },
+      "detail": "docs/showcase/train-parkour.md",
+      "repository": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases",
+      "source_revision": "0986dc2cfec6a7b21e0e257c83ec1b62fd960ebb",
+      "credit": "Grey2Art showcase contributors; published by hbzheng0942",
+      "input": {
+        "kind": "greybox",
+        "label": {
+          "en": "Gameplay greybox",
+          "zh-CN": "玩法灰盒"
+        },
+        "image": "docs/demo/train-greybox-native.jpg",
+        "sha256": "90a4997bae754a1962c82fe79df50a5d530ff0005449bfdc4fef6e133087e463",
+        "bytes": 192213,
+        "source_path": "games/train-parkour/styles/greybox/thumbnail.jpg",
+        "version": "m1.7r2-unified-v2",
+        "capture": "native_game_frame",
+        "human_art_acceptance": "pending",
+        "current_skill_release_reproduction": false,
+        "width": 1920,
+        "height": 1080
+      },
+      "art_versions": [
+        {
+          "kind": "art_style",
+          "label": {
+            "en": "Colorful clay",
+            "zh-CN": "彩色黏土"
+          },
+          "image": "docs/demo/train-clay-native.jpg",
+          "sha256": "cccd6eb01d0c042316493cefe1ddc775622cd4fb719ce4c02e8c1722de2aad41",
+          "bytes": 366148,
+          "source_path": "games/train-parkour/styles/clay/thumbnail.jpg",
+          "version": "P21",
+          "capture": "native_game_frame",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "kind": "art_style",
+          "label": {
+            "en": "Pixel skyline",
+            "zh-CN": "像素天际线"
+          },
+          "image": "docs/demo/train-pixel-native.jpg",
+          "sha256": "625c2dab01f6003aeb9eccc327d5c68719d2b2e7e45de025e666ad67f6d45883",
+          "bytes": 386639,
+          "source_path": "games/train-parkour/styles/pixel-v2/thumbnail.jpg",
+          "version": "route-finish / continuous + bold",
+          "capture": "native_game_frame",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "kind": "art_style",
+          "label": {
+            "en": "Halloween comic",
+            "zh-CN": "酸色漫画鬼节"
+          },
+          "image": "docs/demo/train-halloween-native.jpg",
+          "sha256": "7cae742a20cf1dda7512fa24b90390e8f9d71061cdbd9c358d7f98eee3260fbb",
+          "bytes": 359666,
+          "source_path": "games/train-parkour/styles/halloween-comic/thumbnail.jpg",
+          "version": "city08 + T2 + Festival V2 + staged train readability",
+          "capture": "native_game_frame",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "comparison": "Corresponding forward station views with shared movement/route baseline; no synchronized-input claim from still frames.",
+      "media_guide": "https://github.com/hbzheng0942/greybox-to-multistyle-art-showcases/blob/0986dc2cfec6a7b21e0e257c83ec1b62fd960ebb/media/README.md",
+      "recordings": {
+        "available_styles": [
+          "greybox",
+          "halloween-comic",
+          "odd-logistics"
+        ],
+        "method": "fixed-input offline native rendering; 1920x1080, encoded 30 fps, silent; approximate visual matching",
+        "complete_selected_comparison": false,
+        "performance_claim": false,
+        "previews": [
+          {
+            "style": "greybox",
+            "file": "docs/demo/train-greybox-preview.mp4"
+          },
+          {
+            "style": "halloween-comic",
+            "file": "docs/demo/train-halloween-preview.mp4"
+          }
+        ],
+        "preview_sources": "docs/demo/grey2art-video-sources.json"
+      }
+    },
+    {
+      "id": "wander-garden",
+      "name": {
+        "en": "Wander Garden",
+        "zh-CN": "漫野田园"
+      },
+      "detail": "docs/showcase/wander-garden.md",
+      "repository": "https://github.com/xuanyuc1999-ops/wander-garden-demos",
+      "source_revision": "78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+      "credit": "xuanyuc1999-ops",
+      "input": {
+        "kind": "greybox",
+        "label": {
+          "en": "Gameplay greybox",
+          "zh-CN": "玩法灰盒"
+        },
+        "image": "docs/demo/garden-greybox-native.png",
+        "sha256": "81e39e4eb7d0eb2a26819a8bf22aef3943a1b59735e410572dc920c73280bd52",
+        "bytes": 201400,
+        "version": "v0.2",
+        "source_archive": "WanderGarden-v0.2-source.zip",
+        "source_archive_sha256": "fc32528fd1d53f01f697ea110aca37a622e57b7cb5fc794932e4e31ed03c8480",
+        "capture": "native_game_staged_still",
+        "camera_receipt": "docs/demo/garden-greybox-source.json",
+        "current_skill_release_reproduction": false,
+        "human_art_acceptance": "not applicable to gameplay input",
+        "note": "Same gameplay base; capture pose follows the art showcase camera script. Historical art screenshots have no full actual camera receipts for strict pixel registration."
+      },
+      "art_versions": [
+        {
+          "kind": "original_art",
+          "label": {
+            "en": "Original low-poly",
+            "zh-CN": "原版低多边形"
+          },
+          "image": "docs/demo/garden-original-native.png",
+          "sha256": "c29fd0d63fa2b4ad29ccb87fee4660a92b571bc2ab1853555dff460a346ad727",
+          "bytes": 619404,
+          "source_path": "demos/01-original/previews/regions/0-meadow.png",
+          "version": "78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+          "capture": "native_game_frame",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "kind": "art_style",
+          "label": {
+            "en": "Ink storybook",
+            "zh-CN": "墨线童话"
+          },
+          "image": "docs/demo/garden-ink-native.png",
+          "sha256": "aa269a518edc7ef68d6cba71fdeb65e1c706ebe014a7c2cb7a8be59472f4603a",
+          "bytes": 638861,
+          "source_path": "demos/02-ink-storybook/previews/regions/0-meadow.png",
+          "version": "78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+          "capture": "native_game_frame",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "kind": "art_style",
+          "label": {
+            "en": "Pumpkin moon",
+            "zh-CN": "南瓜月夜"
+          },
+          "image": "docs/demo/garden-halloween-native.png",
+          "sha256": "a4a64479905a00357b6bec306cd93c1dc64f8c4e7f89dc1fcca8dcf94204f30b",
+          "bytes": 650343,
+          "source_path": "demos/03-halloween/previews/regions/0-meadow.png",
+          "version": "78ac8dadab0bdf82f1af97d967dea3a847d4da9a",
+          "capture": "native_game_frame",
+          "human_art_acceptance": "pending",
+          "current_skill_release_reproduction": false,
+          "width": 1280,
+          "height": 800
+        }
+      ],
+      "comparison": "Actual v0.2 procedural gameplay greybox followed by three native art versions. The original art version already has art. The input view follows the documented meadow capture pose; source art placement differences remain visible.",
+      "media_guide": "https://github.com/xuanyuc1999-ops/wander-garden-demos/blob/78ac8dadab0bdf82f1af97d967dea3a847d4da9a/README.md",
+      "recordings": {
+        "available_styles": [],
+        "method": null,
+        "complete_selected_comparison": false,
+        "performance_claim": false
+      }
+    }
+  ]
+}

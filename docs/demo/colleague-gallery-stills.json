@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "id": "halloween-racing",
+      "title_zh": "万圣夜竞速",
+      "title_en": "Halloween Night Racing",
+      "output": "docs/demo/colleague-halloween-racing-native.png",
+      "bytes": 236273,
+      "sha256": "b92d6d92f16b66b0c26eb9e52efd019bf79cdd101c743fd5479dd14ee3661782",
+      "repository": "https://github.com/shencaiyiyi11-byte/playable-game-gallery",
+      "revision": "3ed4658b1a8e61df961c9d2a36ca3662827e33af",
+      "source": {
+        "path": "halloween-racing/game.pck",
+        "size": 81675580,
+        "sha256": "9d1170af95be7f427e584a0b31333304f74bc8e0b1db20a2a8246a8ccb9e0308",
+        "parts": [
+          "large-files/halloween-racing--game.pck.000",
+          "large-files/halloween-racing--game.pck.001",
+          "large-files/halloween-racing--game.pck.002",
+          "large-files/halloween-racing--game.pck.003",
+          "large-files/halloween-racing--game.pck.004",
+          "large-files/halloween-racing--game.pck.005",
+          "large-files/halloween-racing--game.pck.006",
+          "large-files/halloween-racing--game.pck.007",
+          "large-files/halloween-racing--game.pck.008",
+          "large-files/halloween-racing--game.pck.009"
+        ]
+      },
+      "native_scene": "res://art/arcade-racing/styles/halloween/runtime/e3-full-v1/play.tscn",
+      "recording_frame": "0096.png",
+      "native_fixed_fps": 32,
+      "driver_sha256": "c525bf7272c2f014e4e8b058c957e6e90147a269cbaf84256f94c7c0b0e99364",
+      "input": "Enter starts; W accelerates along the first road. No camera, speed, route or scene edits.",
+      "treatment": "Unchanged full actual native frame; no crop, repaint, overlays or grading."
+    },
+    {
+      "id": "no-signal-halloween",
+      "title_zh": "失联航次 · 手绘哥特",
+      "title_en": "NO SIGNAL · Painted Gothic",
+      "output": "docs/demo/colleague-no-signal-halloween-native.png",
+      "bytes": 472184,
+      "sha256": "78e0d13e024108ea2f000f24699f37784bb5e83525213e251c2234c49196293a",
+      "repository": "https://github.com/shencaiyiyi11-byte/playable-game-gallery",
+      "revision": "3ed4658b1a8e61df961c9d2a36ca3662827e33af",
+      "source": {
+        "path": "no-signal-halloween/game.pck",
+        "size": 76224152,
+        "sha256": "fecb98f12884838c1e8fa400a2fc2003c707420bd62f8ed4d4f42021ceb87ac9",
+        "parts": [
+          "large-files/no-signal-halloween--game.pck.000",
+          "large-files/no-signal-halloween--game.pck.001",
+          "large-files/no-signal-halloween--game.pck.002",
+          "large-files/no-signal-halloween--game.pck.003",
+          "large-files/no-signal-halloween--game.pck.004",
+          "large-files/no-signal-halloween--game.pck.005",
+          "large-files/no-signal-halloween--game.pck.006",
+          "large-files/no-signal-halloween--game.pck.007",
+          "large-files/no-signal-halloween--game.pck.008",
+          "large-files/no-signal-halloween--game.pck.009"
+        ]
+      },
+      "native_scene": "res://art/halloween_s01/s01.tscn",
+      "recording_frame": "0000.png",
+      "native_fixed_fps": 32,
+      "driver_sha256": "c525bf7272c2f014e4e8b058c957e6e90147a269cbaf84256f94c7c0b0e99364",
+      "input": "Enter starts; W exits the starting cabin, mouse motion turns toward the decorated central corridor, W continues walking. No teleport or camera-state edits.",
+      "treatment": "Unchanged full actual native frame; no crop, repaint, overlays or grading."
+    },
+    {
+      "id": "sunset",
+      "title_zh": "落日海岸",
+      "title_en": "Sunset Coast",
+      "output": "docs/demo/colleague-sunset-native.png",
+      "bytes": 423035,
+      "sha256": "caafabaf36cb37d9bcf70a9a917369d4d84ba34619b39a21bb23a76df385a917",
+      "repository": "https://github.com/shencaiyiyi11-byte/playable-game-gallery",
+      "revision": "3ed4658b1a8e61df961c9d2a36ca3662827e33af",
+      "source": {
+        "path": "sunset/game.pck",
+        "size": 81301004,
+        "sha256": "afe46d1e975085c5eea7ce053f0db1c036957bf1b097842f6f90edbdd23c61ee",
+        "parts": [
+          "large-files/sunset--game.pck.000",
+          "large-files/sunset--game.pck.001"
+        ]
+      },
+      "native_scene": "res://art/arcade-racing/styles/sunset/runtime/revisions/finish-v1/play.tscn",
+      "recording_frame": 330,
+      "native_fixed_fps": 30,
+      "captured_at_utc": "2026-10-30T11:14:41.037796+00:00",
+      "driver_sha256": "7bcd1fe71ea1e8b6085bfe7348b905fc9814ae6cbc957b204729154e598e950b",
+      "input": "Enter starts; hold W along the opening street. No teleport, scene, material or lighting edits.",
+      "treatment": "Unchanged full actual native 960x540 frame; no crop, repaint, overlays or grading."
+    }
+  ]
+}

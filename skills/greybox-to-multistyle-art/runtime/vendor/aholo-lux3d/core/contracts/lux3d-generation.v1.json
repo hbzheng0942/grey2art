@@ -1,0 +1,849 @@
+{
+  "contractId": "lux3d-generation/v1",
+  "module": "M02",
+  "status": "implementation-baseline",
+  "apiDocumentationVersion": "OpenAPI 2.0",
+  "authority": {
+    "policy": "The two lux3dWebDoc files form the interface baseline. Task response states and list filters were corrected against the current AGS implementation on 2026-09-30; other fields retain the baseline.",
+    "primarySources": [
+      {
+        "region": "cn",
+        "path": "lux3dWebDoc/cn.md",
+        "sha256": "AEDF72819CB3AC76DF23415915908E58BDFA75DFEA51B086FC93F51D6D182C18"
+      },
+      {
+        "region": "international",
+        "path": "lux3dWebDoc/intl.md",
+        "sha256": "8072B18F62A5E3915AEDC402E23FFD9D145DB753DF190EFBF0555A141BDFA45A"
+      }
+    ],
+    "reviewedOn": "2026-09-08",
+    "regionalSemanticParity": true,
+    "taskStatusVerification": {
+      "reviewedOn": "2026-09-30",
+      "service": "ai-generate-service",
+      "sources": [
+        "AiGenerateInstanceStatus.java",
+        "ConvertDtoUtil.toOpenDto/toOpenUserTaskDto",
+        "OpenGenerateController.VALID_TASK_STATUSES",
+        "lux3dOpen.md"
+      ],
+      "responseStatuses": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "listFilterStatuses": [
+        0,
+        1,
+        3,
+        4
+      ]
+    },
+    "digitalHumanVerification": {
+      "reviewedOn": "2026-10-08",
+      "service": "ai-generate-service",
+      "revision": "ca5df742f5eb34b67bc3252c4c0992ac519180c4",
+      "sources": [
+        "open.yaml",
+        "Lux3dDigitalHumanPreparation.java",
+        "Lux3dAnimationResults.java"
+      ]
+    }
+  },
+  "transport": {
+    "regions": {
+      "cn": {
+        "host": "https://api.aholo3d.cn",
+        "pathPrefix": "",
+        "effectiveBaseUrl": "https://api.aholo3d.cn",
+        "apiKeyPage": "https://labs.aholo3d.cn/api-keys?from=lux3d",
+        "assetUploadDocs": "https://labs.aholo3d.cn/api-docs/api-reference#tag/asset"
+      },
+      "international": {
+        "host": "https://api.aholo.ai",
+        "pathPrefix": "/global",
+        "effectiveBaseUrl": "https://api.aholo.ai/global",
+        "apiKeyPage": "https://labs.aholo.ai/api-keys?from=lux3d",
+        "assetUploadDocs": "https://labs.aholo.ai/api-docs/en/api-reference#tag/asset"
+      }
+    },
+    "regionIsolation": {
+      "required": true,
+      "apiKeysInterchangeable": false,
+      "knownBaseUrlMismatchRejected": true
+    },
+    "authentication": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "prefix": null,
+      "bearerPrefixForbidden": true,
+      "environmentByRegion": {
+        "cn": "LUX3D_CN_API_KEY",
+        "international": "LUX3D_GLOBAL_API_KEY"
+      },
+      "legacyEnvironment": {
+        "key": "LUX3D_API_KEY",
+        "regionBinding": "LUX3D_API_KEY_REGION",
+        "matchingRegionRequired": true
+      }
+    },
+    "requestPolicy": {
+      "createMaxAttempts": 1,
+      "createBlindRetry": false,
+      "queryMaxAttempts": 3,
+      "recommendedPollIntervalSeconds": {
+        "minimum": 10,
+        "maximum": 15
+      },
+      "unknownSubmissionRecovery": "Persist the local state and reconcile with task history before deciding whether to submit again.",
+      "serverIdempotencyKey": null,
+      "localDuplicatePrevention": "Atomically reserve the state file before POST; a second run using the same state path is rejected.",
+      "localSubmissionClassification": {
+        "submission_blocked": "Client-side validation or missing configuration prevented the POST.",
+        "submission_rejected": "A complete API envelope returned a non-zero business code.",
+        "submission_unknown": "POST transport or response processing failed without a trustworthy acceptance result."
+      }
+    },
+    "artifactTtlSeconds": 7200,
+    "assetPreparation": {
+      "status": "external-prerequisite",
+      "contractIncluded": false,
+      "rule": "img, imgs, meshUrl, and modelUrl must be reachable HTTP(S) URLs; upload local files through the regional Asset API first."
+    }
+  },
+  "responseEnvelope": {
+    "requiredFields": [
+      "f",
+      "c",
+      "m",
+      "d"
+    ],
+    "success": {
+      "f": null,
+      "c": "0",
+      "m": ""
+    },
+    "createData": {
+      "type": "long",
+      "meaning": "taskid",
+      "minimum": 1,
+      "booleanAllowed": false
+    }
+  },
+  "taskLifecycle": {
+    "businessId": "LUX_3D",
+    "statuses": {
+      "0": "initialized",
+      "1": "running",
+      "2": "waiting_for_result",
+      "3": "succeeded",
+      "4": "failed",
+      "5": "dispatch_failed",
+      "6": "cancelled"
+    },
+    "outputsFinalOnlyAtStatus": 3,
+    "outputItem": {
+      "contentRequired": false,
+      "contentTypeWhenPresent": "string",
+      "nonStringContentRejected": true
+    },
+    "queryHealthIsNotTaskStatus": true,
+    "invalidOutputAfterSuccess": {
+      "lastKnownProviderStatus": 3,
+      "localWorkflowStatus": "output_invalid",
+      "queryHealth": "ok"
+    }
+  },
+  "concurrency": {
+    "scope": "per-account-shared",
+    "sharedCreateOperations": [
+      "image-to-3d",
+      "text-to-3d",
+      "material-transfer",
+      "multimodal-image",
+      "four-view",
+      "mesh-retopology",
+      "articulation-animation",
+      "auto-rig",
+      "animation-retarget"
+    ],
+    "excludedCreateOperations": [
+      "multi-format-export"
+    ],
+    "limits": {
+      "free": 5,
+      "pro": 20
+    },
+    "limitErrorCode": "GENERATION_CONCURRENCY_LIMIT_EXCEEDED",
+    "membershipField": "member",
+    "unknownMembership": "free",
+    "activeStatuses": [
+      0,
+      1,
+      2
+    ],
+    "separateOperationLimits": {
+      "part-split": {
+        "free": 5,
+        "pro": 5
+      }
+    },
+    "enforcement": "server-with-host-instruction-coordination"
+  },
+  "sharedFields": {
+    "faceCount": {
+      "type": "integer",
+      "minimum": 10000,
+      "maximum": 300000,
+      "default": 200000,
+      "affectsPly": false
+    },
+    "generationOutputFormat": {
+      "type": "array",
+      "items": [
+        "zip",
+        "glb",
+        "ply"
+      ],
+      "uniqueItems": true
+    },
+    "style": {
+      "type": "string",
+      "values": [
+        "photorealistic",
+        "cartoon",
+        "anime",
+        "hand_painted",
+        "cyberpunk",
+        "fantasy",
+        "glass"
+      ],
+      "default": "photorealistic"
+    },
+    "animationId": {
+      "type": "string",
+      "values": [
+        "A_TPose",
+        "Dance_Loop",
+        "Idle_Rail_Call",
+        "Idle_TalkingPhone_Loop",
+        "Idle_Talking_Loop",
+        "Yes",
+        "Crouch_Idle_Loop",
+        "Idle_FoldArms_Loop",
+        "Idle_Lantern_Loop",
+        "Idle_Loop",
+        "Idle_No_Loop",
+        "Idle_Rail_Loop",
+        "Idle_Torch_Loop",
+        "ClimbUp_1m",
+        "Crouch_Fwd_Loop",
+        "Jog_Fwd_Loop",
+        "Sprint_Loop",
+        "Swim_Fwd_Loop",
+        "Swim_Idle_Loop",
+        "Walk_Formal_Loop",
+        "Walk_Loop",
+        "Jump_Land",
+        "Jump_Loop",
+        "Jump_Start",
+        "NinjaJump_Idle_Loop",
+        "NinjaJump_Land",
+        "NinjaJump_Start",
+        "Roll",
+        "Slide_Exit",
+        "Slide_Loop",
+        "Slide_Start",
+        "Sword_Attack",
+        "Sword_Block",
+        "Sword_Dash",
+        "Sword_Heavy_Combo",
+        "Sword_Idle",
+        "Sword_Regular_A",
+        "Sword_Regular_A_Rec",
+        "Sword_Regular_B",
+        "Sword_Regular_B_Rec",
+        "Sword_Regular_C",
+        "Sword_Regular_Combo",
+        "Idle_Shield_Break",
+        "Idle_Shield_Loop",
+        "Shield_Dash",
+        "Shield_OneShot",
+        "Melee_Hook",
+        "Melee_Hook_Rec",
+        "Punch_Cross",
+        "Punch_Jab",
+        "Pistol_Aim_Down",
+        "Pistol_Aim_Neutral",
+        "Pistol_Aim_Up",
+        "Pistol_Idle_Loop",
+        "Pistol_Reload",
+        "Pistol_Shoot",
+        "Spell_Simple_Enter",
+        "Spell_Simple_Exit",
+        "Spell_Simple_Idle_Loop",
+        "Spell_Simple_Shoot",
+        "Chest_Open",
+        "Consume",
+        "Driving_Loop",
+        "Farm_Harvest",
+        "Farm_PlantSeed",
+        "Farm_Watering",
+        "Fixing_Kneeling",
+        "Interact",
+        "OverhandThrow",
+        "PickUp_Table",
+        "Push_Loop",
+        "TreeChopping_Loop",
+        "Walk_Carry_Loop",
+        "LayToIdle",
+        "Sitting_Enter",
+        "Sitting_Exit",
+        "Sitting_Idle_Loop",
+        "Sitting_Talking_Loop",
+        "Death01",
+        "Hit_Chest",
+        "Hit_Head",
+        "Hit_Knockback",
+        "Zombie_Idle_Loop",
+        "Zombie_Scratch",
+        "Zombie_Walk_Fwd_Loop"
+      ],
+      "caseSensitive": true,
+      "trimmed": true
+    }
+  },
+  "versionProfiles": {
+    "G1": {
+      "appliesTo": [
+        "image-to-3d",
+        "text-to-3d"
+      ],
+      "versionConditionalFields": [
+        "version",
+        "faceCount",
+        "outputFormat",
+        "aiPredictSize",
+        "customSize"
+      ],
+      "forbiddenFields": [
+        "enablePbr"
+      ],
+      "customSize": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "unit": "millimetre",
+        "takesPrecedenceOver": "aiPredictSize"
+      },
+      "outputRule": "Always ZIP then PBR GLB; append PLY when outputFormat contains ply."
+    },
+    "G1-Turbo": {
+      "appliesTo": [
+        "image-to-3d",
+        "text-to-3d"
+      ],
+      "versionConditionalFields": [
+        "version",
+        "faceCount",
+        "outputFormat",
+        "enablePbr",
+        "aiPredictSize"
+      ],
+      "forbiddenFields": [
+        "customSize"
+      ],
+      "defaultOutputFormat": [
+        "zip"
+      ],
+      "plyOnlyForbidsEnablePbr": true,
+      "outputRule": "Return the requested non-duplicated ZIP, GLB, and PLY combination, including PLY-only."
+    },
+    "v3.0-standard": {
+      "appliesTo": [
+        "material-transfer"
+      ],
+      "customSize": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "unit": "millimetre",
+        "conflictsWith": {
+          "aiPredictSize": true
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "image-to-3d": {
+      "method": "POST",
+      "path": "/lux3d/v1/generate/img-to-3d/task/create",
+      "kind": "create",
+      "request": {
+        "required": [
+          "version"
+        ],
+        "oneOfRequired": [
+          "img",
+          "imgs"
+        ],
+        "mutuallyExclusive": [
+          "img",
+          "imgs"
+        ],
+        "imgs": {
+          "minimumItems": 1,
+          "maximumItems": 32,
+          "ordered": true
+        },
+        "versions": [
+          "G1",
+          "G1-Turbo"
+        ]
+      }
+    },
+    "text-to-3d": {
+      "method": "POST",
+      "path": "/lux3d/v1/generate/text-to-3d/task/create",
+      "kind": "create",
+      "request": {
+        "required": [
+          "prompt",
+          "version"
+        ],
+        "optional": [
+          "style",
+          "img",
+          "faceCount",
+          "outputFormat",
+          "enablePbr",
+          "aiPredictSize",
+          "customSize"
+        ],
+        "versions": [
+          "G1",
+          "G1-Turbo"
+        ]
+      }
+    },
+    "material-transfer": {
+      "method": "POST",
+      "path": "/lux3d/v1/generate/material-transfer/task/create",
+      "kind": "create",
+      "request": {
+        "required": [
+          "img",
+          "meshUrl",
+          "version"
+        ],
+        "meshUrl": {
+          "type": "string",
+          "format": "uri",
+          "pathSuffix": ".glb"
+        },
+        "version": "v3.0-standard",
+        "outputFormat": [
+          "zip",
+          "glb",
+          "usdz",
+          "obj_zip",
+          "fbx_zip"
+        ],
+        "aiPredictSize": {
+          "type": "boolean",
+          "whenTrue": "Predict model size automatically; customSize must be omitted.",
+          "whenFalseOrOmitted": "Preserve the original size unless customSize is provided."
+        },
+        "customSize": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "unit": "millimetre",
+          "requiresAiPredictSize": "false-or-omitted"
+        }
+      },
+      "fixedOutputSlots": [
+        "zip",
+        "glb",
+        "usdz",
+        "obj_zip",
+        "fbx_zip"
+      ],
+      "emptySlotMarker": "NOT_REQUESTED"
+    },
+    "multimodal-image": {
+      "method": "POST",
+      "path": "/lux3d/v1/generate/multimodal-to-image/task/create",
+      "kind": "create",
+      "exposure": "internal-support",
+      "standaloneUserCapability": false,
+      "cliExposed": false,
+      "workflowRunnerExposed": false,
+      "request": {
+        "atLeastOneRequired": [
+          "img",
+          "prompt"
+        ]
+      },
+      "output": {
+        "count": 1,
+        "content": "image-url"
+      }
+    },
+    "four-view": {
+      "method": "POST",
+      "path": "/lux3d/v1/generate/image-to-four-view/task/create",
+      "kind": "create",
+      "request": {
+        "atLeastOneRequired": [
+          "img",
+          "prompt"
+        ]
+      },
+      "output": {
+        "count": 1,
+        "encoding": "json-array-string",
+        "viewOrder": [
+          "front-three-quarter",
+          "opposite-three-quarter",
+          "side",
+          "back"
+        ]
+      }
+    },
+    "multi-format-export": {
+      "method": "POST",
+      "path": "/lux3d/v1/multi-format-export/task/create",
+      "kind": "create",
+      "request": {
+        "required": [
+          "modelUrl"
+        ],
+        "modelUrlSuffixes": [
+          ".zip",
+          ".glb"
+        ],
+        "zipMustComeFromLux3d": true,
+        "outputFormat": [
+          "usdz",
+          "obj_zip",
+          "fbx_zip",
+          "stl",
+          "3mf"
+        ],
+        "glbRequiresOutputFormat": true,
+        "zipDefaultOutputFormat": [
+          "glb"
+        ]
+      },
+      "fixedOutputSlots": [
+        "zip",
+        "glb",
+        "usdz",
+        "obj_zip",
+        "fbx_zip",
+        "stl",
+        "3mf"
+      ],
+      "emptySlotMarkers": [
+        "NOT_REQUESTED",
+        "null"
+      ]
+    },
+    "get-task": {
+      "method": "GET",
+      "path": "/lux3d/v1/generate/task/get",
+      "kind": "query",
+      "query": {
+        "taskid": {
+          "required": true,
+          "type": "long",
+          "minimum": 1,
+          "booleanAllowed": false
+        }
+      },
+      "ownership": "authenticated-account-only",
+      "response": {
+        "required": [
+          "bizId",
+          "taskId",
+          "status"
+        ],
+        "bizId": "LUX_3D",
+        "taskId": {
+          "type": "long",
+          "minimum": 1,
+          "booleanAllowed": false,
+          "mustEqualRequestedTaskId": true
+        },
+        "status": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "outputsRequired": false
+      }
+    },
+    "list-tasks": {
+      "method": "GET",
+      "path": "/lux3d/v1/generate/task/list",
+      "kind": "query",
+      "query": {
+        "page": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        },
+        "pagesize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 20
+        },
+        "status": {
+          "type": "integer",
+          "values": [
+            0,
+            1,
+            3,
+            4
+          ]
+        },
+        "starttime": {
+          "type": "long",
+          "unit": "unix-milliseconds",
+          "inclusive": true
+        },
+        "endtime": {
+          "type": "long",
+          "unit": "unix-milliseconds",
+          "exclusive": true
+        }
+      }
+    },
+    "auto-rig": {
+      "method": "POST",
+      "path": "/lux3d/v1/animations/rig/task/create",
+      "kind": "create",
+      "request": {
+        "required": [
+          "modelUrl"
+        ],
+        "optional": [
+          "contentId"
+        ],
+        "modelUrl": {
+          "type": "string",
+          "scheme": "https",
+          "pathSuffix": ".glb"
+        }
+      },
+      "output": {
+        "format": "glb",
+        "content": "rigged-glb-url",
+        "failureEncoding": "json-object-string",
+        "failure": "error.code and error.message"
+      },
+      "connectorSupported": true
+    },
+    "animation-retarget": {
+      "method": "POST",
+      "path": "/lux3d/v1/animations/retarget/task/create",
+      "kind": "create",
+      "request": {
+        "required": [
+          "rigModelUrl",
+          "animationIds"
+        ],
+        "optional": [
+          "animationOutputMode",
+          "outFormat",
+          "animateInPlace",
+          "contentId"
+        ],
+        "rigModelUrl": {
+          "type": "string",
+          "scheme": "https",
+          "pathSuffix": ".glb"
+        },
+        "animationIds": {
+          "type": "array",
+          "minimumItems": 1,
+          "maximumItems": 10,
+          "uniqueItems": true,
+          "ordered": true,
+          "valuesRef": "sharedFields.animationId.values"
+        },
+        "animationOutputMode": {
+          "values": [
+            "separate",
+            "combined"
+          ],
+          "default": "separate"
+        },
+        "outFormat": {
+          "values": [
+            "glb",
+            "fbx"
+          ],
+          "default": "glb"
+        },
+        "animateInPlace": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "output": {
+        "encoding": "json-object-string",
+        "actions": "One terminal action result per requested animation_id",
+        "successUrlByFormat": {
+          "glb": "animationGlbUrl",
+          "fbx": "fbxUrl"
+        },
+        "failure": "error.code and error.message",
+        "combined": "Deduplicate shared file URLs; each action keeps an independent animation clip.",
+        "partialSuccess": "Provider status 3 may contain failed actions; deliver successes and preserve failures."
+      },
+      "connectorSupported": true
+    },
+    "mesh-retopology": {
+      "method": "POST",
+      "path": "/lux3d/v1/mesh-retopology/task/create",
+      "kind": "create",
+      "request": {
+        "required": [
+          "modelUrl",
+          "faceLimit"
+        ]
+      },
+      "versionExposed": false,
+      "fields": {
+        "modelUrl": {
+          "type": "string",
+          "suffix": ".glb",
+          "staticOnly": true,
+          "draco": false
+        },
+        "faceLimit": {
+          "type": "integer",
+          "quad": {
+            "minimum": 1000,
+            "maximum": 500000
+          },
+          "triangle": {
+            "minimum": 2000,
+            "maximum": 1000000
+          }
+        },
+        "quad": {
+          "type": "boolean",
+          "default": true
+        },
+        "bakeTextures": {
+          "type": "boolean",
+          "default": false
+        },
+        "textureSize": {
+          "type": "integer",
+          "default": 2048,
+          "enum": [
+            512,
+            1024,
+            2048,
+            4096
+          ]
+        },
+        "contentId": {
+          "type": "string",
+          "optional": true,
+          "purpose": "current quoteId, not idempotency"
+        }
+      },
+      "fixedOutputSlots": [
+        "glb",
+        "obj",
+        "obj_zip"
+      ],
+      "requiredOutputSlots": [
+        "glb",
+        "obj"
+      ],
+      "optionalEmptySlots": [
+        "obj_zip"
+      ],
+      "resultRule": "Three fixed slots; empty ZIP does not fail geometry. A requested bake with empty ZIP must be disclosed. Never recreate a task for query/download failure.",
+      "connectorSupported": true,
+      "cliExposed": true,
+      "workflowRunnerExposed": true,
+      "reviewedOn": "2026-10-09"
+    },
+    "articulation-animation": {
+      "method": "POST",
+      "path": "/lux3d/v1/articulation-animation/task/create",
+      "kind": "create",
+      "request": {
+        "required": [
+          "glbUrl",
+          "prompt"
+        ],
+        "additionalProperties": false,
+        "fields": {
+          "glbUrl": {
+            "type": "string",
+            "format": "http-or-https-url",
+            "content": "GLB model"
+          },
+          "prompt": {
+            "type": "string",
+            "nonBlank": true
+          }
+        }
+      },
+      "versionExposed": false,
+      "contentIdSupported": false,
+      "output": {
+        "count": 1,
+        "content": "actual-format-artifact-url",
+        "fixedFormat": false
+      },
+      "connectorSupported": true,
+      "cliExposed": true,
+      "workflowRunnerExposed": true,
+      "reviewedOn": "2026-10-13",
+      "documentation": "https://lux3d-beta.aholo3d.cn/lux3d/doc?lang=zh_CN#api-reference"
+    }
+  },
+  "outOfScopePlaceholders": {
+    "assetUpload": {
+      "status": "external-prerequisite",
+      "endpoint": null
+    },
+    "cancelTask": {
+      "status": "not-defined-in-lux3dWebDoc",
+      "endpoint": null
+    },
+    "serverIdempotency": {
+      "status": "not-defined-in-lux3dWebDoc",
+      "headerOrField": null
+    },
+    "callContextUniqueIdPropagation": {
+      "status": "pending-M02-design",
+      "postRequestLocation": "json-body",
+      "getRequestLocation": "query-if-needed",
+      "generationRecordField": "pending"
+    },
+    "commercialization": {
+      "status": "owned-by-M03",
+      "contractRef": "lux3d-commerce/v1",
+      "contractPath": "lux3d-commerce.v1.json",
+      "endpoint": null
+    }
+  }
+}

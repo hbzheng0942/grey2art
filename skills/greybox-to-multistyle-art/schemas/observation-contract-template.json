@@ -1,0 +1,24 @@
+{
+  "views": [
+    {
+      "id": "REPLACE_VIEW_ID",
+      "camera_id": "REPLACE_GAMEPLAY_CAMERA_ID",
+      "state_id": "REPLACE_GAMEPLAY_STATE_ID",
+      "framing": "whole_composition",
+      "space_ids": [
+        "REPLACE_BASELINE_SPACE_ID"
+      ],
+      "required_layers": [
+        "major_forms",
+        "environment",
+        "functional_objects",
+        "contact",
+        "lighting_materials"
+      ]
+    }
+  ],
+  "risk_ids": [
+    "REPLACE_RISK_ID"
+  ],
+  "note": "Insert as baseline spatial_contract.observations. Name fixed useful gameplay views/states before S6 and H3. Include at least one whole composition view with all five layers; add interaction/state views where needed. Environment includes indoor surroundings and does not force a sky or a generation route. H3 selects exact sample spaces and must cover all observations intersecting those spaces."
+}

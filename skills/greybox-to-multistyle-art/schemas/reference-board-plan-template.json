@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "kind": "reference-board-plan-input",
+  "channel_size": [1536, 1024],
+  "size_source_ref": "REPLACE_ACTUAL_RETURNED_IMAGE_OR_DOCUMENTED_CHANNEL_SIZE",
+  "views": [
+    {
+      "asset_id": "long_fence",
+      "view_id": "three_quarter",
+      "role": "three_quarter",
+      "projected_aspect": 8,
+      "min_subject_long_edge_px": 1024,
+      "min_subject_short_edge_px": 128,
+      "critical_feature_fraction_of_short_edge": 0.1,
+      "min_feature_px": 12
+    },
+    {
+      "asset_id": "hero_house",
+      "view_id": "three_quarter",
+      "role": "three_quarter",
+      "projected_aspect": 1.2,
+      "requires_single": true,
+      "min_subject_long_edge_px": 800,
+      "min_subject_short_edge_px": 600
+    },
+    {
+      "asset_id": "planter",
+      "view_id": "three_quarter",
+      "role": "three_quarter",
+      "projected_aspect": 1,
+      "simple_shape_validated": false,
+      "min_subject_long_edge_px": 400,
+      "min_subject_short_edge_px": 300
+    }
+  ]
+}
