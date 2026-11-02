@@ -5,12 +5,13 @@
 | Start here / 使用入口 | English | 简体中文 |
 |---|---|---|
 | Install and configure / 安装与配置 | [Install](INSTALL.md) | [安装](INSTALL.zh-CN.md) |
+| User guide / 用户手册 | [User guide](USER-GUIDE.md) | [HB 飞书手册](https://my.feishu.cn/docx/Jhg3dr7UloDNzyx3VjocEE9mnHh) |
 | First task / 首次任务 | [Quickstart](../skills/greybox-to-multistyle-art/references/quickstart-en.md) | [快速开始](../skills/greybox-to-multistyle-art/references/quickstart-zh.md) |
 | Capabilities and asset tools / 功能与资产工具 | [Capabilities](CAPABILITIES.md) | [功能](CAPABILITIES.zh-CN.md) |
 | Examples / 案例 | [Showcases](showcase/README.md) | [案例](showcase/README.md) |
 | Community / 社区 | [Community](COMMUNITY.md) | [社区](COMMUNITY.zh-CN.md) |
 
-[User manual / 用户手册](https://lq9n5lvfn2i.feishu.cn/docx/GkWEdSrpnoNnioxHNqbcCLmZnVc) · [Support / 反馈](SUPPORT.md) · [Release notes / 发行说明](../CHANGELOG.md) · [Contribute / 贡献](../CONTRIBUTING.md)
+[Support / 反馈](SUPPORT.md) · [Release notes / 发行说明](../CHANGELOG.md) · [Contribute / 贡献](../CONTRIBUTING.md)
 
 ## Repository layout / 工程目录
 

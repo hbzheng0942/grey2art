@@ -765,7 +765,7 @@ def main(argv=None):
         # exception which some carriers treat as fail-open.
         result, code = {"ok": False, "reason": "S7 board guard: " + str(error),
                         "next_action": "Inspect the exact scoped state and reconcile original calls; do not resend an unknown invocation."}, 2
-    print(json.dumps(result, ensure_ascii=False, allow_nan=False))
+    print(json.dumps(result, ensure_ascii=True, allow_nan=False))
     return code
 
 

@@ -56,9 +56,9 @@ def main():
             else:
                 result = pc.resolve_repair(*common, **source)
     except (ValueError, OSError, TypeError, KeyError) as error:
-        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=False))
+        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=True))
         return 2
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+    print(json.dumps(result, indent=2, ensure_ascii=True))
     return 0
 
 

@@ -784,9 +784,9 @@ def main(argv=None):
             result = compare(args.workspace, core.read(args.file))
         else:
             result = next_jobs(args.workspace)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0
     except (ValueError, OSError, KeyError, TypeError) as error:
         print(json.dumps({"ok": False, "error": str(error),
-                          "boundary": "Preserve the original registry, pages and pending image calls. Correct input with an explicit revision; preparation never generates images."}, ensure_ascii=False), file=sys.stderr)
+                          "boundary": "Preserve the original registry, pages and pending image calls. Correct input with an explicit revision; preparation never generates images."}, ensure_ascii=True), file=sys.stderr)
         return 2

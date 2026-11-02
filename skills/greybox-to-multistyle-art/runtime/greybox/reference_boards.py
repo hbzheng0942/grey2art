@@ -821,8 +821,8 @@ def main(argv=None):
             result = crop(core.read(source), project, request_path=source)
         else:
             result = validate_crop_receipt({"path": str(source), "sha256": core.file_hash(source)}, project)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0
     except (ValueError, OSError) as error:
-        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=True), file=sys.stderr)
         return 2

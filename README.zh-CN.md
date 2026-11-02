@@ -44,7 +44,7 @@ Blender 是 DCC 工具；只交付空间灰盒或 `.blend` 时无需游戏引擎
 
 ## 快速开始
 
-下载并解压[完整 Skill 安装包](https://github.com/hbzheng0942/grey2art/releases/download/v0.15.0/greybox-to-multistyle-art-0.15.0.zip)，在解压后的 `greybox-to-multistyle-art/` 目录执行：
+下载并解压[完整 Skill 安装包](https://github.com/hbzheng0942/grey2art/releases/download/v0.15.1/greybox-to-multistyle-art-0.15.1.zip)，在解压后的 `greybox-to-multistyle-art/` 目录执行：
 
 ```sh
 python3 scripts/install.py --host auto --replace
@@ -92,7 +92,7 @@ Windows 使用 `py -3`。刷新 Skill 或开启新会话，选择一种起点向
 
 把路径、风格和设备替换成你的目标；也可以让 agent 先提美术方向。参考案例用于确定核心体验，隐藏规则与尺寸需要另行确认。Agent 会先检查工程和配置，生产新资产前展示参考与费用。
 
-[安装与配置](docs/INSTALL.zh-CN.md) · [完整首次任务](skills/greybox-to-multistyle-art/references/quickstart-zh.md) · [用户手册](https://lq9n5lvfn2i.feishu.cn/docx/GkWEdSrpnoNnioxHNqbcCLmZnVc)
+[安装与配置](docs/INSTALL.zh-CN.md) · [完整首次任务](skills/greybox-to-multistyle-art/references/quickstart-zh.md) · [用户手册](https://my.feishu.cn/docx/Jhg3dr7UloDNzyx3VjocEE9mnHh)
 
 ## 工作流
 

@@ -507,11 +507,13 @@ def main(argv=None):
                               "glbFiles": core._fetch_paths(raw)}
         else:
             raise core.WorkflowError("Unknown command")
-        print(result if isinstance(result, str) else json.dumps(result, ensure_ascii=False, indent=2, default=str))
+        if isinstance(result, str) and hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8')
+        print(result if isinstance(result, str) else json.dumps(result, ensure_ascii=True, indent=2, default=str))
         return 0 if not isinstance(result, dict) or result.get("ok", True) else 2
     except Exception as e:
         # Bridge errors redact credentials and signed URLs at the provider boundary.
-        print(json.dumps({"ok": False, "error": str(e), "type": type(e).__name__}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"ok": False, "error": str(e), "type": type(e).__name__}, ensure_ascii=True), file=sys.stderr)
         return 2
 
 

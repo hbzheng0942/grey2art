@@ -44,7 +44,7 @@ Blender is a DCC tool; a spatial greybox or `.blend` delivery needs no game engi
 
 ## Quickstart
 
-Download and extract the [complete Skill package](https://github.com/hbzheng0942/grey2art/releases/download/v0.15.0/greybox-to-multistyle-art-0.15.0.zip). Inside the extracted `greybox-to-multistyle-art/` directory, run:
+Download and extract the [complete Skill package](https://github.com/hbzheng0942/grey2art/releases/download/v0.15.1/greybox-to-multistyle-art-0.15.1.zip). Inside the extracted `greybox-to-multistyle-art/` directory, run:
 
 ```sh
 python3 scripts/install.py --host auto --replace
@@ -96,7 +96,7 @@ Target: <device>.
 
 Replace paths, styles and devices with your own, or ask the agent to propose art directions. References establish the core experience; hidden rules and dimensions need separate clarification. The agent checks the project and setup first, then presents references and costs before new asset production.
 
-[Installation and setup](docs/INSTALL.md) · [Complete first task](skills/greybox-to-multistyle-art/references/quickstart-en.md) · [User manual (中文)](https://lq9n5lvfn2i.feishu.cn/docx/GkWEdSrpnoNnioxHNqbcCLmZnVc)
+[Installation and setup](docs/INSTALL.md) · [Complete first task](skills/greybox-to-multistyle-art/references/quickstart-en.md) · [User guide](docs/USER-GUIDE.md)
 
 ## Workflow
 

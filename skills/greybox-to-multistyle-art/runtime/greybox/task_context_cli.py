@@ -38,10 +38,10 @@ def main(argv=None):
                 source_ref=args.source_ref, engine=args.engine)
         else:
             result = task_context.inspect(args.project, args.case, report, engine=args.engine)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0 if result["ok"] else 2
     except (ValueError, OSError, TypeError, KeyError) as error:
-        print(json.dumps({"ok": False, "error": str(error), "code": "TASK_CONTEXT_INVALID"}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"ok": False, "error": str(error), "code": "TASK_CONTEXT_INVALID"}, ensure_ascii=True), file=sys.stderr)
         return 2
 
 

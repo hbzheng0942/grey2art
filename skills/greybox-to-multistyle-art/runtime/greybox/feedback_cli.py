@@ -39,7 +39,7 @@ def main(argv=None):
         else:
             result = feedback.refresh(args.project, args.case)
     except (ValueError, OSError, TypeError, KeyError, RecursionError) as error:
-        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=False))
+        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=True))
         return 2
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(json.dumps(result, ensure_ascii=True, indent=2))
     return 0

@@ -64,10 +64,10 @@ def main(argv=None):
             else:
                 result = workflow.check_plan_gate(core.read(a.file), a.project,
                     capability_report=report, expected_session=a.session_id)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0 if result.get('ok', True) else 2
     except (ValueError, OSError, KeyError, TypeError) as e:
-        print(json.dumps({'ok': False, 'blocked': True, 'error': str(e)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({'ok': False, 'blocked': True, 'error': str(e)}, ensure_ascii=True), file=sys.stderr)
         return 2
 
 

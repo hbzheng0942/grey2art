@@ -111,5 +111,5 @@ if __name__ == "__main__":
     try:
         main()
     except (ValueError, OSError, KeyError, subprocess.SubprocessError) as error:
-        print(json.dumps({"status": "failed", "error": str(error), "newPaidCalls": 0}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"status": "failed", "error": str(error), "newPaidCalls": 0}, ensure_ascii=True), file=sys.stderr)
         raise SystemExit(1)

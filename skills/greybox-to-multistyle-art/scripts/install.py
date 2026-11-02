@@ -499,9 +499,9 @@ def main():
                 sys.path.insert(0, str(destination / 'runtime'))
                 from greybox.host import render_workbuddy_connector
                 result['connector'] = render_workbuddy_connector(args.connector_dir, destination)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
     except (ValueError, OSError, KeyError, TypeError) as error:
-        print(json.dumps({'status': 'failed', 'error': str(error)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({'status': 'failed', 'error': str(error)}, ensure_ascii=True), file=sys.stderr)
         return 1
     return 0
 

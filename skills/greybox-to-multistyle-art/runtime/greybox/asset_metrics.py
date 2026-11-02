@@ -322,7 +322,7 @@ def main(argv=None):
         # Error details remain local; do not echo arbitrary source metadata or paths.
         print(json.dumps({"ok": False, "error": "Unsupported or invalid GLB metrics input; use a self-contained uncompressed GLB with valid stored accessors and indices."}))
         return 2
-    print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+    print(json.dumps(result, ensure_ascii=True, indent=2, allow_nan=False))
     return 0
 
 

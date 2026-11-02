@@ -37,7 +37,7 @@ def main(argv=None):
     from greybox import host
     result = host.configure("workbuddy", {"python": sys.executable}, config_dir=args.config_dir)
     result["dependencies"] = "image-installed" if args.install_image_dependencies and not args.skip_dependencies else "deferred-until-current-operation-needs-them"
-    print(json.dumps(result, ensure_ascii=False))
+    print(json.dumps(result, ensure_ascii=True))
     return 0
 
 

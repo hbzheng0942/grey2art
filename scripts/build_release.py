@@ -397,10 +397,10 @@ def main(argv=None):
             result, payloads = inspect_archive(args.archive, expected)
             result['status'] = 'verified'
             result['install_roundtrip'] = install_roundtrip(payloads, result['version']) if args.verify_install else None
-        print(json.dumps(result, indent=2, ensure_ascii=False))
+        print(json.dumps(result, indent=2, ensure_ascii=True))
         return 0
     except (ValueError, OSError, KeyError, TypeError, UnicodeError, zipfile.BadZipFile, subprocess.SubprocessError) as error:
-        print(json.dumps({'status': 'failed', 'error': str(error)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({'status': 'failed', 'error': str(error)}, ensure_ascii=True), file=sys.stderr)
         return 1
 
 

@@ -197,8 +197,8 @@ def main(argv=None):
         else:
             actual = core.read(boards._path(args.arguments, project))
             result = record(document, actual, args.image, args.job_dir, project, source_ref=args.source_ref)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0
     except (ValueError, OSError) as error:
-        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=False), file=__import__("sys").stderr)
+        print(json.dumps({"ok": False, "error": str(error)}, ensure_ascii=True), file=__import__("sys").stderr)
         return 2

@@ -43,10 +43,10 @@ def main(argv=None):
             output.parent.mkdir(parents=True, exist_ok=True)
             with output.open("x", encoding="utf-8") as stream:
                 stream.write(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
-        print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+        print(json.dumps(result, ensure_ascii=True, indent=2, allow_nan=False))
         return 0 if result.get("ok", True) else 2
     except (ValueError, OSError, KeyError, TypeError) as exc:
-        print(json.dumps({"ok": False, "code": "SCENE_COMPARISON_INVALID", "error": str(exc)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"ok": False, "code": "SCENE_COMPARISON_INVALID", "error": str(exc)}, ensure_ascii=True), file=sys.stderr)
         return 2
 
 

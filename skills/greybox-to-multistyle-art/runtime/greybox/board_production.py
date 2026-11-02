@@ -1058,8 +1058,8 @@ def main(argv=None):
             result = crop(args.workspace, args.page, core.read(args.file))
         else:
             result = review(args.workspace, args.page, core.read(args.file))
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0
     except (ValueError, OSError, KeyError, TypeError) as error:
-        print(json.dumps({"ok": False, "error": str(error), "boundary": "Do not repeat an uncertain image invocation; recover the original page call."}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"ok": False, "error": str(error), "boundary": "Do not repeat an uncertain image invocation; recover the original page call."}, ensure_ascii=True), file=sys.stderr)
         return 2

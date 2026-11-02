@@ -692,7 +692,7 @@ def _main():
         if method not in _HANDLERS:
             raise ValueError()
         result = _HANDLERS[method](**request["arguments"])
-        print(json.dumps(result, ensure_ascii=False))
+        print(json.dumps(result, ensure_ascii=True))
         return 0
     except LuxError as exc:
         print(json.dumps({"ok": False, "error": exc.to_dict()}))

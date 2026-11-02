@@ -74,7 +74,7 @@ def main(argv=None):
             result = execution.claim(args.file, state_dir=args.state_dir, action=args.action)
         else:
             result = getattr(execution, args.command)(args.file, state_dir=args.state_dir)
-        print(json.dumps(result, indent=2, ensure_ascii=False))
+        print(json.dumps(result, indent=2, ensure_ascii=True))
         if args.command == 'run' and result.get('phase') == 'blocked':
             return 2
         if args.command == 'start' and result.get('code') == 'EXECUTOR_START_FAILED':

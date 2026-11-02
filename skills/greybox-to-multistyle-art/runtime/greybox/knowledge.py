@@ -276,5 +276,5 @@ def main(argv=None):
             result = navigation(args.stage, args.engine, args.topic, asset_category=args.asset_category)
     except (ValueError, OSError, KeyError, TypeError) as error:
         result = {"ok": False, "error": str(error)}
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+    print(json.dumps(result, indent=2, ensure_ascii=True))
     return 0 if result["ok"] else 2

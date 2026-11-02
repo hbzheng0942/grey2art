@@ -2,6 +2,7 @@
 from __future__ import annotations
 import base64
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -40,7 +41,8 @@ def call_tool(name, arguments):
         raise ValueError("argv must be a nonempty list of strings")
     try:
         result = subprocess.run([sys.executable, str(host.SKILL / "scripts/greybox.py"), *argv],
-                                capture_output=True, text=True, timeout=55, check=False)
+                                capture_output=True, text=True, encoding='utf-8',
+                                env={**os.environ, 'PYTHONIOENCODING': 'utf-8'}, timeout=55, check=False)
     except subprocess.TimeoutExpired:
         # Never retry; image submission records own the task's recovery identity.
         return {"content": [{"type": "text", "text": json.dumps({"ok": False, "error": "CLI exceeded the tool window. Inspect persisted task status before any new submission."})}], "isError": True}
@@ -50,7 +52,14 @@ def call_tool(name, arguments):
 
 def serve(instream=None, outstream=None):
     """MCP newline-delimited JSON-RPC; stdout is reserved for protocol messages."""
-    instream, outstream = instream or sys.stdin, outstream or sys.stdout
+    if instream is None:
+        instream = sys.stdin
+        if hasattr(instream, 'reconfigure'):
+            instream.reconfigure(encoding='utf-8')
+    if outstream is None:
+        outstream = sys.stdout
+        if hasattr(outstream, 'reconfigure'):
+            outstream.reconfigure(encoding='utf-8')
     for line in instream:
         request = None
         try:
@@ -77,7 +86,7 @@ def serve(instream=None, outstream=None):
             # Avoid logging arbitrary request values, API keys or local transport details.
             response = {"jsonrpc": "2.0", "id": request.get("id") if isinstance(request, dict) else None,
                         "error": {"code": -32602, "message": "Invalid request or local operation failed; inspect the selected CLI operation locally"}}
-        outstream.write(json.dumps(response, ensure_ascii=False) + "\n")
+        outstream.write(json.dumps(response, ensure_ascii=True) + "\n")
         outstream.flush()
 
 

@@ -277,8 +277,8 @@ def main(argv=None):
             _write_new(args.output, result)
         else:
             result = validate_preflight(args.receipt, args.file, args.provider)
-        print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+        print(json.dumps(result, ensure_ascii=True, indent=2, allow_nan=False))
         return 0 if result.get("ok", True) else 1
     except (ValueError, OSError, TypeError, KeyError, AttributeError, struct.error) as exc:
-        print(json.dumps({"ok": False, "errors": [str(exc)]}, ensure_ascii=False))
+        print(json.dumps({"ok": False, "errors": [str(exc)]}, ensure_ascii=True))
         return 1

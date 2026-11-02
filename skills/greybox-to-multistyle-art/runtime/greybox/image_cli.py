@@ -79,7 +79,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         result = handle(args)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0 if result.get("ok", True) else 2
     except jobs.ImageError as exc:
         print(json.dumps({"ok": False, "error": str(exc), "code": exc.code,
