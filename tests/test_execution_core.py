@@ -21,7 +21,7 @@ SKILL = Path(__file__).resolve().parents[1] / "skills" / "greybox-to-multistyle-
 sys.path.insert(0, str(SKILL / "runtime"))
 from greybox import execution, image_execution, image_jobs
 from greybox.execution_capacity import CapacityStore
-from greybox.execution_process import atomic_json, read_json
+from greybox.execution_process import atomic_json, read_json, kill_tree
 from greybox.execution_process import exclusive
 
 
@@ -179,9 +179,11 @@ class QueueTests(unittest.TestCase):
 
 class LocalImageProvider:
     """Returns failed terminal jobs so scheduler tests need no image dependencies."""
-    def __init__(self):
+    def __init__(self, hold_slow_until_next=False):
         self.lock = threading.Lock()
         self.tasks, self.events = {}, []
+        self.hold_slow_until_next = hold_slow_until_next
+        self.all_created = threading.Event()
         owner = self
 
         class Handler(BaseHTTPRequestHandler):
@@ -206,6 +208,8 @@ class LocalImageProvider:
                     duration = 1.0 if name == "slow" else .02
                     owner.tasks[identity] = {"name": name, "done": time.time() + duration}
                     owner.events.append(("created", name, time.time()))
+                    if len(owner.tasks) >= 3:
+                        owner.all_created.set()
                 if name == "lost-response":
                     time.sleep(.8)
                 self.respond({"state": "submitted", "provider_task_id": identity})
@@ -214,7 +218,9 @@ class LocalImageProvider:
                 identity = self.path.strip("/")
                 with owner.lock:
                     task = owner.tasks[identity]
-                    state = "failed" if time.time() >= task["done"] else "running"
+                    held = (owner.hold_slow_until_next and task["name"] == "slow"
+                            and not any(item["name"] == "next" for item in owner.tasks.values()))
+                    state = "failed" if not held and time.time() >= task["done"] else "running"
                     if state == "failed":
                         owner.events.append(("terminal", task["name"], time.time()))
                 self.respond({"state": state, "provider_task_id": identity})
@@ -277,17 +283,19 @@ with urllib.request.urlopen(req,timeout=2) as response:
                            "submit_timeout": 2, "status_timeout": 2, "fetch_timeout": 2}}
 
     def test_actual_image_backend_rolls_before_slow_sibling_terminal(self):
-        provider = LocalImageProvider()
+        # The slow sibling cannot finish until the next task starts. This
+        # proves rolling refill without timing Python startup on the host.
+        provider = LocalImageProvider(hold_slow_until_next=True)
         try:
             self.configure_http(provider)
             queue = self.http_queue(["fast", "slow", "next"])
             path = self.root / "queue.json"
             atomic_json(path, queue)
-            result = execution.run(path, self.root / "state", max_seconds=5)
+            result = execution.run(path, self.root / "state", max_seconds=15)
             self.assertEqual(result["phase"], "blocked", json.dumps(result))  # Confirmed failed synthetic outputs.
             self.assertEqual(len(provider.tasks), 3)
             created = next(at for event, name, at in provider.events if event == "created" and name == "next")
-            slow_done = next(task["done"] for task in provider.tasks.values() if task["name"] == "slow")
+            slow_done = next(at for event, name, at in provider.events if event == "terminal" and name == "slow")
             self.assertLess(created, slow_done)
             self.assertEqual(result["pools"]["shared"]["occupied"], 0)
             self.assertEqual(list((self.root / "state" / "actions").glob("*/provider-result.json")), [])
@@ -297,21 +305,35 @@ with urllib.request.urlopen(req,timeout=2) as response:
 
     def test_detached_executor_dispatches_while_controller_is_idle(self):
         provider = LocalImageProvider()
+        processes = []
+        original_spawn = execution.spawn
+        def spawn_owned(*args, **kwargs):
+            process = original_spawn(*args, **kwargs)
+            processes.append(process)
+            return process
         try:
             self.configure_http(provider)
             queue = self.http_queue(["first", "second", "third"])
             path, state = self.root / "queue.json", self.root / "state"
             atomic_json(path, queue)
-            started = execution.start(path, state)
+            with patch.object(execution, "spawn", side_effect=spawn_owned):
+                started = execution.start(path, state)
             self.assertTrue(started["started"])
-            time.sleep(1.6)  # No controller/agent step, query or command during this interval.
-            self.assertEqual(len(provider.tasks), 3, json.dumps(execution.status(path, state)))
-            deadline = time.monotonic() + 3
+            # Observe only the fake provider; no controller/agent step, query
+            # or command is needed to dispatch the third job.
+            created = provider.all_created.wait(15)
+            deadline = time.monotonic() + 15
             while execution.status(path, state).get("running") and time.monotonic() < deadline:
                 time.sleep(.02)
+            self.assertTrue(created, json.dumps(execution.status(path, state)))
+            self.assertEqual(len(provider.tasks), 3)
             self.assertFalse(execution.status(path, state)["running"])
             self.assertEqual(execution.status(path, state)["pools"]["shared"]["occupied"], 0)
         finally:
+            for process in processes:
+                if process.poll() is None:
+                    kill_tree(process)
+                process.wait(timeout=5)
             provider.close()
 
     @unittest.skipIf(os.name == "nt", "POSIX SIGKILL fault cut; Windows supervisor path remains separately qualified")
