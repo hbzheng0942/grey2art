@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from contextlib import contextmanager
+import errno
 import json
 import os
 from pathlib import Path
@@ -9,6 +10,10 @@ import signal
 import subprocess
 import tempfile
 import time
+
+
+class LockBusyError(ValueError):
+    """The OS lock is owned by another operation; its record is not corrupt."""
 
 
 def atomic_json(path, value):
@@ -49,38 +54,66 @@ def read_json(path, limit=140 * 1024 * 1024):
 def exclusive(path):
     """OS ownership lock, released on death; never a remote capacity lease."""
     path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    except FileExistsError as error:
+        # Preserve WorkBuddy's broker semantics, matching core.ensure_directory.
+        if error.errno != errno.EEXIST or not path.parent.is_dir():
+            raise
     if path.is_symlink():
         raise ValueError("Execution lock cannot be a symbolic link")
     handle = path.open("a+b")
     try:
         if os.name == "nt":
             import msvcrt
-            handle.seek(0)
-            if not handle.read(1):
-                handle.write(b"0")
-                handle.flush()
+            # Windows byte-range locks may extend beyond EOF. Lock first:
+            # reading/writing byte zero before ownership can itself fail when
+            # another process holds it (including while metadata is truncated).
             handle.seek(0)
             try:
                 msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
             except OSError:
-                raise ValueError("Another executor owns this queue") from None
+                raise LockBusyError("Another executor owns this queue") from None
         else:
             import fcntl
             try:
                 fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
             except OSError:
-                raise ValueError("Another executor owns this queue") from None
-        yield
+                raise LockBusyError("Another executor owns this queue") from None
+        yield handle
     finally:
         handle.close()
 
 
 def alive(pid):
     try:
-        os.kill(int(pid), 0)
+        pid = int(pid)
+    except (TypeError, ValueError, OverflowError):
+        return False
+    if pid <= 0:
+        return False
+    if os.name == "nt":
+        # On Windows os.kill(pid, 0) calls TerminateProcess, not a probe.
+        import ctypes
+        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel.OpenProcess.restype = ctypes.c_void_p
+        kernel.OpenProcess.argtypes = [ctypes.c_ulong, ctypes.c_int, ctypes.c_ulong]
+        kernel.GetExitCodeProcess.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_ulong)]
+        kernel.CloseHandle.argtypes = [ctypes.c_void_p]
+        handle = kernel.OpenProcess(0x1000, False, pid)
+        if not handle:
+            return ctypes.get_last_error() != 87  # Access denied is not death.
+        try:
+            code = ctypes.c_ulong()
+            return not kernel.GetExitCodeProcess(handle, ctypes.byref(code)) or code.value == 259
+        finally:
+            kernel.CloseHandle(handle)
+    try:
+        os.kill(pid, 0)
         return True
-    except (OSError, TypeError, ValueError):
+    except PermissionError:
+        return True
+    except OSError:
         return False
 
 

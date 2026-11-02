@@ -64,8 +64,9 @@ class SupplierExecutionTests(unittest.TestCase):
         ticket["execution_state_dir"] = str(self.f.project / "execution-state")
         ticket["execution_queue"] = str(self.f.project / "queue.json")
         def unlocked(*args):
-            self.assertFalse((self.f.run / ".workflow.lock").exists())
-            return self.f.adapter(*args)
+            # The OS lock file persists; actual ownership must be available.
+            with core.locked(self.f.run):
+                return self.f.adapter(*args)
         with patch.object(supplier_jobs, "_invoke", side_effect=unlocked):
             response = backend.invoke(ticket)
         self.assertNotIn("execution_error", response)
@@ -143,6 +144,57 @@ print(json.dumps(out))
         row = self.state()["operations"]["hero-model"]
         self.assertEqual(row["state"], "pending")
         self.assertNotIn("hero-model", self.state()["reservations"])
+        self.assertEqual(self.f.adapter.calls, [])
+
+    def test_shared_guard_contention_keeps_task_pending_then_submits_once(self):
+        with core.locked(self.f.project / "art/.supplier-claims/unresolved"):
+            with self.assertRaises(core.WorkflowLockBusy):
+                self.take()
+        self.assertEqual(self.state()["operations"]["hero-model"]["state"], "pending")
+        self.assertNotIn("hero-model", self.state()["reservations"])
+        self.assertEqual(next(t for t in backend.scan(self.source) if t["id"] == "hero-model")["action"], "submit")
+        self.finish(self.take())
+        self.assertEqual(self.f.adapter.calls.count(("hero-model", "submit")), 1)
+
+    def test_transient_claim_io_error_is_not_a_duplicate(self):
+        with patch.object(supplier_jobs, "_claim", side_effect=OSError("synthetic temporary disk error")):
+            with self.assertRaises(OSError):
+                self.take()
+        self.assertEqual(self.state()["operations"]["hero-model"]["state"], "pending")
+        self.finish(self.take())
+        self.assertEqual(self.f.adapter.calls.count(("hero-model", "submit")), 1)
+
+    def test_guard_busy_before_invoke_is_retryable_without_provider_submission(self):
+        ticket = self.take()
+        with core.locked(self.f.project / "art/.supplier-claims/unresolved"):
+            outcome = backend.invoke(ticket)
+        error = outcome["execution_error"]
+        self.assertEqual((error["code"], error["category"], error["acceptance"]),
+                         ("WORKFLOW_LOCK_BUSY", "local", "not_accepted"))
+        backend.commit(self.source, ticket, {"ok": True, "result": outcome})
+        self.assertEqual(self.state()["operations"]["hero-model"]["state"], "pending")
+        self.assertEqual(self.f.adapter.calls, [])
+        self.finish(self.take())
+        self.assertEqual(self.f.adapter.calls.count(("hero-model", "submit")), 1)
+
+    def test_scan_counts_provider_occupancy_once_for_large_pending_queue(self):
+        state, portfolio, registry, selection, option = supplier_jobs._load(self.f.run)
+        template = option["operations"][0]
+        option["operations"] = [{**template, "id": "pending-" + str(i)} for i in range(2000)]
+        class Rows(dict):
+            value_scans = 0
+            def values(self):
+                self.value_scans += 1
+                return super().values()
+        rows = Rows({op["id"]: {"state": "pending", "provider": op["provider"]} for op in option["operations"]})
+        rows["pending-0"]["state"] = "running"
+        state["operations"] = rows
+        portfolio["execution_limits"] = {"max_inflight_per_provider": {"character-vendor": 1}}
+        with patch.object(supplier_jobs, "_load", return_value=(state, portfolio, registry, selection, option)):
+            tasks = backend.scan(self.source)
+        self.assertEqual(len(tasks), 2000)
+        self.assertTrue(all(t["deferred_reason"] == "run_capacity" for t in tasks[1:]))
+        self.assertEqual(rows.value_scans, 1)
         self.assertEqual(self.f.adapter.calls, [])
 
     def test_worker_rechecks_provenance_before_create(self):

@@ -77,6 +77,14 @@ under `execution/`. Different local hosts must use the same `--state-dir` to
 share capacity. This is a local SQLite store, not a multi-machine/network-share
 coordination service.
 
+Workflow ownership uses a stable `.workflow.lock` file with an OS lock. The file
+remains after release; its existence or recorded PID alone does not mean the run
+is busy. Never delete or replace it to recover a current worker. Process exit
+releases the lock, including when metadata is empty or incomplete. Stop workers
+using older PID-file locking before upgrading a shared workspace; a live legacy
+PID is conservatively refused. Temporary lock contention leaves unsubmitted
+supplier operations pending, separate from a confirmed conflicting claim.
+
 `run --once` and `run --max-seconds N` bound the coordinator. Started action
 supervisors retain original deadlines and durable receipts. Resume the same
 queue to import them instead of creating new tasks. Inspect phase, process

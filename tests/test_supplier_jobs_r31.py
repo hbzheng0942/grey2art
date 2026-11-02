@@ -102,6 +102,16 @@ class SupplierForwardR31(unittest.TestCase):
         self.assertEqual(submitted.count("hero-model"), 1)
         self.assertEqual(len(list((f.project / "art/.supplier-claims").glob("*hero-model.json"))), 1)
 
+    def test_shared_guard_busy_does_not_permanently_block_legacy_step(self):
+        f = self.f
+        f.prepare()
+        with core.locked(f.project / "art/.supplier-claims/unresolved"):
+            result = f.advance(max_submissions=1)
+        self.assertEqual(result["operations"]["hero-model"]["state"], "pending")
+        self.assertEqual(f.adapter.calls, [])
+        f.advance(max_submissions=1)
+        self.assertEqual(f.adapter.calls.count(("hero-model", "submit")), 1)
+
     def test_new_h3_metadata_cannot_bypass_an_unresolved_original_submission(self):
         f = self.f; f.prepare(); f.adapter.ambiguous.add("hero-model")
         first = f.advance(max_submissions=1)

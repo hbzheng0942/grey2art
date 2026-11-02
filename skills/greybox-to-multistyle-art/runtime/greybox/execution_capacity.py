@@ -5,10 +5,11 @@ not-accepted or remote-terminal observation may release a remote generation slot
 """
 from __future__ import annotations
 
-import os
 from pathlib import Path
 import sqlite3
 import time
+
+from .execution_process import alive
 
 
 class CapacityStore:
@@ -104,16 +105,7 @@ class CapacityStore:
                 if row[3] == token:
                     self.db.execute("COMMIT")
                     return True
-                owner_alive = False
-                if row[2] > 0:
-                    try:
-                        os.kill(row[2], 0)
-                        owner_alive = True
-                    except ProcessLookupError:
-                        pass
-                    except PermissionError:
-                        owner_alive = True
-                if owner_alive:
+                if row[2] > 0 and alive(row[2]):
                     self.db.execute("COMMIT")
                     return False
                 self.db.execute("UPDATE reservations SET owner_pid=?,claim_token=? WHERE task_key=?",

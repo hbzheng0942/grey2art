@@ -5,7 +5,7 @@ description: Batch-transform one gameplay greybox into playable prototypes in mu
 
 # One greybox, multiple playable art styles
 
-**Version `0.15.1`.** One self-contained source package; no MCP, model switch or subagent is required. Keep installed files read-only and use the project's existing engine, assets and task records. [Status and limits](references/candidate-status.md) distinguish local execution tests from real host/provider qualification.
+**Version `0.15.2-rc.1`.** One self-contained source package; no MCP, model switch or subagent is required. Keep installed files read-only and use the project's existing engine, assets and task records. [Status and limits](references/candidate-status.md) distinguish local execution tests from real host/provider qualification.
 
 ## Default: one gameplay greybox, multiple art styles
 

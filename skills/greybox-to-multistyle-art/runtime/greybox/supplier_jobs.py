@@ -10,12 +10,15 @@ from decimal import Decimal
 from pathlib import Path
 import copy
 import os
-import json
 import uuid
 
 from . import core, suppliers, workflow
 
 _ARTIFACT_CHECKS = {}  # Process-local polling cache; production gates never use it.
+
+
+class DuplicateOperationError(core.WorkflowError):
+    """An actual persisted operation/asset claim conflicts with this attempt."""
 
 
 def _inputs(operation, project):
@@ -498,27 +501,27 @@ def _claim(state, run_dir, operation):
     path = directory / (state["selection_digest"] + "-" + operation["id"] + ".json")
     claim = {"selection_digest": state["selection_digest"], "operation_digest": core.digest(operation),
              "run_dir": str(run_dir), "operation_id": operation["id"], "created_at": core.now(), "phase": "reserved"}
-    try:
-        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    except FileExistsError:
-        previous = core.read(path)
-        core.require(previous.get("run_dir") == str(run_dir) and previous.get("operation_digest") == core.digest(operation)
-                     and previous.get("phase") == "reserved",
-                     "This H3 operation is already claimed by another run; recover the original, never duplicate it")
-    else:
-        with os.fdopen(fd, "w", encoding="utf-8") as handle:
-            json.dump(claim, handle)
-            handle.flush()
-            os.fsync(handle.fileno())
     guard_dir = directory / "unresolved"
     with core.locked(guard_dir):
+        # Serialize the complete claim/guard publication. Atomic JSON writes
+        # cannot leave an empty claim if a process dies before publishing it.
+        if path.exists():
+            previous = core.read(path)
+            if not (previous.get("run_dir") == str(run_dir) and
+                    previous.get("operation_digest") == core.digest(operation) and
+                    previous.get("phase") == "reserved"):
+                raise DuplicateOperationError(
+                    "This H3 operation is already claimed by another run; recover the original, never duplicate it")
         guard_paths = _guard_paths(state, operation)
         guard_path = guard_paths[0]
         for candidate in guard_paths:
             previous = core.read(candidate) if candidate.exists() else {}
             unresolved = previous.get("phase") in {"reserved", "attempted", "unknown", "recovery_required"}
-            core.require(not unresolved or previous.get("claim_path") == str(path) and previous.get("phase") == "reserved",
-                         "An unresolved original asset task exists, including under a previous H3 or legacy run; reconcile it before any replacement")
+            if unresolved and not (previous.get("claim_path") == str(path) and previous.get("phase") == "reserved"):
+                raise DuplicateOperationError(
+                    "An unresolved original asset task exists, including under a previous H3 or legacy run; reconcile it before any replacement")
+        if not path.exists():
+            core.write(path, claim)
         core.write(guard_path, {"claim_path": str(path), "phase": "reserved", "provider": operation["provider"],
                                "asset_id": operation["asset_id"], "operation": operation["operation"]})
     return str(path)
@@ -888,13 +891,19 @@ def step(run_dir, registry_refresh=None, capabilities=None, session_id=None, inv
                     continue
                 try:
                     row["claim_path"] = _claim(state, run_dir, operation)
-                except (ValueError, OSError):
+                except DuplicateOperationError:
                     row["state"] = "blocked_duplicate"
                     core.write(run_dir / "supplier-run.json", state)
                     from .production_control import release_unsubmitted
                     release_unsubmitted(state["project"], portfolio, operation["asset_id"], operation["operation"],
                                         run_dir, core.digest(operation))
                     blocked.append("Operation already belongs to another run: " + oid)
+                    continue
+                except (ValueError, OSError) as error:
+                    # Local contention/I/O is not evidence of another paid
+                    # attempt. Keep the original pending operation recoverable.
+                    row["operational_blocker"] = str(error)
+                    control_blocked.append(oid + ": " + str(error))
                     continue
                 # One reservation per operation is persisted BEFORE crossing the adapter boundary.
                 _reserve(state, operation)

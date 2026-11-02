@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "name": "greybox-to-multistyle-art",
-  "version": "0.15.1",
+  "version": "0.15.2-rc.1",
   "kind": "source-only",
   "sourceIdentity": "Grey2Art first public release: complete Skill source, offline installation and Unicode-safe command output. Existing task and asset identities are preserved.",
-  "sourceManifestSHA256": "604c8bc5c2e2b3485920eb13f0f04b440198b70a7504d657def48013c115060f",
+  "sourceManifestSHA256": "f05b41d81114a01da2e964064744d8dd163d21f3df3a657c0171c91d53bef171",
   "nativeValidation": "Feedback behavior is checked with local synthetic CLI cases; actual host capture coverage and reduced rework remain unmeasured. Historical native/provider evidence retains its original version; see references/candidate-status.md.",
   "files": [
     {
@@ -14,8 +14,8 @@
     },
     {
       "path": "SKILL.md",
-      "bytes": 13293,
-      "sha256": "2b35a1892898efe23d597103da3a734e8107bbce1fde2e1635219ed6400ff266"
+      "bytes": 13298,
+      "sha256": "c8fbdb62522fb2e11615eb6804470ff9028fbad23bbc5a91eab124ce045d7981"
     },
     {
       "path": "connectors/workbuddy/board-guard/README.md",
@@ -159,8 +159,8 @@
     },
     {
       "path": "references/execution-contract.md",
-      "bytes": 8473,
-      "sha256": "506838305e5fcb733e58b1a77b70d3738517b99a334a72af00352fd6b021be1f"
+      "bytes": 9024,
+      "sha256": "dfb4d08d60c18e6870b9f105158adb007cbe54004a1a115064983d477f27e992"
     },
     {
       "path": "references/field-lessons.md",
@@ -399,8 +399,8 @@
     },
     {
       "path": "runtime/greybox/__init__.py",
-      "bytes": 65,
-      "sha256": "b4c9d838de36bc6966ac780b80cccec1ac4fc8649254fc50e34f015df2beeb08"
+      "bytes": 70,
+      "sha256": "f0f591cb59f6048352ff02009b09a48cf382cfe4ffe002693db8f5afb0db0da4"
     },
     {
       "path": "runtime/greybox/account_profiles.py",
@@ -474,8 +474,8 @@
     },
     {
       "path": "runtime/greybox/core.py",
-      "bytes": 72743,
-      "sha256": "cc2245773d441266730440ee69b05528f1b24415914e6b02111f0a4b8470ea30"
+      "bytes": 72577,
+      "sha256": "2249a7a382dcdd95d49c15f0e67092fef9e0ceabe4f6860c654745bfbbc5e48a"
     },
     {
       "path": "runtime/greybox/delivery.py",
@@ -509,8 +509,8 @@
     },
     {
       "path": "runtime/greybox/execution_capacity.py",
-      "bytes": 9943,
-      "sha256": "563555498e597d5813c5d585c12f22bc6f07d808db45231ef67d576b52d50b36"
+      "bytes": 9647,
+      "sha256": "008c0fb631f2d0fc652b46a170e40171ec2ad9a884bbb6b0fa2b261dbcf3ebfc"
     },
     {
       "path": "runtime/greybox/execution_cli.py",
@@ -519,13 +519,13 @@
     },
     {
       "path": "runtime/greybox/execution_errors.py",
-      "bytes": 4817,
-      "sha256": "e23323914c00e2cab1a532e44737639832c22410f1bff6bff6235bcdbce151f9"
+      "bytes": 4931,
+      "sha256": "321736a0347b30a75e73bd03da62299cf98cf11c58473453d812a6aa11f59431"
     },
     {
       "path": "runtime/greybox/execution_process.py",
-      "bytes": 3551,
-      "sha256": "ee2ba7cfd826a238fc2a71282c2412c1c89944c5c79117d7b3e1905663010f2c"
+      "bytes": 5008,
+      "sha256": "bb19c40477c5af209aae9b2886682f16946a645c64665e1d67e62170ec38c1b1"
     },
     {
       "path": "runtime/greybox/feedback.py",
@@ -654,8 +654,8 @@
     },
     {
       "path": "runtime/greybox/production_control.py",
-      "bytes": 38279,
-      "sha256": "88337809de1465e7c3c74832359cc530b5048c3a03bc897c711360d0d27df5d6"
+      "bytes": 38223,
+      "sha256": "331469355fcc3c556dd50938fefa06d042679fb0802eb483a455aaa709fb017c"
     },
     {
       "path": "runtime/greybox/prompt_templates/board.txt",
@@ -729,13 +729,13 @@
     },
     {
       "path": "runtime/greybox/supplier_execution.py",
-      "bytes": 29741,
-      "sha256": "9e4cddacf059a145bf93d5d43e61a4d45a66e1901908bf82dd044e97754462d5"
+      "bytes": 30130,
+      "sha256": "ba5a075a5d5a4dc620e1322e76e2c92a7f81a66622e5d14e79958944d2d08532"
     },
     {
       "path": "runtime/greybox/supplier_jobs.py",
-      "bytes": 67742,
-      "sha256": "775267d7b0ad75eafd8529d923b6e9155c85fadc41cca3685df539a31a3fd9e1"
+      "bytes": 68302,
+      "sha256": "91018a7d6ba6442d800cdf71709071163230431a51127b809d109e9a2df8d290"
     },
     {
       "path": "runtime/greybox/suppliers.py",
