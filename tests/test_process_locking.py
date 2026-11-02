@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 import unittest
 from unittest.mock import patch
@@ -82,6 +83,75 @@ class ProcessLockingTests(unittest.TestCase):
             for pid in (None, "invalid", 0, -1):
                 self.assertFalse(execution_process.alive(pid))
             kill.assert_not_called()
+
+    def test_windows_atomic_replace_retries_without_exposing_partial_data(self):
+        source, target = self.root / "new", self.root / "current"
+        source.write_bytes(b"new document")
+        target.write_bytes(b"original")
+        attempts = []
+        actual_replace = os.replace
+        def replace(a, b):
+            attempts.append(1)
+            self.assertEqual(target.read_bytes(), b"original")
+            if len(attempts) < 3:
+                error = PermissionError("synthetic sharing violation")
+                error.winerror = 5
+                raise error
+            return actual_replace(a, b)
+        with patch.object(execution_process, "os", SimpleNamespace(name="nt", replace=replace)):
+            execution_process.replace_file(source, target)
+        self.assertEqual(len(attempts), 3)
+        self.assertEqual(target.read_bytes(), b"new document")
+        self.assertFalse(source.exists())
+
+    def test_permanent_windows_permission_error_has_bounded_retries(self):
+        error = PermissionError("synthetic permanent denial")
+        error.winerror = 5
+        with patch.object(execution_process, "os", SimpleNamespace(name="nt")), \
+             patch.object(execution_process.os, "replace", side_effect=error, create=True) as replace, \
+             patch.object(execution_process.time, "monotonic", side_effect=[0., .01, .02]), \
+             patch.object(execution_process.time, "sleep"):
+            with self.assertRaises(PermissionError) as raised:
+                execution_process.replace_file("source", "target", retry_timeout=.02)
+        self.assertIs(raised.exception, error)
+        self.assertEqual(replace.call_count, 2)
+
+    def test_nonsharing_errors_do_not_retry(self):
+        for platform, code in (("posix", 5), ("nt", 87)):
+            error = PermissionError("unrelated permission error")
+            error.winerror = code
+            with self.subTest(platform=platform, code=code), \
+                 patch.object(execution_process, "os", SimpleNamespace(name=platform)), \
+                 patch.object(execution_process.os, "replace", side_effect=error, create=True) as replace:
+                with self.assertRaises(PermissionError):
+                    execution_process.replace_file("source", "target")
+                self.assertEqual(replace.call_count, 1)
+
+    @unittest.skipUnless(os.name == "nt", "Real Windows reader-handle sharing behavior")
+    def test_atomic_json_waits_for_real_windows_reader_to_close(self):
+        target = self.root / "status.json"
+        execution_process.atomic_json(target, {"revision": 1})
+        started, finished, errors = threading.Event(), threading.Event(), []
+        def write():
+            started.set()
+            try:
+                execution_process.atomic_json(target, {"revision": 2})
+            except Exception as error:
+                errors.append(error)
+            finally:
+                finished.set()
+        worker = threading.Thread(target=write)
+        try:
+            with target.open("rb"):
+                worker.start()
+                self.assertTrue(started.wait(2))
+                self.assertFalse(finished.wait(.05), "Replacement must wait for the open reader")
+        finally:
+            if worker.ident is not None:
+                worker.join(timeout=3)
+        self.assertFalse(worker.is_alive())
+        self.assertEqual(errors, [])
+        self.assertEqual(execution_process.read_json(target), {"revision": 2})
 
     def test_windows_acquires_byte_lock_before_inspecting_file_contents(self):
         class LockFile(io.BytesIO):

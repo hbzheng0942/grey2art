@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "name": "greybox-to-multistyle-art",
-  "version": "0.15.2-rc.1",
+  "version": "0.15.2-rc.2",
   "kind": "source-only",
   "sourceIdentity": "Grey2Art first public release: complete Skill source, offline installation and Unicode-safe command output. Existing task and asset identities are preserved.",
-  "sourceManifestSHA256": "f05b41d81114a01da2e964064744d8dd163d21f3df3a657c0171c91d53bef171",
+  "sourceManifestSHA256": "2d0c1d9828f8d271623dd92d990885c2487792ee46d1f33ab39842858431f7f4",
   "nativeValidation": "Feedback behavior is checked with local synthetic CLI cases; actual host capture coverage and reduced rework remain unmeasured. Historical native/provider evidence retains its original version; see references/candidate-status.md.",
   "files": [
     {
@@ -15,7 +15,7 @@
     {
       "path": "SKILL.md",
       "bytes": 13298,
-      "sha256": "c8fbdb62522fb2e11615eb6804470ff9028fbad23bbc5a91eab124ce045d7981"
+      "sha256": "e863b73c7f35f43bca48cd255ff9cc67832f633e4932f513631c82994f210226"
     },
     {
       "path": "connectors/workbuddy/board-guard/README.md",
@@ -400,7 +400,7 @@
     {
       "path": "runtime/greybox/__init__.py",
       "bytes": 70,
-      "sha256": "f0f591cb59f6048352ff02009b09a48cf382cfe4ffe002693db8f5afb0db0da4"
+      "sha256": "294b7e9bc1a40703b9fe66bc74446a09416d95141cf29ad9fa477f03e5f31978"
     },
     {
       "path": "runtime/greybox/account_profiles.py",
@@ -474,8 +474,8 @@
     },
     {
       "path": "runtime/greybox/core.py",
-      "bytes": 72577,
-      "sha256": "2249a7a382dcdd95d49c15f0e67092fef9e0ceabe4f6860c654745bfbbc5e48a"
+      "bytes": 72623,
+      "sha256": "6262c3d42fed046e79755ff2cd60e68763d9629b47d5b4bf504b1d8f40bf2eb2"
     },
     {
       "path": "runtime/greybox/delivery.py",
@@ -524,8 +524,8 @@
     },
     {
       "path": "runtime/greybox/execution_process.py",
-      "bytes": 5008,
-      "sha256": "bb19c40477c5af209aae9b2886682f16946a645c64665e1d67e62170ec38c1b1"
+      "bytes": 5742,
+      "sha256": "19df8797704f78d352e04548e7a49a2a6d880c98bd55ec54c61c125bf0a70725"
     },
     {
       "path": "runtime/greybox/feedback.py",
@@ -604,8 +604,8 @@
     },
     {
       "path": "runtime/greybox/image_jobs.py",
-      "bytes": 30670,
-      "sha256": "7b422b1b68f260e21140b4ef1532b7d31ae4244f908a08180a8f4faeab8f48fc"
+      "bytes": 30716,
+      "sha256": "79807739ddec71b81c8befc1c7a4282a30be4d6f29038f839097220f8c67d5af"
     },
     {
       "path": "runtime/greybox/image_policy.py",

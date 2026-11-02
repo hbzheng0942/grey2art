@@ -2,6 +2,10 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+## 0.15.2-rc.2 — Unreleased / 未发布
+
+- Retry short-lived Windows sharing violations when atomically publishing status and task JSON; permanent access errors remain bounded failures. / 原子写入状态与任务 JSON 时，对 Windows 短暂文件占用进行有界重试，永久权限错误仍正常报错。
+
 ## 0.15.2-rc.1 — Unreleased / 未发布
 
 - Use non-destructive Windows process checks for executor status and account claims. / 执行器状态与账号占用检查统一使用不会终止 Windows 进程的存活检测。

@@ -16,6 +16,24 @@ class LockBusyError(ValueError):
     """The OS lock is owned by another operation; its record is not corrupt."""
 
 
+def replace_file(source, target, retry_timeout=1.0):
+    """Replace atomically despite short-lived Windows reader handles.
+
+    Sharing/access violations may outlive a reader's snapshot by a few
+    milliseconds. Never truncate the destination or retry other OS errors;
+    permanent permissions still fail within this local deadline.
+    """
+    deadline = time.monotonic() + retry_timeout
+    while True:
+        try:
+            return os.replace(source, target)
+        except PermissionError as error:
+            remaining = deadline - time.monotonic()
+            if os.name != "nt" or getattr(error, "winerror", None) not in {5, 32, 33} or remaining <= 0:
+                raise
+            time.sleep(min(.01, remaining))
+
+
 def atomic_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -27,7 +45,7 @@ def atomic_json(path, value):
             json.dump(value, handle, ensure_ascii=False, allow_nan=False)
             handle.flush()
             os.fsync(handle.fileno())
-        os.replace(temporary, path)
+        replace_file(temporary, path)
         if os.name != "nt":
             directory = os.open(path.parent, os.O_RDONLY)
             try:

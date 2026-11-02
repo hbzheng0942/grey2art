@@ -1,2 +1,2 @@
 """Portable greybox art execution helpers."""
-VERSION = "0.15.2-rc.1"
+VERSION = "0.15.2-rc.2"

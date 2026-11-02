@@ -23,6 +23,7 @@ import uuid
 from urllib import error, request
 
 from . import VERSION, image_adapters as adapters, provider_http
+from .execution_process import replace_file
 
 SKILL = Path(__file__).resolve().parents[2]
 ImageError = adapters.ImageError
@@ -69,7 +70,7 @@ def _write(path, value):
             stream.write("\n")
             stream.flush()
             os.fsync(stream.fileno())
-        os.replace(temporary, path)
+        replace_file(temporary, path)
     finally:
         if temporary:
             temporary.unlink(missing_ok=True)

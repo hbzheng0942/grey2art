@@ -17,6 +17,7 @@ import tempfile
 from datetime import datetime, timezone
 
 from . import VERSION
+from .execution_process import replace_file
 
 
 class WorkflowError(ValueError):
@@ -79,7 +80,7 @@ def write(path, value):
             f.write("\n")
             f.flush()
             os.fsync(f.fileno())
-        os.replace(name, path)
+        replace_file(name, path)
     finally:
         Path(name).unlink(missing_ok=True)
 
