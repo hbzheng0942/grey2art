@@ -262,7 +262,7 @@ print(json.dumps(out))
         row = self.state()["operations"]["hero-model"]
         self.assertEqual(row["state"], "ready")
         self.assertTrue(Path(row["artifacts"][0]["path"]).is_file())
-        self.assertIn("/assets/hero/", row["artifacts"][0]["path"])
+        self.assertEqual(Path(row["artifacts"][0]["path"]).parent.parts[-2:], ("assets", "hero"))
 
     def test_changed_output_after_worker_validation_is_not_committed(self):
         self.finish(self.take())
