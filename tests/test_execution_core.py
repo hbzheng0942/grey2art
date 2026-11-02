@@ -243,10 +243,33 @@ class ActualBackendTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.env = patch.dict(os.environ, {"GREYBOX_SYNTHETIC_EXECUTION_KEY": "synthetic-not-a-provider-key"})
         self.env.start()
+        self.processes, self.process_logs = [], []
+        original_spawn = execution.spawn
+        def spawn_owned(*args, **kwargs):
+            log = (self.root / ("process-" + str(len(self.process_logs)) + ".stderr")).open("w")
+            self.process_logs.append(log)
+            kwargs["stderr"] = log
+            process = original_spawn(*args, **kwargs)
+            self.processes.append(process)
+            return process
+        self.spawn_patch = patch.object(execution, "spawn", side_effect=spawn_owned)
+        self.spawn_patch.start()
 
     def tearDown(self):
+        self.spawn_patch.stop()
+        for process in reversed(self.processes):
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                kill_tree(process)
+        for log in self.process_logs:
+            log.close()
         self.env.stop()
         self.temp.cleanup()
+
+    def diagnostics(self, path, state):
+        return json.dumps({"status": execution.status(path, state),
+                           "stderr": {p.name: p.read_text() for p in self.root.glob("process-*.stderr")}})
 
     def configure(self, source_text):
         adapter = self.root / "synthetic-adapter.py"
@@ -280,7 +303,9 @@ with urllib.request.urlopen(req,timeout=2) as response:
                 "pools": {"shared": {"capacity": 2, "source_ref": "synthetic-capacity"}},
                 "sources": [self.reserve(name) for name in names],
                 "limits": {"poll_interval": .025, "tick_interval": .01,
-                           "submit_timeout": 2, "status_timeout": 2, "fetch_timeout": 2}}
+                           # Normal completion tests allow cold process startup;
+                           # deadline fault tests set their own short leases.
+                           "submit_timeout": 10, "status_timeout": 10, "fetch_timeout": 10}}
 
     def test_actual_image_backend_rolls_before_slow_sibling_terminal(self):
         # The slow sibling cannot finish until the next task starts. This
@@ -305,19 +330,12 @@ with urllib.request.urlopen(req,timeout=2) as response:
 
     def test_detached_executor_dispatches_while_controller_is_idle(self):
         provider = LocalImageProvider()
-        processes = []
-        original_spawn = execution.spawn
-        def spawn_owned(*args, **kwargs):
-            process = original_spawn(*args, **kwargs)
-            processes.append(process)
-            return process
         try:
             self.configure_http(provider)
             queue = self.http_queue(["first", "second", "third"])
             path, state = self.root / "queue.json", self.root / "state"
             atomic_json(path, queue)
-            with patch.object(execution, "spawn", side_effect=spawn_owned):
-                started = execution.start(path, state)
+            started = execution.start(path, state)
             self.assertTrue(started["started"])
             # Observe only the fake provider; no controller/agent step, query
             # or command is needed to dispatch the third job.
@@ -325,15 +343,12 @@ with urllib.request.urlopen(req,timeout=2) as response:
             deadline = time.monotonic() + 15
             while execution.status(path, state).get("running") and time.monotonic() < deadline:
                 time.sleep(.02)
-            self.assertTrue(created, json.dumps(execution.status(path, state)))
+            self.assertTrue(created, self.diagnostics(path, state))
             self.assertEqual(len(provider.tasks), 3)
-            self.assertFalse(execution.status(path, state)["running"])
-            self.assertEqual(execution.status(path, state)["pools"]["shared"]["occupied"], 0)
+            self.assertFalse(execution.status(path, state)["running"], self.diagnostics(path, state))
+            self.assertEqual(execution.status(path, state)["pools"]["shared"]["occupied"], 0,
+                             self.diagnostics(path, state))
         finally:
-            for process in processes:
-                if process.poll() is None:
-                    kill_tree(process)
-                process.wait(timeout=5)
             provider.close()
 
     @unittest.skipIf(os.name == "nt", "POSIX SIGKILL fault cut; Windows supervisor path remains separately qualified")
