@@ -105,7 +105,7 @@ def main():
     spec.loader.exec_module(module)
     manifest, files = module.verified_files(SKILL)
     assert manifest['name'] == 'greybox-to-multistyle-art'
-    assert re.search(r'^name: greybox-to-multistyle-art$', (SKILL / 'SKILL.md').read_text(), re.M)
+    assert re.search(r'^name: greybox-to-multistyle-art$', (SKILL / 'SKILL.md').read_text(encoding='utf-8'), re.M)
     sys.path.insert(0, str(SKILL / 'runtime'))
     from greybox import VERSION
     assert VERSION == manifest['version'], 'Code and package versions differ'
@@ -117,7 +117,7 @@ def main():
     for forbidden in ['runtime/legacy/experiments', 'runtime/legacy/inputs']:
         assert not (SKILL / forbidden).exists(), 'Private legacy case data must not ship'
     vendor = SKILL / 'runtime' / 'vendor'
-    for row in json.loads((vendor / 'manifest.json').read_text())['files']:
+    for row in json.loads((vendor / 'manifest.json').read_text(encoding='utf-8'))['files']:
         data = (vendor / row['path']).read_bytes()
         assert len(data) == row['bytes'] and hashlib.sha256(data).hexdigest() == row['sha256'], row['path']
     for p in [*SKILL.rglob('*'), *ROOT.glob('*.md'), *ROOT.joinpath('docs').rglob('*'),

@@ -1,5 +1,8 @@
 import importlib.util
+import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -93,6 +96,16 @@ class PublicDocumentLinksTests(unittest.TestCase):
         document = self.write('README.md', '<img src="file:///private/example.png">')
         with self.assertRaisesRegex(AssertionError, 'Local file URL'):
             self.check(document)
+
+    def test_release_check_does_not_depend_on_locale_encoding(self):
+        environment = os.environ.copy()
+        environment.update(LC_ALL='C', PYTHONUTF8='0',
+                           PYTHONCOERCECLOCALE='0', PYTHONIOENCODING='utf-8')
+        result = subprocess.run(
+            [sys.executable, '-X', 'utf8=0', str(SCRIPT)],
+            cwd=SCRIPT.parent.parent, env=environment,
+            capture_output=True, encoding='utf-8', timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
 
 if __name__ == '__main__':
