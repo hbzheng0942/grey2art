@@ -35,7 +35,7 @@ Design reviews and production plans keep the work directed: choose references, a
 
 | Prepare | Choose |
 |---|---|
-| Agent and Python | Codex, Claude Code or WorkBuddy with local command execution; [Python 3.11+](https://www.python.org/downloads/). |
+| Agent and Python | Codex, Claude Code or WorkBuddy with local command execution; for production, use [Python 3.11+](https://www.python.org/downloads/). |
 | Authoring and validation | [Blender](https://www.blender.org/download/) for spatial greyboxes, scale, cameras and geometry; [Godot](https://godotengine.org/download/) / [Unity](https://unity.com/download) for playable loops, interactions and runtime tests. Choose for the task and retain existing project versions. |
 | Image tools | Use your host's image tool or configure an [image service](skills/greybox-to-multistyle-art/references/image-services.md) for concepts and modeling references. |
 | AI 3D provider | Choose one when generating new models: Lux3D, Meshy, Tripo, Rodin or Hi3D. [Sign up and configure](docs/INSTALL.md#choose-an-ai-3d-provider) |
@@ -47,10 +47,10 @@ Blender is a DCC tool; a spatial greybox or `.blend` delivery needs no game engi
 Paste this request into Codex, Claude Code or WorkBuddy:
 
 ```text
-Follow https://github.com/hbzheng0942/grey2art/blob/main/docs/INSTALL.md to install Grey2Art for my current agent and verify the installation.
+Install the Skill from https://github.com/hbzheng0942/grey2art for me.
 ```
 
-The agent downloads and verifies the complete package, then reports the installed version and location. Refresh skills or start a new session to try a task below. For offline setup, see [manual installation](docs/INSTALL.md#manual-installation).
+The agent follows the [install guide](docs/INSTALL.md) to place the complete Skill folder. No Python is needed for a first installation. Refresh skills or start a new session to try a task below. For offline setup, see [manual installation](docs/INSTALL.md#manual-installation).
 
 **Existing greybox, one style**
 

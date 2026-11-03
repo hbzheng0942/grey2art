@@ -35,7 +35,7 @@ Grey2Art 是面向 Codex、Claude Code 和 WorkBuddy 的 Agent Skill。从已有
 
 | 准备什么 | 如何选择 |
 |---|---|
-| Agent 与 Python | Codex、Claude Code 或 WorkBuddy，可执行本地命令；[Python 3.11+](https://www.python.org/downloads/)。 |
+| Agent 与 Python | Codex、Claude Code 或 WorkBuddy，可执行本地命令；制作时使用 [Python 3.11+](https://www.python.org/downloads/)。 |
 | 制作与验证工具 | [Blender](https://www.blender.org/download/) 用于空间灰盒、尺度、镜头和几何验证；[Godot](https://godotengine.org/download/)／[Unity](https://unity.com/download) 用于可玩循环、交互与运行测试。按任务选择，已有工程沿用原版本。 |
 | 生图工具 | 复用宿主生图工具，或配置[图像服务](skills/greybox-to-multistyle-art/references/image-services.md)，用于概念与建模参考。 |
 | AI 3D 供应商 | 新生成模型时选择一家：Lux3D、Meshy、Tripo、Rodin 或 Hi3D。[注册与配置](docs/INSTALL.zh-CN.md#选择-ai-3d-供应商) |
@@ -47,10 +47,10 @@ Blender 是 DCC 工具；只交付空间灰盒或 `.blend` 时无需游戏引擎
 在 Codex、Claude Code 或 WorkBuddy 的对话框里发送这句话：
 
 ```text
-请按照 https://github.com/hbzheng0942/grey2art/blob/main/docs/INSTALL.zh-CN.md 把 Grey2Art 安装到我当前使用的 Agent，并验证安装结果。
+帮我安装 https://github.com/hbzheng0942/grey2art 这个 Skill。
 ```
 
-Agent 会下载并校验完整安装包，装好后告诉你版本和安装位置。刷新 Skill 列表或开启新会话，就可以试试下面的任务。需要离线安装时，见[手动安装](docs/INSTALL.zh-CN.md#手动安装)。
+Agent 按[安装说明](docs/INSTALL.zh-CN.md)放好完整 Skill 文件夹即可，首次安装无需 Python。刷新 Skill 列表或开启新会话，就可以试试下面的任务。需要离线安装时，见[手动安装](docs/INSTALL.zh-CN.md#手动安装)。
 
 **已有灰盒，单个风格**
 
