@@ -2,7 +2,7 @@
 from concurrent.futures import ThreadPoolExecutor
 import importlib.util
 import io
-import os
+from contextlib import contextmanager
 from pathlib import Path
 import sys
 import tempfile
@@ -13,7 +13,7 @@ from unittest.mock import patch
 sys.dont_write_bytecode = True
 SKILL = Path(__file__).resolve().parents[1] / "skills/greybox-to-multistyle-art"
 sys.path.insert(0, str(SKILL / "runtime"))
-from greybox import core, unity
+from greybox import core, unity, execution_process
 import test_continuity as continuity_fixtures
 import test_unity_v04 as unity_fixtures
 
@@ -26,30 +26,37 @@ def ansi_reader(original):
 
 
 class NativeIOTests(unittest.TestCase):
-    def test_unity_parallel_package_updates_have_independent_staging(self):
+    def test_concurrent_disjoint_package_additions_both_survive(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             target = root / "Packages/manifest.json"
-            core.write(target, {"dependencies": {"com.unity.render-pipelines.universal": "17.3.1"}})
-            barrier, gate, seen = threading.Barrier(2), threading.Lock(), set()
-            replace = os.replace
-            def overlap(source, destination):
-                if Path(destination) == target:
-                    with gate:
-                        first = threading.get_ident() not in seen
-                        seen.add(threading.get_ident())
-                    if first:
-                        barrier.wait(timeout=10)
-                return replace(source, destination)
-            with patch.object(unity.os, "replace", side_effect=overlap), ThreadPoolExecutor(max_workers=2) as pool:
-                futures = [pool.submit(unity.configure_packages, root) for _ in range(2)]
-                results = [future.result(timeout=15) for future in futures]
-            self.assertTrue(all(result["changed"] == {"com.unity.cloud.gltfast": unity.GLTFAST_VERSION}
-                                for result in results))
+            core.write(target, {"dependencies": {"existing": "1"}})
+            snapshot, contended = threading.Event(), threading.Event()
+            read_write, acquire = unity._json, execution_process.exclusive
+            def hold_first_snapshot(path, data=None):
+                result = read_write(path, data)
+                if data is None and not snapshot.is_set():
+                    snapshot.set()
+                    self.assertTrue(contended.wait(10))
+                return result
+            @contextmanager
+            def observe_lock(path):
+                try:
+                    with acquire(path) as handle:
+                        yield handle
+                except execution_process.LockBusyError:
+                    contended.set()
+                    raise
+            with patch.object(unity, "_json", side_effect=hold_first_snapshot), \
+                 patch.object(execution_process, "exclusive", observe_lock), ThreadPoolExecutor(2) as pool:
+                first = pool.submit(unity.configure_packages, root, True, False)
+                self.assertTrue(snapshot.wait(10))
+                second = pool.submit(unity.configure_packages, root, False, True)
+                first.result(timeout=15)
+                second.result(timeout=15)
             self.assertEqual(core.read(target)["dependencies"], {
-                "com.unity.render-pipelines.universal": "17.3.1",
-                "com.unity.cloud.gltfast": unity.GLTFAST_VERSION})
-            self.assertEqual(list(target.parent.glob(".manifest.json.*")), [])
+                "existing": "1", "com.unity.cloud.gltfast": unity.GLTFAST_VERSION,
+                "com.unity.render-pipelines.universal": unity.URP_VERSION})
 
     def test_unity_scene_inventory_preserves_utf8_under_ansi_locale(self):
         fixture = unity_fixtures.UnityV04Tests("test_inventory_uses_project_version_and_manifest")

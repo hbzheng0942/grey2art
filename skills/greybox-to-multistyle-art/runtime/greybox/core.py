@@ -14,6 +14,8 @@ from pathlib import Path
 import re
 import shutil
 import tempfile
+import stat
+import time
 from datetime import datetime, timezone
 
 from . import VERSION
@@ -344,7 +346,7 @@ def locked(run_dir):
 
 
 @contextlib.contextmanager
-def locked_file(path, *, strict_legacy=False):
+def locked_file(path, *, strict_legacy=False, wait_seconds=0):
     """Hold a stable OS lock; its file is never removed or replaced.
 
     The protocol marker is immutable across acquisitions, including read-only
@@ -354,12 +356,22 @@ def locked_file(path, *, strict_legacy=False):
     path = Path(path)
     ensure_directory(path.parent)
     with contextlib.ExitStack() as stack:
-        try:
-            handle = stack.enter_context(exclusive(path))
-        except LockBusyError:
-            raise WorkflowLockBusy("Run is owned by a live process") from None
+        deadline = time.monotonic() + wait_seconds
+        while True:
+            try:
+                handle = stack.enter_context(exclusive(path))
+                break
+            except LockBusyError:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise WorkflowLockBusy("Run is owned by a live process") from None
+                time.sleep(min(.02, remaining))
+        info = os.fstat(handle.fileno())
+        require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and os.path.samestat(info, path.lstat()),
+                "Workflow lock must be a private, single-link regular file")
         handle.seek(0)
-        raw = handle.read()
+        raw = handle.read(4097)
+        require(len(raw) <= 4096, "Oversized workflow lock record")
         marker = b'{"kind":"greybox-os-lock-v1"}'
         try:
             previous = json.loads(raw)

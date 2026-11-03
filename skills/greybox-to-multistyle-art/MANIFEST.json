@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "name": "greybox-to-multistyle-art",
-  "version": "0.15.2-rc.3",
+  "version": "0.15.2-rc.4",
   "kind": "source-only",
   "sourceIdentity": "Grey2Art first public release: complete Skill source, offline installation and Unicode-safe command output. Existing task and asset identities are preserved.",
-  "sourceManifestSHA256": "b1fb12d406f3239e23bfbf5da6479ece7abdb3b85fa8371b43576bf367832909",
+  "sourceManifestSHA256": "31feab8adcb83f9dc2c72c6d2a3a8ada1ba7053984b030ea733702d5dd358a33",
   "nativeValidation": "Feedback behavior is checked with local synthetic CLI cases; actual host capture coverage and reduced rework remain unmeasured. Historical native/provider evidence retains its original version; see references/candidate-status.md.",
   "files": [
     {
@@ -15,7 +15,7 @@
     {
       "path": "SKILL.md",
       "bytes": 13298,
-      "sha256": "49b4a0c291370c6f038be665c681c9375aae70dd27b193af4834116ad3fbf840"
+      "sha256": "cf63c4d7b069d8f1a4e51f561e6d401d8dd6db90fc2860baa85a6e16ca64ae64"
     },
     {
       "path": "connectors/workbuddy/board-guard/README.md",
@@ -179,8 +179,8 @@
     },
     {
       "path": "references/hosts-v04.md",
-      "bytes": 9898,
-      "sha256": "6c54f27ff82ead7e9849d8bb5391d3420b0128244650e533f287729bf5093793"
+      "bytes": 10003,
+      "sha256": "9fd252feee3a61691cf986482c150e999e00b7cb2916e124d549043fcc66c19b"
     },
     {
       "path": "references/human-decisions.md",
@@ -400,7 +400,7 @@
     {
       "path": "runtime/greybox/__init__.py",
       "bytes": 70,
-      "sha256": "e809dff070a74f146de4ff00c2a1fe55bf8cb129db325e13cca3ec4338756256"
+      "sha256": "62b358fecf861f7c96a9997b5826d93e5dfa59f1ee441b2f5f3ad28b9355fa1f"
     },
     {
       "path": "runtime/greybox/account_profiles.py",
@@ -474,8 +474,8 @@
     },
     {
       "path": "runtime/greybox/core.py",
-      "bytes": 73037,
-      "sha256": "6278dae3012366e176ca6c8ec7a6d89b001f9d73063e9f2c87281cd50f25242f"
+      "bytes": 73627,
+      "sha256": "ad00dc9f07f6ae38df3cd051ec30dcd7a26b6a0567127e045a133e0f77fe48be"
     },
     {
       "path": "runtime/greybox/delivery.py",
@@ -604,8 +604,8 @@
     },
     {
       "path": "runtime/greybox/image_jobs.py",
-      "bytes": 31520,
-      "sha256": "183027f50cad21f6a9660e04e05e5a08e8246bf75bc6f0a8c12184135082cde0"
+      "bytes": 31940,
+      "sha256": "672a5967d9003fbf246e8e24c314205337c928f570a307a4cf79b0b1364f980f"
     },
     {
       "path": "runtime/greybox/image_policy.py",
@@ -754,8 +754,8 @@
     },
     {
       "path": "runtime/greybox/unity.py",
-      "bytes": 41242,
-      "sha256": "ffbbed90f18aec6173cf13150cc263d983678af361b7211362a0d6f54bac9150"
+      "bytes": 41472,
+      "sha256": "79b50b24ea6156921c0e7abf1d726e6634cce4dbd02170275b210bcc59a1a092"
     },
     {
       "path": "runtime/greybox/workbuddy_board_guard.py",
@@ -1314,8 +1314,8 @@
     },
     {
       "path": "scripts/install.py",
-      "bytes": 31001,
-      "sha256": "93464e3bb69d8d84abbdf1ded761aa637c5b9255bcb24c81060cb102c1759c30"
+      "bytes": 32002,
+      "sha256": "8646c4c4862f12fdb0fddd772bdce0895dbbbc478d184dd80ab2348f37248e3c"
     },
     {
       "path": "scripts/knowledge.py",

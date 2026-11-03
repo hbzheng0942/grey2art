@@ -348,6 +348,12 @@ def configure_packages(project, gltfast=True, urp=True):
     """Add missing pinned packages; never silently upgrade an existing project."""
     root = Path(project).resolve()
     path = root / "Packages/manifest.json"
+    from .core import locked_file
+    with locked_file(path.with_name(".greybox-packages.lock"), wait_seconds=5):
+        return _configure_packages_locked(path, gltfast, urp)
+
+
+def _configure_packages_locked(path, gltfast, urp):
     doc = _json(path)
     dependencies = doc.setdefault("dependencies", {})
     required = {}
@@ -362,7 +368,7 @@ def configure_packages(project, gltfast=True, urp=True):
             changes[name] = version
     if changes:
         _json(path, doc)
-    return {"changed": changes, "packages": dependencies, "lock_file": str(root / "Packages/packages-lock.json")}
+    return {"changed": changes, "packages": dependencies, "lock_file": str(path.with_name("packages-lock.json"))}
 
 
 def install_bridge(project):

@@ -30,6 +30,18 @@ class InstallerRecoveryTests(unittest.TestCase):
                     pass
         self.assertEqual(installer.verified_files(self.f.destination)[0]["version"], "new-version")
 
+    def test_hardlinked_sentinel_or_guard_never_modifies_the_target(self):
+        self.f.backups.mkdir(parents=True)
+        victim = self.f.root / "unrelated"
+        victim.write_bytes(b"2147483647")
+        for name in (self.lock.name + ".guard", self.lock.name):
+            alias = self.f.backups / name
+            os.link(victim, alias)
+            with self.assertRaisesRegex(ValueError, "single-link"):
+                self.f.install()
+            self.assertEqual(victim.read_bytes(), b"2147483647")
+            alias.unlink()
+
     def test_live_legacy_owner_is_preserved(self):
         self.f.backups.mkdir(parents=True)
         child = subprocess.Popen([sys.executable, "-B", "-c", "import time; time.sleep(30)"])
@@ -82,6 +94,12 @@ with installer._operation_lock(Path(sys.argv[2]),'install'):
         self.assertEqual(result["status"], "rolled-back")
         self.assertEqual(installer.verified_files(self.f.destination)[0]["version"], "new-version")
         self.assertEqual(installer.verified_files(result["preserved"])[0]["version"], "later-version")
+
+        # 0.15.1 uses O_EXCL and does not understand permanent guard markers.
+        fd = os.open(self.lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+        os.close(fd)
+        self.lock.unlink()
+        self.assertTrue(self.lock.with_name(self.lock.name + ".guard").exists())
 
     def test_runtime_that_arrives_before_lock_ownership_is_not_deleted_on_failure(self):
         runtime = self.f.root / "runtime"

@@ -2,6 +2,10 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+## 0.15.2-rc.4 — Unreleased / 未发布
+
+- Bind raw recovery images to their original async task, reject aliased lock files, serialize Unity package updates, and release the legacy installer sentinel after rollback. / 恢复图片前核对原异步任务 ID，拒绝硬链接锁文件，串行合并 Unity 包依赖，并在回滚后释放旧版安装占位文件。
+
 ## 0.15.2-rc.3 — Unreleased / 未发布
 
 - Rotate ready actions after each dispatch so account rate limits cannot starve later jobs. / 调度按操作轮转，避免账号限流使队尾任务长期得不到轮询。

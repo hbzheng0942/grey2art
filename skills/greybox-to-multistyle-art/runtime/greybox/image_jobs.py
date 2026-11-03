@@ -524,8 +524,14 @@ def resume(job_dir, *, task_id=None, response_file=None, source_ref=None):
                 _save(folder, data)
             else:
                 response = _read(response_file)
+                known = data.get("provider_task_id")
+                incoming = response.get("provider_task_id")
+                if known is not None:
+                    require(incoming is not None and str(incoming) == str(known),
+                            "Recovery response must identify the original image task")
                 if "data" in response:
-                    response = {"state": "succeeded", "items": response["data"], "usage": response.get("usage")}
+                    response = {"state": "succeeded", "items": response["data"], "usage": response.get("usage"),
+                                **({"provider_task_id": incoming} if incoming is not None else {})}
                 require(response.get("state") == "succeeded" and response.get("items"), "Original response does not contain succeeded image artifacts")
                 data["reconciliation"] = {"source_ref": source_ref, "response_sha256": provider_http.file_hash(response_file), "at": now()}
                 _accept_response(folder, data, response)

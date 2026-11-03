@@ -472,6 +472,23 @@ class ImageTests(unittest.TestCase):
             jobs.resume(folder, response_file=wrong, source_ref="synthetic-original-evidence")
         self.assertEqual((folder / "job.json").read_bytes(), before)
 
+    def test_raw_recovery_requires_original_async_identity_before_normalizing(self):
+        with patch.object(adapters, "submit", return_value={"state": "submitted", "provider_task_id": "A"}):
+            self.submit()
+        folder, response = self.root / "job", self.root / "response.json"
+        before = [(folder / name).read_bytes() for name in ("job.json", "provider-response.json")]
+        for payload in ({"provider_task_id": "B", "data": [{"path": str(self.output)}]},
+                        {"data": [{"path": str(self.output)}]},
+                        {"state": "succeeded", "items": [{"path": str(self.output)}]}):
+            jobs._write(response, payload)
+            with self.assertRaises(adapters.ImageError):
+                jobs.resume(folder, response_file=response, source_ref="test")
+            self.assertEqual(before, [(folder / name).read_bytes() for name in ("job.json", "provider-response.json")])
+            self.assertFalse((folder / "receipt-0.json").exists())
+        jobs._write(response, {"provider_task_id": "A", "data": [{"path": str(self.output)}]})
+        self.assertEqual(jobs.resume(folder, response_file=response, source_ref="test")["state"], "downloaded")
+        self.assertEqual(jobs._read(folder / "receipt-0.json")["provider_task_id"], "A")
+
     def test_malformed_post_submit_response_is_unknown_and_retained(self):
         with patch.object(jobs.subprocess, "Popen"):
             jobs.submit("fixture", self.request(), self.root / "malformed", config_dir=self.config, authorization={"source_ref": "fixture"})

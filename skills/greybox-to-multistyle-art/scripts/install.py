@@ -10,6 +10,7 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -49,12 +50,9 @@ def _process_alive(pid):
 
 
 @contextmanager
-def _operation_lock(path, operation):
-    """Stable OS ownership for install/rollback/bootstrap, released on death."""
-    ensure_directory(path.parent)
+def _lock_handle(path, message):
     if path.is_symlink():
         raise ValueError('Operation lock cannot be a symbolic link')
-    message = 'Another ' + operation + ' owns the skill/runtime lock; inspect its process before retrying'
     with path.open('a+b') as handle:
         try:
             if os.name == 'nt':
@@ -66,22 +64,44 @@ def _operation_lock(path, operation):
                 fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError:
             raise ValueError(message) from None
-        handle.seek(0)
-        previous = handle.read()
-        marker = b'greybox-installer-os-lock-v1'
-        if previous and previous != marker and not marker.startswith(previous):
-            try:
-                pid = int(previous)
-            except ValueError:
-                raise ValueError(message) from None
-            if pid <= 0 or _process_alive(pid):
-                raise ValueError(message)
-        if previous != marker:
-            handle.seek(0)
-            handle.truncate()
-            handle.write(marker)
-            handle.flush()
-        yield
+        info = os.fstat(handle.fileno())
+        if not (stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and os.path.samestat(info, path.lstat())):
+            raise ValueError('Operation lock must be a private, single-link regular file')
+        yield handle
+
+
+@contextmanager
+def _operation_lock(path, operation):
+    """Permanent guard for new callers, ephemeral PID sentinel for legacy installers."""
+    ensure_directory(path.parent)
+    message = 'Another ' + operation + ' owns the skill/runtime lock; inspect its process before retrying'
+    marker = b'greybox-installer-os-lock-v1'
+    with _lock_handle(path.with_name(path.name + '.guard'), message):
+        owned = None
+        try:
+            with _lock_handle(path, message) as handle:
+                handle.seek(0)
+                previous = handle.read(4097)
+                if len(previous) > 4096:
+                    raise ValueError(message)
+                if previous and not marker.startswith(previous):
+                    try:
+                        pid = int(previous)
+                    except ValueError:
+                        raise ValueError(message) from None
+                    if not 0 < pid <= 2147483647 or _process_alive(pid):
+                        raise ValueError(message)
+                handle.seek(0)
+                handle.truncate()
+                handle.write(str(os.getpid()).encode('ascii'))
+                handle.flush()
+                owned = os.fstat(handle.fileno())
+                yield
+        finally:
+            # Close the byte lock before unlink on Windows. The permanent guard
+            # remains held; legacy installers see the live PID until this removal.
+            if owned is not None and os.path.samestat(owned, path.lstat()):
+                path.unlink()
 
 
 def ensure_directory(path):

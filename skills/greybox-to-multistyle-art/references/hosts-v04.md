@@ -16,8 +16,9 @@ Only manifest-listed source files are installed. Identical content is reused; `-
 
 ## One setup command for the current operation
 
-Install, rollback and dependency setup retain their OS lock files after release.
-File existence alone does not mean another operation is running. Process exit
+Install, rollback and dependency setup retain a separate `.guard` file after release.
+The legacy PID sentinel is removed on normal exit so older installers can run after rollback.
+Guard file existence alone does not mean another operation is running. Process exit
 releases ownership, so a crashed setup can be retried without deleting locks.
 Stop older installer/bootstrap and credential-configuration processes before upgrading a shared installation;
 live or unrecognized legacy lock owners are not silently replaced.

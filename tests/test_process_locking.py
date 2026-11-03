@@ -188,6 +188,15 @@ class ProcessLockingTests(unittest.TestCase):
                     pass
             self.assertTrue(path.exists())
 
+    def test_workflow_lock_rejects_hardlink_before_writing(self):
+        victim = self.root / "unrelated.txt"
+        victim.write_bytes(b"preserve these bytes")
+        os.link(victim, self.root / ".workflow.lock")
+        with self.assertRaisesRegex(ValueError, "single-link"):
+            with core.locked(self.root):
+                self.fail("acquired an aliased lock")
+        self.assertEqual(victim.read_bytes(), b"preserve these bytes")
+
     def test_live_legacy_pid_is_not_taken_over(self):
         core.write(self.root / ".workflow.lock", {"pid": os.getpid()})
         with self.assertRaises(core.WorkflowLockBusy):
