@@ -23,7 +23,7 @@ import uuid
 from urllib import error, request
 
 from . import VERSION, image_adapters as adapters, provider_http
-from .execution_process import LockBusyError, exclusive, replace_file
+from .execution_process import LockBusyError, exclusive, read_json_snapshot, replace_file
 
 SKILL = Path(__file__).resolve().parents[2]
 ImageError = adapters.ImageError
@@ -49,14 +49,16 @@ def _external(path):
 
 def _read(path):
     try:
-        require(Path(path).stat().st_size <= adapters.MAX_JSON_BYTES, "Image document exceeds the supported limit")
-        doc = json.loads(Path(path).read_text(encoding="utf-8"))
+        doc = read_json_snapshot(path, adapters.MAX_JSON_BYTES)
         require(isinstance(doc, dict), "Image document must be an object")
         return doc
     except ImageError:
         raise
-    except (OSError, ValueError):
-        raise ImageError("Image document is missing or invalid") from None
+    except OSError as error:
+        raise ImageError(f"Image document read failed ({type(error).__name__}, errno={error.errno}, "
+                         f"winerror={getattr(error, 'winerror', None)})", code="IMAGE_DOCUMENT_READ_FAILED") from error
+    except ValueError as error:
+        raise ImageError(f"Invalid image document ({type(error).__name__})", code="IMAGE_DOCUMENT_INVALID") from error
 
 
 def _write(path, value):

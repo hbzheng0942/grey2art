@@ -16,7 +16,7 @@ from types import SimpleNamespace
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "skills/greybox-to-multistyle-art/runtime"))
-from greybox import core, execution, execution_process
+from greybox import core, execution, execution_process, image_jobs
 from greybox.execution_capacity import CapacityStore
 
 
@@ -56,6 +56,91 @@ class ProcessLockingTests(unittest.TestCase):
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
         self.ctx = multiprocessing.get_context("spawn")
+
+    def test_status_and_image_reads_recover_from_windows_open_conflicts(self):
+        queue = self.root / "queue.json"
+        _, _, directory = execution._location(queue, self.root / "state")
+        status = directory / "status.json"
+        execution_process.atomic_json(status, {"phase": "complete", "pid": 0})
+        job = self.root / "job.json"
+        profile, request = {"kind": "custom"}, {"prompt": "离线验证"}
+        execution_process.atomic_json(job, {"schema": "greybox.image-job/v1", "job_id": "original",
+            "state": "running", "provider_task_id": "original-task", "profile": profile, "request": request,
+            "profile_sha256": image_jobs.adapters.fingerprint(profile),
+            "request_sha256": image_jobs.adapters.fingerprint(request), "authorization": {"source_ref": "fixture"}})
+        original = Path.open
+        for target, probe, field, expected in (
+            (status, lambda: execution.status(queue, self.root / "state"), "phase", "complete"),
+            (job, lambda: image_jobs.status(self.root, remote=False), "provider_task_id", "original-task")):
+            with self.subTest(target=target.name):
+                attempts = []
+                def flaky(path, *args, **kwargs):
+                    if path.resolve() == target.resolve():
+                        attempts.append(1)
+                        if len(attempts) <= 2:
+                            error = PermissionError(errno.EACCES, "fixture")
+                            if len(attempts) == 2:
+                                error.winerror = 32
+                            raise error
+                    return original(path, *args, **kwargs)
+                with patch.object(execution_process, "_WINDOWS", True), patch.object(Path, "open", flaky):
+                    self.assertEqual(probe()[field], expected)
+                self.assertEqual(len(attempts), 3)
+
+    def test_read_deadline_and_non_retryable_errors(self):
+        target = self.root / "private.json"
+        denied = PermissionError(errno.EACCES, "fixture")
+        with patch.object(execution_process, "_WINDOWS", True), \
+             patch.object(Path, "open", side_effect=denied) as opened, \
+             patch.object(execution_process.time, "monotonic", side_effect=[0., .01, 1.]), \
+             patch.object(execution_process.time, "sleep"):
+            with self.assertRaises(image_jobs.ImageError) as caught:
+                image_jobs._read(target)
+            self.assertIs(caught.exception.__cause__, denied)
+            self.assertEqual(caught.exception.code, "IMAGE_DOCUMENT_READ_FAILED")
+            self.assertEqual(opened.call_count, 2)
+        target.write_bytes(b"invalid: secret fixture")
+        with patch.object(execution_process, "_WINDOWS", True), patch.object(execution_process.time, "sleep") as sleep:
+            with self.assertRaises(image_jobs.ImageError) as caught:
+                image_jobs._read(target)
+            self.assertEqual(caught.exception.code, "IMAGE_DOCUMENT_INVALID")
+            self.assertNotIn("secret fixture", str(caught.exception))
+            sleep.assert_not_called()
+
+    @unittest.skipUnless(os.name == "nt", "Real Windows sharing denial on open")
+    def test_read_waits_for_windows_exclusive_handle(self):
+        import ctypes
+        from ctypes import wintypes
+        target = self.root / "status.json"
+        execution_process.atomic_json(target, {"phase": "complete"})
+        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel.CreateFileW.argtypes = [wintypes.LPCWSTR, wintypes.DWORD, wintypes.DWORD, ctypes.c_void_p,
+                                       wintypes.DWORD, wintypes.DWORD, wintypes.HANDLE]
+        kernel.CreateFileW.restype = wintypes.HANDLE
+        kernel.CloseHandle.argtypes = [wintypes.HANDLE]
+        handle = kernel.CreateFileW(str(target), 0x80000000, 0, None, 3, 0, None)
+        self.assertNotEqual(handle, ctypes.c_void_p(-1).value)
+        denied, results, errors = threading.Event(), [], []
+        real_sleep = time.sleep
+        def observe_retry(seconds):
+            denied.set()
+            real_sleep(seconds)
+        def reader():
+            try:
+                results.append(execution_process.read_json(target))
+            except Exception as error:
+                errors.append(error)
+        with patch.object(execution_process.time, "sleep", observe_retry):
+            thread = threading.Thread(target=reader)
+            try:
+                thread.start()
+                self.assertTrue(denied.wait(5))
+            finally:
+                kernel.CloseHandle(handle)
+                thread.join(5)
+        self.assertFalse(thread.is_alive())
+        self.assertEqual(errors, [])
+        self.assertEqual(results, [{"phase": "complete"}])
 
     def test_live_child_survives_status_and_capacity_owner_checks(self):
         child = subprocess.Popen([sys.executable, "-B", "-c", "import time; time.sleep(30)"])

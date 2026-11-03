@@ -2,6 +2,11 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+## 0.15.3 — 2026-11-03
+
+- Reading executor status and image job records now retries brief Windows sharing conflicts for up to one second, including CRT permission errors without a Win32 code. Invalid JSON is not retried. / 查询执行器状态和图像任务时，对 Windows 短暂文件占用最多重试一秒，兼容仅返回 EACCES 的情况；损坏的 JSON 不重试。
+- Image read errors now distinguish file access failures from invalid documents without printing document contents. / 图像任务读取错误区分文件访问失败和文档格式错误，不输出文档内容。
+
 ## 0.15.2 — 2026-11-03
 
 - Use one installation prompt for the current agent; offline and manual installation remain available. / 在当前 Agent 中用一句话安装，保留离线及手动安装方式。

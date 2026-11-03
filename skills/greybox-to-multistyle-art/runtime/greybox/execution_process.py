@@ -57,12 +57,39 @@ def atomic_json(path, value):
             os.unlink(temporary)
 
 
-def read_json(path, limit=140 * 1024 * 1024):
+_WINDOWS = os.name == "nt"
+
+
+def read_json_snapshot(path, limit, *, reject_links=False, retry_timeout=1.0):
+    """Read one bounded file generation, without retrying decoding or validation."""
     path = Path(path)
-    if path.is_symlink() or path.stat().st_size > limit:
-        raise ValueError("Execution receipt is linked or exceeds its size limit")
-    with path.open(encoding="utf-8") as handle:
-        result = json.load(handle)
+    deadline = time.monotonic() + retry_timeout
+    while True:
+        try:
+            if reject_links and path.is_symlink():
+                raise ValueError("Execution receipt cannot be a symbolic link")
+            with path.open("rb") as handle:
+                size = os.fstat(handle.fileno()).st_size
+                if size > limit:
+                    raise ValueError("JSON document exceeds its size limit")
+                raw = handle.read(size + 1)
+                if len(raw) != size:
+                    raise ValueError("JSON document changed during read")
+            break
+        except PermissionError as error:
+            # The Windows CRT can expose a sharing violation as EACCES alone.
+            winerror = getattr(error, "winerror", None)
+            retryable = _WINDOWS and (winerror in {5, 32, 33} or
+                                      (winerror is None and error.errno == errno.EACCES))
+            remaining = deadline - time.monotonic()
+            if not retryable or remaining <= 0:
+                raise
+            time.sleep(min(.01, remaining))
+    return json.loads(raw.decode("utf-8"))
+
+
+def read_json(path, limit=140 * 1024 * 1024):
+    result = read_json_snapshot(path, limit, reject_links=True)
     if not isinstance(result, dict):
         raise ValueError("Execution record must be an object")
     return result

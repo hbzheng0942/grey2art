@@ -542,9 +542,10 @@ def run(queue_file, state_dir=None, max_seconds=None, once=False):
 def status(queue_file, state_dir=None):
     path, root, directory = _location(queue_file, state_dir)
     status_path = directory / "status.json"
-    if not status_path.exists():
+    try:
+        result = read_json(status_path)
+    except FileNotFoundError:
         return {"phase": "not_started", "queue_file": str(path), "running": False}
-    result = read_json(status_path)
     result["running"] = result.get("phase") in {"starting", "running"} and alive(result.get("pid"))
     if result["running"]:
         try:
