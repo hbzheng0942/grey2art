@@ -44,13 +44,13 @@ Blender is a DCC tool; a spatial greybox or `.blend` delivery needs no game engi
 
 ## Quickstart
 
-Paste this request into Codex, Claude Code or WorkBuddy:
+Paste this request into the agent you already use:
 
 ```text
-Install the Skill from https://github.com/hbzheng0942/grey2art for me.
+Install the Grey2Art Skill from https://github.com/hbzheng0942/grey2art for my current agent.
 ```
 
-The agent follows the [install guide](docs/INSTALL.md) to place the complete Skill folder. No Python is needed for a first installation. Refresh skills or start a new session to try a task below. For offline setup, see [manual installation](docs/INSTALL.md#manual-installation).
+A first install needs no Python. Refresh skills or start a new session to try a task below. [Install guide and offline setup](docs/INSTALL.md)
 
 **Existing greybox, one style**
 

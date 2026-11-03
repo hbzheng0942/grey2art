@@ -44,13 +44,13 @@ Blender 是 DCC 工具；只交付空间灰盒或 `.blend` 时无需游戏引擎
 
 ## 快速开始
 
-在 Codex、Claude Code 或 WorkBuddy 的对话框里发送这句话：
+在你正在用的 Agent 对话框里粘贴这一句：
 
 ```text
-帮我安装 https://github.com/hbzheng0942/grey2art 这个 Skill。
+请把 https://github.com/hbzheng0942/grey2art 的 Grey2Art Skill 安装到当前 Agent。
 ```
 
-Agent 按[安装说明](docs/INSTALL.zh-CN.md)放好完整 Skill 文件夹即可，首次安装无需 Python。刷新 Skill 列表或开启新会话，就可以试试下面的任务。需要离线安装时，见[手动安装](docs/INSTALL.zh-CN.md#手动安装)。
+首次安装无需 Python。装好后刷新 Skill 列表或开启新会话，就可以试试下面的任务。[安装说明与离线安装](docs/INSTALL.zh-CN.md)
 
 **已有灰盒，单个风格**
 
