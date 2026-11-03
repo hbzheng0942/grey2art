@@ -2,7 +2,16 @@
 
 [English](INSTALL.md) · [简体中文](INSTALL.zh-CN.md) · [README](../README.zh-CN.md)
 
-## 获取完整安装包
+## 让 Agent 安装（推荐）
+
+在当前 Agent 的对话框发送[快速开始中的一句话](../README.zh-CN.md#快速开始)。收到安装请求的 Agent 按以下步骤执行：
+
+1. 从[官方 Release](https://github.com/hbzheng0942/grey2art/releases/latest) 下载同一版本的 Skill ZIP 和 `.zip.sha256` 到临时目录。计算 ZIP 的 SHA-256，与校验文件比较；不一致就停止。
+2. 解压并进入 `greybox-to-multistyle-art/`，用 Python 3.10+ 执行 `python3 scripts/install.py --verify-only` 校验包内容。Windows 可用 `py -3` 代替 `python3`。
+3. 校验通过后，执行 `python3 scripts/install.py --host HOST --replace`，将 `HOST` 替换为当前会话的 `codex`、`claude-code` 或 `workbuddy`。若无法确定宿主，先询问用户。安装器会复用相同的包，替换旧版时会保留备份。
+4. 从安装器返回的 `path` 运行 `python3 scripts/greybox.py --version`，核对版本后报告安装位置、版本及备份位置（如有），提示用户刷新 Skill 或开启新会话。仅安装 Skill 无需配置引擎或供应商账户。
+
+## 手动安装
 
 完整图像流程使用 [Python 3.11+](https://www.python.org/downloads/)，离线安装与 CLI 命令也支持 Python 3.10。从 [GitHub Release](https://github.com/hbzheng0942/grey2art/releases/latest) 下载 Skill ZIP 和校验文件；ZIP 约 1 MB，无需下载游戏或全部案例媒体。解压后进入 `greybox-to-multistyle-art/`：
 

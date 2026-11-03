@@ -8,7 +8,7 @@
 
 Grey2Art is an Agent Skill for Codex, Claude Code and WorkBuddy. Turn an existing playable greybox into one or more art versions, or start with a gameplay brief or reference and build the greybox first. Outputs remain editable in Godot or Unity.
 
-For users: follow setup and task examples below. For agents: start with [SKILL.md](skills/greybox-to-multistyle-art/SKILL.md).
+Start with the [quickstart](#quickstart) to install. For game production tasks, agents use [SKILL.md](skills/greybox-to-multistyle-art/SKILL.md).
 
 <p align="center"><img src="docs/demo/grey2art-overview.png" alt="Hole, Train Parkour and Wander Garden: one greybox and three art versions each" width="720"></p>
 
@@ -44,15 +44,13 @@ Blender is a DCC tool; a spatial greybox or `.blend` delivery needs no game engi
 
 ## Quickstart
 
-Download and extract the [complete Skill package](https://github.com/hbzheng0942/grey2art/releases/download/v0.15.1/greybox-to-multistyle-art-0.15.1.zip). Inside the extracted `greybox-to-multistyle-art/` directory, run:
+Paste this request into Codex, Claude Code or WorkBuddy:
 
-```sh
-python3 scripts/install.py --host auto --replace
+```text
+Follow https://github.com/hbzheng0942/grey2art/blob/main/docs/INSTALL.md to install Grey2Art for my current agent and verify the installation.
 ```
 
-From a source checkout, use `python3 skills/greybox-to-multistyle-art/scripts/install.py --host auto --replace` at the repository root.
-
-On Windows use `py -3`. Refresh skills or start a new session, then choose a starting request.
+The agent downloads and verifies the complete package, then reports the installed version and location. Refresh skills or start a new session to try a task below. For offline setup, see [manual installation](docs/INSTALL.md#manual-installation).
 
 **Existing greybox, one style**
 

@@ -8,7 +8,7 @@
 
 Grey2Art 是面向 Codex、Claude Code 和 WorkBuddy 的 Agent Skill。从已有可玩灰盒出发，制作单个或多个美术版本；也可以从玩法需求、游戏参考开始，先搭建灰盒，再推进美术。产物保留为可编辑的 Godot／Unity 工程。
 
-使用者从配置与示例开始；agent 从 [SKILL.md](skills/greybox-to-multistyle-art/SKILL.md) 读取执行方法。
+首次使用请从[快速开始](#快速开始)安装；执行游戏制作任务时，Agent 从 [SKILL.md](skills/greybox-to-multistyle-art/SKILL.md) 读取执行方法。
 
 <p align="center"><img src="docs/demo/grey2art-overview.zh-CN.png" alt="黑洞、列车跑酷、漫野田园：同一灰盒与三种美术版本" width="720"></p>
 
@@ -44,15 +44,13 @@ Blender 是 DCC 工具；只交付空间灰盒或 `.blend` 时无需游戏引擎
 
 ## 快速开始
 
-下载并解压[完整 Skill 安装包](https://github.com/hbzheng0942/grey2art/releases/download/v0.15.1/greybox-to-multistyle-art-0.15.1.zip)，在解压后的 `greybox-to-multistyle-art/` 目录执行：
+在 Codex、Claude Code 或 WorkBuddy 的对话框里发送这句话：
 
-```sh
-python3 scripts/install.py --host auto --replace
+```text
+请按照 https://github.com/hbzheng0942/grey2art/blob/main/docs/INSTALL.zh-CN.md 把 Grey2Art 安装到我当前使用的 Agent，并验证安装结果。
 ```
 
-如果使用源码仓库，在仓库根目录执行 `python3 skills/greybox-to-multistyle-art/scripts/install.py --host auto --replace`。
-
-Windows 使用 `py -3`。刷新 Skill 或开启新会话，选择一种起点向 agent 提出任务。
+Agent 会下载并校验完整安装包，装好后告诉你版本和安装位置。刷新 Skill 列表或开启新会话，就可以试试下面的任务。需要离线安装时，见[手动安装](docs/INSTALL.zh-CN.md#手动安装)。
 
 **已有灰盒，单个风格**
 

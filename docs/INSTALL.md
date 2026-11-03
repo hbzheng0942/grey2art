@@ -2,7 +2,16 @@
 
 [English](INSTALL.md) · [简体中文](INSTALL.zh-CN.md) · [README](../README.md)
 
-## Get the complete package
+## Ask your agent to install (recommended)
+
+Send the [one-sentence quickstart request](../README.md#quickstart) to your current agent. The agent receiving the request should:
+
+1. Download the Skill ZIP and its matching `.zip.sha256` from the same [official release](https://github.com/hbzheng0942/grey2art/releases/latest) into a temporary directory. Compare the ZIP's SHA-256 with the checksum file; stop on a mismatch.
+2. Extract the ZIP, enter `greybox-to-multistyle-art/` and run `python3 scripts/install.py --verify-only` with Python 3.10+ to check the package contents. On Windows, `py -3` can replace `python3`.
+3. After verification, run `python3 scripts/install.py --host HOST --replace`, replacing `HOST` with the current session's `codex`, `claude-code` or `workbuddy`. Ask the user if the host is unclear. The installer reuses an identical package and backs up an older installation before replacing it.
+4. From the installer's returned `path`, run `python3 scripts/greybox.py --version`. Check the version, report it with the installation path and any backup path, and tell the user to refresh skills or start a new session. No engine or provider account is required for installation.
+
+## Manual installation
 
 Use [Python 3.11+](https://www.python.org/downloads/) for the full image workflow. Offline installation and CLI commands also support Python 3.10. Download the Skill ZIP and checksum from [GitHub Releases](https://github.com/hbzheng0942/grey2art/releases/latest). The ZIP is about 1 MB; games and showcase media are not needed. Extract it, then enter `greybox-to-multistyle-art/`:
 
