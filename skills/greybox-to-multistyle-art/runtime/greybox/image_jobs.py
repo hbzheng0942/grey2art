@@ -7,7 +7,7 @@ resume only queries or downloads and never repeats generation.
 from __future__ import annotations
 
 import base64
-from contextlib import contextmanager
+from contextlib import contextmanager, ExitStack
 import datetime as dt
 import hashlib
 import json
@@ -23,6 +23,7 @@ import uuid
 from urllib import error, request
 
 from . import VERSION, image_adapters as adapters, provider_http
+from .execution_process import LockBusyError, exclusive, replace_file
 
 SKILL = Path(__file__).resolve().parents[2]
 ImageError = adapters.ImageError
@@ -69,7 +70,7 @@ def _write(path, value):
             stream.write("\n")
             stream.flush()
             os.fsync(stream.fileno())
-        os.replace(temporary, path)
+        replace_file(temporary, path)
     finally:
         if temporary:
             temporary.unlink(missing_ok=True)
@@ -150,28 +151,13 @@ def _lock(folder):
     """Advisory OS lock is released on process death, including detached workers."""
     path = Path(folder) / ".image.lock"
     require(not path.is_symlink(), "Image job lock cannot be a symbolic link")
-    handle = path.open("a+b")
-    try:
-        if os.name == "nt":
-            import msvcrt
-            handle.seek(0)
-            if not handle.read(1):
-                handle.write(b"0")
-                handle.flush()
-            handle.seek(0)
-            try:
-                msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
-            except OSError:
-                raise ImageError("Another image operation owns this job") from None
-        else:
-            import fcntl
-            try:
-                fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            except OSError:
-                raise ImageError("Another image operation owns this job") from None
+    with ExitStack() as stack:
+        try:
+            stack.enter_context(exclusive(path))
+        except LockBusyError:
+            raise ImageError("Another image operation owns this job",
+                             code="IMAGE_JOB_BUSY", category="local") from None
         yield
-    finally:
-        handle.close()
 
 
 def _record_input(value, base):
@@ -292,18 +278,43 @@ def reserve(name, document, job_dir, *, authorization, config_dir=None, base=Non
                   config_dir=config_dir, base=base, asset_dir=asset_dir, reserve_only=True)
 
 
-def _accept_response(folder, data, response, *, response_saved=False):
+def _response_fields(response, response_saved=False):
+    state = response.get("state")
+    require(state in {"submitted", "running", "succeeded", "failed", "cancelled"},
+            "Image adapter returned an invalid state")
+    identity = response.get("provider_task_id")
+    if state in {"submitted", "running"}:
+        require(identity is not None, "Async image response needs its original task ID")
+    if state == "succeeded":
+        items = response.get("items")
+        staged_count = response.get("items_count")
+        require((isinstance(items, list) and bool(items)) or
+                (response_saved and type(staged_count) is int and staged_count > 0),
+                "Succeeded image response has no outputs")
+    task_id = str(identity) if identity is not None else None
+    if task_id is not None:
+        require(0 < len(task_id) <= 2048 and task_id.strip() == task_id
+                and not any(ord(c) < 32 or ord(c) == 127 for c in task_id), "Image provider task ID is invalid")
+    return state, task_id
+
+
+def _accept_response(folder, data, response, *, response_saved=False, expected_task_id=None):
     require(isinstance(response, dict), "Image adapter response must be an object")
+    known = data.get("provider_task_id")
+    incoming = response.get("provider_task_id")
+    require(known is None or incoming is None or str(incoming) == str(known),
+            "Image response belongs to a different original task")
+    if expected_task_id is not None:
+        require(incoming is not None and str(incoming) == str(expected_task_id),
+                "Image poll must identify its original task")
+        _response_fields(response, response_saved)
     # Save the full original response first, including recovery URLs; stdout only
     # receives a sanitized summary and canonical output records.
     if not response_saved:
         _write(folder / "provider-response.json", response)
-    require(response.get("state") in {"submitted", "running", "succeeded", "failed", "cancelled"}, "Image adapter returned an invalid state")
-    data["state"] = response["state"]
-    if response.get("provider_task_id") is not None:
-        task_id = str(response["provider_task_id"])
-        require(0 < len(task_id) <= 2048 and task_id.strip() == task_id
-                and not any(ord(c) < 32 or ord(c) == 127 for c in task_id), "Image provider task ID is invalid")
+    state, task_id = _response_fields(response, response_saved)
+    data["state"] = state
+    if task_id is not None:
         data["provider_task_id"] = task_id
     if "usage" in response:
         data["usage"] = response["usage"]
@@ -350,7 +361,7 @@ def status(job_dir, *, remote=True):
             require(not data.get("execution_lease"), "Image job belongs to the shared executor; recover its action before manual polling")
             if data["state"] in {"submitted", "running"}:
                 response = adapters.status(_validate_profile(data["profile"]), data["provider_task_id"])
-                _accept_response(folder, data, response)
+                _accept_response(folder, data, response, expected_task_id=data["provider_task_id"])
     return _summary(folder, data)
 
 
@@ -513,8 +524,14 @@ def resume(job_dir, *, task_id=None, response_file=None, source_ref=None):
                 _save(folder, data)
             else:
                 response = _read(response_file)
+                known = data.get("provider_task_id")
+                incoming = response.get("provider_task_id")
+                if known is not None:
+                    require(incoming is not None and str(incoming) == str(known),
+                            "Recovery response must identify the original image task")
                 if "data" in response:
-                    response = {"state": "succeeded", "items": response["data"], "usage": response.get("usage")}
+                    response = {"state": "succeeded", "items": response["data"], "usage": response.get("usage"),
+                                **({"provider_task_id": incoming} if incoming is not None else {})}
                 require(response.get("state") == "succeeded" and response.get("items"), "Original response does not contain succeeded image artifacts")
                 data["reconciliation"] = {"source_ref": source_ref, "response_sha256": provider_http.file_hash(response_file), "at": now()}
                 _accept_response(folder, data, response)

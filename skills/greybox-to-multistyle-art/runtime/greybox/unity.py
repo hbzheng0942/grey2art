@@ -178,10 +178,8 @@ def _json(path, data=None):
     path = Path(path)
     if data is None:
         return json.loads(path.read_text(encoding="utf-8"))
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_name(path.name + ".writing")
-    temp.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    os.replace(temp, path)
+    from .core import write
+    write(path, data)
     return data
 
 
@@ -190,7 +188,7 @@ def engine(executable=None, project=None):
     if project:
         version_file = Path(project) / "ProjectSettings/ProjectVersion.txt"
         if version_file.is_file():
-            match = re.search(r"^m_EditorVersion:\s*(\S+)", version_file.read_text(), re.M)
+            match = re.search(r"^m_EditorVersion:\s*(\S+)", version_file.read_text(encoding="utf-8"), re.M)
             version = match.group(1) if match else None
     candidates = [executable, os.environ.get("UNITY_BIN"), shutil.which("Unity"), shutil.which("unity")]
     versions = [version] if version else []
@@ -243,7 +241,7 @@ def inspect(project, executable=None):
     build = root / "ProjectSettings/EditorBuildSettings.asset"
     scenes = []
     if build.is_file():
-        scenes = re.findall(r"^\s*path:\s*(Assets/[^\r\n]+\.unity)\s*$", build.read_text(), re.M)
+        scenes = re.findall(r"^\s*path:\s*(Assets/[^\r\n]+\.unity)\s*$", build.read_text(encoding="utf-8"), re.M)
     result = {"engine": "unity", "project": str(root), "version": match.group(1) if match else None,
               "main_scene": scenes[0] if scenes else None, "build_scenes": scenes,
               "render_pipeline": "urp" if "com.unity.render-pipelines.universal" in packages else "unconfigured",
@@ -350,6 +348,12 @@ def configure_packages(project, gltfast=True, urp=True):
     """Add missing pinned packages; never silently upgrade an existing project."""
     root = Path(project).resolve()
     path = root / "Packages/manifest.json"
+    from .core import locked_file
+    with locked_file(path.with_name(".greybox-packages.lock"), wait_seconds=5):
+        return _configure_packages_locked(path, gltfast, urp)
+
+
+def _configure_packages_locked(path, gltfast, urp):
     doc = _json(path)
     dependencies = doc.setdefault("dependencies", {})
     required = {}
@@ -364,7 +368,7 @@ def configure_packages(project, gltfast=True, urp=True):
             changes[name] = version
     if changes:
         _json(path, doc)
-    return {"changed": changes, "packages": dependencies, "lock_file": str(root / "Packages/packages-lock.json")}
+    return {"changed": changes, "packages": dependencies, "lock_file": str(path.with_name("packages-lock.json"))}
 
 
 def install_bridge(project):

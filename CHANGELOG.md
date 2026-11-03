@@ -2,9 +2,13 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-## Documentation / 文档
+## 0.15.2 — 2026-11-03
 
-- Start installation by pasting one request into your agent; manual setup remains available. / 快速开始改为复制一句话让 Agent 安装，仍可按文档手动安装。
+- Use one installation prompt for the current agent; offline and manual installation remain available. / 在当前 Agent 中用一句话安装，保留离线及手动安装方式。
+- Fix Windows process checks and atomic state writes, recover locks after process exit, and reject hard-linked lock files. / 修复 Windows 进程检测与状态写入；进程退出后可恢复锁，并拒绝会损坏其他文件的硬链接锁。
+- Preserve the original image task during polling and recovery. Distinguish temporary contention from duplicate supplier jobs. / 图像轮询和恢复保留原任务身份，供应商任务不再因临时锁争用被误判为重复提交。
+- Rotate rate-limited work fairly and count provider occupancy once per scan. / 限流调度按任务轮转，每轮只统计一次供应商占用，避免队尾饥饿和重复扫描。
+- Preserve UTF-8 prompts and scene paths, merge concurrent Unity package updates, and keep upgrades working after rollback to 0.15.1. / 保留中文提示词与场景路径，并发合并 Unity 包依赖，回滚到 0.15.1 后仍可再次升级。
 
 ## 0.15.1 — 2026-11-02
 

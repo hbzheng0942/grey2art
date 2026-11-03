@@ -11,7 +11,6 @@ import shlex
 import shutil
 import subprocess
 import sys
-import tempfile
 
 from . import core
 
@@ -33,30 +32,17 @@ def config_root(config_dir=None):
 @contextlib.contextmanager
 def _locked(root):
     root.mkdir(parents=True, exist_ok=True, mode=0o700)
-    lock = root / ".host.lock"
-    try:
-        fd = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    except FileExistsError:
-        raise ValueError("Another host configuration owns the lock; inspect its process before retrying") from None
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8") as out:
-            out.write(str(os.getpid()))
+    with contextlib.ExitStack() as stack:
+        try:
+            stack.enter_context(core.locked_file(root / ".host.lock", strict_legacy=True))
+        except core.WorkflowLockBusy:
+            raise ValueError("Another host configuration owns the lock; inspect its process before retrying") from None
         yield
-    finally:
-        lock.unlink()
 
 
 def _write(path, data):
     path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-    fd, temporary = tempfile.mkstemp(prefix="." + path.name, dir=path.parent)
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8") as out:
-            json.dump(data, out, indent=2, ensure_ascii=False)
-            out.write("\n")
-        os.replace(temporary, path)
-    finally:
-        if os.path.exists(temporary):
-            os.unlink(temporary)
+    core.write(path, data)
 
 
 def _load(host, config_dir=None):

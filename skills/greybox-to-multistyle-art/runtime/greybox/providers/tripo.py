@@ -225,7 +225,7 @@ def build_payload(document):
             report_path = Path(reports[0]["path"])
             require(report_path.is_file() and file_hash(report_path) == reports[0].get("sha256"), "Tripo compatibility report changed")
             try:
-                report = json.loads(report_path.read_text())
+                report = json.loads(report_path.read_text(encoding="utf-8"))
             except (ValueError, OSError):
                 raise ProviderError("Tripo compatibility report is invalid") from None
             require(report.get("provider") == PROVIDER and report.get("task_id") == dependency.get("task_id"), "Tripo compatibility report task mismatch")
@@ -363,9 +363,9 @@ def _fetch(client, data, document, operation, task_id, accepted):
         encoded = json.dumps({"provider": PROVIDER, "task_id": task_id, "source_digest": source_digest,
                               "output": {"riggable": output["riggable"], "rig_type": output["rig_type"]}}, sort_keys=True, allow_nan=False)
         if report.exists():
-            require(report.read_text() == encoded, "Existing Tripo rig report differs")
+            require(report.read_text(encoding="utf-8") == encoded, "Existing Tripo rig report differs")
         else:
-            with report.open("x") as file:
+            with report.open("x", encoding="utf-8") as file:
                 file.write(encoded)
         return [{"path": str(report), "sha256": file_hash(report), "bytes": report.stat().st_size, "role": "rig-check-report"}]
     candidates = []

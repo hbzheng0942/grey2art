@@ -128,7 +128,7 @@ def prepare_job(job):
     output.mkdir(parents=True, exist_ok=True)
     for name, content in (("job.json", json.dumps(job, indent=2) + "\n"), ("run.py", script)):
         path = output / name
-        if path.exists() and path.read_text() != content:
+        if path.exists() and path.read_text(encoding="utf-8") != content:
             raise ValueError("Refusing changed job/script overwrite: " + str(path))
         if not path.exists():
             with path.open("x", encoding="utf-8") as handle:
@@ -182,7 +182,7 @@ def read_glb(path):
 def verify_result(job, report=None):
     validate_job(job, check_outputs=False)
     output = Path(job["output_dir"])
-    report = report or json.loads((output / "report.json").read_text())
+    report = report or json.loads((output / "report.json").read_text(encoding="utf-8"))
     expected = hashlib.sha256(json.dumps(job, sort_keys=True).encode()).hexdigest()
     if report.get("job_sha256") != expected or report.get("status") != "complete":
         raise ValueError("Blender report does not match this completed job")

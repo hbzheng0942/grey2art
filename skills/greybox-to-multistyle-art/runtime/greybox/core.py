@@ -14,13 +14,22 @@ from pathlib import Path
 import re
 import shutil
 import tempfile
+import stat
+import time
 from datetime import datetime, timezone
 
 from . import VERSION
+from .execution_process import replace_file
 
 
 class WorkflowError(ValueError):
     pass
+
+
+class WorkflowLockBusy(WorkflowError):
+    """Transient local contention, distinct from invalid workflow evidence."""
+    code = "WORKFLOW_LOCK_BUSY"
+    category = "local"
 
 
 def require(ok, message):
@@ -73,7 +82,7 @@ def write(path, value):
             f.write("\n")
             f.flush()
             os.fsync(f.fileno())
-        os.replace(name, path)
+        replace_file(name, path)
     finally:
         Path(name).unlink(missing_ok=True)
 
@@ -326,53 +335,63 @@ def runtime_snapshot():
 
 def process_alive(pid):
     require(type(pid) is int and pid > 0, "Invalid lock PID")
-    if os.name == "nt":
-        # os.kill(pid, 0) terminates Windows processes on some Python versions.
-        import ctypes
-        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
-        kernel.OpenProcess.restype = ctypes.c_void_p
-        kernel.OpenProcess.argtypes = [ctypes.c_ulong, ctypes.c_int, ctypes.c_ulong]
-        kernel.GetExitCodeProcess.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_ulong)]
-        kernel.CloseHandle.argtypes = [ctypes.c_void_p]
-        handle = kernel.OpenProcess(0x1000, False, pid)
-        if not handle:
-            return ctypes.get_last_error() != 87  # access denied is not proof of death
-        try:
-            code = ctypes.c_ulong()
-            return not kernel.GetExitCodeProcess(handle, ctypes.byref(code)) or code.value == 259
-        finally:
-            kernel.CloseHandle(handle)
-    try:
-        os.kill(pid, 0)
-        return True
-    except ProcessLookupError:
-        return False
-    except PermissionError:
-        return True
+    from .execution_process import alive
+    return alive(pid)
 
 
 @contextlib.contextmanager
 def locked(run_dir):
-    path = Path(run_dir) / ".workflow.lock"
-    ensure_directory(path.parent)
-    try:
-        fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
-    except FileExistsError:
-        try:
-            pid = int(read(path)["pid"])
-            alive = process_alive(pid)
-        except (ValueError, KeyError, OSError):
-            raise WorkflowError("Run lock needs inspection; do not remove a live worker lock")
-        else:
-            require(not alive, "Run is owned by a live process")
-            path.unlink()
-            fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
-    os.write(fd, json.dumps({"pid": os.getpid(), "createdAt": now()}).encode())
-    os.close(fd)
-    try:
+    with locked_file(Path(run_dir) / ".workflow.lock"):
         yield
-    finally:
-        path.unlink(missing_ok=True)
+
+
+@contextlib.contextmanager
+def locked_file(path, *, strict_legacy=False, wait_seconds=0):
+    """Hold a stable OS lock; its file is never removed or replaced.
+
+    The protocol marker is immutable across acquisitions, including read-only
+    callers. Stop older workers before upgrading: a live legacy PID is refused.
+    """
+    from .execution_process import LockBusyError, exclusive
+    path = Path(path)
+    ensure_directory(path.parent)
+    with contextlib.ExitStack() as stack:
+        deadline = time.monotonic() + wait_seconds
+        while True:
+            try:
+                handle = stack.enter_context(exclusive(path))
+                break
+            except LockBusyError:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise WorkflowLockBusy("Run is owned by a live process") from None
+                time.sleep(min(.02, remaining))
+        info = os.fstat(handle.fileno())
+        require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and os.path.samestat(info, path.lstat()),
+                "Workflow lock must be a private, single-link regular file")
+        handle.seek(0)
+        raw = handle.read(4097)
+        require(len(raw) <= 4096, "Oversized workflow lock record")
+        marker = b'{"kind":"greybox-os-lock-v1"}'
+        try:
+            previous = json.loads(raw)
+        except (ValueError, UnicodeError):
+            previous = {}
+        current = isinstance(previous, dict) and previous.get("kind") == "greybox-os-lock-v1"
+        if (strict_legacy and raw and not current and not marker.startswith(raw)
+                and not (type(previous) is int and previous > 0)):
+            raise WorkflowLockBusy("Run is owned by a live process")
+        if not current:
+            pid = previous.get("pid") if isinstance(previous, dict) else previous
+            if type(pid) is int and pid > 0 and process_alive(pid):
+                raise WorkflowLockBusy("Run is owned by a live process")
+            # Truncation preserves the locked inode, even if a process dies here.
+            # Do not rewrite the marker on later read-only acquisitions.
+            handle.seek(0)
+            handle.truncate()
+            handle.write(marker)
+            handle.flush()
+        yield
 
 
 def load_run(run_dir, check_inputs=True):

@@ -77,7 +77,7 @@ def _engine(executable):
 def _source_files(project, scene):
     path = project_path(project, scene)
     files = [path, path.parent / "plan.json", path.parent / "greybox_runtime.gd", Path(project).resolve() / "project.godot"]
-    plan = json.loads((path.parent / "plan.json").read_text())
+    plan = json.loads((path.parent / "plan.json").read_text(encoding="utf-8"))
     for entity in plan["entities"]:
         if entity.get("script"):
             files.append(project_path(project, entity["script"]))
@@ -241,7 +241,7 @@ def run(project, scene, config, output, executable=None):
     output.mkdir(parents=True, exist_ok=True)
     if (output / "native-report.json").exists():
         raise ValueError("Native output already exists; select a new evidence directory")
-    plan = json.loads((scene_path.parent / "plan.json").read_text())
+    plan = json.loads((scene_path.parent / "plan.json").read_text(encoding="utf-8"))
     probe = _probe(config or {}, output, plan["goal"])
     _immutable(output / "probe.json", _json(probe))
     binary = _engine(executable)
@@ -259,7 +259,7 @@ def run(project, scene, config, output, executable=None):
         return {"ok": False, "native": True, "engine": "godot", "scene": resource(project, scene_path), "checks": [], "frames": [], "telemetry": {}, "source_files": _source_files(project, scene_path), "error": "Godot native input probe timed out", "log": str(output / "native.log")}
     _immutable(output / "native.log", process.stdout + "\n" + process.stderr)
     report = output / "native-report.json"
-    result = json.loads(report.read_text()) if report.is_file() else {"ok": False, "checks": [], "frames": [], "telemetry": {}, "error": "Native runtime did not write its report"}
+    result = json.loads(report.read_text(encoding="utf-8")) if report.is_file() else {"ok": False, "checks": [], "frames": [], "telemetry": {}, "error": "Native runtime did not write its report"}
     result.update(native=True, engine="godot", scene=resource(project, scene_path), source_files=_source_files(project, scene_path), exit_code=process.returncode, command=command, log=str(output / "native.log"))
     result["ok"] = bool(result["ok"] and process.returncode == 0)
     if any(not Path(frame).is_file() for frame in result["frames"]):

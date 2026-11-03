@@ -136,7 +136,8 @@ class InstallerR33(unittest.TestCase):
         self.assertTrue(self.destination.is_symlink())
         self.assertEqual(os.readlink(self.destination), "../../old-relative-target")
         self.assertEqual(self.backup_entries(), [])
-        self.assertFalse((self.backups / ".install.lock").exists())
+        with installer._operation_lock(self.backups / ".install.lock", "install"):
+            pass  # A retained lock file is not a retained owner.
         self.assertFalse(list(self.destination.parent.glob(".*-install-*")))
 
     def test_stage_swap_failure_restores_edited_regular_skill_inode(self):

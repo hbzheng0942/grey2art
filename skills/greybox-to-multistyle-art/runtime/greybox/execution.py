@@ -345,6 +345,20 @@ def _launch(ticket):
     return process
 
 
+def _dispatch_identity(source, task):
+    # Source paths were already canonicalized when validating the queue.
+    return source["kind"], source["path"], str(task["id"])
+
+
+def _dispatch_order(tasks, after):
+    """Resume after the previous winner so rate tokens cannot pin the head."""
+    if after is not None:
+        for index, (source, task) in enumerate(tasks):
+            if _dispatch_identity(source, task) == after:
+                return tasks[index + 1:] + tasks[:index + 1]
+    return tasks
+
+
 def run(queue_file, state_dir=None, max_seconds=None, once=False):
     """Run without model turns. max_seconds/once bound only the coordinator.
 
@@ -364,11 +378,13 @@ def run(queue_file, state_dir=None, max_seconds=None, once=False):
     phase = "running"
     status_path = directory / "status.json"
     iterations = 0
+    cursors = {}
     with exclusive(directory / ".owner.lock"), CapacityStore(root / "capacity.sqlite3", queue["pools"]) as store:
+        summary = {"schema": 1, "kind": "greybox-execution-status", "pid": os.getpid(),
+                   "phase": "starting", "queue_file": str(path), "heartbeat": time.time(),
+                   "started_at": started}
         try:
-            atomic_json(status_path, {"schema": 1, "kind": "greybox-execution-status", "pid": os.getpid(),
-                                      "phase": "starting", "queue_file": str(path), "heartbeat": time.time(),
-                                      "started_at": started})
+            atomic_json(status_path, summary)
             while True:
                 now = time.time()
                 tasks, errors = _scan(queue)
@@ -439,7 +455,7 @@ def run(queue_file, state_dir=None, max_seconds=None, once=False):
                 # Submit first after consuming every available completion;
                 # status/fetch run in independent process capacity pools.
                 for action in ("submit", "status", "fetch"):
-                    for source, task in tasks:
+                    for source, task in _dispatch_order(tasks, cursors.get(action)):
                         if task.get("lease") or task.get("action") != action:
                             continue
                         key = task_key(source, task["id"])
@@ -469,6 +485,7 @@ def run(queue_file, state_dir=None, max_seconds=None, once=False):
                                 continue
                             process = _launch(ticket)
                             processes[ticket["lease"]["id"]] = process
+                            cursors[action] = _dispatch_identity(source, task)
                             active_counts[action] += 1
                             deferred_reasons[key] = "action_in_progress"
                         except Exception as error:
@@ -505,12 +522,20 @@ def run(queue_file, state_dir=None, max_seconds=None, once=False):
                     phase = "blocked" if gaps or issues or any(task["state"] != "ready" for _, task in tasks) else "complete"
                     break
                 time.sleep(limits["tick_interval"])
+        except Exception as error:
+            phase = "failed"
+            summary["error"] = {"code": "EXECUTOR_FAILED", "type": type(error).__name__,
+                                "message": "Coordinator stopped; preserve original ledgers and receipts before resuming."}
+            raise
         finally:
             for process in processes.values():
                 threading.Thread(target=process.wait, daemon=True).start()
-            if "summary" in locals():
-                summary.update(phase=phase, heartbeat=time.time())
+            summary.update(phase=phase, heartbeat=time.time())
+            try:
                 atomic_json(status_path, summary)
+            except Exception:
+                if phase != "failed":
+                    raise  # Do not mask an earlier fault when storage also failed.
     return summary
 
 
@@ -545,6 +570,9 @@ def start(queue_file, state_dir=None):
         while time.monotonic() < deadline:
             current = status(path, root)
             if current.get("pid") == process.pid:
+                if current.get("phase") == "failed":
+                    return {"started": False, "code": "EXECUTOR_START_FAILED",
+                            "status_file": str(directory / "status.json")}
                 return {"started": True, "pid": process.pid, "status_file": str(directory / "status.json")}
             if process.poll() is not None:
                 return {"started": False, "code": "EXECUTOR_START_FAILED", "status_file": str(directory / "status.json")}

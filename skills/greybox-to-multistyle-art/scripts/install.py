@@ -2,6 +2,7 @@
 """Verify and atomically install this small source skill; preserve previous installs outside host discovery."""
 from __future__ import annotations
 import argparse
+from contextlib import contextmanager
 import errno
 import hashlib
 import json
@@ -9,6 +10,7 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -19,6 +21,87 @@ sys.dont_write_bytecode = True
 NAME = 'greybox-to-multistyle-art'
 MAX_PACKAGE_BYTES = 32 * 1024 * 1024
 HOSTS = ('codex', 'claude-code', 'workbuddy')
+
+
+def _process_alive(pid):
+    """Bootstrap must remain usable without importing the installed runtime."""
+    if os.name == 'nt':
+        import ctypes
+        kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+        kernel.OpenProcess.restype = ctypes.c_void_p
+        kernel.OpenProcess.argtypes = [ctypes.c_ulong, ctypes.c_int, ctypes.c_ulong]
+        kernel.GetExitCodeProcess.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_ulong)]
+        kernel.CloseHandle.argtypes = [ctypes.c_void_p]
+        handle = kernel.OpenProcess(0x1000, False, pid)
+        if not handle:
+            return ctypes.get_last_error() != 87
+        try:
+            code = ctypes.c_ulong()
+            return not kernel.GetExitCodeProcess(handle, ctypes.byref(code)) or code.value == 259
+        finally:
+            kernel.CloseHandle(handle)
+    try:
+        os.kill(pid, 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+
+
+@contextmanager
+def _lock_handle(path, message):
+    if path.is_symlink():
+        raise ValueError('Operation lock cannot be a symbolic link')
+    with path.open('a+b') as handle:
+        try:
+            if os.name == 'nt':
+                import msvcrt
+                handle.seek(0)
+                msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+            else:
+                import fcntl
+                fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:
+            raise ValueError(message) from None
+        info = os.fstat(handle.fileno())
+        if not (stat.S_ISREG(info.st_mode) and info.st_nlink == 1 and os.path.samestat(info, path.lstat())):
+            raise ValueError('Operation lock must be a private, single-link regular file')
+        yield handle
+
+
+@contextmanager
+def _operation_lock(path, operation):
+    """Permanent guard for new callers, ephemeral PID sentinel for legacy installers."""
+    ensure_directory(path.parent)
+    message = 'Another ' + operation + ' owns the skill/runtime lock; inspect its process before retrying'
+    marker = b'greybox-installer-os-lock-v1'
+    with _lock_handle(path.with_name(path.name + '.guard'), message):
+        owned = None
+        try:
+            with _lock_handle(path, message) as handle:
+                handle.seek(0)
+                previous = handle.read(4097)
+                if len(previous) > 4096:
+                    raise ValueError(message)
+                if previous and not marker.startswith(previous):
+                    try:
+                        pid = int(previous)
+                    except ValueError:
+                        raise ValueError(message) from None
+                    if not 0 < pid <= 2147483647 or _process_alive(pid):
+                        raise ValueError(message)
+                handle.seek(0)
+                handle.truncate()
+                handle.write(str(os.getpid()).encode('ascii'))
+                handle.flush()
+                owned = os.fstat(handle.fileno())
+                yield
+        finally:
+            # Close the byte lock before unlink on Windows. The permanent guard
+            # remains held; legacy installers see the live PID until this removal.
+            if owned is not None and os.path.samestat(owned, path.lstat()):
+                path.unlink()
 
 
 def ensure_directory(path):
@@ -260,15 +343,13 @@ def install(source, destination, replace=False):
     ensure_directory(destination.parent)
     backups = _backup_root(destination)
     ensure_directory(backups)
-    lock = backups / '.install.lock'
-    try:
-        fd = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    except FileExistsError:
-        raise ValueError('Another install owns the skill lock; inspect its process before retrying') from None
+    with _operation_lock(backups / '.install.lock', 'install'):
+        return _install_locked(source, destination, manifest, files, backups, replace)
+
+
+def _install_locked(source, destination, manifest, files, backups, replace):
     stage, previous = None, None
     try:
-        with os.fdopen(fd, 'w', encoding='utf-8') as handle:
-            handle.write(str(os.getpid()))
         if _same_install(destination, manifest):
             return {'status': 'already-installed', 'path': str(destination), 'version': manifest['version'],
                     'copiedBytes': 0, 'previous': None, 'identity': package_identity(destination, manifest)}
@@ -303,11 +384,8 @@ def install(source, destination, replace=False):
                 'identity': package_identity(destination, manifest),
                 'next': 'Run host and project preflight; backups are outside host skill discovery.'}
     finally:
-        try:
-            if stage is not None and stage.exists():
-                shutil.rmtree(stage)
-        finally:
-            lock.unlink()
+        if stage is not None and stage.exists():
+            shutil.rmtree(stage)
 
 
 def host_skills_dir(host, home=None, explicit=None, config_dir=None, environ=None):
@@ -349,28 +427,24 @@ def rollback(destination, backup):
         raise ValueError('Rollback must name a preserved backup for this exact host skill destination')
     _recognizable_install(backup)
     ensure_directory(backups)
-    lock = backups / '.install.lock'
-    try:
-        fd = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    except FileExistsError:
-        raise ValueError('Another install owns the skill lock; inspect its process before retrying') from None
+    with _operation_lock(backups / '.install.lock', 'install'):
+        return _rollback_locked(destination, backup, backups)
+
+
+def _rollback_locked(destination, backup, backups):
+    _recognizable_install(backup)
     current = None
+    if _present(destination):
+        current = backups / (_recognizable_install(destination) + '-' + uuid.uuid4().hex[:12])
+        os.replace(destination, current)
     try:
-        with os.fdopen(fd, 'w', encoding='utf-8') as out:
-            out.write(str(os.getpid()))
-        if _present(destination):
-            current = backups / (_recognizable_install(destination) + '-' + uuid.uuid4().hex[:12])
-            os.replace(destination, current)
-        try:
-            os.replace(backup, destination)
-        except BaseException:
-            if current is not None and _present(current) and not _present(destination):
-                os.replace(current, destination)
-            raise
-        return {'status': 'rolled-back', 'path': str(destination), 'preserved': str(current) if current else None,
-                'copiedBytes': 0, 'next': 'Restart host discovery and refresh only the affected runtime bindings.'}
-    finally:
-        lock.unlink()
+        os.replace(backup, destination)
+    except BaseException:
+        if current is not None and _present(current) and not _present(destination):
+            os.replace(current, destination)
+        raise
+    return {'status': 'rolled-back', 'path': str(destination), 'preserved': str(current) if current else None,
+            'copiedBytes': 0, 'next': 'Restart host discovery and refresh only the affected runtime bindings.'}
 
 
 def bootstrap_dependencies(skill_root, runtime_dir, python_executable=None, configured_python=None):
@@ -382,13 +456,15 @@ def bootstrap_dependencies(skill_root, runtime_dir, python_executable=None, conf
         raise ValueError('Runtime directory must not be a symlink; choose a private environment path')
     ensure_directory(runtime_dir.parent)
     lock = runtime_dir.parent / ('.' + runtime_dir.name + '.bootstrap.lock')
+    with _operation_lock(lock, 'bootstrap'):
+        return _bootstrap_locked(skill_root, runtime_dir, python_executable, configured_python)
+
+
+def _bootstrap_locked(skill_root, runtime_dir, python_executable, configured_python):
+    # This observation belongs inside the lock: another completed bootstrap
+    # must never be mistaken for a directory created by this invocation.
     created = not runtime_dir.exists()
     try:
-        fd = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-    except FileExistsError:
-        raise ValueError('Another bootstrap owns the runtime lock; inspect its process before retrying') from None
-    try:
-        os.close(fd)
         executable = runtime_dir / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
         if runtime_dir.exists() and ((runtime_dir / 'pyvenv.cfg').is_symlink()
                                      or not (runtime_dir / 'pyvenv.cfg').is_file()):
@@ -456,8 +532,6 @@ def bootstrap_dependencies(skill_root, runtime_dir, python_executable=None, conf
                          'Check package-index connectivity; for a broken environment select a complete Python 3.11+ '
                          'with --python and use a new private runtime path (--bootstrap PATH). '
                          'Do not clear the existing directory or repeat an unchanged failing setup.') from None
-    finally:
-        lock.unlink()
 
 
 def main():

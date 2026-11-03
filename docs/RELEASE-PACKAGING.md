@@ -15,7 +15,7 @@ python3 scripts/build_release.py build --verify-install
 When other work is modifying the checkout, select a frozen tag or commit instead:
 
 ```sh
-python3 scripts/build_release.py build --ref v0.15.1 --verify-install
+python3 scripts/build_release.py build --ref v0.15.2 --verify-install
 ```
 
 `--ref` resolves once to an immutable commit, reads its Skill manifest and only

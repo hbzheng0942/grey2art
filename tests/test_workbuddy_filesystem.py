@@ -44,6 +44,20 @@ class WorkBuddyFilesystem(unittest.TestCase):
             core.ensure_directory(target)
         self.assertEqual(target.read_bytes(), b"untouched")
 
+    def test_os_workflow_lock_preserves_existing_directory_broker_behavior(self):
+        mkdir = Path.mkdir
+        def broker(path, *args, **kwargs):
+            if path.is_dir():
+                raise FileExistsError(errno.EEXIST, "broker returned EEXIST", str(path))
+            return mkdir(path, *args, **kwargs)
+        with patch.object(Path, "mkdir", broker):
+            with core.locked(self.root):
+                with self.assertRaises(core.WorkflowLockBusy):
+                    with core.locked(self.root):
+                        pass
+            with core.locked(self.root):
+                pass
+
     def test_host_permission_denial_remains_failure_for_an_existing_directory(self):
         with patch.object(Path, "mkdir", side_effect=PermissionError(errno.EACCES, "host policy denied")):
             with self.assertRaises(PermissionError):

@@ -31,7 +31,7 @@ def main():
             if args.command in {"init", "update", "event", "check"}:
                 if not args.input:
                     raise ValueError("--input required")
-                source = json.loads(continuity._path(args.input, Path(args.project).resolve()).read_text())
+                source = json.loads(continuity._path(args.input, Path(args.project).resolve()).read_text(encoding="utf-8"))
             if args.command == "init":
                 result = continuity.initialize(args.project, args.case, source["plan"], source["event"])
             elif args.command in {"update", "event"}:

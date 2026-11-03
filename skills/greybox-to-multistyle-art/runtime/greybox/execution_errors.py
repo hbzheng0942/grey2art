@@ -13,7 +13,7 @@ import time
 
 
 ACCEPTANCE = {"not_accepted", "accepted", "unknown"}
-CATEGORIES = {"capacity", "rate_limit", "network", "timeout", "permanent", "capability", "protocol"}
+CATEGORIES = {"capacity", "rate_limit", "network", "timeout", "permanent", "capability", "protocol", "local"}
 MESSAGES = {
     "capacity": "The account generation pool is full; wait for capacity.",
     "rate_limit": "The request rate is limited; retain the task and respect its cooldown.",
@@ -22,6 +22,7 @@ MESSAGES = {
     "permanent": "The operation was rejected; inspect the bound request before continuing.",
     "capability": "The selected execution route does not support this action.",
     "protocol": "The operation did not return a valid receipt; preserve its original attempt.",
+    "local": "A local operation is temporarily unavailable; preserve the attempt and retry when ready.",
 }
 
 

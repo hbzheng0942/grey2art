@@ -130,8 +130,8 @@ def _locked(directory):
         try:
             lock.__enter__()
             break
-        except core.WorkflowError as error:
-            if str(error) != "Run is owned by a live process" or time.monotonic() >= deadline:
+        except core.WorkflowLockBusy:
+            if time.monotonic() >= deadline:
                 raise
             time.sleep(.02)
     try:

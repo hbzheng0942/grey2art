@@ -7,6 +7,7 @@ worker. This module never creates a second task or cost ledger.
 from __future__ import annotations
 
 import copy
+from collections import Counter
 import json
 import math
 import os
@@ -50,7 +51,7 @@ def _run_limit(source, portfolio, provider):
     return limits.get(provider)
 
 
-def _runnable(source, state, portfolio, operation):
+def _runnable(source, state, portfolio, operation, active_counts=None):
     if state.get("cost_overrun"):
         return "budget_overrun"
     if portfolio.get("workspace") is None:
@@ -60,16 +61,20 @@ def _runnable(source, state, portfolio, operation):
     if any(jobs._artifact_problems(state["operations"][d], cached=True) for d in operation.get("depends_on", [])):
         return "dependency_artifact_recovery"
     limit = _run_limit(source, portfolio, operation["provider"])
-    occupied = sum(row.get("provider") == operation["provider"] and row.get("state") in ACTIVE
-                   for row in state["operations"].values())
-    if limit is not None and occupied >= limit:
-        return "run_capacity"
+    if limit is not None:
+        occupied = (active_counts.get(operation["provider"], 0) if active_counts is not None else
+                    sum(row.get("provider") == operation["provider"] and row.get("state") in ACTIVE
+                        for row in state["operations"].values()))
+        if occupied >= limit:
+            return "run_capacity"
     return None
 
 
 def scan(source):
     run, pools = _source(source)
     state, portfolio, _, _, option = jobs._load(run)
+    active_counts = Counter(row.get("provider") for row in state["operations"].values()
+                            if row.get("state") in ACTIVE)
     result = []
     for operation in option["operations"]:
         oid = operation["id"]
@@ -93,7 +98,7 @@ def scan(source):
         elif observed in BLOCKED:
             normalized, reason = "blocked", observed
         else:
-            reason = _runnable(source, state, portfolio, operation)
+            reason = _runnable(source, state, portfolio, operation, active_counts)
             normalized, action = "pending", None if reason else "submit"
         if row.get("execution"):
             action = None  # Only the executor may recover that exact action receipt.
@@ -173,7 +178,7 @@ def prepare(source, oid, action, lease):
             guard_submission(state["project"], portfolio, operation["asset_id"], operation["operation"], run, core.digest(operation))
             try:
                 row["claim_path"] = jobs._claim(state, run, operation)
-            except (ValueError, OSError):
+            except jobs.DuplicateOperationError:
                 row["state"] = "blocked_duplicate"
                 core.write(run / "supplier-run.json", state)
                 from .production_control import release_unsubmitted
@@ -320,7 +325,7 @@ def invoke(ticket):
         error = classify_error(exc, ticket["action"])
         if ticket["action"] == "submit" and not started and getattr(exc, "unknown_submission", None) is not True:
             error["acceptance"] = "not_accepted"
-            if isinstance(exc, core.WorkflowError):
+            if isinstance(exc, core.WorkflowError) and not isinstance(exc, core.WorkflowLockBusy):
                 error["code"] = "SUPPLIER_PREFLIGHT_BLOCKED"
                 error["local_reason"] = str(exc)[:512]
         return {"execution_error": error, "request_receipts": _receipts(request, preflight)}
