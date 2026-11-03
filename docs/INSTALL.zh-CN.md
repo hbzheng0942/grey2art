@@ -2,14 +2,21 @@
 
 [English](INSTALL.md) · [简体中文](INSTALL.zh-CN.md) · [README](../README.zh-CN.md)
 
-## 获取完整安装包
+## 让 Agent 安装（推荐）
 
-完整图像流程使用 [Python 3.11+](https://www.python.org/downloads/)，离线安装与 CLI 命令也支持 Python 3.10。从 [GitHub Release](https://github.com/hbzheng0942/grey2art/releases/latest) 下载 Skill ZIP 和校验文件；ZIP 约 1 MB，无需下载游戏或全部案例媒体。解压后进入 `greybox-to-multistyle-art/`：
+在当前 Agent 的对话框发送[快速开始中的一句话](../README.zh-CN.md#快速开始)。收到安装请求的 Agent 按以下步骤执行：
 
-```sh
-python3 scripts/install.py --verify-only
-python3 scripts/install.py --host auto --replace
-```
+1. 从[官方 Release](https://github.com/hbzheng0942/grey2art/releases/latest) 下载同一版本的 Skill ZIP 和 `.zip.sha256`，校验 ZIP 的 SHA-256 后解压。
+2. 将解压出的整个 `greybox-to-multistyle-art/` 文件夹放入当前 Agent 扫描的个人 Skill 目录。若目标已存在，不要覆盖或合并文件；相同内容直接复用，需要替换时见[升级与接续](#升级与接续)。
+3. 确认目标目录中有 `SKILL.md` 和 `runtime/`，从 `MANIFEST.json` 读取版本，告诉用户安装位置。刷新 Skill 列表或开启新会话即可。
+
+常见个人目录：Codex 用 `~/.agents/skills/`，Claude Code 用 `~/.claude/skills/`，WorkBuddy 用已配置的 Skill 目录（如 `~/.workbuddy/skills/`）。以当前宿主实际扫描的位置为准。
+
+首次安装不需要 Python。运行 Grey2Art 的制作工具时才需要 Python；完整图像流程需要 Python 3.11+。
+
+## 手动安装
+
+也可以自己解压[发行包](https://github.com/hbzheng0942/grey2art/releases/latest)，把完整的 `greybox-to-multistyle-art/` 文件夹放进当前 Agent 的 Skill 目录，然后刷新 Skill 列表。目录结构应是 `技能目录/greybox-to-multistyle-art/SKILL.md`，不要只复制 `SKILL.md`。
 
 ## 从源码安装
 

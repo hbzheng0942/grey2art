@@ -2,14 +2,21 @@
 
 [English](INSTALL.md) · [简体中文](INSTALL.zh-CN.md) · [README](../README.md)
 
-## Get the complete package
+## Ask your agent to install (recommended)
 
-Use [Python 3.11+](https://www.python.org/downloads/) for the full image workflow. Offline installation and CLI commands also support Python 3.10. Download the Skill ZIP and checksum from [GitHub Releases](https://github.com/hbzheng0942/grey2art/releases/latest). The ZIP is about 1 MB; games and showcase media are not needed. Extract it, then enter `greybox-to-multistyle-art/`:
+Send the [one-sentence quickstart request](../README.md#quickstart) to your current agent. The agent receiving the request should:
 
-```sh
-python3 scripts/install.py --verify-only
-python3 scripts/install.py --host auto --replace
-```
+1. Download the Skill ZIP and matching `.zip.sha256` from the same [official release](https://github.com/hbzheng0942/grey2art/releases/latest). Verify the ZIP's SHA-256, then extract it.
+2. Place the entire `greybox-to-multistyle-art/` folder in the personal skills directory scanned by the current agent. If the destination exists, do not overwrite or merge it. Reuse identical contents; for a replacement, follow [Upgrade and resume](#upgrade-and-resume).
+3. Confirm the installed folder contains `SKILL.md` and `runtime/`, read the version from `MANIFEST.json`, and report the version and location. Refresh skills or start a new session.
+
+Common personal locations are `~/.agents/skills/` for Codex, `~/.claude/skills/` for Claude Code and the configured skills directory for WorkBuddy (such as `~/.workbuddy/skills/`). Use the directory actually scanned by the current host.
+
+A first installation needs no Python. Python is needed when running Grey2Art's production tools; the full image workflow requires Python 3.11+.
+
+## Manual installation
+
+You can also extract the [release ZIP](https://github.com/hbzheng0942/grey2art/releases/latest), place the complete `greybox-to-multistyle-art/` folder in your agent's skills directory and refresh skills. The layout should be `skills-directory/greybox-to-multistyle-art/SKILL.md`; keep its sibling files and folders with it.
 
 ## Install from source
 

@@ -8,7 +8,7 @@
 
 Grey2Art 是面向 Codex、Claude Code 和 WorkBuddy 的 Agent Skill。从已有可玩灰盒出发，制作单个或多个美术版本；也可以从玩法需求、游戏参考开始，先搭建灰盒，再推进美术。产物保留为可编辑的 Godot／Unity 工程。
 
-使用者从配置与示例开始；agent 从 [SKILL.md](skills/greybox-to-multistyle-art/SKILL.md) 读取执行方法。
+首次使用请从[快速开始](#快速开始)安装；执行游戏制作任务时，Agent 从 [SKILL.md](skills/greybox-to-multistyle-art/SKILL.md) 读取执行方法。
 
 <p align="center"><img src="docs/demo/grey2art-overview.zh-CN.png" alt="黑洞、列车跑酷、漫野田园：同一灰盒与三种美术版本" width="720"></p>
 
@@ -35,7 +35,7 @@ Grey2Art 是面向 Codex、Claude Code 和 WorkBuddy 的 Agent Skill。从已有
 
 | 准备什么 | 如何选择 |
 |---|---|
-| Agent 与 Python | Codex、Claude Code 或 WorkBuddy，可执行本地命令；[Python 3.11+](https://www.python.org/downloads/)。 |
+| Agent 与 Python | Codex、Claude Code 或 WorkBuddy，可执行本地命令；制作时使用 [Python 3.11+](https://www.python.org/downloads/)。 |
 | 制作与验证工具 | [Blender](https://www.blender.org/download/) 用于空间灰盒、尺度、镜头和几何验证；[Godot](https://godotengine.org/download/)／[Unity](https://unity.com/download) 用于可玩循环、交互与运行测试。按任务选择，已有工程沿用原版本。 |
 | 生图工具 | 复用宿主生图工具，或配置[图像服务](skills/greybox-to-multistyle-art/references/image-services.md)，用于概念与建模参考。 |
 | AI 3D 供应商 | 新生成模型时选择一家：Lux3D、Meshy、Tripo、Rodin 或 Hi3D。[注册与配置](docs/INSTALL.zh-CN.md#选择-ai-3d-供应商) |
@@ -44,15 +44,13 @@ Blender 是 DCC 工具；只交付空间灰盒或 `.blend` 时无需游戏引擎
 
 ## 快速开始
 
-下载并解压[完整 Skill 安装包](https://github.com/hbzheng0942/grey2art/releases/download/v0.15.1/greybox-to-multistyle-art-0.15.1.zip)，在解压后的 `greybox-to-multistyle-art/` 目录执行：
+在你正在用的 Agent 对话框里粘贴这一句：
 
-```sh
-python3 scripts/install.py --host auto --replace
+```text
+请把 https://github.com/hbzheng0942/grey2art 的 Grey2Art Skill 安装到当前 Agent。
 ```
 
-如果使用源码仓库，在仓库根目录执行 `python3 skills/greybox-to-multistyle-art/scripts/install.py --host auto --replace`。
-
-Windows 使用 `py -3`。刷新 Skill 或开启新会话，选择一种起点向 agent 提出任务。
+首次安装无需 Python。装好后刷新 Skill 列表或开启新会话，就可以试试下面的任务。[安装说明与离线安装](docs/INSTALL.zh-CN.md)
 
 **已有灰盒，单个风格**
 

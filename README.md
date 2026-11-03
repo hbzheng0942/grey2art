@@ -8,7 +8,7 @@
 
 Grey2Art is an Agent Skill for Codex, Claude Code and WorkBuddy. Turn an existing playable greybox into one or more art versions, or start with a gameplay brief or reference and build the greybox first. Outputs remain editable in Godot or Unity.
 
-For users: follow setup and task examples below. For agents: start with [SKILL.md](skills/greybox-to-multistyle-art/SKILL.md).
+Start with the [quickstart](#quickstart) to install. For game production tasks, agents use [SKILL.md](skills/greybox-to-multistyle-art/SKILL.md).
 
 <p align="center"><img src="docs/demo/grey2art-overview.png" alt="Hole, Train Parkour and Wander Garden: one greybox and three art versions each" width="720"></p>
 
@@ -35,7 +35,7 @@ Design reviews and production plans keep the work directed: choose references, a
 
 | Prepare | Choose |
 |---|---|
-| Agent and Python | Codex, Claude Code or WorkBuddy with local command execution; [Python 3.11+](https://www.python.org/downloads/). |
+| Agent and Python | Codex, Claude Code or WorkBuddy with local command execution; for production, use [Python 3.11+](https://www.python.org/downloads/). |
 | Authoring and validation | [Blender](https://www.blender.org/download/) for spatial greyboxes, scale, cameras and geometry; [Godot](https://godotengine.org/download/) / [Unity](https://unity.com/download) for playable loops, interactions and runtime tests. Choose for the task and retain existing project versions. |
 | Image tools | Use your host's image tool or configure an [image service](skills/greybox-to-multistyle-art/references/image-services.md) for concepts and modeling references. |
 | AI 3D provider | Choose one when generating new models: Lux3D, Meshy, Tripo, Rodin or Hi3D. [Sign up and configure](docs/INSTALL.md#choose-an-ai-3d-provider) |
@@ -44,15 +44,13 @@ Blender is a DCC tool; a spatial greybox or `.blend` delivery needs no game engi
 
 ## Quickstart
 
-Download and extract the [complete Skill package](https://github.com/hbzheng0942/grey2art/releases/download/v0.15.1/greybox-to-multistyle-art-0.15.1.zip). Inside the extracted `greybox-to-multistyle-art/` directory, run:
+Paste this request into the agent you already use:
 
-```sh
-python3 scripts/install.py --host auto --replace
+```text
+Install the Grey2Art Skill from https://github.com/hbzheng0942/grey2art for my current agent.
 ```
 
-From a source checkout, use `python3 skills/greybox-to-multistyle-art/scripts/install.py --host auto --replace` at the repository root.
-
-On Windows use `py -3`. Refresh skills or start a new session, then choose a starting request.
+A first install needs no Python. Refresh skills or start a new session to try a task below. [Install guide and offline setup](docs/INSTALL.md)
 
 **Existing greybox, one style**
 

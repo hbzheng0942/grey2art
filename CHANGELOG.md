@@ -2,6 +2,10 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
+## Documentation / 文档
+
+- Start installation by pasting one request into your agent; manual setup remains available. / 快速开始改为复制一句话让 Agent 安装，仍可按文档手动安装。
+
 ## 0.15.1 — 2026-11-02
 
 First public release of Grey2Art. / Grey2Art 首次公开发行。
